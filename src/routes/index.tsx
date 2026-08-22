@@ -1,16 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { Hero } from "@/components/marketing/Hero";
-import { Pillars } from "@/components/marketing/Pillars";
-import { HomeStory } from "@/components/marketing/HomeStory";
+import { QuietLuxuryHome } from "@/components/marketing/QuietLuxuryHome";
 import { site } from "@/config/site";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: `${site.name} — A private London membership community` },
+      { title: `${site.name} — A private world around the life you've built` },
       { name: "description", content: site.description },
-      { property: "og:title", content: `${site.name} — ${site.supportingLine}` },
+      { property: "og:title", content: `${site.name} — ${site.positioning}` },
       { property: "og:description", content: site.description },
     ],
   }),
@@ -18,11 +16,5 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  return (
-    <>
-      <Hero />
-      <Pillars />
-      <HomeStory />
-    </>
-  );
+  return <QuietLuxuryHome />;
 }
