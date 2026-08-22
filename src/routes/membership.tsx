@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, BadgeCheck, BriefcaseBusiness, Family, Handshake, ShieldCheck, Users } from "lucide-react";
+import { ArrowRight, BadgeCheck, BriefcaseBusiness, Handshake, ShieldCheck, Users } from "lucide-react";
 
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/button";
@@ -25,7 +25,7 @@ function MembershipPage() {
         <Container>
           <div className="grid gap-px bg-border lg:grid-cols-3">
             <article className="bg-background p-7 md:p-8">
-              <Users className="h-5 w-5 text-bronze" />
+              <BriefcaseBusiness className="h-5 w-5 text-bronze" />
               <p className="mt-8 text-[10px] uppercase tracking-[0.2em] text-bronze">Individual membership</p>
               <h2 className="mt-3 font-display text-4xl">A serious peer room plus a useful operating layer.</h2>
               <p className="mt-5 text-sm leading-7 text-muted-foreground">For founders, owners, family-enterprise principals, investors, senior operators and a small number of professionals whose judgement improves the community.</p>
@@ -33,7 +33,7 @@ function MembershipPage() {
             </article>
 
             <article className="bg-card p-7 md:p-8">
-              <Family className="h-5 w-5 text-bronze" />
+              <Users className="h-5 w-5 text-bronze" />
               <p className="mt-8 text-[10px] uppercase tracking-[0.2em] text-bronze">Family membership</p>
               <h2 className="mt-3 font-display text-4xl">Treat family, learning and legacy as part of the system.</h2>
               <p className="mt-5 text-sm leading-7 text-muted-foreground">For families that want the adult member experience plus rising-generation education, family architecture and age-appropriate continuity into alumni and work.</p>
