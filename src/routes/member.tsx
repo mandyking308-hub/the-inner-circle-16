@@ -1,6 +1,7 @@
 import { createFileRoute, Outlet } from "@tanstack/react-router";
 
 import { PrivateShell } from "@/components/private/PrivateShell";
+import { PrivatePreviewGate } from "@/components/security/PrivatePreviewGate";
 import { site } from "@/config/site";
 
 export const Route = createFileRoute("/member")({
@@ -8,7 +9,7 @@ export const Route = createFileRoute("/member")({
     meta: [
       { title: `Member area — ${site.name}` },
       { name: "description", content: `The private member area of ${site.name}.` },
-      { name: "robots", content: "noindex" },
+      { name: "robots", content: "noindex,nofollow,noarchive" },
     ],
   }),
   component: MemberLayout,
@@ -16,8 +17,10 @@ export const Route = createFileRoute("/member")({
 
 function MemberLayout() {
   return (
-    <PrivateShell mode="member">
-      <Outlet />
-    </PrivateShell>
+    <PrivatePreviewGate>
+      <PrivateShell mode="member">
+        <Outlet />
+      </PrivateShell>
+    </PrivatePreviewGate>
   );
 }
