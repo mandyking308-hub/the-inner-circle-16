@@ -24,7 +24,7 @@ function PartnersPage() {
             <h1 className="mt-6 max-w-[11ch] font-display text-6xl leading-[0.93] md:text-8xl">When you need somebody good, start somewhere better than search.</h1>
             <p className="mt-7 max-w-2xl text-base leading-8 text-background/72">The right lawyer, trustee, immigration specialist, education adviser, property expert, cyber team or recruiter can save months. The wrong one can create a problem that takes years to unwind.</p>
             <p className="mt-4 max-w-2xl text-sm leading-7 text-background/55">So the directory is not open to whoever pays the most. Recommendation and useful work matter first.</p>
-            <Button asChild size="lg" className="mt-9 rounded-none bg-oxblood px-8"><Link to="/apply">Request a seat <ArrowRight className="ml-2 h-4 w-4" /></Link></Button>
+            <div className="mt-9 flex flex-wrap gap-3"><Button asChild size="lg" className="rounded-none bg-oxblood px-8"><Link to="/partner-application">Apply as a Trusted Partner <ArrowRight className="ml-2 h-4 w-4" /></Link></Button><Button asChild size="lg" variant="outline" className="rounded-none border-background/35 bg-transparent px-8 text-background hover:bg-background hover:text-foreground"><Link to="/membership">Member access</Link></Button></div>
           </div>
         </Container>
       </section>
@@ -63,7 +63,7 @@ function PartnersPage() {
       </section>
 
       <section className="bg-oxblood py-20 text-oxblood-foreground md:py-28">
-        <Container><div className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end"><div><p className="eyebrow text-bronze">The standard</p><h2 className="mt-5 max-w-4xl font-display text-5xl leading-[1.02] md:text-6xl">The best professional firms should want the recommendation more than the listing.</h2></div><Button asChild size="lg" className="rounded-none bg-background px-8 text-foreground hover:bg-bronze"><Link to="/membership">How membership works <ArrowRight className="ml-2 h-4 w-4" /></Link></Button></div></Container>
+        <Container><div className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end"><div><p className="eyebrow text-bronze">The standard</p><h2 className="mt-5 max-w-4xl font-display text-5xl leading-[1.02] md:text-6xl">The best professional firms should want the recommendation more than the listing.</h2></div><Button asChild size="lg" className="rounded-none bg-background px-8 text-foreground hover:bg-bronze"><Link to="/partner-application">Apply to the partner network <ArrowRight className="ml-2 h-4 w-4" /></Link></Button></div></Container>
       </section>
     </>
   );
