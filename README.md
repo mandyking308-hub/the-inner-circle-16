@@ -1,81 +1,71 @@
-# The Inner Circle (16)
+# Project Table
 
-Create a new responsive web app for a private, invitation-only London-based membership community for founders, family enterprises, investors, trusted advisers and philanthropists.
+**Working name.** A private, invitation-only London community for founders, family enterprises, investors, trusted advisers and philanthropists.
 
-Working name: Project Table. The name is temporary and must be easy to change later.
+> A private room for people building what outlives them.
+>
+> **Build. Protect. Govern. Pass it on.**
 
-For this first build, keep it extremely lightweight.
+## Product model
 
-Create only:
+Project Table is designed as a trust system rather than a mass networking platform.
 
-A polished homepage
+- **The Table** — recurring 8–12 person peer circles with accumulated context.
+- **Community** — a private member directory focused on expertise, contribution and interests rather than public wealth.
+- **Introductions** — concierge-brokered, consent-based warm introductions rather than cold direct messaging.
+- **Ask & Offer** — structured Needs, Offers and Introduction Requests.
+- **Gatherings** — private dinners, breakfasts, salons, masterclasses, retreats and impact visits.
+- **Knowledge** — curated briefings and expert councils around governance, succession, technology, risk, philanthropy and next-generation stewardship.
+- **Impact** — practical opportunities to contribute expertise, relationships and support.
+- **Next Generation** — a separately protected programme with guardian/admin controls and no access to adult confidential rooms.
+- **Concierge/Admin** — human curation of applications, Tables, events, introductions, conduct, content and safeguards.
 
-Basic responsive navigation
+Core principles: **Character, Contribution, Commitment, Confidentiality, No Solicitation.**
 
-An empty /member area
+## Current MVP
 
-An empty /admin area
+The repository contains a complete clickable frontend prototype using fictional/local demo data. It intentionally does **not** activate production payments or authentication yet.
 
-An /apply page
+Public routes include About, The Table, Gatherings, Legacy, Next Gen, Impact, Membership, Apply and draft trust/legal templates.
 
-Authentication placeholders
+Private demo routes include the member dashboard, My Table, Community, Introductions, Ask & Offer, Events, Knowledge, Impact, Next Gen, Profile and the full concierge/admin back office.
 
-Clean routing and reusable component structure
+## Development strategy
 
-Homepage positioning:
+This project is intentionally **GitHub-first** to minimise Lovable credit usage.
 
-A private room for people building what outlives them.
+1. Build and verify substantive product changes in GitHub.
+2. GitHub Actions runs the production build.
+3. Merge approved work to `main`.
+4. Let the connected Lovable project sync from GitHub.
+5. Use Lovable primarily for visual review, occasional small refinements and publishing — not repeated feature generation.
 
-Supporting line:
+The project uses TanStack Start, React, TypeScript, Tailwind and shadcn/Radix components, with the Lovable TanStack Vite configuration preserved so GitHub changes continue to sync cleanly back into Lovable.
 
-Build. Protect. Govern. Pass it on.
-
-Primary CTA: Request a seat
-
-Design direction:
-
-Premium, understated London editorial aesthetic. Warm ivory background, near-black typography, subtle bronze accents, elegant serif headings and clean sans-serif UI text. Generous whitespace. Sophisticated and contemporary.
-
-Avoid generic SaaS styling, gradients, flashy luxury styling, black-and-gold casino aesthetics and unnecessary stock imagery.
-
-Technical requirements:
-
-React / TypeScript
-
-Tailwind
-
-shadcn/ui
-
-Mobile responsive
-
-Structure the code cleanly for GitHub development
-
-Keep routes and components modular
-
-Do not build the full membership platform yet.
-Do not build payments, detailed dashboards, member directories, events, messaging, Next Gen, concierge workflows, complex database tables or integrations.
-
-Do not spend time adding lots of demo content.
-
-The goal of this first pass is simply to create a beautiful, clean project shell that we can connect to GitHub and continue developing there.
-
-This project was built with [Lovable](https://lovable.dev).
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/67a072cb-4770-438c-8d9d-6a8b9416c340).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+## Local development
 
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
+bun install
+bun run dev
 ```
+
+Production verification:
+
+```sh
+bun run build
+```
+
+## Before production launch
+
+The following should be implemented only after the product flow is approved:
+
+- production authentication and account recovery;
+- role-based permissions for member, next-gen, moderator, concierge/admin and superadmin;
+- PostgreSQL/Supabase schema and row-level security;
+- persisted applications, RSVP, introduction and moderation workflows;
+- secure handling of any verification documents;
+- final legal/privacy documents and safeguarding review;
+- payments and membership-plan activation;
+- final brand/name and domain review.
+
+All member names and operating examples currently in the app are fictional demo data.
