@@ -13,6 +13,34 @@ const images = {
   office: "https://images.unsplash.com/photo-1767277680055-34f1eeec0c26?auto=format&fit=crop&w=1800&q=86",
 } as const;
 
+const intelligenceLayers = [
+  {
+    number: "01",
+    title: "Your world",
+    body: "Countries, homes, advisers, family priorities and the things that matter now — connected in one private view.",
+  },
+  {
+    number: "02",
+    title: "Your decisions",
+    body: "A Decision Room for the moments that involve several people, several jurisdictions and no obvious next step.",
+  },
+  {
+    number: "03",
+    title: "Your family",
+    body: "Family Architecture quietly maps people, ownership, trusts, protection, advisers and what needs attention over time.",
+  },
+  {
+    number: "04",
+    title: "Your relationships",
+    body: "The network remembers context: who knows whom, where you met, who can help and when an introduction would genuinely be useful.",
+  },
+  {
+    number: "05",
+    title: "Your service",
+    body: "Concierge requests, introductions, plans and next actions stay joined up so you never have to explain the whole story twice.",
+  },
+] as const;
+
 export function QuietLuxuryHome() {
   return (
     <main className="overflow-hidden bg-background">
@@ -108,6 +136,33 @@ export function QuietLuxuryHome() {
         </Container>
       </section>
 
+      <section className="border-y border-[#d8cec0] bg-[#e8dfd2] py-28 md:py-40">
+        <Container>
+          <div className="grid gap-14 lg:grid-cols-[0.78fr_1.22fr] lg:gap-24">
+            <div className="lg:sticky lg:top-32 lg:self-start">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-oxblood">Private intelligence</p>
+              <h2 className="mt-5 max-w-xl font-display text-5xl leading-[1.02] md:text-6xl">The technology should feel like the service: there when you need it, invisible when you don't.</h2>
+              <p className="mt-7 max-w-lg text-base leading-8 text-muted-foreground">Behind the membership is a private intelligence layer that remembers the whole picture. It connects the parts of life that usually live in separate inboxes, advisers' files and family conversations.</p>
+              <p className="mt-5 max-w-lg text-sm leading-7 text-muted-foreground">AI helps prepare briefs, surface missing questions, connect related information and keep next actions visible. It supports judgement; it does not replace the people you trust or the qualified professionals you instruct.</p>
+              <div className="mt-8 flex flex-wrap gap-6">
+                <Link to="/decision-room" className="inline-flex items-center gap-2 text-sm font-semibold">See the Decision Room <ArrowRight className="h-4 w-4" /></Link>
+                <Link to="/ecosystem" className="inline-flex items-center gap-2 text-sm font-semibold">Inside the private office <ArrowRight className="h-4 w-4" /></Link>
+              </div>
+            </div>
+
+            <div className="border-t border-[#bdb0a0]">
+              {intelligenceLayers.map((layer) => (
+                <div key={layer.number} className="grid gap-4 border-b border-[#c8bcad] py-7 sm:grid-cols-[64px_190px_1fr] sm:items-start md:py-9">
+                  <span className="font-display text-2xl text-oxblood/65">{layer.number}</span>
+                  <h3 className="font-display text-3xl leading-tight text-foreground">{layer.title}</h3>
+                  <p className="max-w-xl text-sm leading-7 text-muted-foreground">{layer.body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </section>
+
       <section className="relative min-h-[72vh] overflow-hidden bg-foreground text-white">
         <img src={images.office} alt="A private study and office" className="absolute inset-0 h-full w-full object-cover" loading="lazy" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/42 to-black/12" />
@@ -115,8 +170,8 @@ export function QuietLuxuryHome() {
           <div className="max-w-2xl">
             <Sparkles className="h-5 w-5 text-[#d9b37a]" />
             <p className="mt-6 text-[10px] font-semibold uppercase tracking-[0.3em] text-white/62">Behind the life</p>
-            <h2 className="mt-5 font-display text-5xl leading-[1.02] md:text-7xl">Beautiful on the outside. Serious underneath.</h2>
-            <p className="mt-7 max-w-xl text-base leading-8 text-white/75">When life crosses countries, companies, advisers and generations, the private office keeps the whole picture connected — quietly and only when you need it.</p>
+            <h2 className="mt-5 font-display text-5xl leading-[1.02] md:text-7xl">A private office that already understands the context.</h2>
+            <p className="mt-7 max-w-xl text-base leading-8 text-white/75">The point is not more software. It is less repetition, fewer dropped threads and one place where the family, the people around it and the decisions ahead can remain connected.</p>
             <Link to="/concierge" className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-white">Discover the private office <ArrowRight className="h-4 w-4" /></Link>
           </div>
         </Container>
