@@ -1,6 +1,6 @@
 export const luxuryImages = {
   // Bright coastal editorial direction: life first, luxury inferred.
-  hero: "https://images.pexels.com/photos/28077099/pexels-photo-28077099.jpeg?auto=compress&cs=tinysrgb&w=2400",
+  hero: "https://images.pexels.com/photos/37286907/pexels-photo-37286907.jpeg?auto=compress&cs=tinysrgb&w=2400",
   world: "https://images.pexels.com/photos/19990858/pexels-photo-19990858.jpeg?auto=compress&cs=tinysrgb&w=2200",
   table: "https://images.pexels.com/photos/37286899/pexels-photo-37286899.jpeg?auto=compress&cs=tinysrgb&w=2200",
   service: "https://images.pexels.com/photos/5378707/pexels-photo-5378707.jpeg?auto=compress&cs=tinysrgb&w=2200",
