@@ -101,7 +101,7 @@ function ControlRoomPage() {
       detail: String(form.get("detail") ?? "").trim(),
       lane: String(form.get("lane") ?? "EXECUTE") as DecisionLane,
       owner: String(form.get("owner") ?? "Family").trim(),
-      dependency: String(form.get("dependency") ?? "").trim() || undefined,
+      ...(String(form.get("dependency") ?? "").trim() ? { dependency: String(form.get("dependency") ?? "").trim() } : {}),
     };
     setState((current) => ({ ...current, extraItems: { ...current.extraItems, [active.id]: [...(current.extraItems[active.id] ?? []), item] } }));
     event.currentTarget.reset();
