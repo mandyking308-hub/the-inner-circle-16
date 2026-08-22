@@ -1,4 +1,4 @@
-import type { ChangeEvent } from "react";
+import { useId, type ChangeEvent } from "react";
 import { Globe2 } from "lucide-react";
 
 const languages = [
@@ -33,7 +33,8 @@ const languages = [
   { code: "sw", label: "Kiswahili" },
 ] as const;
 
-export function LanguageSelector({ inverse = false, compact = false }: { inverse?: boolean; compact?: boolean }) {
+export function LanguageSelector({ inverse = false }: { inverse?: boolean; compact?: boolean }) {
+  const selectId = useId();
   const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const targetLanguage = event.target.value;
     if (targetLanguage === "en") {
@@ -48,9 +49,9 @@ export function LanguageSelector({ inverse = false, compact = false }: { inverse
   return (
     <div className={`group relative inline-flex items-center ${inverse ? "text-white/72" : "text-muted-foreground"}`}>
       <Globe2 className="pointer-events-none absolute left-2.5 h-3.5 w-3.5" aria-hidden="true" />
-      <label htmlFor={compact ? "montvelle-language-mobile" : "montvelle-language"} className="sr-only">Choose language</label>
+      <label htmlFor={selectId} className="sr-only">Choose language</label>
       <select
-        id={compact ? "montvelle-language-mobile" : "montvelle-language"}
+        id={selectId}
         defaultValue="en"
         onChange={handleChange}
         aria-label="Translate Montvelle"
