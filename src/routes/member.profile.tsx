@@ -1,6 +1,6 @@
-import { FormEvent, useState } from "react";
+import { type FormEvent, useEffect, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { Eye, EyeOff, ShieldCheck } from "lucide-react";
+import { Bell, Eye, EyeOff, ShieldCheck } from "lucide-react";
 
 import { PageIntro } from "@/components/private/PrivateShell";
 import { Button } from "@/components/ui/button";
@@ -8,105 +8,35 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
-export const Route = createFileRoute("/member/profile")({
-  component: ProfilePage,
-});
+export const Route = createFileRoute("/member/profile")({ component: ProfilePage });
+
+const STORAGE_KEY = "project-table:member-profile:v2";
+type ProfileState = {
+  name: string; city: string; role: string; organisation: string; bio: string; help: string; learn: string;
+  showEnterpriseStage: boolean; showEvents: boolean; showOtherCities: boolean; showLanguages: boolean;
+  conciergeUpdates: boolean; eventUpdates: boolean; introUpdates: boolean;
+};
+const starter: ProfileState = { name: "Amelia Hart", city: "London", role: "Founder & CEO", organisation: "Hartwell Systems", bio: "Founder of an enterprise technology company working across the UK and Europe. Interested in building management independence, family governance and responsible AI adoption.", help: "Scaling technology teams, enterprise sales, AI implementation and founder-led international growth.", learn: "Governance before a liquidity event, ownership structures, next-generation education and long-term philanthropy.", showEnterpriseStage: false, showEvents: true, showOtherCities: true, showLanguages: true, conciergeUpdates: true, eventUpdates: true, introUpdates: true };
 
 function ProfilePage() {
+  const [profile, setProfile] = useState<ProfileState>(starter);
   const [saved, setSaved] = useState(false);
-  const [showEnterpriseStage, setShowEnterpriseStage] = useState(false);
-  const [showEvents, setShowEvents] = useState(true);
+  useEffect(() => { try { const raw = window.localStorage.getItem(STORAGE_KEY); if (raw) setProfile({ ...starter, ...(JSON.parse(raw) as Partial<ProfileState>) }); } catch { /* use starter */ } }, []);
 
-  const submit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setSaved(true);
-  };
+  const submit = (event: FormEvent<HTMLFormElement>) => { event.preventDefault(); window.localStorage.setItem(STORAGE_KEY, JSON.stringify(profile)); setSaved(true); window.setTimeout(() => setSaved(false), 1800); };
+  const patch = <K extends keyof ProfileState>(key: K, value: ProfileState[K]) => setProfile((current) => ({ ...current, [key]: value }));
 
   return (
     <div className="space-y-8">
-      <PageIntro
-        eyebrow="Profile & privacy"
-        title="Give the room enough context — no more than it needs."
-        description="Your profile exists to make useful relationships easier. Sensitive family, ownership and financial information is private by default and should never be required for social signalling."
-      />
-
+      <PageIntro eyebrow="Account & privacy" title="Give the room enough context — no more than it needs" description="Your profile exists to make useful relationships easier. Sensitive family, ownership and financial information stays outside the social profile by default." />
       <form onSubmit={submit} className="grid gap-5 xl:grid-cols-[1fr_360px]">
-        <section className="border border-border bg-card p-5 md:p-6">
-          <div className="grid gap-5 md:grid-cols-2">
-            <div className="space-y-2">
-              <Label htmlFor="name">Name</Label>
-              <Input id="name" className="rounded-none" defaultValue="Amelia Hart" />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="city">City</Label>
-              <Input id="city" className="rounded-none" defaultValue="London" />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="role">Role</Label>
-              <Input id="role" className="rounded-none" defaultValue="Founder & CEO" />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="organisation">Organisation</Label>
-              <Input id="organisation" className="rounded-none" defaultValue="Hartwell Systems" />
-            </div>
-          </div>
+        <section className="border border-border bg-card p-5 md:p-6"><div className="grid gap-5 md:grid-cols-2"><div className="space-y-2"><Label htmlFor="name">Name</Label><Input id="name" value={profile.name} onChange={(e) => patch("name", e.target.value)} className="rounded-none" /></div><div className="space-y-2"><Label htmlFor="city">Primary city</Label><Input id="city" value={profile.city} onChange={(e) => patch("city", e.target.value)} className="rounded-none" /></div><div className="space-y-2"><Label htmlFor="role">Role</Label><Input id="role" value={profile.role} onChange={(e) => patch("role", e.target.value)} className="rounded-none" /></div><div className="space-y-2"><Label htmlFor="organisation">Organisation</Label><Input id="organisation" value={profile.organisation} onChange={(e) => patch("organisation", e.target.value)} className="rounded-none" /></div></div><div className="mt-5 space-y-2"><Label htmlFor="bio">Short biography</Label><Textarea id="bio" rows={4} value={profile.bio} onChange={(e) => patch("bio", e.target.value)} className="rounded-none" /></div><div className="mt-5 space-y-2"><Label htmlFor="help">I can help with</Label><Textarea id="help" rows={3} value={profile.help} onChange={(e) => patch("help", e.target.value)} className="rounded-none" /></div><div className="mt-5 space-y-2"><Label htmlFor="learn">I want to learn about</Label><Textarea id="learn" rows={3} value={profile.learn} onChange={(e) => patch("learn", e.target.value)} className="rounded-none" /></div><div className="mt-6 flex items-center gap-3"><Button type="submit" className="rounded-none">Save account</Button>{saved ? <span className="text-xs text-oxblood">Saved</span> : null}</div></section>
 
-          <div className="mt-5 space-y-2">
-            <Label htmlFor="bio">Short biography</Label>
-            <Textarea id="bio" rows={4} className="rounded-none" defaultValue="Founder of an enterprise technology company working across the UK and Europe. Interested in building management independence, family governance and responsible AI adoption." />
-          </div>
-          <div className="mt-5 space-y-2">
-            <Label htmlFor="help">I can help with</Label>
-            <Textarea id="help" rows={3} className="rounded-none" defaultValue="Scaling technology teams, enterprise sales, AI implementation and founder-led international growth." />
-          </div>
-          <div className="mt-5 space-y-2">
-            <Label htmlFor="learn">I want to learn about</Label>
-            <Textarea id="learn" rows={3} className="rounded-none" defaultValue="Governance before a liquidity event, ownership structures, next-generation education and long-term philanthropy." />
-          </div>
-          <div className="mt-6 flex items-center gap-3">
-            <Button type="submit" className="rounded-none">Save profile</Button>
-            {saved ? <span className="text-xs text-muted-foreground">Saved locally for this prototype.</span> : null}
-          </div>
-        </section>
+        <aside className="space-y-5"><section className="border border-border bg-card p-5"><div className="flex items-center gap-3"><ShieldCheck className="h-4 w-4 text-oxblood" /><p className="eyebrow">Visibility</p></div><div className="mt-5 space-y-5">{[["showEnterpriseStage","Enterprise stage","Show a broad stage such as building, scaling, transition or family office."],["showEvents","Selected event participation","Let members see selected gatherings you have attended."],["showOtherCities","Other cities","Show the other places where you regularly live or work."],["showLanguages","Languages","Show languages that may make a relationship or local introduction easier."]].map(([key,title,body]) => <label key={key} className="flex cursor-pointer items-start justify-between gap-4 border-t border-border pt-4 first:border-0 first:pt-0"><div><p className="text-sm font-medium">{title}</p><p className="mt-1 text-xs leading-5 text-muted-foreground">{body}</p></div><input type="checkbox" checked={Boolean(profile[key as keyof ProfileState])} onChange={(e) => patch(key as keyof ProfileState, e.target.checked as never)} className="mt-1" /></label>)}</div></section>
 
-        <aside className="space-y-5">
-          <section className="border border-border bg-card p-5">
-            <div className="flex items-center gap-3">
-              <ShieldCheck className="h-4 w-4 text-bronze" />
-              <p className="eyebrow">Visibility controls</p>
-            </div>
-            <div className="mt-5 space-y-5">
-              <label className="flex cursor-pointer items-start justify-between gap-4 border-t border-border pt-4 first:border-0 first:pt-0">
-                <div>
-                  <p className="text-sm font-medium">Enterprise stage</p>
-                  <p className="mt-1 text-xs leading-5 text-muted-foreground">Show a broad stage such as building, scaling, transition or family office.</p>
-                </div>
-                <input type="checkbox" checked={showEnterpriseStage} onChange={(event) => setShowEnterpriseStage(event.target.checked)} className="mt-1" />
-              </label>
-              <label className="flex cursor-pointer items-start justify-between gap-4 border-t border-border pt-4">
-                <div>
-                  <p className="text-sm font-medium">Event participation</p>
-                  <p className="mt-1 text-xs leading-5 text-muted-foreground">Let members see selected gatherings you have attended.</p>
-                </div>
-                <input type="checkbox" checked={showEvents} onChange={(event) => setShowEvents(event.target.checked)} className="mt-1" />
-              </label>
-            </div>
-          </section>
+          <section className="border border-border bg-card p-5"><div className="flex items-center gap-3"><Bell className="h-4 w-4 text-oxblood" /><p className="eyebrow">Notifications</p></div><div className="mt-5 space-y-4">{[["conciergeUpdates","Concierge case updates"],["eventUpdates","Gathering confirmations"],["introUpdates","Introduction consent requests"]].map(([key,title]) => <label key={key} className="flex items-center justify-between gap-4 border-t border-border pt-4 first:border-0 first:pt-0"><span className="text-sm">{title}</span><input type="checkbox" checked={Boolean(profile[key as keyof ProfileState])} onChange={(e) => patch(key as keyof ProfileState, e.target.checked as never)} /></label>)}</div></section>
 
-          <section className="border border-border bg-foreground p-5 text-background">
-            <div className="flex items-center gap-3">
-              {showEnterpriseStage ? <Eye className="h-4 w-4 text-bronze" /> : <EyeOff className="h-4 w-4 text-bronze" />}
-              <p className="eyebrow text-background/60">Never public by default</p>
-            </div>
-            <ul className="mt-5 space-y-3 text-sm leading-6 text-background/75">
-              <li>Net worth or investable assets</li>
-              <li>Home address or personal phone number</li>
-              <li>Children's identities or school information</li>
-              <li>Trust, estate or ownership documents</li>
-              <li>Confidential Table challenges</li>
-            </ul>
-          </section>
-        </aside>
+          <section className="border border-border bg-foreground p-5 text-background"><div className="flex items-center gap-3">{profile.showEnterpriseStage ? <Eye className="h-4 w-4 text-bronze" /> : <EyeOff className="h-4 w-4 text-bronze" />}<p className="eyebrow text-background/60">Never social profile data</p></div><ul className="mt-5 space-y-3 text-sm leading-6 text-background/75"><li>Net worth or investable assets</li><li>Home address or personal phone number</li><li>Children's identities or school information</li><li>Trust, estate or ownership documents</li><li>Confidential Table challenges</li></ul></section></aside>
       </form>
     </div>
   );
