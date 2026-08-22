@@ -2,7 +2,7 @@ import type { MembershipApplication } from "@/data/applicationStore";
 import type { PartnerApplication } from "@/data/partnerApplicationStore";
 
 const env = import.meta.env as Record<string, string | undefined>;
-const intakeUrl = env.VITE_APPLICATION_INTAKE_URL?.trim();
+const intakeUrl = env['VITE_APPLICATION_INTAKE_URL']?.trim();
 
 export type IntakeResult = { reference: string; mode: "production" | "preview" };
 

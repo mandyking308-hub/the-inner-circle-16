@@ -18,7 +18,7 @@ declare global {
 }
 
 const env = import.meta.env as Record<string, string | undefined>;
-const siteKey = env.VITE_TURNSTILE_SITE_KEY;
+const siteKey = env['VITE_TURNSTILE_SITE_KEY'];
 const SCRIPT_ID = "project-table-turnstile-script";
 
 export function TurnstileGate({ action, onToken }: { action: string; onToken: (token: string) => void }) {
