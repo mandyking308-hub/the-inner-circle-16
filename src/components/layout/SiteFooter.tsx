@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 
 import { BrandMark } from "@/components/brand/BrandMark";
+import { OPEN_COOKIE_SETTINGS_EVENT } from "@/components/common/CookieBanner";
 import { LanguageSelector, translationNotice } from "@/components/common/LanguageSelector";
 import { site } from "@/config/site";
 import { Container } from "./Container";
@@ -20,6 +21,7 @@ const trustLinks = [
   { to: "/membership", label: "Membership" },
   { to: "/principles", label: "Membership principles" },
   { to: "/confidentiality", label: "Confidentiality" },
+  { to: "/safeguarding", label: "Safeguarding" },
   { to: "/privacy", label: "Privacy" },
   { to: "/cookies", label: "Cookies" },
   { to: "/accessibility", label: "Accessibility" },
@@ -48,7 +50,11 @@ export function SiteFooter() {
 
           <nav aria-label="Membership and legal information">
             <p className="text-[9px] font-semibold uppercase tracking-[0.24em] text-white/42">Membership & trust</p>
-            <div className="mt-7 flex flex-col gap-4">{trustLinks.map((item) => <Link key={item.to} to={item.to} className="text-sm text-white/62 transition-colors hover:text-white">{item.label}</Link>)}<Link to="/auth" className="mt-2 text-sm font-semibold text-white">Member sign in</Link></div>
+            <div className="mt-7 flex flex-col gap-4">
+              {trustLinks.map((item) => <Link key={item.to} to={item.to} className="text-sm text-white/62 transition-colors hover:text-white">{item.label}</Link>)}
+              <button type="button" onClick={() => window.dispatchEvent(new Event(OPEN_COOKIE_SETTINGS_EVENT))} className="text-left text-sm text-white/62 transition-colors hover:text-white">Cookie settings</button>
+              <Link to="/auth" className="mt-2 text-sm font-semibold text-white">Member sign in</Link>
+            </div>
           </nav>
         </div>
 
