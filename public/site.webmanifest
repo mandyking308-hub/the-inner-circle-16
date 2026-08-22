@@ -1,12 +1,12 @@
 {
-  "name": "Project Table",
-  "short_name": "Table",
-  "description": "Private membership for the life behind the success.",
+  "name": "Montvelle",
+  "short_name": "Montvelle",
+  "description": "A private world around the life you've built.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#f2eadb",
+  "background_color": "#f6f1e8",
   "theme_color": "#651f24",
   "icons": [
-    { "src": "/favicon.ico", "sizes": "48x48", "type": "image/x-icon" }
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
   ]
 }
