@@ -61,7 +61,7 @@ export function QuietLuxuryHome() {
         <Container>
           <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:gap-24">
             <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-oxblood">Project Table</p>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-oxblood">Montvelle</p>
               <p className="mt-6 max-w-sm text-sm leading-7 text-muted-foreground">Private membership for founders, principals and globally minded families who value people, time and discretion.</p>
             </div>
             <div>
@@ -180,7 +180,7 @@ export function QuietLuxuryHome() {
               <Sparkles className="h-5 w-5 text-[#c9a56d]" />
               <p className="mt-6 text-[10px] font-semibold uppercase tracking-[0.28em] text-white/55">Underneath it all</p>
               <h2 className="mt-5 max-w-xl font-display text-5xl leading-[1.02] md:text-6xl">A serious private office, quietly behind the life.</h2>
-              <p className="mt-7 max-w-lg text-base leading-8 text-white/66">This is where Project Table goes further. The technology remembers context, prepares the room and keeps the threads connected. It should never become the personality of the membership.</p>
+              <p className="mt-7 max-w-lg text-base leading-8 text-white/66">This is where Montvelle goes further. The technology remembers context, prepares the room and keeps the threads connected. It should never become the personality of the membership.</p>
               <div className="mt-8 flex flex-wrap gap-6"><Link to="/decision-room" className="inline-flex items-center gap-2 text-sm font-semibold">Decision Room <ArrowRight className="h-4 w-4" /></Link><Link to="/ecosystem" className="inline-flex items-center gap-2 text-sm font-semibold">Inside the private office <ArrowRight className="h-4 w-4" /></Link></div>
             </div>
             <div className="border-t border-white/18">
