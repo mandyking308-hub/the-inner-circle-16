@@ -34,4 +34,4 @@ Disallow: /admin
 Disallow: /admin/
 Disallow: /auth
 
-# Add an absolute Sitemap line only after the final production domain is confirmed.
+Sitemap: https://montvelle.com/sitemap.xml
