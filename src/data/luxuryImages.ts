@@ -1,14 +1,15 @@
 export const luxuryImages = {
-  hero: "https://images.unsplash.com/photo-1763604608266-6ee862e562da?auto=format&fit=crop&w=2400&q=88",
-  world: "https://images.unsplash.com/photo-1776886099987-dda9bed02cb6?auto=format&fit=crop&w=2200&q=86",
-  table: "https://images.unsplash.com/photo-1768508948835-7dbab7ca6d58?auto=format&fit=crop&w=2200&q=86",
-  service: "https://images.unsplash.com/photo-1775257796019-3e8db981a1a6?auto=format&fit=crop&w=2200&q=86",
-  family: "https://images.unsplash.com/photo-1771656359452-6a887aa96e41?auto=format&fit=crop&w=2200&q=86",
-  culture: "https://images.unsplash.com/photo-1740596261028-29a7ad308157?auto=format&fit=crop&w=2200&q=86",
-  office: "https://images.unsplash.com/photo-1767277680055-34f1eeec0c26?auto=format&fit=crop&w=2200&q=86",
+  // Bright coastal editorial direction: life first, luxury inferred.
+  hero: "https://images.pexels.com/photos/28077099/pexels-photo-28077099.jpeg?auto=compress&cs=tinysrgb&w=2400",
+  world: "https://images.pexels.com/photos/19990858/pexels-photo-19990858.jpeg?auto=compress&cs=tinysrgb&w=2200",
+  table: "https://images.pexels.com/photos/37286899/pexels-photo-37286899.jpeg?auto=compress&cs=tinysrgb&w=2200",
+  service: "https://images.pexels.com/photos/5378707/pexels-photo-5378707.jpeg?auto=compress&cs=tinysrgb&w=2200",
+  family: "https://images.pexels.com/photos/8623321/pexels-photo-8623321.jpeg?auto=compress&cs=tinysrgb&w=2200",
+  culture: "https://images.pexels.com/photos/16529659/pexels-photo-16529659.jpeg?auto=compress&cs=tinysrgb&w=2200",
+  office: "https://images.pexels.com/photos/29681694/pexels-photo-29681694.jpeg?auto=compress&cs=tinysrgb&w=2200",
 
   // Backwards-compatible aliases used by the existing public pages.
-  jet: "https://images.unsplash.com/photo-1763604608266-6ee862e562da?auto=format&fit=crop&w=2200&q=86",
-  command: "https://images.unsplash.com/photo-1767277680055-34f1eeec0c26?auto=format&fit=crop&w=2200&q=86",
-  learning: "https://images.unsplash.com/photo-1771656359452-6a887aa96e41?auto=format&fit=crop&w=2200&q=86",
+  jet: "https://images.pexels.com/photos/28077099/pexels-photo-28077099.jpeg?auto=compress&cs=tinysrgb&w=2200",
+  command: "https://images.pexels.com/photos/29681694/pexels-photo-29681694.jpeg?auto=compress&cs=tinysrgb&w=2200",
+  learning: "https://images.pexels.com/photos/8623321/pexels-photo-8623321.jpeg?auto=compress&cs=tinysrgb&w=2200",
 } as const;
