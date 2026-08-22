@@ -30,6 +30,7 @@ import { site } from "@/config/site";
 
 const memberNav = [
   { to: "/member", label: "Home", icon: Home, exact: true },
+  { to: "/member/control-room", label: "Decision Room", icon: LayoutDashboard },
   { to: "/member/table", label: "My Table", icon: TableProperties },
   { to: "/member/community", label: "Community", icon: Users },
   { to: "/member/introductions", label: "Introductions", icon: Network },
