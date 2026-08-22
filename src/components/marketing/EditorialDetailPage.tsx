@@ -17,6 +17,9 @@ export function EditorialDetailPage({
   blocks,
   closingTitle,
   closingBody,
+  image,
+  imageAlt,
+  imageCaption,
 }: {
   eyebrow: string;
   title: string;
@@ -24,14 +27,31 @@ export function EditorialDetailPage({
   blocks: EditorialBlock[];
   closingTitle?: string;
   closingBody?: string;
+  image?: string;
+  imageAlt?: string;
+  imageCaption?: string;
 }) {
   return (
     <>
       <section className="border-b border-border py-20 md:py-32">
         <Container>
-          <p className="eyebrow text-bronze">{eyebrow}</p>
-          <h1 className="mt-5 max-w-4xl font-display text-5xl leading-[1.04] md:text-7xl">{title}</h1>
-          <p className="mt-8 max-w-2xl text-base leading-8 text-muted-foreground">{introduction}</p>
+          <div className={image ? "grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end" : undefined}>
+            <div>
+              <p className="eyebrow text-bronze">{eyebrow}</p>
+              <h1 className="mt-5 max-w-4xl font-display text-5xl leading-[1.04] md:text-7xl">{title}</h1>
+              <p className="mt-8 max-w-2xl text-base leading-8 text-muted-foreground">{introduction}</p>
+            </div>
+            {image ? (
+              <figure>
+                <div className="overflow-hidden border border-border bg-card">
+                  <img src={image} alt={imageAlt ?? ""} className="aspect-[4/3] w-full object-cover" />
+                </div>
+                {imageCaption ? (
+                  <figcaption className="mt-3 text-[11px] leading-5 text-muted-foreground">{imageCaption}</figcaption>
+                ) : null}
+              </figure>
+            ) : null}
+          </div>
         </Container>
       </section>
 
