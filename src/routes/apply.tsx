@@ -36,9 +36,7 @@ function ApplyPage() {
       contribution: String(form.get("contribution") ?? "").trim(),
       referral: String(form.get("referral") ?? "").trim(),
     };
-
-    const current = loadApplications();
-    saveApplications([application, ...current]);
+    saveApplications([application, ...loadApplications()]);
     setSubmitted(application);
     event.currentTarget.reset();
   };
@@ -49,11 +47,7 @@ function ApplyPage() {
         <img src={luxuryImages.table} alt="A private members table in London" className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-foreground/96 via-foreground/78 to-foreground/18" />
         <Container className="relative flex min-h-[560px] items-center py-20">
-          <div className="max-w-3xl">
-            <p className="eyebrow text-bronze">Request a seat</p>
-            <h1 className="mt-6 max-w-[11ch] font-display text-6xl leading-[0.93] md:text-8xl">Tell us what you are building — and what has become complicated.</h1>
-            <p className="mt-7 max-w-2xl text-base leading-8 text-background/70">We are more interested in the life behind the title than the title itself. A human reviews every founding application.</p>
-          </div>
+          <div className="max-w-3xl"><p className="eyebrow text-bronze">Request a seat</p><h1 className="mt-6 max-w-[11ch] font-display text-6xl leading-[0.93] md:text-8xl">Tell us what you are building — and what has become complicated.</h1><p className="mt-7 max-w-2xl text-base leading-8 text-background/70">We are more interested in the life behind the title than the title itself. Every application is personally reviewed.</p></div>
         </Container>
       </section>
 
@@ -64,43 +58,31 @@ function ApplyPage() {
               <div className="border border-foreground/15 bg-linen p-6 md:p-7">
                 <LockKeyhole className="h-5 w-5 text-oxblood" />
                 <h2 className="mt-6 font-display text-3xl">What happens next?</h2>
-                <div className="mt-5 space-y-4 text-sm leading-7 text-muted-foreground">
-                  <p>We read the application for fit, contribution and whether the current community can genuinely be useful to you.</p>
-                  <p>If there appears to be a fit, the next step is a conversation — not an automated checkout page.</p>
-                  <p>Founding membership is deliberately small while the service is being proved.</p>
-                </div>
+                <div className="mt-5 space-y-4 text-sm leading-7 text-muted-foreground"><p>We read the application for fit, contribution and whether the current community can genuinely be useful to you.</p><p>If there appears to be a fit, the next step is a private conversation — not an automated checkout page.</p><p>Founding membership is deliberately small. Terms are discussed privately after fit has been established.</p></div>
               </div>
-              <p className="mt-4 text-[10px] leading-5 text-muted-foreground">Private preview: applications are currently stored in this browser and appear in the prototype Admin review queue. Production launch will move this workflow to the secure database.</p>
+              <div className="mt-4 border border-foreground/15 bg-card p-5"><p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-oxblood">Professional firm?</p><p className="mt-2 text-xs leading-6 text-muted-foreground">The Trusted Partner network has a separate screening process and does not create automatic member access.</p><Link to="/partner-application" className="mt-4 inline-flex items-center gap-2 text-xs font-semibold">Partner application <ArrowRight className="h-3.5 w-3.5" /></Link></div>
             </aside>
 
             <div>
               {submitted ? (
-                <div className="border border-foreground/15 bg-card p-7 md:p-10">
-                  <CheckCircle2 className="h-6 w-6 text-oxblood" />
-                  <p className="mt-7 text-[10px] font-semibold uppercase tracking-[0.2em] text-oxblood">Application received</p>
-                  <h2 className="mt-3 font-display text-5xl">Thank you, {submitted.name.split(" ")[0] || "there"}.</h2>
-                  <p className="mt-5 max-w-2xl text-sm leading-7 text-muted-foreground">Your application is now in the private review queue as <strong>{submitted.id}</strong>. In this preview you can open Admin → Applications to see the same record arrive there.</p>
-                  <div className="mt-8 flex flex-wrap gap-3"><Button asChild className="rounded-none"><Link to="/admin/applications">View admin queue <ArrowRight className="ml-2 h-4 w-4" /></Link></Button><Button type="button" variant="outline" className="rounded-none" onClick={() => setSubmitted(null)}>Submit another</Button></div>
-                </div>
+                <div className="border border-foreground/15 bg-card p-7 md:p-10"><CheckCircle2 className="h-6 w-6 text-oxblood" /><p className="mt-7 text-[10px] font-semibold uppercase tracking-[0.2em] text-oxblood">Application received</p><h2 className="mt-3 font-display text-5xl">Thank you, {submitted.name.split(" ")[0] || "there"}.</h2><p className="mt-5 max-w-2xl text-sm leading-7 text-muted-foreground">Your application reference is <strong>{submitted.id}</strong>. The membership team will review what you are responsible for, what has become complicated and what you would bring to the room. If there appears to be a fit, the next step is a conversation.</p><Button asChild variant="outline" className="mt-8 rounded-none"><Link to="/journal">Read the Journal <ArrowRight className="ml-2 h-4 w-4" /></Link></Button></div>
               ) : (
                 <form onSubmit={submit} className="border border-foreground/15 bg-card p-6 md:p-9">
                   <div className="grid gap-5 md:grid-cols-2">
                     <div className="space-y-2"><Label htmlFor="name">Name</Label><Input id="name" name="name" required className="rounded-none" /></div>
                     <div className="space-y-2"><Label htmlFor="email">Email</Label><Input id="email" name="email" type="email" required className="rounded-none" /></div>
                     <div className="space-y-2"><Label htmlFor="location">Where does life happen?</Label><Input id="location" name="location" placeholder="e.g. London / Dubai / New York" className="rounded-none" /></div>
-                    <div className="space-y-2"><Label htmlFor="profile">What best describes you?</Label><Input id="profile" name="profile" placeholder="Founder, family business, investor, adviser..." className="rounded-none" /></div>
-                    <div className="space-y-2 md:col-span-2"><Label htmlFor="membership">Which door seems most relevant?</Label><select id="membership" name="membership" className="h-10 w-full rounded-none border border-input bg-background px-3 text-sm"><option>Individual</option><option>Family</option><option>Trusted Partner</option></select></div>
+                    <div className="space-y-2"><Label htmlFor="profile">What best describes you?</Label><Input id="profile" name="profile" placeholder="Founder, family business, investor, principal..." className="rounded-none" /></div>
+                    <div className="space-y-2 md:col-span-2"><Label htmlFor="membership">Which relationship seems most relevant?</Label><select id="membership" name="membership" className="h-10 w-full rounded-none border border-input bg-background px-3 text-sm"><option>Individual</option><option>Family</option></select></div>
                   </div>
-
                   <div className="mt-7 space-y-6 border-t border-foreground/12 pt-7">
-                    <div className="space-y-2"><Label htmlFor="building">What are you building or responsible for?</Label><Textarea id="building" name="building" rows={4} required className="rounded-none" placeholder="The business, family enterprise, investment work or professional responsibility that matters most right now." /></div>
+                    <div className="space-y-2"><Label htmlFor="building">What are you building or responsible for?</Label><Textarea id="building" name="building" rows={4} required className="rounded-none" placeholder="The business, family enterprise, investment work or responsibility that matters most right now." /></div>
                     <div className="space-y-2"><Label htmlFor="complicated">What has become complicated?</Label><Textarea id="complicated" name="complicated" rows={5} required className="rounded-none" placeholder="A move, succession, schools, advisers, growth, family governance, time, access — tell us the real version." /></div>
                     <div className="space-y-2"><Label htmlFor="contribution">What would you bring to the room?</Label><Textarea id="contribution" name="contribution" rows={4} required className="rounded-none" placeholder="Experience, judgement, relationships, a sector you know deeply, willingness to mentor or something else useful." /></div>
                     <div className="space-y-2"><Label htmlFor="referral">How did you hear about us?</Label><Input id="referral" name="referral" placeholder="Member introduction, event, search, other" className="rounded-none" /></div>
                   </div>
-
                   <Button type="submit" size="lg" className="mt-8 w-full rounded-none bg-oxblood">Send private application <ArrowRight className="ml-2 h-4 w-4" /></Button>
-                  <p className="mt-4 text-center text-[10px] leading-5 text-muted-foreground">No payment is taken at application. Partner applicants do not receive member access simply by applying.</p>
+                  <p className="mt-4 text-center text-[10px] leading-5 text-muted-foreground">No payment is taken at application. Submission does not guarantee membership.</p>
                 </form>
               )}
             </div>
