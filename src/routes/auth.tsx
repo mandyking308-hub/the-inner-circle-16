@@ -3,6 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, LockKeyhole, ShieldCheck } from "lucide-react";
 
 import { Container } from "@/components/layout/Container";
+import { enableInternalPreview } from "@/components/security/PrivatePreviewGate";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -23,7 +24,10 @@ export const Route = createFileRoute("/auth")({
 function AuthPage() {
   const [preview, setPreview] = useState(false);
   useEffect(() => {
-    if (typeof window !== "undefined") setPreview(new URLSearchParams(window.location.search).get("preview") === "1");
+    if (typeof window === "undefined") return;
+    const internal = new URLSearchParams(window.location.search).get("preview") === "1";
+    setPreview(internal);
+    if (internal) enableInternalPreview();
   }, []);
 
   return (
