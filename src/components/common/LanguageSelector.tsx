@@ -1,3 +1,4 @@
+import type { ChangeEvent } from "react";
 import { Globe2 } from "lucide-react";
 
 const languages = [
@@ -33,7 +34,7 @@ const languages = [
 ] as const;
 
 export function LanguageSelector({ inverse = false, compact = false }: { inverse?: boolean; compact?: boolean }) {
-  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const targetLanguage = event.target.value;
     if (targetLanguage === "en") {
       window.location.href = `${window.location.origin}${window.location.pathname}${window.location.search}`;
