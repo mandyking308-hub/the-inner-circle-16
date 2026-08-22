@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, BookOpenCheck, Compass, Handshake, HeartHandshake, Plane, TableProperties } from "lucide-react";
+import { ArrowRight, BookOpenCheck, Compass, Handshake, HeartHandshake, LayoutDashboard, Plane, TableProperties } from "lucide-react";
 
 import { Container } from "@/components/layout/Container";
 import { site } from "@/config/site";
@@ -9,14 +9,21 @@ const layers = [
     icon: TableProperties,
     title: "The Table",
     line: "Judgement",
-    body: "A permanent peer circle for the decisions that are too nuanced for a search result and too personal for public networking.",
+    body: "A permanent peer circle for decisions that are too nuanced for a search result and too personal for public networking.",
     to: "/the-table",
+  },
+  {
+    icon: LayoutDashboard,
+    title: "Decision Room",
+    line: "Orchestration",
+    body: "Turn a major family problem into four visible lanes: decide, expert, execute and evidence — with owners, dependencies and a definition of done.",
+    to: "/decision-room",
   },
   {
     icon: Plane,
     title: "Global Life",
     line: "Coordination",
-    body: "A cross-border decision room covering residence, tax questions, structures, schools, banking, property, health and family logistics.",
+    body: "A cross-border workspace covering residence, tax questions, structures, schools, banking, property, health and family logistics.",
     to: "/global-life",
   },
   {
@@ -53,7 +60,7 @@ export const Route = createFileRoute("/ecosystem")({
   head: () => ({
     meta: [
       { title: `The Ecosystem — ${site.name}` },
-      { name: "description", content: "How Project Table connects trusted peers, global life coordination, family learning, specialist partners, concierge execution and a rising-generation network." },
+      { name: "description", content: "How Project Table connects trusted peers, a Life Decision Room, global life coordination, family learning, specialist partners, concierge execution and a rising-generation network." },
     ],
   }),
   component: EcosystemPage,
@@ -66,7 +73,7 @@ function EcosystemPage() {
         <Container>
           <p className="eyebrow text-bronze">The operating system</p>
           <h1 className="mt-5 max-w-5xl font-display text-5xl leading-[1.02] md:text-7xl">The room is only the beginning.</h1>
-          <p className="mt-7 max-w-3xl text-base leading-8 text-muted-foreground">A private community becomes much more useful when it can convert collective judgement into trusted expertise, coordinated action and capability across generations. Each layer below solves a different part of that problem.</p>
+          <p className="mt-7 max-w-3xl text-base leading-8 text-muted-foreground">A private community becomes much more useful when it can convert collective judgement into clear decisions, trusted expertise, coordinated action and capability across generations. Each layer below solves a different part of that problem.</p>
         </Container>
       </section>
 
