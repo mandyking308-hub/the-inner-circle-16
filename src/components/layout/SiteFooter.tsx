@@ -6,21 +6,23 @@ import { site } from "@/config/site";
 import { Container } from "./Container";
 
 const communityLinks = [
-  { to: "/ecosystem", label: "The Ecosystem" },
   { to: "/the-table", label: "The Table" },
   { to: "/decision-room", label: "Decision Room" },
   { to: "/global-life", label: "Global Life" },
+  { to: "/world", label: "The World" },
   { to: "/family-learning", label: "Family Learning" },
+  { to: "/next-gen", label: "Next Generation" },
   { to: "/partners", label: "Trusted Partners" },
   { to: "/concierge", label: "Concierge" },
-  { to: "/alumni", label: "The Continuum" },
   { to: "/gatherings", label: "Gatherings" },
+  { to: "/legacy", label: "Legacy" },
   { to: "/impact", label: "Impact" },
-  { to: "/membership", label: "Membership" },
+  { to: "/journal", label: "Journal" },
 ] as const;
 
 const trustLinks = [
-  { to: "/about", label: "About" },
+  { to: "/about", label: "Why this exists" },
+  { to: "/membership", label: "Membership" },
   { to: "/principles", label: "Membership Principles" },
   { to: "/confidentiality", label: "Confidentiality & No Solicitation" },
   { to: "/privacy", label: "Privacy" },
@@ -34,8 +36,8 @@ export function SiteFooter() {
         <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr_0.7fr]">
           <div>
             <div className="flex items-center gap-3"><BrandMark inverse /><div><p className="font-display text-2xl">{site.name}</p><p className="mt-1 text-[8px] font-semibold uppercase tracking-[0.2em] text-background/40">London · by invitation</p></div></div>
-            <p className="mt-8 max-w-xl font-display text-4xl leading-[1.06] text-background">Success creates complexity. Nobody hands you the map.</p>
-            <p className="mt-5 max-w-md text-xs leading-6 text-background/55">Trusted peers, qualified specialists, concierge execution and family capability — organised around the decisions that matter.</p>
+            <p className="mt-8 max-w-xl font-display text-4xl leading-[1.06] text-background">Your life got complicated because it worked.</p>
+            <p className="mt-5 max-w-md text-xs leading-6 text-background/55">Trusted peers, qualified specialists, concierge execution and family capability — organised around the life behind the success.</p>
             <Link to="/apply" className="mt-7 inline-flex items-center gap-2 border-b border-bronze pb-1 text-xs font-semibold uppercase tracking-[0.14em]">Request a seat <ArrowUpRight className="h-3.5 w-3.5" /></Link>
           </div>
 
@@ -56,7 +58,7 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-12 grid gap-4 border-t border-background/12 pt-6 text-[9px] leading-5 text-background/35 md:grid-cols-[1fr_auto]">
-          <p>Project Table is a working name. Legal pages remain draft templates until professional review. The community does not itself provide legal, tax, immigration, investment, fiduciary, medical or other regulated professional advice.</p>
+          <p>Membership is by application and invitation. Project Table does not itself provide legal, tax, immigration, investment, fiduciary, medical or other regulated professional advice; members instruct appropriately qualified professionals where required.</p>
           <p>Private community · London</p>
         </div>
       </Container>
