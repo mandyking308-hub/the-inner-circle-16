@@ -1,12 +1,11 @@
+import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight,
   BadgeCheck,
   CalendarDays,
   Compass,
-  Globe2,
   GraduationCap,
-  Landmark,
   LayoutDashboard,
   Network,
   Sparkles,
@@ -14,101 +13,163 @@ import {
 } from "lucide-react";
 
 import { PageIntro, StatCard } from "@/components/private/PrivateShell";
-import { asksOffers, gatherings, knowledge } from "@/data/community";
+import { asksOffers, knowledge } from "@/data/community";
+import { luxuryImages } from "@/data/luxuryImages";
+import { readPrivateOfficeSummary, type PrivateOfficeSummary } from "@/data/privateOfficeSummary";
 
-export const Route = createFileRoute("/member/")({
-  component: MemberHome,
-});
+export const Route = createFileRoute("/member/")({ component: MemberHome });
+
+const fallback: PrivateOfficeSummary = {
+  memberName: "Amelia Hart",
+  memberCity: "London",
+  activeDecisionLabel: "Move country",
+  decisionProgress: 17,
+  nextDecisionAction: "Reduce to two realistic jurisdictions",
+  overdueDecisionActions: 0,
+  openConciergeCases: 1,
+  conciergeNextAction: "Review the two shortlisted education advisers and approve an introduction.",
+  learningGoal: "Complete one independent project for a real audience.",
+  learningProgress: "0/4 quests complete",
+  nextGatheringTitle: "The founder after the founder",
+  nextGatheringDate: "17 Sep 2026",
+  nextGatheringResponse: "Response needed",
+  attention: [
+    { label: "Concierge has a live next action", detail: "Review the two shortlisted education advisers and approve an introduction.", to: "/member/concierge", urgency: "Soon" },
+    { label: "Private invitation awaiting response", detail: "The founder after the founder · 17 Sep 2026", to: "/member/events", urgency: "Soon" },
+  ],
+};
 
 function MemberHome() {
-  const next = gatherings[0]!;
+  const [summary, setSummary] = useState<PrivateOfficeSummary>(fallback);
+  const [dateLabel, setDateLabel] = useState("Private office");
   const firstAsk = asksOffers[0]!;
   const recommendation = knowledge[1]!;
+  const firstName = summary.memberName.split(" ")[0] || "there";
+
+  useEffect(() => {
+    setSummary(readPrivateOfficeSummary());
+    setDateLabel(new Intl.DateTimeFormat("en-GB", { weekday: "long", day: "numeric", month: "long" }).format(new Date()));
+
+    const refresh = () => setSummary(readPrivateOfficeSummary());
+    window.addEventListener("focus", refresh);
+    window.addEventListener("storage", refresh);
+    return () => {
+      window.removeEventListener("focus", refresh);
+      window.removeEventListener("storage", refresh);
+    };
+  }, []);
 
   return (
     <div className="space-y-8">
       <PageIntro
-        eyebrow="Saturday, 22 August"
-        title="Good morning, Amelia."
-        description="Your private room is intentionally quiet. The useful things are the next decision, the introduction waiting for consent, the request with a next action and the work you said you would finish."
+        eyebrow={`${dateLabel} · ${summary.memberCity}`}
+        title={`Good afternoon, ${firstName}.`}
+        description="This is the front desk of your private office. It should tell you what needs judgement, what somebody else is executing and what can safely wait — without making you tour the whole platform first."
       />
 
+      <section className="relative min-h-[410px] overflow-hidden border border-border bg-foreground text-background">
+        <img src={luxuryImages.command} alt="A private family office command room" className="absolute inset-0 h-full w-full object-cover opacity-55" />
+        <div className="absolute inset-0 bg-gradient-to-r from-foreground via-foreground/86 to-foreground/25" />
+        <div className="relative grid min-h-[410px] gap-10 p-7 md:p-9 lg:grid-cols-[1fr_340px] lg:items-end">
+          <div>
+            <div className="flex items-center gap-3"><LayoutDashboard className="h-5 w-5 text-bronze" /><p className="eyebrow text-background/55">The decision in motion</p></div>
+            <p className="mt-6 text-[10px] font-semibold uppercase tracking-[0.18em] text-bronze">{summary.activeDecisionLabel} · {summary.decisionProgress}% complete</p>
+            <h2 className="mt-3 max-w-4xl font-display text-5xl leading-[0.98] md:text-6xl">{summary.nextDecisionAction}</h2>
+            <p className="mt-6 max-w-2xl text-sm leading-7 text-background/68">The dashboard is reading the work inside your Decision Room. Complete an action, change the sequence or add a new decision and this front page changes with it.</p>
+            <Link to="/member/control-room" className="mt-7 inline-flex items-center gap-2 border border-background/28 px-5 py-3 text-sm font-semibold transition-colors hover:bg-background hover:text-foreground">Open the Decision Room <ArrowRight className="h-4 w-4" /></Link>
+          </div>
+          <div className="border border-background/20 bg-foreground/72 p-5 backdrop-blur-md">
+            <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-background/45">Definition of a good private office</p>
+            <p className="mt-4 font-display text-3xl leading-tight">You know what needs you — and what does not.</p>
+            <div className="mt-6 divide-y divide-background/15 border-y border-background/15 text-xs text-background/70">
+              <div className="flex items-center justify-between gap-4 py-3"><span>Overdue decision actions</span><strong className="text-background">{summary.overdueDecisionActions}</strong></div>
+              <div className="flex items-center justify-between gap-4 py-3"><span>Live concierge cases</span><strong className="text-background">{summary.openConciergeCases}</strong></div>
+              <div className="flex items-center justify-between gap-4 py-3"><span>Next invitation</span><strong className="max-w-[150px] text-right text-background">{summary.nextGatheringResponse}</strong></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <StatCard label="Your Table" value="10" note="London Table 01 · next session 17 September" />
-        <StatCard label="Decision room" value="25%" note="Move country · next: reconcile expert advice" />
-        <StatCard label="Concierge requests" value="1" note="Education move brief · matching experts" />
-        <StatCard label="Open actions" value="3" note="Across Decision Room and Table" />
+        <StatCard label="Decision Room" value={`${summary.decisionProgress}%`} note={`${summary.activeDecisionLabel} · next: ${summary.nextDecisionAction}`} />
+        <StatCard label="Concierge" value={String(summary.openConciergeCases)} note={summary.conciergeNextAction} />
+        <StatCard label="Family learning" value={summary.learningProgress.split(" ")[0] ?? "—"} note={summary.learningGoal} />
+        <StatCard label="Next gathering" value={summary.nextGatheringDate.split(" ").slice(0, 2).join(" ")} note={`${summary.nextGatheringTitle} · ${summary.nextGatheringResponse}`} />
       </div>
 
-      <section className="border border-border bg-foreground p-6 text-background md:p-8">
-        <div className="grid gap-7 lg:grid-cols-[1fr_auto] lg:items-end">
-          <div><div className="flex items-center gap-3"><LayoutDashboard className="h-5 w-5 text-bronze" /><p className="eyebrow text-background/60">Flagship workspace</p></div><h2 className="mt-4 max-w-4xl font-display text-4xl leading-tight md:text-5xl">One complicated decision. Four lanes: decide, expert, execute, evidence.</h2><p className="mt-5 max-w-3xl text-sm leading-7 text-background/70">The Life Decision Room turns a move, family-office build, education reset or succession problem into a live execution board with owners, dependencies, specialist categories and a definition of done.</p></div>
-          <Link to="/member/control-room" className="inline-flex items-center gap-2 border border-background/30 px-5 py-3 text-sm transition-colors hover:bg-background hover:text-foreground">Open Decision Room <ArrowRight className="h-4 w-4" /></Link>
+      <section className="border border-border bg-card">
+        <div className="flex items-end justify-between gap-5 border-b border-border p-5 md:p-6"><div><p className="eyebrow text-oxblood">What needs your attention</p><h2 className="mt-2 font-display text-4xl">A short list, not another inbox.</h2></div><Compass className="h-5 w-5 text-oxblood" /></div>
+        <div className="divide-y divide-border">
+          {summary.attention.map((item, index) => (
+            <Link key={`${item.label}-${index}`} to={item.to} className="group grid gap-4 p-5 transition-colors hover:bg-accent md:grid-cols-[58px_150px_1fr_auto] md:items-center md:p-6">
+              <span className="font-display text-2xl text-oxblood">0{index + 1}</span>
+              <span className="text-[9px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">{item.urgency}</span>
+              <div><h3 className="font-display text-2xl">{item.label}</h3><p className="mt-2 text-xs leading-6 text-muted-foreground">{item.detail}</p></div>
+              <ArrowRight className="h-4 w-4 text-oxblood transition-transform group-hover:translate-x-1" />
+            </Link>
+          ))}
         </div>
       </section>
 
-      <section>
-        <div className="flex items-end justify-between gap-5"><div><p className="eyebrow text-bronze">Your infrastructure</p><h2 className="mt-2 font-display text-3xl">The rooms behind the room</h2></div></div>
-        <div className="mt-5 grid gap-px bg-border md:grid-cols-2 xl:grid-cols-5">
-          {[
-            [Globe2, "Global Life", "Coordinate a cross-border move.", "/member/global-life"],
-            [Landmark, "Architecture", "Map ownership, protection and advisers.", "/member/family-architecture"],
-            [GraduationCap, "Learning", "Build capability through real work.", "/member/learning"],
-            [BadgeCheck, "Partners", "Find a trusted specialist.", "/member/partners"],
-            [Compass, "Concierge", "Give a complicated job one owner.", "/member/concierge"],
-          ].map(([Icon, title, body, to]) => {
-            const Component = Icon as typeof Globe2;
-            return <Link key={String(title)} to={String(to)} className="group bg-card p-5 transition-colors hover:bg-accent"><Component className="h-5 w-5 text-bronze" /><h3 className="mt-5 font-display text-2xl">{String(title)}</h3><p className="mt-2 text-xs leading-6 text-muted-foreground">{String(body)}</p><span className="mt-5 inline-flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.14em]">Open <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" /></span></Link>;
-          })}
-        </div>
-      </section>
-
-      <div className="grid gap-5 xl:grid-cols-[1.35fr_0.65fr]">
-        <section className="border border-border bg-card">
-          <div className="border-b border-border p-5 md:p-6">
-            <div className="flex items-center justify-between gap-4">
-              <div>
-                <p className="eyebrow text-bronze">Next gathering</p>
-                <h2 className="mt-2 font-display text-3xl">{next.title}</h2>
-              </div>
-              <CalendarDays className="h-5 w-5 text-bronze" />
-            </div>
-          </div>
-          <div className="p-5 md:p-6">
-            <div className="grid gap-5 md:grid-cols-3">
-              <div><p className="text-xs uppercase tracking-[0.16em] text-muted-foreground">When</p><p className="mt-2 text-sm">{next.date}</p><p className="text-sm text-muted-foreground">{next.time}</p></div>
-              <div><p className="text-xs uppercase tracking-[0.16em] text-muted-foreground">Where</p><p className="mt-2 text-sm leading-6">{next.location}</p></div>
-              <div><p className="text-xs uppercase tracking-[0.16em] text-muted-foreground">Format</p><p className="mt-2 text-sm">{next.seats}</p><p className="text-sm text-muted-foreground">Confidential working session</p></div>
-            </div>
-            <p className="mt-6 border-t border-border pt-5 text-sm leading-7 text-muted-foreground">{next.description}</p>
-            <Link to="/member/table" className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-foreground underline decoration-bronze/40 underline-offset-4">Review the private agenda <ArrowRight className="h-3.5 w-3.5" /></Link>
-          </div>
+      <div className="grid gap-5 xl:grid-cols-[1.2fr_0.8fr]">
+        <section className="border border-border bg-card p-6 md:p-7">
+          <div className="flex items-center gap-3"><Compass className="h-5 w-5 text-oxblood" /><p className="eyebrow text-oxblood">Concierge case in motion</p></div>
+          <h2 className="mt-5 font-display text-4xl leading-tight">{summary.conciergeNextAction}</h2>
+          <p className="mt-5 max-w-3xl text-sm leading-7 text-muted-foreground">A good concierge service should not make you remember the request. The case owns the context, the options, the consent and the next action until the outcome is closed.</p>
+          <Link to="/member/concierge" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold">Open Concierge <ArrowRight className="h-4 w-4 text-oxblood" /></Link>
         </section>
 
-        <section className="border border-border bg-foreground p-6 text-background">
-          <Sparkles className="h-5 w-5 text-bronze" />
-          <p className="mt-8 text-[11px] uppercase tracking-[0.2em] text-background/60">Curated for you</p>
-          <h2 className="mt-3 font-display text-3xl leading-tight">{recommendation.title}</h2>
-          <p className="mt-4 text-sm leading-7 text-background/70">{recommendation.summary}</p>
-          <Link to="/member/knowledge" className="mt-6 inline-flex items-center gap-2 text-sm">Open the library <ArrowRight className="h-3.5 w-3.5" /></Link>
+        <section className="border border-border bg-foreground p-6 text-background md:p-7">
+          <GraduationCap className="h-5 w-5 text-bronze" />
+          <p className="mt-8 text-[9px] font-semibold uppercase tracking-[0.18em] text-background/45">Family learning · current focus</p>
+          <h2 className="mt-3 font-display text-3xl leading-tight">{summary.learningGoal}</h2>
+          <p className="mt-4 text-xs leading-6 text-background/62">{summary.learningProgress}. The test is not how much content has been consumed; it is what the learner can now do independently.</p>
+          <Link to="/member/learning" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold">Open Learning Studio <ArrowRight className="h-4 w-4 text-bronze" /></Link>
         </section>
       </div>
+
+      <section className="border border-border bg-card">
+        <div className="grid gap-px bg-border lg:grid-cols-[1.12fr_0.88fr]">
+          <div className="bg-card p-6 md:p-7">
+            <div className="flex items-center gap-3"><CalendarDays className="h-5 w-5 text-oxblood" /><p className="eyebrow text-oxblood">Next room</p></div>
+            <h2 className="mt-5 font-display text-4xl">{summary.nextGatheringTitle}</h2>
+            <p className="mt-3 text-sm text-muted-foreground">{summary.nextGatheringDate} · {summary.nextGatheringResponse}</p>
+            <p className="mt-5 max-w-2xl text-sm leading-7 text-muted-foreground">The event page now holds the reason for the room, who it is useful for, your response, dietary/access notes, plus-one request and calendar hold.</p>
+            <Link to="/member/events" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold">Open invitation <ArrowRight className="h-4 w-4 text-oxblood" /></Link>
+          </div>
+          <div className="bg-foreground p-6 text-background md:p-7">
+            <Sparkles className="h-5 w-5 text-bronze" />
+            <p className="mt-8 text-[9px] uppercase tracking-[0.18em] text-background/45">Curated for the question behind the question</p>
+            <h2 className="mt-3 font-display text-3xl leading-tight">{recommendation.title}</h2>
+            <p className="mt-4 text-sm leading-7 text-background/65">{recommendation.summary}</p>
+            <Link to="/member/knowledge" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold">Ask the Archive <ArrowRight className="h-4 w-4 text-bronze" /></Link>
+          </div>
+        </div>
+      </section>
 
       <div className="grid gap-5 lg:grid-cols-2">
         <section className="border border-border bg-card p-5 md:p-6">
-          <div className="flex items-center gap-3"><Network className="h-4 w-4 text-bronze" /><p className="eyebrow">Introduction desk</p></div>
-          <h3 className="mt-4 font-display text-2xl">One introduction is ready for consent.</h3>
-          <p className="mt-3 text-sm leading-7 text-muted-foreground">A member would like to connect you with an operator who has scaled a founder-led company into Europe. We never release contact details until both sides agree.</p>
-          <Link to="/member/introductions" className="mt-5 inline-flex items-center gap-2 text-sm font-medium">Review introductions <ArrowRight className="h-3.5 w-3.5" /></Link>
+          <div className="flex items-center gap-3"><Network className="h-4 w-4 text-oxblood" /><p className="eyebrow text-oxblood">Relationship intelligence</p></div>
+          <h3 className="mt-4 font-display text-3xl">Do not browse people. Start with the problem.</h3>
+          <p className="mt-3 text-sm leading-7 text-muted-foreground">Search the community for expertise, city or lived experience and see why somebody may be relevant before you ask for a consent-led introduction.</p>
+          <Link to="/member/community" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold">Who could help? <ArrowRight className="h-3.5 w-3.5 text-oxblood" /></Link>
         </section>
 
         <section className="border border-border bg-card p-5 md:p-6">
-          <div className="flex items-center gap-3"><TableProperties className="h-4 w-4 text-bronze" /><p className="eyebrow">From the community</p></div>
-          <h3 className="mt-4 font-display text-2xl">{firstAsk.title}</h3>
+          <div className="flex items-center gap-3"><TableProperties className="h-4 w-4 text-oxblood" /><p className="eyebrow text-oxblood">From the community</p></div>
+          <h3 className="mt-4 font-display text-3xl">{firstAsk.title}</h3>
           <p className="mt-3 text-sm leading-7 text-muted-foreground">{firstAsk.body}</p>
-          <Link to="/member/ask-offer" className="mt-5 inline-flex items-center gap-2 text-sm font-medium">See asks & offers <ArrowRight className="h-3.5 w-3.5" /></Link>
+          <Link to="/member/ask-offer" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold">See asks & offers <ArrowRight className="h-3.5 w-3.5 text-oxblood" /></Link>
         </section>
       </div>
+
+      <section className="grid gap-px bg-border md:grid-cols-3">
+        {[
+          [BadgeCheck, "Network", "Trusted specialists, people and introductions.", "/member/network"],
+          [GraduationCap, "Programme", "Learning, mentoring, alumni and next-generation pathways.", "/member/programme"],
+          [Compass, "Account", "Privacy, visibility and notification controls.", "/member/profile"],
+        ].map(([Icon, title, body, to]) => { const Component = Icon as typeof BadgeCheck; return <Link key={String(title)} to={String(to)} className="group bg-card p-5 transition-colors hover:bg-accent"><Component className="h-5 w-5 text-oxblood" /><h3 className="mt-5 font-display text-2xl">{String(title)}</h3><p className="mt-2 text-xs leading-6 text-muted-foreground">{String(body)}</p><span className="mt-5 inline-flex items-center gap-2 text-[9px] font-semibold uppercase tracking-[0.14em]">Open <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" /></span></Link>; })}
+      </section>
     </div>
   );
 }
