@@ -16,9 +16,6 @@ dist-ssr
 .nitro
 *.local
 
-# Generated at dev/build time from the source AVIF chunks.
-public/images/
-
 # Wrangler / Cloudflare
 .wrangler/
 .dev.vars
