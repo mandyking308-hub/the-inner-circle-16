@@ -6,18 +6,14 @@ export const site = {
   name: "Project Table",
   shortName: "Table",
   location: "London",
-  positioning: "Success creates complexity. Nobody hands you the map.",
-  supportingLine: "A private operating system for family enterprise.",
+  positioning: "Your life got complicated because it worked.",
+  supportingLine: "Private membership for the life behind the success.",
   ctaLabel: "Request a seat",
   description:
-    "A private London-based community and operating layer for founders, family enterprises and globally mobile families — combining peer judgement, trusted specialists, concierge execution, family learning and multigenerational stewardship.",
+    "A private London membership for founders, family enterprises and globally mobile families who want trusted people, better decisions, expert help, concierge execution and a stronger next generation around the same table.",
 } as const;
 
-/**
- * The main navigation is intentionally selective. The ecosystem contains more
- * capability than the header should expose at once; secondary routes live in
- * the ecosystem page and footer.
- */
+/** The header stays selective; the deeper operating system lives inside membership. */
 export const navItems = [
   { to: "/the-table", label: "The Table" },
   { to: "/decision-room", label: "Decision Room" },

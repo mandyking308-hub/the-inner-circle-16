@@ -1,74 +1,69 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { ShieldCheck } from "lucide-react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowRight, BadgeCheck, Handshake, ShieldCheck, UsersRound } from "lucide-react";
 
 import { Container } from "@/components/layout/Container";
-import { EditorialDetailPage } from "@/components/marketing/EditorialDetailPage";
+import { Button } from "@/components/ui/button";
 import { partnerValue } from "@/data/infrastructure";
+import { luxuryImages } from "@/data/luxuryImages";
 import { site } from "@/config/site";
 
 export const Route = createFileRoute("/partners")({
-  head: () => ({
-    meta: [
-      { title: `Trusted Partners — ${site.name}` },
-      { name: "description", content: "A curated provider network where credibility is earned, introductions are consent-led and member data is never sold." },
-    ],
-  }),
+  head: () => ({ meta: [{ title: `Trusted Partners — ${site.name}` }, { name: "description", content: "A recommendation-led specialist network where excellent firms earn trust through useful work rather than buying access to members." }] }),
   component: PartnersPage,
 });
 
 function PartnersPage() {
   return (
     <>
-      <EditorialDetailPage
-        eyebrow="Trusted Partners"
-        title="Useful professionals without turning the room into a marketplace."
-        introduction="Members need excellent lawyers, tax advisers, trustees, education specialists, security firms, recruiters, property people and concierge partners. The answer is not to let suppliers buy a ticket into the room. It is to build a trusted provider layer with clear standards, consent and accountability."
-        image="/art/partner-network.svg"
-        imageAlt="Editorial illustration of a member connected through consent-led routes to specialist trusted partners"
-        imageCaption="The firewall is deliberate: partners can earn trust, solve briefs and teach useful material, but they do not buy member identities or cold access."
-        blocks={[
-          {
-            kicker: "Trust status",
-            title: "Recommendation should mean something.",
-            body: "Member Recommended means a member has actually used and recommended the firm. Vetted Partner adds references and due diligence. Strategic Partner means a deeper service or benefit relationship. None of those labels is purchased simply by paying a listing fee.",
-          },
-          {
-            kicker: "Consent",
-            title: "Context before contact.",
-            body: "A member can request a provider, describe the problem and ask concierge to broker an introduction. The partner sees the brief only to the level required, and the member chooses whether contact details are released.",
-          },
-          {
-            kicker: "Commercial value",
-            title: "Partners get qualified demand, not a database.",
-            body: "High-quality firms benefit from serious briefs, credibility, expert programming, research participation, partner-to-partner referrals and the ability to create meaningful member benefits. The commercial value comes from relevance and trust rather than volume.",
-          },
-          {
-            kicker: "Standards",
-            title: "Service quality feeds the directory.",
-            body: "After a completed request, members can privately rate responsiveness, expertise, clarity and outcome. Patterns help concierge decide which firms remain visible, require review or should be removed.",
-          },
-          {
-            kicker: "Expertise",
-            title: "Teach before you sell.",
-            body: "Partners can contribute practical guides, office hours, clinics and expert sessions where the subject matter genuinely helps families make better decisions. Promotional content is secondary to usefulness.",
-          },
-        ]}
-        closingTitle="The best partners should want to earn a place here."
-        closingBody="The partner programme is designed to reward firms that understand complex families, collaborate well with other advisers and consistently execute."
-      />
-
-      <section className="border-t border-border bg-card py-16 md:py-24">
-        <Container>
-          <div className="flex items-center gap-3"><ShieldCheck className="h-5 w-5 text-bronze" /><p className="eyebrow">Why partners participate</p></div>
-          <div className="mt-8 grid gap-px bg-border md:grid-cols-2 lg:grid-cols-3">
-            {partnerValue.map((item) => (
-              <article key={item.title} className="bg-background p-6 md:p-7">
-                <h2 className="font-display text-3xl leading-tight">{item.title}</h2>
-                <p className="mt-4 text-sm leading-7 text-muted-foreground">{item.body}</p>
-              </article>
-            ))}
+      <section className="relative min-h-[680px] overflow-hidden bg-foreground text-background">
+        <img src={luxuryImages.table} alt="A private circle of members and advisers in London" className="absolute inset-0 h-full w-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-r from-foreground/96 via-foreground/78 to-foreground/20" />
+        <Container className="relative flex min-h-[680px] items-center py-20">
+          <div className="max-w-3xl">
+            <p className="eyebrow text-bronze">Trusted Partners</p>
+            <h1 className="mt-6 max-w-[11ch] font-display text-6xl leading-[0.93] md:text-8xl">When you need somebody good, start somewhere better than search.</h1>
+            <p className="mt-7 max-w-2xl text-base leading-8 text-background/72">The right lawyer, trustee, immigration specialist, education adviser, property expert, cyber team or recruiter can save months. The wrong one can create a problem that takes years to unwind.</p>
+            <p className="mt-4 max-w-2xl text-sm leading-7 text-background/55">So the directory is not open to whoever pays the most. Recommendation and useful work matter first.</p>
+            <Button asChild size="lg" className="mt-9 rounded-none bg-oxblood px-8"><Link to="/apply">Request a seat <ArrowRight className="ml-2 h-4 w-4" /></Link></Button>
           </div>
         </Container>
+      </section>
+
+      <section className="border-b border-foreground/15 bg-linen py-20 md:py-28">
+        <Container>
+          <div className="grid gap-12 lg:grid-cols-[0.68fr_1.32fr]">
+            <div><div className="flex items-center gap-3"><ShieldCheck className="h-5 w-5 text-oxblood" /><p className="eyebrow text-oxblood">The firewall</p></div><h2 className="mt-5 font-display text-5xl leading-[1.02]">Nobody buys a list of members.</h2><p className="mt-6 text-sm leading-7 text-muted-foreground">A partner can earn a profile, receive a genuine brief, teach a useful clinic or create a member benefit. They cannot buy your contact details, enter confidential peer rooms or cold-pitch the community.</p></div>
+            <div className="grid gap-px bg-foreground/15 sm:grid-cols-3">
+              {[
+                ["Member Recommended", "A member has actually used the firm and is willing to recommend the experience."],
+                ["Vetted Partner", "References and basic due diligence have been completed before wider visibility."],
+                ["Strategic Partner", "A deeper relationship where the service or benefit materially improves membership."],
+              ].map(([title, body]) => <article key={title} className="bg-background p-6"><BadgeCheck className="h-5 w-5 text-oxblood" /><h3 className="mt-7 font-display text-3xl">{title}</h3><p className="mt-4 text-sm leading-7 text-muted-foreground">{body}</p></article>)}
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <section className="border-b border-background/10 bg-foreground py-20 text-background md:py-28">
+        <Container>
+          <div className="mb-12 grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-end"><div><div className="flex items-center gap-3"><Handshake className="h-5 w-5 text-bronze" /><p className="eyebrow text-bronze">Why a serious firm would want in</p></div><h2 className="mt-5 font-display text-5xl leading-[1.02] md:text-6xl">Because trust is a better market than attention.</h2></div><p className="max-w-xl text-sm leading-7 text-background/62 lg:justify-self-end">The value is not “exposure to wealthy people.” The value is being known for doing excellent work in a community where complicated families regularly need excellent work.</p></div>
+          <div className="grid gap-px bg-background/15 md:grid-cols-2 lg:grid-cols-3">
+            {partnerValue.map((item) => <article key={item.title} className="bg-foreground p-6"><h3 className="font-display text-3xl leading-tight">{item.title}</h3><p className="mt-4 text-sm leading-7 text-background/62">{item.body}</p></article>)}
+          </div>
+        </Container>
+      </section>
+
+      <section className="border-b border-foreground/15 py-20 md:py-28">
+        <Container>
+          <div className="grid gap-5 lg:grid-cols-2">
+            <article className="border border-foreground/15 bg-card p-7 md:p-9"><UsersRound className="h-5 w-5 text-oxblood" /><h2 className="mt-8 font-display text-4xl">For the member</h2><p className="mt-5 text-sm leading-7 text-muted-foreground">Describe the problem. See the relevant category. Ask Concierge for the introduction. Your context is not released until you want the connection, and private service feedback helps the network get better over time.</p></article>
+            <article className="border border-foreground/15 bg-card p-7 md:p-9"><Handshake className="h-5 w-5 text-oxblood" /><h2 className="mt-8 font-display text-4xl">For the partner</h2><p className="mt-5 text-sm leading-7 text-muted-foreground">Solve real briefs well. Contribute practical expertise. Build relationships with other excellent advisers. Earn recommendations. Offer something genuinely useful to members. Reputation compounds from there.</p></article>
+          </div>
+        </Container>
+      </section>
+
+      <section className="bg-oxblood py-20 text-oxblood-foreground md:py-28">
+        <Container><div className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end"><div><p className="eyebrow text-bronze">The standard</p><h2 className="mt-5 max-w-4xl font-display text-5xl leading-[1.02] md:text-6xl">The best professional firms should want the recommendation more than the listing.</h2></div><Button asChild size="lg" className="rounded-none bg-background px-8 text-foreground hover:bg-bronze"><Link to="/membership">How membership works <ArrowRight className="ml-2 h-4 w-4" /></Link></Button></div></Container>
       </section>
     </>
   );

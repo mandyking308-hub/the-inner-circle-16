@@ -1,92 +1,82 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, BadgeCheck, Compass, MessageSquareText, TableProperties } from "lucide-react";
+import { ArrowRight, BadgeCheck, CheckCircle2, Compass, MessageSquareText, TableProperties } from "lucide-react";
 
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/button";
 import { site } from "@/config/site";
+import { luxuryImages } from "@/data/luxuryImages";
 
 export const Route = createFileRoute("/decision-room")({
-  head: () => ({
-    meta: [
-      { title: `Life Decision Room — ${site.name}` },
-      { name: "description", content: "A private workflow that turns complex family decisions into clear choices, qualified advice, owned execution and evidence of completion." },
-    ],
-  }),
+  head: () => ({ meta: [{ title: `Life Decision Room — ${site.name}` }, { name: "description", content: "A private room that turns complex family decisions into clear choices, qualified advice, owned execution and evidence of completion." }] }),
   component: DecisionRoomPage,
 });
 
 const lanes = [
-  ["01", "Decide", "What belongs to the family? Clarify the outcome, priorities, trade-offs and assumptions before anybody starts implementing."],
-  ["02", "Expert", "What requires professional advice? Route only the technical questions to the right qualified specialists."],
-  ["03", "Execute", "Who actually does the work? Every practical action receives an owner, dependency, next step and finish line."],
-  ["04", "Evidence", "How do we know it is done? Keep decisions, dates, documents, reviews and controls visible afterwards."],
-] as const;
-
-const exampleRooms = [
-  ["Move country", "Residence · tax · entities · schools · housing · banking · insurance · day counts"],
-  ["Build a family office", "Ownership · governance · advisers · reporting · protection · continuity · operating rhythm"],
-  ["Rethink education", "Core mastery · alternative routes · projects · mentors · execution · evidence portfolio"],
-  ["Plan succession", "Ownership · trusts · wills · next-gen readiness · staged authority · family communication"],
+  ["01", "Decide", "What are we actually choosing, and what matters enough to change the answer?"],
+  ["02", "Expert", "Which parts need a lawyer, tax adviser, immigration specialist, trustee, educator or another qualified professional?"],
+  ["03", "Execute", "Who owns the next action, what are they waiting for and when should it be done?"],
+  ["04", "Evidence", "What document, decision, review or outcome proves we can stop carrying this in our heads?"],
 ] as const;
 
 export function DecisionRoomPage() {
   return (
     <>
-      <section className="relative overflow-hidden border-b border-foreground/15 bg-foreground py-20 text-background md:py-28">
-        <div className="absolute inset-y-0 right-0 hidden w-[42%] bg-oxblood/20 lg:block" />
-        <Container className="relative">
-          <div className="grid gap-12 lg:grid-cols-[0.88fr_1.12fr] lg:items-center">
-            <div>
-              <p className="text-[9px] font-semibold uppercase tracking-[0.22em] text-bronze">Life Decision Room</p>
-              <h1 className="mt-6 max-w-[11ch] text-balance font-display text-6xl leading-[0.92] md:text-8xl">Stop collecting advice. <span className="text-bronze">Start closing decisions.</span></h1>
-              <p className="mt-8 max-w-xl text-base leading-8 text-background/65">The hardest family decisions do not belong to one profession. The Decision Room gives the whole problem a structure before the family spends time and money implementing fragments.</p>
-              <div className="mt-9 flex flex-wrap gap-3"><Button asChild size="lg" className="rounded-none bg-oxblood px-8 text-oxblood-foreground hover:bg-background hover:text-foreground"><Link to="/apply">Request a seat</Link></Button><Button asChild size="lg" variant="outline" className="rounded-none border-background/30 bg-transparent px-8 text-background hover:bg-background hover:text-foreground"><Link to="/ecosystem">See the ecosystem <ArrowRight className="ml-2 h-4 w-4" /></Link></Button></div>
-            </div>
-            <figure className="relative">
-              <div className="overflow-hidden border border-background/20 bg-background image-frame"><img src="/art/decision-room.svg" alt="The four-lane Life Decision Room" className="aspect-[4/3] w-full object-cover" /></div>
-              <figcaption className="mt-4 grid grid-cols-2 gap-4 text-[9px] font-semibold uppercase tracking-[0.15em] text-background/45"><span>Peers for judgement</span><span className="text-right">Execution with evidence</span></figcaption>
-            </figure>
+      <section className="relative min-h-[720px] overflow-hidden bg-foreground text-background">
+        <img src={luxuryImages.command} alt="A private family office command room overlooking London" className="absolute inset-0 h-full w-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-r from-foreground/96 via-foreground/78 to-foreground/20" />
+        <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-foreground to-transparent" />
+        <Container className="relative flex min-h-[720px] items-center py-20">
+          <div className="max-w-3xl">
+            <p className="eyebrow text-bronze">Life Decision Room</p>
+            <h1 className="mt-6 max-w-[12ch] font-display text-6xl leading-[0.94] md:text-8xl">When five decisions are actually one decision.</h1>
+            <p className="mt-7 max-w-2xl text-base leading-8 text-background/72">Move country and suddenly the visa touches tax, the tax touches the company, the company touches the trust, the school calendar touches the move date and the bank wants paperwork nobody told you to prepare. The room keeps the whole problem together.</p>
+            <div className="mt-9 flex flex-wrap gap-3"><Button asChild size="lg" className="rounded-none bg-oxblood px-8"><Link to="/apply">Request a seat</Link></Button><Button asChild size="lg" variant="outline" className="rounded-none border-background/35 bg-foreground/10 px-8 text-background hover:bg-background hover:text-foreground"><Link to="/auth">Member sign in <ArrowRight className="ml-2 h-4 w-4" /></Link></Button></div>
           </div>
         </Container>
       </section>
 
-      <section className="border-b border-foreground/15 bg-linen py-20 md:py-24">
+      <section className="border-b border-foreground/15 bg-linen py-20 md:py-28">
         <Container>
-          <div className="mb-10 grid gap-7 lg:grid-cols-[0.6fr_1.4fr] lg:items-end"><div><p className="eyebrow text-oxblood">The operating discipline</p><h2 className="mt-4 font-display text-4xl">Four lanes. No hiding behind research.</h2></div><p className="max-w-2xl text-sm leading-7 text-muted-foreground lg:justify-self-end">The workflow forces the family to distinguish judgement, regulated advice, practical execution and proof of completion. That alone prevents a surprising amount of drift.</p></div>
-          <div className="grid gap-px bg-foreground/15 md:grid-cols-2 xl:grid-cols-4">{lanes.map(([number, title, body], index) => <article key={title} className={`min-h-[300px] p-6 md:p-7 ${index === 1 || index === 3 ? "bg-card" : "bg-background"}`}><div className="flex items-start justify-between"><span className="font-display text-4xl text-oxblood">{number}</span><span className="h-2.5 w-2.5 rounded-full bg-bronze" /></div><h3 className="mt-16 font-display text-4xl">{title}</h3><p className="mt-5 text-sm leading-7 text-muted-foreground">{body}</p></article>)}</div>
+          <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
+            <div><p className="eyebrow text-oxblood">The idea</p><h2 className="mt-5 font-display text-5xl leading-[1.02]">You should know who is deciding, who is advising and who is doing.</h2><p className="mt-6 text-sm leading-7 text-muted-foreground">Most expensive confusion comes from mixing those jobs together. A peer opinion is not legal advice. A brilliant tax memo is not an execution plan. A concierge cannot make a family decision for you. The room makes the boundary obvious.</p></div>
+            <div className="grid gap-px bg-foreground/15 sm:grid-cols-2">
+              {lanes.map(([number, title, body]) => <article key={title} className="bg-background p-7"><span className="font-display text-3xl text-oxblood">{number}</span><h3 className="mt-8 font-display text-4xl">{title}</h3><p className="mt-4 text-sm leading-7 text-muted-foreground">{body}</p></article>)}
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <section className="border-b border-background/10 bg-foreground py-20 text-background md:py-28">
+        <Container>
+          <div className="mb-12 grid gap-8 lg:grid-cols-[0.75fr_1.25fr] lg:items-end"><div><p className="eyebrow text-bronze">Four rooms already built</p><h2 className="mt-5 font-display text-5xl leading-[1.02] md:text-6xl">Start where life is already complicated.</h2></div><p className="max-w-xl text-sm leading-7 text-background/60 lg:justify-self-end">These are not articles. Inside membership they become working boards with tasks, owners, dependencies, progress and direct routes into the Table, Trusted Partners and Concierge.</p></div>
+          <div className="divide-y divide-background/15 border-y border-background/15">
+            {[
+              ["Move country", "Residence, tax, entities, trusts, schools, homes, banking, insurance, healthcare and day counts."],
+              ["Build a family office", "Ownership, advisers, reporting, protection, continuity, information and who actually owns each decision."],
+              ["Rethink education", "What school does well, what life still needs to teach and how a young person proves they can execute."],
+              ["Plan succession", "Paperwork, ownership, capability, communication and preparing people before authority lands on them."],
+            ].map(([title, body], index) => <div key={title} className="grid gap-4 py-7 md:grid-cols-[70px_250px_1fr] md:items-start"><span className="font-display text-3xl text-bronze">0{index + 1}</span><h3 className="font-display text-3xl">{title}</h3><p className="max-w-3xl text-sm leading-7 text-background/62">{body}</p></div>)}
+          </div>
         </Container>
       </section>
 
       <section className="border-b border-foreground/15 py-20 md:py-28">
         <Container>
-          <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
-            <div><p className="eyebrow text-oxblood">Where the value enters</p><h2 className="mt-5 font-display text-5xl leading-[1.02]">One decision can pull the whole institution into the room.</h2><p className="mt-6 text-sm leading-7 text-muted-foreground">The member does not need to decide whether a problem belongs to networking, advice, research or concierge. They start with the outcome.</p></div>
-            <div className="divide-y divide-foreground/15 border-y border-foreground/15">
-              {[
-                [TableProperties, "The Table", "Use peers for lived judgement before paying to implement an assumption."],
-                [BadgeCheck, "Trusted Partners", "Bring in the right specialist only where technical expertise is actually required."],
-                [Compass, "Concierge", "Turn the chosen direction into appointments, research, documents, coordination and completed actions."],
-                [MessageSquareText, "Knowledge", "Convert recurring problems into playbooks so the next family begins further ahead."],
-              ].map(([Icon, title, body], index) => { const Component = Icon as typeof TableProperties; return <article key={String(title)} className="grid gap-4 py-6 md:grid-cols-[55px_220px_1fr] md:items-center"><span className="font-display text-2xl text-oxblood">0{index + 1}</span><div className="flex items-center gap-3"><Component className="h-4 w-4 text-bronze" /><h3 className="font-display text-3xl">{String(title)}</h3></div><p className="text-sm leading-7 text-muted-foreground">{String(body)}</p></article>; })}
-            </div>
+          <div className="grid gap-5 lg:grid-cols-3">
+            {[
+              [TableProperties, "Ask the people who have lived it", "Before you spend money implementing a decision, ask a small circle what surprised them, what they would do differently and which question mattered most."],
+              [BadgeCheck, "Bring in the right specialist", "The room shows where regulated or technical expertise is required, then routes the member into the relevant trusted-partner category."],
+              [Compass, "Give the practical work an owner", "Research, scheduling, document chasing, introductions and follow-through can move into Concierge so the family is not carrying every loose end."],
+            ].map(([Icon, title, body]) => { const Component = Icon as typeof TableProperties; return <article key={String(title)} className="border border-foreground/15 bg-card p-7"><Component className="h-5 w-5 text-oxblood" /><h3 className="mt-8 font-display text-4xl leading-tight">{String(title)}</h3><p className="mt-5 text-sm leading-7 text-muted-foreground">{String(body)}</p></article>; })}
           </div>
         </Container>
       </section>
 
-      <section className="border-b border-foreground/15 bg-forest py-20 text-forest-foreground md:py-28">
+      <section className="bg-oxblood py-20 text-oxblood-foreground md:py-28">
         <Container>
-          <div className="grid gap-10 lg:grid-cols-[0.7fr_1.3fr]">
-            <div><p className="eyebrow text-forest-foreground/50">Example rooms</p><h2 className="mt-5 font-display text-5xl leading-tight">The problems do not arrive neatly. The rooms do.</h2></div>
-            <div className="divide-y divide-forest-foreground/15 border-y border-forest-foreground/15">{exampleRooms.map(([title, body], index) => <div key={title} className="grid gap-4 py-6 md:grid-cols-[60px_220px_1fr] md:items-center"><span className="font-display text-2xl text-bronze">0{index + 1}</span><h3 className="font-display text-3xl">{title}</h3><p className="text-xs font-medium uppercase leading-6 tracking-[0.08em] text-forest-foreground/55">{body}</p></div>)}</div>
-          </div>
-        </Container>
-      </section>
-
-      <section className="py-20 md:py-28">
-        <Container>
-          <div className="grid gap-8 border border-foreground/20 bg-card p-8 md:p-10 lg:grid-cols-[1fr_auto] lg:items-end">
-            <div><p className="eyebrow text-oxblood">Inside membership</p><h2 className="mt-5 max-w-4xl font-display text-5xl leading-tight">The public page explains the method. The private room is where the work moves.</h2><p className="mt-5 max-w-2xl text-sm leading-7 text-muted-foreground">Members can switch decision templates, mark work complete, see dependencies and owners, and route the next step directly to peers, Trusted Partners or Concierge.</p></div>
-            <Button asChild size="lg" className="rounded-none bg-oxblood px-8 text-oxblood-foreground hover:bg-foreground"><Link to="/apply">Request a seat <ArrowRight className="ml-2 h-4 w-4" /></Link></Button>
+          <div className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
+            <div><div className="flex items-center gap-3"><CheckCircle2 className="h-5 w-5 text-bronze" /><p className="eyebrow text-bronze">The definition of done</p></div><h2 className="mt-5 max-w-4xl font-display text-5xl leading-[1.02] md:text-6xl">The best luxury is waking up and knowing the complicated thing is handled.</h2><p className="mt-6 max-w-2xl text-sm leading-7 text-oxblood-foreground/68">That is what this room is for. Not more information. Less mental load, clearer decisions and visible completion.</p></div>
+            <Button asChild size="lg" className="rounded-none bg-background px-8 text-foreground hover:bg-bronze"><Link to="/apply">Request a seat <ArrowRight className="ml-2 h-4 w-4" /></Link></Button>
           </div>
         </Container>
       </section>
