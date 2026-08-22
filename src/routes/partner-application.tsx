@@ -15,7 +15,7 @@ import { submitPartnerIntake } from "@/lib/applicationIntake";
 import { site } from "@/config/site";
 
 export const Route = createFileRoute("/partner-application")({
-  head: () => ({ meta: [{ title: `Trusted Partner application — ${site.name}` }, { name: "description", content: "Apply to be considered for the Project Table Trusted Partner network." }] }),
+  head: () => ({ meta: [{ title: `Trusted Partner application — ${site.name}` }, { name: "description", content: "Apply to be considered for the Montvelle Trusted Partner network." }] }),
   component: PartnerApplicationPage,
 });
 
