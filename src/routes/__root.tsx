@@ -18,6 +18,15 @@ import { SiteFooter } from "@/components/layout/SiteFooter";
 import { site } from "@/config/site";
 import { luxuryImages } from "@/data/luxuryImages";
 
+const structuredData = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: site.name,
+  url: site.url,
+  description: site.description,
+  parentOrganization: { "@type": "Organization", name: site.operator },
+});
+
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -74,7 +83,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: ReactNode }) {
-  return <html lang="en"><head><HeadContent /></head><body>{children}<Scripts /></body></html>;
+  return <html lang="en"><head><HeadContent /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: structuredData }} /></head><body>{children}<Scripts /></body></html>;
 }
 
 function RootComponent() {
