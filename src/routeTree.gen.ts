@@ -10,19 +10,87 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as AdminRouteImport } from './routes/admin'
+import { Route as AlumniRouteImport } from './routes/alumni'
 import { Route as ApplyRouteImport } from './routes/apply'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as ConciergeRouteImport } from './routes/concierge'
+import { Route as ConfidentialityRouteImport } from './routes/confidentiality'
+import { Route as DecisionRoomRouteImport } from './routes/decision-room'
+import { Route as EcosystemRouteImport } from './routes/ecosystem'
+import { Route as FamilyLearningRouteImport } from './routes/family-learning'
+import { Route as GatheringsRouteImport } from './routes/gatherings'
+import { Route as GlobalLifeRouteImport } from './routes/global-life'
+import { Route as ImpactRouteImport } from './routes/impact'
+import { Route as LegacyRouteImport } from './routes/legacy'
 import { Route as MemberRouteImport } from './routes/member'
+import { Route as MembershipRouteImport } from './routes/membership'
+import { Route as NextGenRouteImport } from './routes/next-gen'
+import { Route as PartnerApplicationRouteImport } from './routes/partner-application'
+import { Route as PartnersRouteImport } from './routes/partners'
+import { Route as PrinciplesRouteImport } from './routes/principles'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as TermsRouteImport } from './routes/terms'
+import { Route as TheTableRouteImport } from './routes/the-table'
+import { Route as WorldRouteImport } from './routes/world'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminAlumniRouteImport } from './routes/admin.alumni'
+import { Route as AdminApplicationsRouteImport } from './routes/admin.applications'
+import { Route as AdminConciergeRouteImport } from './routes/admin.concierge'
+import { Route as AdminContentRouteImport } from './routes/admin.content'
+import { Route as AdminEventsRouteImport } from './routes/admin.events'
+import { Route as AdminGlobalLifeRouteImport } from './routes/admin.global-life'
+import { Route as AdminImpactRouteImport } from './routes/admin.impact'
+import { Route as AdminIntroductionsRouteImport } from './routes/admin.introductions'
+import { Route as AdminLaunchReadinessRouteImport } from './routes/admin.launch-readiness'
+import { Route as AdminLearningRouteImport } from './routes/admin.learning'
+import { Route as AdminMembersRouteImport } from './routes/admin.members'
+import { Route as AdminNextGenRouteImport } from './routes/admin.next-gen'
+import { Route as AdminPartnersRouteImport } from './routes/admin.partners'
+import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
+import { Route as AdminTablesRouteImport } from './routes/admin.tables'
+import { Route as JournalIndexRouteImport } from './routes/journal.index'
+import { Route as JournalSlugRouteImport } from './routes/journal.$slug'
+import { Route as MemberIndexRouteImport } from './routes/member.index'
+import { Route as MemberAlumniRouteImport } from './routes/member.alumni'
+import { Route as MemberAskOfferRouteImport } from './routes/member.ask-offer'
+import { Route as MemberCommunityRouteImport } from './routes/member.community'
+import { Route as MemberConciergeRouteImport } from './routes/member.concierge'
+import { Route as MemberControlRoomRouteImport } from './routes/member.control-room'
+import { Route as MemberEventsRouteImport } from './routes/member.events'
+import { Route as MemberFamilyRouteImport } from './routes/member.family'
+import { Route as MemberFamilyArchitectureRouteImport } from './routes/member.family-architecture'
+import { Route as MemberGlobalLifeRouteImport } from './routes/member.global-life'
+import { Route as MemberImpactRouteImport } from './routes/member.impact'
+import { Route as MemberIntroductionsRouteImport } from './routes/member.introductions'
+import { Route as MemberKnowledgeRouteImport } from './routes/member.knowledge'
+import { Route as MemberLearningRouteImport } from './routes/member.learning'
+import { Route as MemberNetworkRouteImport } from './routes/member.network'
+import { Route as MemberNextGenRouteImport } from './routes/member.next-gen'
+import { Route as MemberPartnersRouteImport } from './routes/member.partners'
+import { Route as MemberProfileRouteImport } from './routes/member.profile'
+import { Route as MemberProgrammeRouteImport } from './routes/member.programme'
+import { Route as MemberTableRouteImport } from './routes/member.table'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminRoute = AdminRouteImport.update({
   id: '/admin',
   path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AlumniRoute = AlumniRouteImport.update({
+  id: '/alumni',
+  path: '/alumni',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApplyRoute = ApplyRouteImport.update({
@@ -35,48 +103,711 @@ const AuthRoute = AuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ConciergeRoute = ConciergeRouteImport.update({
+  id: '/concierge',
+  path: '/concierge',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConfidentialityRoute = ConfidentialityRouteImport.update({
+  id: '/confidentiality',
+  path: '/confidentiality',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DecisionRoomRoute = DecisionRoomRouteImport.update({
+  id: '/decision-room',
+  path: '/decision-room',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EcosystemRoute = EcosystemRouteImport.update({
+  id: '/ecosystem',
+  path: '/ecosystem',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FamilyLearningRoute = FamilyLearningRouteImport.update({
+  id: '/family-learning',
+  path: '/family-learning',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GatheringsRoute = GatheringsRouteImport.update({
+  id: '/gatherings',
+  path: '/gatherings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GlobalLifeRoute = GlobalLifeRouteImport.update({
+  id: '/global-life',
+  path: '/global-life',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ImpactRoute = ImpactRouteImport.update({
+  id: '/impact',
+  path: '/impact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegacyRoute = LegacyRouteImport.update({
+  id: '/legacy',
+  path: '/legacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MemberRoute = MemberRouteImport.update({
   id: '/member',
   path: '/member',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MembershipRoute = MembershipRouteImport.update({
+  id: '/membership',
+  path: '/membership',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NextGenRoute = NextGenRouteImport.update({
+  id: '/next-gen',
+  path: '/next-gen',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PartnerApplicationRoute = PartnerApplicationRouteImport.update({
+  id: '/partner-application',
+  path: '/partner-application',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PartnersRoute = PartnersRouteImport.update({
+  id: '/partners',
+  path: '/partners',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrinciplesRoute = PrinciplesRouteImport.update({
+  id: '/principles',
+  path: '/principles',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TheTableRoute = TheTableRouteImport.update({
+  id: '/the-table',
+  path: '/the-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WorldRoute = WorldRouteImport.update({
+  id: '/world',
+  path: '/world',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminAlumniRoute = AdminAlumniRouteImport.update({
+  id: '/alumni',
+  path: '/alumni',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminApplicationsRoute = AdminApplicationsRouteImport.update({
+  id: '/applications',
+  path: '/applications',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminConciergeRoute = AdminConciergeRouteImport.update({
+  id: '/concierge',
+  path: '/concierge',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminContentRoute = AdminContentRouteImport.update({
+  id: '/content',
+  path: '/content',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminEventsRoute = AdminEventsRouteImport.update({
+  id: '/events',
+  path: '/events',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminGlobalLifeRoute = AdminGlobalLifeRouteImport.update({
+  id: '/global-life',
+  path: '/global-life',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminImpactRoute = AdminImpactRouteImport.update({
+  id: '/impact',
+  path: '/impact',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminIntroductionsRoute = AdminIntroductionsRouteImport.update({
+  id: '/introductions',
+  path: '/introductions',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminLaunchReadinessRoute = AdminLaunchReadinessRouteImport.update({
+  id: '/launch-readiness',
+  path: '/launch-readiness',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminLearningRoute = AdminLearningRouteImport.update({
+  id: '/learning',
+  path: '/learning',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminMembersRoute = AdminMembersRouteImport.update({
+  id: '/members',
+  path: '/members',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminNextGenRoute = AdminNextGenRouteImport.update({
+  id: '/next-gen',
+  path: '/next-gen',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminPartnersRoute = AdminPartnersRouteImport.update({
+  id: '/partners',
+  path: '/partners',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminSettingsRoute = AdminSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminTablesRoute = AdminTablesRouteImport.update({
+  id: '/tables',
+  path: '/tables',
+  getParentRoute: () => AdminRoute,
+} as any)
+const JournalIndexRoute = JournalIndexRouteImport.update({
+  id: '/journal/',
+  path: '/journal/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JournalSlugRoute = JournalSlugRouteImport.update({
+  id: '/journal/$slug',
+  path: '/journal/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MemberIndexRoute = MemberIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => MemberRoute,
+} as any)
+const MemberAlumniRoute = MemberAlumniRouteImport.update({
+  id: '/alumni',
+  path: '/alumni',
+  getParentRoute: () => MemberRoute,
+} as any)
+const MemberAskOfferRoute = MemberAskOfferRouteImport.update({
+  id: '/ask-offer',
+  path: '/ask-offer',
+  getParentRoute: () => MemberRoute,
+} as any)
+const MemberCommunityRoute = MemberCommunityRouteImport.update({
+  id: '/community',
+  path: '/community',
+  getParentRoute: () => MemberRoute,
+} as any)
+const MemberConciergeRoute = MemberConciergeRouteImport.update({
+  id: '/concierge',
+  path: '/concierge',
+  getParentRoute: () => MemberRoute,
+} as any)
+const MemberControlRoomRoute = MemberControlRoomRouteImport.update({
+  id: '/control-room',
+  path: '/control-room',
+  getParentRoute: () => MemberRoute,
+} as any)
+const MemberEventsRoute = MemberEventsRouteImport.update({
+  id: '/events',
+  path: '/events',
+  getParentRoute: () => MemberRoute,
+} as any)
+const MemberFamilyRoute = MemberFamilyRouteImport.update({
+  id: '/family',
+  path: '/family',
+  getParentRoute: () => MemberRoute,
+} as any)
+const MemberFamilyArchitectureRoute =
+  MemberFamilyArchitectureRouteImport.update({
+    id: '/family-architecture',
+    path: '/family-architecture',
+    getParentRoute: () => MemberRoute,
+  } as any)
+const MemberGlobalLifeRoute = MemberGlobalLifeRouteImport.update({
+  id: '/global-life',
+  path: '/global-life',
+  getParentRoute: () => MemberRoute,
+} as any)
+const MemberImpactRoute = MemberImpactRouteImport.update({
+  id: '/impact',
+  path: '/impact',
+  getParentRoute: () => MemberRoute,
+} as any)
+const MemberIntroductionsRoute = MemberIntroductionsRouteImport.update({
+  id: '/introductions',
+  path: '/introductions',
+  getParentRoute: () => MemberRoute,
+} as any)
+const MemberKnowledgeRoute = MemberKnowledgeRouteImport.update({
+  id: '/knowledge',
+  path: '/knowledge',
+  getParentRoute: () => MemberRoute,
+} as any)
+const MemberLearningRoute = MemberLearningRouteImport.update({
+  id: '/learning',
+  path: '/learning',
+  getParentRoute: () => MemberRoute,
+} as any)
+const MemberNetworkRoute = MemberNetworkRouteImport.update({
+  id: '/network',
+  path: '/network',
+  getParentRoute: () => MemberRoute,
+} as any)
+const MemberNextGenRoute = MemberNextGenRouteImport.update({
+  id: '/next-gen',
+  path: '/next-gen',
+  getParentRoute: () => MemberRoute,
+} as any)
+const MemberPartnersRoute = MemberPartnersRouteImport.update({
+  id: '/partners',
+  path: '/partners',
+  getParentRoute: () => MemberRoute,
+} as any)
+const MemberProfileRoute = MemberProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => MemberRoute,
+} as any)
+const MemberProgrammeRoute = MemberProgrammeRouteImport.update({
+  id: '/programme',
+  path: '/programme',
+  getParentRoute: () => MemberRoute,
+} as any)
+const MemberTableRoute = MemberTableRouteImport.update({
+  id: '/table',
+  path: '/table',
+  getParentRoute: () => MemberRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/admin': typeof AdminRoute
+  '/about': typeof AboutRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/alumni': typeof AlumniRoute
   '/apply': typeof ApplyRoute
   '/auth': typeof AuthRoute
-  '/member': typeof MemberRoute
+  '/concierge': typeof ConciergeRoute
+  '/confidentiality': typeof ConfidentialityRoute
+  '/decision-room': typeof DecisionRoomRoute
+  '/ecosystem': typeof EcosystemRoute
+  '/family-learning': typeof FamilyLearningRoute
+  '/gatherings': typeof GatheringsRoute
+  '/global-life': typeof GlobalLifeRoute
+  '/impact': typeof ImpactRoute
+  '/legacy': typeof LegacyRoute
+  '/member': typeof MemberRouteWithChildren
+  '/membership': typeof MembershipRoute
+  '/next-gen': typeof NextGenRoute
+  '/partner-application': typeof PartnerApplicationRoute
+  '/partners': typeof PartnersRoute
+  '/principles': typeof PrinciplesRoute
+  '/privacy': typeof PrivacyRoute
+  '/terms': typeof TermsRoute
+  '/the-table': typeof TheTableRoute
+  '/world': typeof WorldRoute
+  '/admin/alumni': typeof AdminAlumniRoute
+  '/admin/applications': typeof AdminApplicationsRoute
+  '/admin/concierge': typeof AdminConciergeRoute
+  '/admin/content': typeof AdminContentRoute
+  '/admin/events': typeof AdminEventsRoute
+  '/admin/global-life': typeof AdminGlobalLifeRoute
+  '/admin/impact': typeof AdminImpactRoute
+  '/admin/introductions': typeof AdminIntroductionsRoute
+  '/admin/launch-readiness': typeof AdminLaunchReadinessRoute
+  '/admin/learning': typeof AdminLearningRoute
+  '/admin/members': typeof AdminMembersRoute
+  '/admin/next-gen': typeof AdminNextGenRoute
+  '/admin/partners': typeof AdminPartnersRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/tables': typeof AdminTablesRoute
+  '/journal/$slug': typeof JournalSlugRoute
+  '/member/alumni': typeof MemberAlumniRoute
+  '/member/ask-offer': typeof MemberAskOfferRoute
+  '/member/community': typeof MemberCommunityRoute
+  '/member/concierge': typeof MemberConciergeRoute
+  '/member/control-room': typeof MemberControlRoomRoute
+  '/member/events': typeof MemberEventsRoute
+  '/member/family': typeof MemberFamilyRoute
+  '/member/family-architecture': typeof MemberFamilyArchitectureRoute
+  '/member/global-life': typeof MemberGlobalLifeRoute
+  '/member/impact': typeof MemberImpactRoute
+  '/member/introductions': typeof MemberIntroductionsRoute
+  '/member/knowledge': typeof MemberKnowledgeRoute
+  '/member/learning': typeof MemberLearningRoute
+  '/member/network': typeof MemberNetworkRoute
+  '/member/next-gen': typeof MemberNextGenRoute
+  '/member/partners': typeof MemberPartnersRoute
+  '/member/profile': typeof MemberProfileRoute
+  '/member/programme': typeof MemberProgrammeRoute
+  '/member/table': typeof MemberTableRoute
+  '/admin/': typeof AdminIndexRoute
+  '/journal/': typeof JournalIndexRoute
+  '/member/': typeof MemberIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/admin': typeof AdminRoute
+  '/about': typeof AboutRoute
+  '/alumni': typeof AlumniRoute
   '/apply': typeof ApplyRoute
   '/auth': typeof AuthRoute
-  '/member': typeof MemberRoute
+  '/concierge': typeof ConciergeRoute
+  '/confidentiality': typeof ConfidentialityRoute
+  '/decision-room': typeof DecisionRoomRoute
+  '/ecosystem': typeof EcosystemRoute
+  '/family-learning': typeof FamilyLearningRoute
+  '/gatherings': typeof GatheringsRoute
+  '/global-life': typeof GlobalLifeRoute
+  '/impact': typeof ImpactRoute
+  '/legacy': typeof LegacyRoute
+  '/membership': typeof MembershipRoute
+  '/next-gen': typeof NextGenRoute
+  '/partner-application': typeof PartnerApplicationRoute
+  '/partners': typeof PartnersRoute
+  '/principles': typeof PrinciplesRoute
+  '/privacy': typeof PrivacyRoute
+  '/terms': typeof TermsRoute
+  '/the-table': typeof TheTableRoute
+  '/world': typeof WorldRoute
+  '/admin/alumni': typeof AdminAlumniRoute
+  '/admin/applications': typeof AdminApplicationsRoute
+  '/admin/concierge': typeof AdminConciergeRoute
+  '/admin/content': typeof AdminContentRoute
+  '/admin/events': typeof AdminEventsRoute
+  '/admin/global-life': typeof AdminGlobalLifeRoute
+  '/admin/impact': typeof AdminImpactRoute
+  '/admin/introductions': typeof AdminIntroductionsRoute
+  '/admin/launch-readiness': typeof AdminLaunchReadinessRoute
+  '/admin/learning': typeof AdminLearningRoute
+  '/admin/members': typeof AdminMembersRoute
+  '/admin/next-gen': typeof AdminNextGenRoute
+  '/admin/partners': typeof AdminPartnersRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/tables': typeof AdminTablesRoute
+  '/journal/$slug': typeof JournalSlugRoute
+  '/member/alumni': typeof MemberAlumniRoute
+  '/member/ask-offer': typeof MemberAskOfferRoute
+  '/member/community': typeof MemberCommunityRoute
+  '/member/concierge': typeof MemberConciergeRoute
+  '/member/control-room': typeof MemberControlRoomRoute
+  '/member/events': typeof MemberEventsRoute
+  '/member/family': typeof MemberFamilyRoute
+  '/member/family-architecture': typeof MemberFamilyArchitectureRoute
+  '/member/global-life': typeof MemberGlobalLifeRoute
+  '/member/impact': typeof MemberImpactRoute
+  '/member/introductions': typeof MemberIntroductionsRoute
+  '/member/knowledge': typeof MemberKnowledgeRoute
+  '/member/learning': typeof MemberLearningRoute
+  '/member/network': typeof MemberNetworkRoute
+  '/member/next-gen': typeof MemberNextGenRoute
+  '/member/partners': typeof MemberPartnersRoute
+  '/member/profile': typeof MemberProfileRoute
+  '/member/programme': typeof MemberProgrammeRoute
+  '/member/table': typeof MemberTableRoute
+  '/admin': typeof AdminIndexRoute
+  '/journal': typeof JournalIndexRoute
+  '/member': typeof MemberIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/admin': typeof AdminRoute
+  '/about': typeof AboutRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/alumni': typeof AlumniRoute
   '/apply': typeof ApplyRoute
   '/auth': typeof AuthRoute
-  '/member': typeof MemberRoute
+  '/concierge': typeof ConciergeRoute
+  '/confidentiality': typeof ConfidentialityRoute
+  '/decision-room': typeof DecisionRoomRoute
+  '/ecosystem': typeof EcosystemRoute
+  '/family-learning': typeof FamilyLearningRoute
+  '/gatherings': typeof GatheringsRoute
+  '/global-life': typeof GlobalLifeRoute
+  '/impact': typeof ImpactRoute
+  '/legacy': typeof LegacyRoute
+  '/member': typeof MemberRouteWithChildren
+  '/membership': typeof MembershipRoute
+  '/next-gen': typeof NextGenRoute
+  '/partner-application': typeof PartnerApplicationRoute
+  '/partners': typeof PartnersRoute
+  '/principles': typeof PrinciplesRoute
+  '/privacy': typeof PrivacyRoute
+  '/terms': typeof TermsRoute
+  '/the-table': typeof TheTableRoute
+  '/world': typeof WorldRoute
+  '/admin/alumni': typeof AdminAlumniRoute
+  '/admin/applications': typeof AdminApplicationsRoute
+  '/admin/concierge': typeof AdminConciergeRoute
+  '/admin/content': typeof AdminContentRoute
+  '/admin/events': typeof AdminEventsRoute
+  '/admin/global-life': typeof AdminGlobalLifeRoute
+  '/admin/impact': typeof AdminImpactRoute
+  '/admin/introductions': typeof AdminIntroductionsRoute
+  '/admin/launch-readiness': typeof AdminLaunchReadinessRoute
+  '/admin/learning': typeof AdminLearningRoute
+  '/admin/members': typeof AdminMembersRoute
+  '/admin/next-gen': typeof AdminNextGenRoute
+  '/admin/partners': typeof AdminPartnersRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/tables': typeof AdminTablesRoute
+  '/journal/$slug': typeof JournalSlugRoute
+  '/member/alumni': typeof MemberAlumniRoute
+  '/member/ask-offer': typeof MemberAskOfferRoute
+  '/member/community': typeof MemberCommunityRoute
+  '/member/concierge': typeof MemberConciergeRoute
+  '/member/control-room': typeof MemberControlRoomRoute
+  '/member/events': typeof MemberEventsRoute
+  '/member/family': typeof MemberFamilyRoute
+  '/member/family-architecture': typeof MemberFamilyArchitectureRoute
+  '/member/global-life': typeof MemberGlobalLifeRoute
+  '/member/impact': typeof MemberImpactRoute
+  '/member/introductions': typeof MemberIntroductionsRoute
+  '/member/knowledge': typeof MemberKnowledgeRoute
+  '/member/learning': typeof MemberLearningRoute
+  '/member/network': typeof MemberNetworkRoute
+  '/member/next-gen': typeof MemberNextGenRoute
+  '/member/partners': typeof MemberPartnersRoute
+  '/member/profile': typeof MemberProfileRoute
+  '/member/programme': typeof MemberProgrammeRoute
+  '/member/table': typeof MemberTableRoute
+  '/admin/': typeof AdminIndexRoute
+  '/journal/': typeof JournalIndexRoute
+  '/member/': typeof MemberIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/admin' | '/apply' | '/auth' | '/member'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/admin'
+    | '/alumni'
+    | '/apply'
+    | '/auth'
+    | '/concierge'
+    | '/confidentiality'
+    | '/decision-room'
+    | '/ecosystem'
+    | '/family-learning'
+    | '/gatherings'
+    | '/global-life'
+    | '/impact'
+    | '/legacy'
+    | '/member'
+    | '/membership'
+    | '/next-gen'
+    | '/partner-application'
+    | '/partners'
+    | '/principles'
+    | '/privacy'
+    | '/terms'
+    | '/the-table'
+    | '/world'
+    | '/admin/alumni'
+    | '/admin/applications'
+    | '/admin/concierge'
+    | '/admin/content'
+    | '/admin/events'
+    | '/admin/global-life'
+    | '/admin/impact'
+    | '/admin/introductions'
+    | '/admin/launch-readiness'
+    | '/admin/learning'
+    | '/admin/members'
+    | '/admin/next-gen'
+    | '/admin/partners'
+    | '/admin/settings'
+    | '/admin/tables'
+    | '/journal/$slug'
+    | '/member/alumni'
+    | '/member/ask-offer'
+    | '/member/community'
+    | '/member/concierge'
+    | '/member/control-room'
+    | '/member/events'
+    | '/member/family'
+    | '/member/family-architecture'
+    | '/member/global-life'
+    | '/member/impact'
+    | '/member/introductions'
+    | '/member/knowledge'
+    | '/member/learning'
+    | '/member/network'
+    | '/member/next-gen'
+    | '/member/partners'
+    | '/member/profile'
+    | '/member/programme'
+    | '/member/table'
+    | '/admin/'
+    | '/journal/'
+    | '/member/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin' | '/apply' | '/auth' | '/member'
-  id: '__root__' | '/' | '/admin' | '/apply' | '/auth' | '/member'
+  to:
+    | '/'
+    | '/about'
+    | '/alumni'
+    | '/apply'
+    | '/auth'
+    | '/concierge'
+    | '/confidentiality'
+    | '/decision-room'
+    | '/ecosystem'
+    | '/family-learning'
+    | '/gatherings'
+    | '/global-life'
+    | '/impact'
+    | '/legacy'
+    | '/membership'
+    | '/next-gen'
+    | '/partner-application'
+    | '/partners'
+    | '/principles'
+    | '/privacy'
+    | '/terms'
+    | '/the-table'
+    | '/world'
+    | '/admin/alumni'
+    | '/admin/applications'
+    | '/admin/concierge'
+    | '/admin/content'
+    | '/admin/events'
+    | '/admin/global-life'
+    | '/admin/impact'
+    | '/admin/introductions'
+    | '/admin/launch-readiness'
+    | '/admin/learning'
+    | '/admin/members'
+    | '/admin/next-gen'
+    | '/admin/partners'
+    | '/admin/settings'
+    | '/admin/tables'
+    | '/journal/$slug'
+    | '/member/alumni'
+    | '/member/ask-offer'
+    | '/member/community'
+    | '/member/concierge'
+    | '/member/control-room'
+    | '/member/events'
+    | '/member/family'
+    | '/member/family-architecture'
+    | '/member/global-life'
+    | '/member/impact'
+    | '/member/introductions'
+    | '/member/knowledge'
+    | '/member/learning'
+    | '/member/network'
+    | '/member/next-gen'
+    | '/member/partners'
+    | '/member/profile'
+    | '/member/programme'
+    | '/member/table'
+    | '/admin'
+    | '/journal'
+    | '/member'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/admin'
+    | '/alumni'
+    | '/apply'
+    | '/auth'
+    | '/concierge'
+    | '/confidentiality'
+    | '/decision-room'
+    | '/ecosystem'
+    | '/family-learning'
+    | '/gatherings'
+    | '/global-life'
+    | '/impact'
+    | '/legacy'
+    | '/member'
+    | '/membership'
+    | '/next-gen'
+    | '/partner-application'
+    | '/partners'
+    | '/principles'
+    | '/privacy'
+    | '/terms'
+    | '/the-table'
+    | '/world'
+    | '/admin/alumni'
+    | '/admin/applications'
+    | '/admin/concierge'
+    | '/admin/content'
+    | '/admin/events'
+    | '/admin/global-life'
+    | '/admin/impact'
+    | '/admin/introductions'
+    | '/admin/launch-readiness'
+    | '/admin/learning'
+    | '/admin/members'
+    | '/admin/next-gen'
+    | '/admin/partners'
+    | '/admin/settings'
+    | '/admin/tables'
+    | '/journal/$slug'
+    | '/member/alumni'
+    | '/member/ask-offer'
+    | '/member/community'
+    | '/member/concierge'
+    | '/member/control-room'
+    | '/member/events'
+    | '/member/family'
+    | '/member/family-architecture'
+    | '/member/global-life'
+    | '/member/impact'
+    | '/member/introductions'
+    | '/member/knowledge'
+    | '/member/learning'
+    | '/member/network'
+    | '/member/next-gen'
+    | '/member/partners'
+    | '/member/profile'
+    | '/member/programme'
+    | '/member/table'
+    | '/admin/'
+    | '/journal/'
+    | '/member/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AdminRoute: typeof AdminRoute
+  AboutRoute: typeof AboutRoute
+  AdminRoute: typeof AdminRouteWithChildren
+  AlumniRoute: typeof AlumniRoute
   ApplyRoute: typeof ApplyRoute
   AuthRoute: typeof AuthRoute
-  MemberRoute: typeof MemberRoute
+  ConciergeRoute: typeof ConciergeRoute
+  ConfidentialityRoute: typeof ConfidentialityRoute
+  DecisionRoomRoute: typeof DecisionRoomRoute
+  EcosystemRoute: typeof EcosystemRoute
+  FamilyLearningRoute: typeof FamilyLearningRoute
+  GatheringsRoute: typeof GatheringsRoute
+  GlobalLifeRoute: typeof GlobalLifeRoute
+  ImpactRoute: typeof ImpactRoute
+  LegacyRoute: typeof LegacyRoute
+  MemberRoute: typeof MemberRouteWithChildren
+  MembershipRoute: typeof MembershipRoute
+  NextGenRoute: typeof NextGenRoute
+  PartnerApplicationRoute: typeof PartnerApplicationRoute
+  PartnersRoute: typeof PartnersRoute
+  PrinciplesRoute: typeof PrinciplesRoute
+  PrivacyRoute: typeof PrivacyRoute
+  TermsRoute: typeof TermsRoute
+  TheTableRoute: typeof TheTableRoute
+  WorldRoute: typeof WorldRoute
+  JournalSlugRoute: typeof JournalSlugRoute
+  JournalIndexRoute: typeof JournalIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -88,11 +819,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin': {
       id: '/admin'
       path: '/admin'
       fullPath: '/admin'
       preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/alumni': {
+      id: '/alumni'
+      path: '/alumni'
+      fullPath: '/alumni'
+      preLoaderRoute: typeof AlumniRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/apply': {
@@ -109,6 +854,69 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/concierge': {
+      id: '/concierge'
+      path: '/concierge'
+      fullPath: '/concierge'
+      preLoaderRoute: typeof ConciergeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/confidentiality': {
+      id: '/confidentiality'
+      path: '/confidentiality'
+      fullPath: '/confidentiality'
+      preLoaderRoute: typeof ConfidentialityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/decision-room': {
+      id: '/decision-room'
+      path: '/decision-room'
+      fullPath: '/decision-room'
+      preLoaderRoute: typeof DecisionRoomRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ecosystem': {
+      id: '/ecosystem'
+      path: '/ecosystem'
+      fullPath: '/ecosystem'
+      preLoaderRoute: typeof EcosystemRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/family-learning': {
+      id: '/family-learning'
+      path: '/family-learning'
+      fullPath: '/family-learning'
+      preLoaderRoute: typeof FamilyLearningRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gatherings': {
+      id: '/gatherings'
+      path: '/gatherings'
+      fullPath: '/gatherings'
+      preLoaderRoute: typeof GatheringsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/global-life': {
+      id: '/global-life'
+      path: '/global-life'
+      fullPath: '/global-life'
+      preLoaderRoute: typeof GlobalLifeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/impact': {
+      id: '/impact'
+      path: '/impact'
+      fullPath: '/impact'
+      preLoaderRoute: typeof ImpactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legacy': {
+      id: '/legacy'
+      path: '/legacy'
+      fullPath: '/legacy'
+      preLoaderRoute: typeof LegacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/member': {
       id: '/member'
       path: '/member'
@@ -116,15 +924,455 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MemberRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/membership': {
+      id: '/membership'
+      path: '/membership'
+      fullPath: '/membership'
+      preLoaderRoute: typeof MembershipRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/next-gen': {
+      id: '/next-gen'
+      path: '/next-gen'
+      fullPath: '/next-gen'
+      preLoaderRoute: typeof NextGenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/partner-application': {
+      id: '/partner-application'
+      path: '/partner-application'
+      fullPath: '/partner-application'
+      preLoaderRoute: typeof PartnerApplicationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/partners': {
+      id: '/partners'
+      path: '/partners'
+      fullPath: '/partners'
+      preLoaderRoute: typeof PartnersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/principles': {
+      id: '/principles'
+      path: '/principles'
+      fullPath: '/principles'
+      preLoaderRoute: typeof PrinciplesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/the-table': {
+      id: '/the-table'
+      path: '/the-table'
+      fullPath: '/the-table'
+      preLoaderRoute: typeof TheTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/world': {
+      id: '/world'
+      path: '/world'
+      fullPath: '/world'
+      preLoaderRoute: typeof WorldRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/alumni': {
+      id: '/admin/alumni'
+      path: '/alumni'
+      fullPath: '/admin/alumni'
+      preLoaderRoute: typeof AdminAlumniRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/applications': {
+      id: '/admin/applications'
+      path: '/applications'
+      fullPath: '/admin/applications'
+      preLoaderRoute: typeof AdminApplicationsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/concierge': {
+      id: '/admin/concierge'
+      path: '/concierge'
+      fullPath: '/admin/concierge'
+      preLoaderRoute: typeof AdminConciergeRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/content': {
+      id: '/admin/content'
+      path: '/content'
+      fullPath: '/admin/content'
+      preLoaderRoute: typeof AdminContentRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/events': {
+      id: '/admin/events'
+      path: '/events'
+      fullPath: '/admin/events'
+      preLoaderRoute: typeof AdminEventsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/global-life': {
+      id: '/admin/global-life'
+      path: '/global-life'
+      fullPath: '/admin/global-life'
+      preLoaderRoute: typeof AdminGlobalLifeRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/impact': {
+      id: '/admin/impact'
+      path: '/impact'
+      fullPath: '/admin/impact'
+      preLoaderRoute: typeof AdminImpactRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/introductions': {
+      id: '/admin/introductions'
+      path: '/introductions'
+      fullPath: '/admin/introductions'
+      preLoaderRoute: typeof AdminIntroductionsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/launch-readiness': {
+      id: '/admin/launch-readiness'
+      path: '/launch-readiness'
+      fullPath: '/admin/launch-readiness'
+      preLoaderRoute: typeof AdminLaunchReadinessRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/learning': {
+      id: '/admin/learning'
+      path: '/learning'
+      fullPath: '/admin/learning'
+      preLoaderRoute: typeof AdminLearningRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/members': {
+      id: '/admin/members'
+      path: '/members'
+      fullPath: '/admin/members'
+      preLoaderRoute: typeof AdminMembersRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/next-gen': {
+      id: '/admin/next-gen'
+      path: '/next-gen'
+      fullPath: '/admin/next-gen'
+      preLoaderRoute: typeof AdminNextGenRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/partners': {
+      id: '/admin/partners'
+      path: '/partners'
+      fullPath: '/admin/partners'
+      preLoaderRoute: typeof AdminPartnersRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/settings': {
+      id: '/admin/settings'
+      path: '/settings'
+      fullPath: '/admin/settings'
+      preLoaderRoute: typeof AdminSettingsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/tables': {
+      id: '/admin/tables'
+      path: '/tables'
+      fullPath: '/admin/tables'
+      preLoaderRoute: typeof AdminTablesRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/journal/': {
+      id: '/journal/'
+      path: '/journal'
+      fullPath: '/journal/'
+      preLoaderRoute: typeof JournalIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/journal/$slug': {
+      id: '/journal/$slug'
+      path: '/journal/$slug'
+      fullPath: '/journal/$slug'
+      preLoaderRoute: typeof JournalSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/member/': {
+      id: '/member/'
+      path: '/'
+      fullPath: '/member/'
+      preLoaderRoute: typeof MemberIndexRouteImport
+      parentRoute: typeof MemberRoute
+    }
+    '/member/alumni': {
+      id: '/member/alumni'
+      path: '/alumni'
+      fullPath: '/member/alumni'
+      preLoaderRoute: typeof MemberAlumniRouteImport
+      parentRoute: typeof MemberRoute
+    }
+    '/member/ask-offer': {
+      id: '/member/ask-offer'
+      path: '/ask-offer'
+      fullPath: '/member/ask-offer'
+      preLoaderRoute: typeof MemberAskOfferRouteImport
+      parentRoute: typeof MemberRoute
+    }
+    '/member/community': {
+      id: '/member/community'
+      path: '/community'
+      fullPath: '/member/community'
+      preLoaderRoute: typeof MemberCommunityRouteImport
+      parentRoute: typeof MemberRoute
+    }
+    '/member/concierge': {
+      id: '/member/concierge'
+      path: '/concierge'
+      fullPath: '/member/concierge'
+      preLoaderRoute: typeof MemberConciergeRouteImport
+      parentRoute: typeof MemberRoute
+    }
+    '/member/control-room': {
+      id: '/member/control-room'
+      path: '/control-room'
+      fullPath: '/member/control-room'
+      preLoaderRoute: typeof MemberControlRoomRouteImport
+      parentRoute: typeof MemberRoute
+    }
+    '/member/events': {
+      id: '/member/events'
+      path: '/events'
+      fullPath: '/member/events'
+      preLoaderRoute: typeof MemberEventsRouteImport
+      parentRoute: typeof MemberRoute
+    }
+    '/member/family': {
+      id: '/member/family'
+      path: '/family'
+      fullPath: '/member/family'
+      preLoaderRoute: typeof MemberFamilyRouteImport
+      parentRoute: typeof MemberRoute
+    }
+    '/member/family-architecture': {
+      id: '/member/family-architecture'
+      path: '/family-architecture'
+      fullPath: '/member/family-architecture'
+      preLoaderRoute: typeof MemberFamilyArchitectureRouteImport
+      parentRoute: typeof MemberRoute
+    }
+    '/member/global-life': {
+      id: '/member/global-life'
+      path: '/global-life'
+      fullPath: '/member/global-life'
+      preLoaderRoute: typeof MemberGlobalLifeRouteImport
+      parentRoute: typeof MemberRoute
+    }
+    '/member/impact': {
+      id: '/member/impact'
+      path: '/impact'
+      fullPath: '/member/impact'
+      preLoaderRoute: typeof MemberImpactRouteImport
+      parentRoute: typeof MemberRoute
+    }
+    '/member/introductions': {
+      id: '/member/introductions'
+      path: '/introductions'
+      fullPath: '/member/introductions'
+      preLoaderRoute: typeof MemberIntroductionsRouteImport
+      parentRoute: typeof MemberRoute
+    }
+    '/member/knowledge': {
+      id: '/member/knowledge'
+      path: '/knowledge'
+      fullPath: '/member/knowledge'
+      preLoaderRoute: typeof MemberKnowledgeRouteImport
+      parentRoute: typeof MemberRoute
+    }
+    '/member/learning': {
+      id: '/member/learning'
+      path: '/learning'
+      fullPath: '/member/learning'
+      preLoaderRoute: typeof MemberLearningRouteImport
+      parentRoute: typeof MemberRoute
+    }
+    '/member/network': {
+      id: '/member/network'
+      path: '/network'
+      fullPath: '/member/network'
+      preLoaderRoute: typeof MemberNetworkRouteImport
+      parentRoute: typeof MemberRoute
+    }
+    '/member/next-gen': {
+      id: '/member/next-gen'
+      path: '/next-gen'
+      fullPath: '/member/next-gen'
+      preLoaderRoute: typeof MemberNextGenRouteImport
+      parentRoute: typeof MemberRoute
+    }
+    '/member/partners': {
+      id: '/member/partners'
+      path: '/partners'
+      fullPath: '/member/partners'
+      preLoaderRoute: typeof MemberPartnersRouteImport
+      parentRoute: typeof MemberRoute
+    }
+    '/member/profile': {
+      id: '/member/profile'
+      path: '/profile'
+      fullPath: '/member/profile'
+      preLoaderRoute: typeof MemberProfileRouteImport
+      parentRoute: typeof MemberRoute
+    }
+    '/member/programme': {
+      id: '/member/programme'
+      path: '/programme'
+      fullPath: '/member/programme'
+      preLoaderRoute: typeof MemberProgrammeRouteImport
+      parentRoute: typeof MemberRoute
+    }
+    '/member/table': {
+      id: '/member/table'
+      path: '/table'
+      fullPath: '/member/table'
+      preLoaderRoute: typeof MemberTableRouteImport
+      parentRoute: typeof MemberRoute
+    }
   }
 }
 
+interface AdminRouteChildren {
+  AdminAlumniRoute: typeof AdminAlumniRoute
+  AdminApplicationsRoute: typeof AdminApplicationsRoute
+  AdminConciergeRoute: typeof AdminConciergeRoute
+  AdminContentRoute: typeof AdminContentRoute
+  AdminEventsRoute: typeof AdminEventsRoute
+  AdminGlobalLifeRoute: typeof AdminGlobalLifeRoute
+  AdminImpactRoute: typeof AdminImpactRoute
+  AdminIntroductionsRoute: typeof AdminIntroductionsRoute
+  AdminLaunchReadinessRoute: typeof AdminLaunchReadinessRoute
+  AdminLearningRoute: typeof AdminLearningRoute
+  AdminMembersRoute: typeof AdminMembersRoute
+  AdminNextGenRoute: typeof AdminNextGenRoute
+  AdminPartnersRoute: typeof AdminPartnersRoute
+  AdminSettingsRoute: typeof AdminSettingsRoute
+  AdminTablesRoute: typeof AdminTablesRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminAlumniRoute: AdminAlumniRoute,
+  AdminApplicationsRoute: AdminApplicationsRoute,
+  AdminConciergeRoute: AdminConciergeRoute,
+  AdminContentRoute: AdminContentRoute,
+  AdminEventsRoute: AdminEventsRoute,
+  AdminGlobalLifeRoute: AdminGlobalLifeRoute,
+  AdminImpactRoute: AdminImpactRoute,
+  AdminIntroductionsRoute: AdminIntroductionsRoute,
+  AdminLaunchReadinessRoute: AdminLaunchReadinessRoute,
+  AdminLearningRoute: AdminLearningRoute,
+  AdminMembersRoute: AdminMembersRoute,
+  AdminNextGenRoute: AdminNextGenRoute,
+  AdminPartnersRoute: AdminPartnersRoute,
+  AdminSettingsRoute: AdminSettingsRoute,
+  AdminTablesRoute: AdminTablesRoute,
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
+interface MemberRouteChildren {
+  MemberAlumniRoute: typeof MemberAlumniRoute
+  MemberAskOfferRoute: typeof MemberAskOfferRoute
+  MemberCommunityRoute: typeof MemberCommunityRoute
+  MemberConciergeRoute: typeof MemberConciergeRoute
+  MemberControlRoomRoute: typeof MemberControlRoomRoute
+  MemberEventsRoute: typeof MemberEventsRoute
+  MemberFamilyRoute: typeof MemberFamilyRoute
+  MemberFamilyArchitectureRoute: typeof MemberFamilyArchitectureRoute
+  MemberGlobalLifeRoute: typeof MemberGlobalLifeRoute
+  MemberImpactRoute: typeof MemberImpactRoute
+  MemberIntroductionsRoute: typeof MemberIntroductionsRoute
+  MemberKnowledgeRoute: typeof MemberKnowledgeRoute
+  MemberLearningRoute: typeof MemberLearningRoute
+  MemberNetworkRoute: typeof MemberNetworkRoute
+  MemberNextGenRoute: typeof MemberNextGenRoute
+  MemberPartnersRoute: typeof MemberPartnersRoute
+  MemberProfileRoute: typeof MemberProfileRoute
+  MemberProgrammeRoute: typeof MemberProgrammeRoute
+  MemberTableRoute: typeof MemberTableRoute
+  MemberIndexRoute: typeof MemberIndexRoute
+}
+
+const MemberRouteChildren: MemberRouteChildren = {
+  MemberAlumniRoute: MemberAlumniRoute,
+  MemberAskOfferRoute: MemberAskOfferRoute,
+  MemberCommunityRoute: MemberCommunityRoute,
+  MemberConciergeRoute: MemberConciergeRoute,
+  MemberControlRoomRoute: MemberControlRoomRoute,
+  MemberEventsRoute: MemberEventsRoute,
+  MemberFamilyRoute: MemberFamilyRoute,
+  MemberFamilyArchitectureRoute: MemberFamilyArchitectureRoute,
+  MemberGlobalLifeRoute: MemberGlobalLifeRoute,
+  MemberImpactRoute: MemberImpactRoute,
+  MemberIntroductionsRoute: MemberIntroductionsRoute,
+  MemberKnowledgeRoute: MemberKnowledgeRoute,
+  MemberLearningRoute: MemberLearningRoute,
+  MemberNetworkRoute: MemberNetworkRoute,
+  MemberNextGenRoute: MemberNextGenRoute,
+  MemberPartnersRoute: MemberPartnersRoute,
+  MemberProfileRoute: MemberProfileRoute,
+  MemberProgrammeRoute: MemberProgrammeRoute,
+  MemberTableRoute: MemberTableRoute,
+  MemberIndexRoute: MemberIndexRoute,
+}
+
+const MemberRouteWithChildren =
+  MemberRoute._addFileChildren(MemberRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AdminRoute: AdminRoute,
+  AboutRoute: AboutRoute,
+  AdminRoute: AdminRouteWithChildren,
+  AlumniRoute: AlumniRoute,
   ApplyRoute: ApplyRoute,
   AuthRoute: AuthRoute,
-  MemberRoute: MemberRoute,
+  ConciergeRoute: ConciergeRoute,
+  ConfidentialityRoute: ConfidentialityRoute,
+  DecisionRoomRoute: DecisionRoomRoute,
+  EcosystemRoute: EcosystemRoute,
+  FamilyLearningRoute: FamilyLearningRoute,
+  GatheringsRoute: GatheringsRoute,
+  GlobalLifeRoute: GlobalLifeRoute,
+  ImpactRoute: ImpactRoute,
+  LegacyRoute: LegacyRoute,
+  MemberRoute: MemberRouteWithChildren,
+  MembershipRoute: MembershipRoute,
+  NextGenRoute: NextGenRoute,
+  PartnerApplicationRoute: PartnerApplicationRoute,
+  PartnersRoute: PartnersRoute,
+  PrinciplesRoute: PrinciplesRoute,
+  PrivacyRoute: PrivacyRoute,
+  TermsRoute: TermsRoute,
+  TheTableRoute: TheTableRoute,
+  WorldRoute: WorldRoute,
+  JournalSlugRoute: JournalSlugRoute,
+  JournalIndexRoute: JournalIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
