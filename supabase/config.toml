@@ -1,0 +1,4 @@
+project_id = "project-table"
+
+[functions.application-intake]
+verify_jwt = false
