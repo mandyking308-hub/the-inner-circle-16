@@ -3,12 +3,14 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, CheckCircle2, LockKeyhole } from "lucide-react";
 
 import { Container } from "@/components/layout/Container";
+import { TurnstileGate } from "@/components/security/TurnstileGate";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { loadApplications, saveApplications, type MembershipApplication } from "@/data/applicationStore";
 import { luxuryImages } from "@/data/luxuryImages";
+import { submitMembershipIntake } from "@/lib/applicationIntake";
 import { site } from "@/config/site";
 
 export const Route = createFileRoute("/apply")({
@@ -18,27 +20,55 @@ export const Route = createFileRoute("/apply")({
 
 function ApplyPage() {
   const [submitted, setSubmitted] = useState<MembershipApplication | null>(null);
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
-  const submit = (event: FormEvent<HTMLFormElement>) => {
+  const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const form = new FormData(event.currentTarget);
-    const application: MembershipApplication = {
-      id: `PT-${Date.now().toString().slice(-8)}`,
-      submittedAt: new Date().toISOString(),
-      status: "New",
+    setError("");
+    setSubmitting(true);
+    const formElement = event.currentTarget;
+    const form = new FormData(formElement);
+    const membership = String(form.get("membership") ?? "Individual") === "Family" ? "Family" : "Individual";
+    const input = {
       name: String(form.get("name") ?? "").trim(),
       email: String(form.get("email") ?? "").trim(),
       location: String(form.get("location") ?? "").trim(),
       profile: String(form.get("profile") ?? "").trim(),
-      membership: (String(form.get("membership") ?? "Individual") as MembershipApplication["membership"]),
+      membership: membership as "Individual" | "Family",
       building: String(form.get("building") ?? "").trim(),
       complicated: String(form.get("complicated") ?? "").trim(),
       contribution: String(form.get("contribution") ?? "").trim(),
       referral: String(form.get("referral") ?? "").trim(),
+      website: String(form.get("website") ?? "").trim(),
     };
-    saveApplications([application, ...loadApplications()]);
-    setSubmitted(application);
-    event.currentTarget.reset();
+
+    try {
+      const result = await submitMembershipIntake(input, turnstileToken, (application) => saveApplications([application, ...loadApplications()]));
+      const application: MembershipApplication = {
+        id: result.reference,
+        submittedAt: new Date().toISOString(),
+        status: "New",
+        name: input.name,
+        email: input.email,
+        location: input.location,
+        profile: input.profile,
+        membership: input.membership,
+        building: input.building,
+        complicated: input.complicated,
+        contribution: input.contribution,
+        referral: input.referral,
+      };
+      setSubmitted(application);
+      setTurnstileToken("");
+      formElement.reset();
+    } catch (cause) {
+      const code = cause instanceof Error ? cause.message : "SUBMISSION_FAILED";
+      setError(code === "SECURITY_CHECK_REQUIRED" ? "Please complete the private application security check and try again." : "We could not send the application just now. Please try again shortly.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -80,8 +110,11 @@ function ApplyPage() {
                     <div className="space-y-2"><Label htmlFor="complicated">What has become complicated?</Label><Textarea id="complicated" name="complicated" rows={5} required className="rounded-none" placeholder="A move, succession, schools, advisers, growth, family governance, time, access — tell us the real version." /></div>
                     <div className="space-y-2"><Label htmlFor="contribution">What would you bring to the room?</Label><Textarea id="contribution" name="contribution" rows={4} required className="rounded-none" placeholder="Experience, judgement, relationships, a sector you know deeply, willingness to mentor or something else useful." /></div>
                     <div className="space-y-2"><Label htmlFor="referral">How did you hear about us?</Label><Input id="referral" name="referral" placeholder="Member introduction, event, search, other" className="rounded-none" /></div>
+                    <div className="absolute -left-[10000px] top-auto h-px w-px overflow-hidden" aria-hidden="true"><Label htmlFor="website">Website</Label><Input id="website" name="website" tabIndex={-1} autoComplete="off" /></div>
+                    <TurnstileGate action="membership_apply" onToken={setTurnstileToken} />
                   </div>
-                  <Button type="submit" size="lg" className="mt-8 w-full rounded-none bg-oxblood">Send private application <ArrowRight className="ml-2 h-4 w-4" /></Button>
+                  {error ? <p className="mt-5 border border-oxblood/30 bg-oxblood/5 p-3 text-xs leading-6 text-oxblood" role="alert">{error}</p> : null}
+                  <Button type="submit" size="lg" disabled={submitting} className="mt-8 w-full rounded-none bg-oxblood">{submitting ? "Sending…" : "Send private application"}<ArrowRight className="ml-2 h-4 w-4" /></Button>
                   <p className="mt-4 text-center text-[10px] leading-5 text-muted-foreground">No payment is taken at application. Submission does not guarantee membership.</p>
                 </form>
               )}
