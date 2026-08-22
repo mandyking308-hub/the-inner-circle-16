@@ -79,7 +79,7 @@ export function LuxuryStoryPage({
               <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-oxblood">{feature.eyebrow}</p>
               <h2 className="mt-5 font-display text-5xl leading-[1.02] md:text-6xl">{feature.title}</h2>
               <p className="mt-7 text-base leading-8 text-muted-foreground">{feature.body}</p>
-              {feature.linkTo && feature.linkLabel ? <Link to={feature.linkTo} className="mt-8 inline-flex items-center gap-2 text-sm font-semibold">{feature.linkLabel} <ArrowRight className="h-4 w-4" /></Link> : null}
+              {feature.linkTo && feature.linkLabel ? <a href={feature.linkTo} className="mt-8 inline-flex items-center gap-2 text-sm font-semibold">{feature.linkLabel} <ArrowRight className="h-4 w-4" /></a> : null}
             </div>
           </div>
         </Container>
@@ -109,7 +109,7 @@ export function LuxuryStoryPage({
               <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-white/55">{secondary.eyebrow}</p>
               <h2 className="mt-5 font-display text-5xl leading-[1.02] md:text-6xl">{secondary.title}</h2>
               <p className="mt-7 max-w-lg text-base leading-8 text-white/66">{secondary.body}</p>
-              {secondary.linkTo && secondary.linkLabel ? <Link to={secondary.linkTo} className="mt-8 inline-flex items-center gap-2 text-sm font-semibold">{secondary.linkLabel} <ArrowRight className="h-4 w-4" /></Link> : null}
+              {secondary.linkTo && secondary.linkLabel ? <a href={secondary.linkTo} className="mt-8 inline-flex items-center gap-2 text-sm font-semibold">{secondary.linkLabel} <ArrowRight className="h-4 w-4" /></a> : null}
             </div>
             <figure className="overflow-hidden"><img src={secondary.image} alt={secondary.imageAlt} className="aspect-[4/3] w-full object-cover" loading="lazy" /></figure>
           </div>
