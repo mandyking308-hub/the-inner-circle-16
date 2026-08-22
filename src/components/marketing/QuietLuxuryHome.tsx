@@ -1,188 +1,209 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, Compass, HeartHandshake, Sparkles } from "lucide-react";
+import { ArrowRight, Globe2, KeyRound, Sparkles } from "lucide-react";
 
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/button";
+import { luxuryImages } from "@/data/luxuryImages";
 
-const images = {
-  hero: "https://images.unsplash.com/photo-1741031535418-b241b1d245a2?auto=format&fit=crop&w=2400&q=88",
-  home: "https://images.unsplash.com/photo-1740596261028-29a7ad308157?auto=format&fit=crop&w=2000&q=86",
-  service: "https://images.unsplash.com/photo-1775257796019-3e8db981a1a6?auto=format&fit=crop&w=1800&q=86",
-  learning: "https://images.unsplash.com/photo-1758687126499-9ff30d1c5762?auto=format&fit=crop&w=1800&q=86",
-  connect: "https://images.unsplash.com/photo-1768508948835-7dbab7ca6d58?auto=format&fit=crop&w=1800&q=86",
-  office: "https://images.unsplash.com/photo-1767277680055-34f1eeec0c26?auto=format&fit=crop&w=1800&q=86",
-} as const;
+const servicePrinciples = [
+  ["01", "Know the whole picture", "The people, places, family priorities and preferences that make help feel personal rather than transactional."],
+  ["02", "Bring one good answer", "Less searching, fewer lists and no endless hand-offs. The right route, the right person and a clear next step."],
+  ["03", "Anticipate what comes next", "Good service notices the school date, the arrival, the introduction, the reservation and the detail that should not need chasing."],
+  ["04", "Stay with it", "A request is not finished because it has been forwarded. It is finished when the member has what they actually needed."],
+] as const;
 
-const intelligenceLayers = [
-  {
-    number: "01",
-    title: "Your world",
-    body: "Countries, homes, advisers, family priorities and the things that matter now — connected in one private view.",
-  },
-  {
-    number: "02",
-    title: "Your decisions",
-    body: "A Decision Room for the moments that involve several people, several jurisdictions and no obvious next step.",
-  },
-  {
-    number: "03",
-    title: "Your family",
-    body: "Family Architecture quietly maps people, ownership, trusts, protection, advisers and what needs attention over time.",
-  },
-  {
-    number: "04",
-    title: "Your relationships",
-    body: "The network remembers context: who knows whom, where you met, who can help and when an introduction would genuinely be useful.",
-  },
-  {
-    number: "05",
-    title: "Your service",
-    body: "Concierge requests, introductions, plans and next actions stay joined up so you never have to explain the whole story twice.",
-  },
+const privateOffice = [
+  ["Your decisions", "A private Decision Room for the moments involving several people, jurisdictions or moving parts."],
+  ["Your family", "Family Architecture keeps ownership, protection, advisers, priorities and the next generation connected over time."],
+  ["Your relationships", "Context around who knows whom, who can help and when an introduction would genuinely be useful."],
+  ["Your service", "Concierge requests, plans and actions remain joined up so the whole story does not need to be retold."],
 ] as const;
 
 export function QuietLuxuryHome() {
   return (
     <main className="overflow-hidden bg-background">
-      <section className="relative min-h-[82vh] bg-[#d8cbb8] md:min-h-[90vh]">
-        <img src={images.hero} alt="An elegant London townhouse entrance" className="absolute inset-0 h-full w-full object-cover object-center" fetchPriority="high" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/48 via-black/18 to-transparent" />
-        <Container className="relative flex min-h-[82vh] items-end pb-16 pt-28 md:min-h-[90vh] md:pb-24">
-          <div className="max-w-3xl text-white">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/70">Private membership · London & beyond</p>
-            <h1 className="mt-6 max-w-[11ch] text-balance font-display text-6xl leading-[0.94] md:text-8xl xl:text-[7.4rem]">A private world around the life you've built.</h1>
-            <p className="mt-7 max-w-xl text-base leading-8 text-white/82 md:text-lg">Beautiful places. Trusted people. Family, culture, travel and discreet support around it all.</p>
+      <section className="relative min-h-[88vh] bg-[#1b1b1a] md:min-h-[94vh]">
+        <img
+          src={luxuryImages.hero}
+          alt="A traveller overlooking the Mediterranean"
+          className="absolute inset-0 h-full w-full object-cover object-[52%_center]"
+          fetchPriority="high"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(13,13,12,0.66)_0%,rgba(13,13,12,0.36)_38%,rgba(13,13,12,0.08)_70%,rgba(13,13,12,0.02)_100%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-black/35 to-transparent" />
+
+        <Container className="relative flex min-h-[88vh] flex-col justify-end pb-14 pt-28 md:min-h-[94vh] md:pb-20">
+          <div className="max-w-[58rem] text-white">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-white/72">Private membership · London & the world</p>
+            <h1 className="mt-6 max-w-[10ch] text-balance font-display text-[4.2rem] leading-[0.9] sm:text-[5.3rem] md:text-[7rem] xl:text-[8.4rem]">
+              A private world around the life you've built.
+            </h1>
+            <p className="mt-7 max-w-2xl text-base leading-8 text-white/82 md:text-lg">
+              The right people. Beautiful places. Family, culture, travel and a private office that makes the rest feel easier.
+            </p>
             <div className="mt-9 flex flex-wrap gap-3">
-              <Button asChild size="lg" className="rounded-full bg-white px-7 text-foreground hover:bg-white/90"><Link to="/apply">Request membership</Link></Button>
-              <Button asChild size="lg" variant="outline" className="rounded-full border-white/55 bg-transparent px-7 text-white hover:bg-white hover:text-foreground"><Link to="/gatherings">Explore the world <ArrowRight className="ml-2 h-4 w-4" /></Link></Button>
+              <Button asChild size="lg" className="rounded-full bg-white px-7 text-foreground hover:bg-white/90">
+                <Link to="/apply">Request membership</Link>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="rounded-full border-white/55 bg-transparent px-7 text-white hover:bg-white hover:text-foreground">
+                <Link to="/membership">Discover membership <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              </Button>
             </div>
           </div>
-        </Container>
-      </section>
 
-      <section className="py-32 md:py-44">
-        <Container>
-          <div className="mx-auto max-w-5xl text-center">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-oxblood">The life behind the membership</p>
-            <h2 className="mt-8 text-balance font-display text-5xl leading-[1.03] md:text-7xl">Luxury should feel simple.</h2>
-            <p className="mx-auto mt-8 max-w-3xl text-base leading-8 text-muted-foreground md:text-lg">Ease. Beautiful places. People you trust. Time with family. The freedom to move without rebuilding your world every time life changes.</p>
+          <div className="mt-12 flex flex-wrap gap-x-8 gap-y-2 border-t border-white/25 pt-5 text-[9px] font-semibold uppercase tracking-[0.24em] text-white/64">
+            <span>London</span><span>Paris</span><span>Geneva</span><span>Dubai</span><span>New York</span><span>Singapore</span>
           </div>
         </Container>
       </section>
 
-      <section className="pb-32 md:pb-44">
+      <section className="py-32 md:py-48">
         <Container>
-          <div className="grid gap-12 lg:grid-cols-[1.3fr_0.7fr] lg:items-end lg:gap-24">
-            <figure className="overflow-hidden"><img src={images.home} alt="London homes and architecture" className="aspect-[4/3] w-full object-cover" loading="lazy" /></figure>
-            <div className="lg:pb-10">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-oxblood">Move</p>
-              <h2 className="mt-5 font-display text-5xl leading-[1.02] md:text-6xl">One life. More than one home.</h2>
-              <p className="mt-7 text-base leading-8 text-muted-foreground">London for part of the year. Somewhere warmer when it suits. Children in one place, work in another. The support around you should travel as naturally as you do.</p>
-              <Link to="/global-life" className="mt-7 inline-flex items-center gap-2 text-sm font-semibold">The world around membership <ArrowRight className="h-4 w-4" /></Link>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      <section className="bg-[#efe8dd] py-32 md:py-44">
-        <Container>
-          <div className="grid gap-12 lg:grid-cols-[0.75fr_1.25fr] lg:items-center lg:gap-24">
+          <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:gap-24">
             <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-oxblood">Belong</p>
-              <h2 className="mt-5 font-display text-5xl leading-[1.02] md:text-6xl">Some rooms become part of your life.</h2>
-              <p className="mt-7 max-w-lg text-base leading-8 text-muted-foreground">A dinner you look forward to. A familiar host. People you can speak to without the performance. The circle is deliberately small enough for relationships to become real.</p>
-              <Link to="/the-table" className="mt-7 inline-flex items-center gap-2 text-sm font-semibold">The Table <ArrowRight className="h-4 w-4" /></Link>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-oxblood">Project Table</p>
+              <p className="mt-6 max-w-sm text-sm leading-7 text-muted-foreground">Private membership for founders, principals and globally minded families who value people, time and discretion.</p>
             </div>
-            <figure className="overflow-hidden"><img src={images.connect} alt="Guests at an elegant private dinner" className="aspect-[4/3] w-full object-cover" loading="lazy" /></figure>
-          </div>
-        </Container>
-      </section>
-
-      <section className="py-32 md:py-44">
-        <Container>
-          <div className="grid gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:gap-24">
-            <figure className="overflow-hidden"><img src={images.service} alt="Discreet hospitality and service" className="aspect-[4/3] w-full object-cover object-top" loading="lazy" /></figure>
             <div>
-              <div className="flex items-center gap-3"><Compass className="h-4 w-4 text-oxblood" /><p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-oxblood">Live</p></div>
-              <h2 className="mt-5 font-display text-5xl leading-[1.02] md:text-6xl">The best service is the part you barely notice.</h2>
-              <p className="mt-7 max-w-lg text-base leading-8 text-muted-foreground">A reservation handled. A school visit arranged. A trusted specialist found. Good service returns time to you instead of creating another layer to manage.</p>
-              <Link to="/concierge" className="mt-7 inline-flex items-center gap-2 text-sm font-semibold">Private service <ArrowRight className="h-4 w-4" /></Link>
+              <h2 className="max-w-5xl text-balance font-display text-5xl leading-[1.02] md:text-7xl xl:text-[5.4rem]">More than concierge. More than a club.</h2>
+              <p className="mt-8 max-w-3xl text-base leading-8 text-muted-foreground md:text-lg">A permanent circle to belong to, a world of people and places to draw on, and thoughtful support around the parts of life that deserve to feel beautifully handled.</p>
             </div>
           </div>
         </Container>
       </section>
 
-      <section className="bg-[#183b28] py-32 text-[#f5f0e7] md:py-44">
+      <section className="pb-32 md:pb-48">
         <Container>
-          <div className="grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:items-center lg:gap-24">
+          <div className="mb-10 flex items-end justify-between gap-8">
             <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#d9b37a]">Families</p>
-              <h2 className="mt-5 font-display text-5xl leading-[1.02] md:text-6xl">Give the next generation a wider world.</h2>
-              <p className="mt-7 max-w-lg text-base leading-8 text-[#f5f0e7]/72">School is one part of education. Confidence, judgement, curiosity, culture and the ability to make something happen are part of it too.</p>
-              <Link to="/family-learning" className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-white">Families & learning <ArrowRight className="h-4 w-4 text-[#d9b37a]" /></Link>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-oxblood">Around the membership</p>
+              <h2 className="mt-5 max-w-3xl font-display text-5xl leading-[1.02] md:text-6xl">A life made richer by where you go and who you know.</h2>
             </div>
-            <figure className="overflow-hidden"><img src={images.learning} alt="A father and son learning together" className="aspect-[4/3] w-full object-cover" loading="lazy" /></figure>
+            <Link to="/gatherings" className="hidden items-center gap-2 text-sm font-semibold md:inline-flex">Explore the world <ArrowRight className="h-4 w-4" /></Link>
+          </div>
+
+          <div className="grid gap-5 lg:grid-cols-[1.22fr_0.78fr]">
+            <figure className="group overflow-hidden">
+              <div className="overflow-hidden"><img src={luxuryImages.world} alt="A coastal home overlooking the Mediterranean" className="aspect-[16/11] w-full object-cover transition duration-700 group-hover:scale-[1.015]" loading="lazy" /></div>
+              <figcaption className="mt-4 flex items-start justify-between gap-6 border-t border-foreground/12 pt-4"><div><p className="font-display text-2xl">Move through the world well.</p><p className="mt-1 text-xs leading-6 text-muted-foreground">Homes, cities, travel and local intelligence that travel with the family.</p></div><span className="text-[9px] uppercase tracking-[0.2em] text-muted-foreground">Global life</span></figcaption>
+            </figure>
+            <div className="grid gap-5">
+              <figure className="group overflow-hidden">
+                <div className="overflow-hidden"><img src={luxuryImages.table} alt="Friends sharing an elegant private dinner" className="aspect-[4/3] w-full object-cover transition duration-700 group-hover:scale-[1.015]" loading="lazy" /></div>
+                <figcaption className="mt-4 border-t border-foreground/12 pt-4"><p className="font-display text-2xl">The rooms worth showing up for.</p><p className="mt-1 text-xs leading-6 text-muted-foreground">Private tables, gatherings and introductions with a reason behind them.</p></figcaption>
+              </figure>
+              <figure className="group overflow-hidden lg:ml-20">
+                <div className="overflow-hidden"><img src={luxuryImages.culture} alt="Culture and architecture in an international city" className="aspect-[4/3] w-full object-cover transition duration-700 group-hover:scale-[1.015]" loading="lazy" /></div>
+                <figcaption className="mt-4 border-t border-foreground/12 pt-4"><p className="font-display text-2xl">Stay curious.</p><p className="mt-1 text-xs leading-6 text-muted-foreground">Art, culture, ideas and the experiences that widen a family's world.</p></figcaption>
+              </figure>
+            </div>
           </div>
         </Container>
       </section>
 
-      <section className="py-32 md:py-44">
-        <Container>
-          <div className="mx-auto max-w-5xl text-center">
-            <HeartHandshake className="mx-auto h-5 w-5 text-oxblood" />
-            <h2 className="mt-8 text-balance font-display text-5xl leading-[1.03] md:text-7xl">The right people make the world feel smaller.</h2>
-            <p className="mx-auto mt-8 max-w-3xl text-base leading-8 text-muted-foreground">A family who already knows the city. An adviser somebody genuinely trusts. A mentor who widens a young person's view. A host who knows who should meet.</p>
+      <section className="relative min-h-[78vh] overflow-hidden bg-[#171716] text-white">
+        <img src={luxuryImages.table} alt="A private gathering" className="absolute inset-0 h-full w-full object-cover" loading="lazy" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(10,10,9,0.72)_0%,rgba(10,10,9,0.44)_42%,rgba(10,10,9,0.10)_75%,rgba(10,10,9,0.02)_100%)]" />
+        <Container className="relative flex min-h-[78vh] items-end py-20 md:py-28">
+          <div className="max-w-3xl">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-white/65">Belong</p>
+            <h2 className="mt-5 text-balance font-display text-5xl leading-[0.98] md:text-7xl">The people make the membership worth belonging to.</h2>
+            <p className="mt-7 max-w-xl text-base leading-8 text-white/76">A permanent Table. Familiar faces. Thoughtful introductions. The kind of room where business, family, possibility and life can belong in the same conversation.</p>
+            <Link to="/the-table" className="mt-8 inline-flex items-center gap-2 text-sm font-semibold">Discover The Table <ArrowRight className="h-4 w-4" /></Link>
           </div>
         </Container>
       </section>
 
-      <section className="border-y border-[#d8cec0] bg-[#e8dfd2] py-28 md:py-40">
+      <section className="bg-[#efe8dd] py-32 md:py-48">
         <Container>
-          <div className="grid gap-14 lg:grid-cols-[0.78fr_1.22fr] lg:gap-24">
+          <div className="grid gap-16 lg:grid-cols-[0.78fr_1.22fr] lg:gap-28">
             <div className="lg:sticky lg:top-32 lg:self-start">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-oxblood">Private intelligence</p>
-              <h2 className="mt-5 max-w-xl font-display text-5xl leading-[1.02] md:text-6xl">The technology should feel like the service: there when you need it, invisible when you don't.</h2>
-              <p className="mt-7 max-w-lg text-base leading-8 text-muted-foreground">Behind the membership is a private intelligence layer that remembers the whole picture. It connects the parts of life that usually live in separate inboxes, advisers' files and family conversations.</p>
-              <p className="mt-5 max-w-lg text-sm leading-7 text-muted-foreground">AI helps prepare briefs, surface missing questions, connect related information and keep next actions visible. It supports judgement; it does not replace the people you trust or the qualified professionals you instruct.</p>
-              <div className="mt-8 flex flex-wrap gap-6">
-                <Link to="/decision-room" className="inline-flex items-center gap-2 text-sm font-semibold">See the Decision Room <ArrowRight className="h-4 w-4" /></Link>
-                <Link to="/ecosystem" className="inline-flex items-center gap-2 text-sm font-semibold">Inside the private office <ArrowRight className="h-4 w-4" /></Link>
-              </div>
+              <KeyRound className="h-5 w-5 text-oxblood" />
+              <p className="mt-6 text-[10px] font-semibold uppercase tracking-[0.28em] text-oxblood">Private service</p>
+              <h2 className="mt-5 max-w-xl font-display text-5xl leading-[1.02] md:text-6xl">The best service feels less like asking and more like being understood.</h2>
+              <p className="mt-7 max-w-lg text-base leading-8 text-muted-foreground">One joined-up relationship around the member: practical requests, trusted introductions, travel, family, homes, education and the unusual things that do not fit neatly into a menu.</p>
+              <Link to="/concierge" className="mt-8 inline-flex items-center gap-2 text-sm font-semibold">Private Office <ArrowRight className="h-4 w-4" /></Link>
             </div>
-
-            <div className="border-t border-[#bdb0a0]">
-              {intelligenceLayers.map((layer) => (
-                <div key={layer.number} className="grid gap-4 border-b border-[#c8bcad] py-7 sm:grid-cols-[64px_190px_1fr] sm:items-start md:py-9">
-                  <span className="font-display text-2xl text-oxblood/65">{layer.number}</span>
-                  <h3 className="font-display text-3xl leading-tight text-foreground">{layer.title}</h3>
-                  <p className="max-w-xl text-sm leading-7 text-muted-foreground">{layer.body}</p>
+            <div className="border-t border-[#c9bcac]">
+              {servicePrinciples.map(([number, title, body]) => (
+                <div key={number} className="grid gap-4 border-b border-[#c9bcac] py-8 sm:grid-cols-[58px_210px_1fr] md:py-10">
+                  <span className="font-display text-2xl text-oxblood/60">{number}</span>
+                  <h3 className="font-display text-3xl leading-tight">{title}</h3>
+                  <p className="max-w-xl text-sm leading-7 text-muted-foreground">{body}</p>
                 </div>
               ))}
             </div>
           </div>
+
+          <figure className="mt-24 overflow-hidden md:mt-32">
+            <img src={luxuryImages.service} alt="Discreet hospitality and personal service" className="h-[55vh] min-h-[480px] w-full object-cover" loading="lazy" />
+            <figcaption className="mt-4 max-w-xl text-[10px] leading-5 text-muted-foreground">Time returned. Details remembered. The whole experience should feel calm from the member's side.</figcaption>
+          </figure>
         </Container>
       </section>
 
-      <section className="relative min-h-[72vh] overflow-hidden bg-foreground text-white">
-        <img src={images.office} alt="A private study and office" className="absolute inset-0 h-full w-full object-cover" loading="lazy" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/42 to-black/12" />
-        <Container className="relative flex min-h-[72vh] items-center py-24 md:py-32">
-          <div className="max-w-2xl">
-            <Sparkles className="h-5 w-5 text-[#d9b37a]" />
-            <p className="mt-6 text-[10px] font-semibold uppercase tracking-[0.3em] text-white/62">Behind the life</p>
-            <h2 className="mt-5 font-display text-5xl leading-[1.02] md:text-7xl">A private office that already understands the context.</h2>
-            <p className="mt-7 max-w-xl text-base leading-8 text-white/75">The point is not more software. It is less repetition, fewer dropped threads and one place where the family, the people around it and the decisions ahead can remain connected.</p>
-            <Link to="/concierge" className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-white">Discover the private office <ArrowRight className="h-4 w-4" /></Link>
+      <section className="py-32 md:py-48">
+        <Container>
+          <div className="grid gap-14 lg:grid-cols-[1.22fr_0.78fr] lg:items-center lg:gap-24">
+            <figure className="overflow-hidden"><img src={luxuryImages.family} alt="A family exploring a city together" className="aspect-[16/11] w-full object-cover" loading="lazy" /></figure>
+            <div>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-oxblood">Family</p>
+              <h2 className="mt-5 font-display text-5xl leading-[1.02] md:text-6xl">Build a bigger world around the people it is all for.</h2>
+              <p className="mt-7 max-w-lg text-base leading-8 text-muted-foreground">Schools matter. So do confidence, culture, mentors, travel, commercial understanding, friendships and the ability to make something happen in the real world.</p>
+              <p className="mt-5 max-w-lg text-sm leading-7 text-muted-foreground">Family Learning and the rising-generation pathway grow with children instead of treating them as an afterthought to adult membership.</p>
+              <Link to="/family-learning" className="mt-8 inline-flex items-center gap-2 text-sm font-semibold">Families & the next generation <ArrowRight className="h-4 w-4" /></Link>
+            </div>
           </div>
         </Container>
       </section>
 
-      <section className="py-32 md:py-44">
+      <section className="border-y border-foreground/10 bg-[#f5f0e7] py-28 md:py-40">
         <Container>
-          <div className="mx-auto max-w-4xl text-center">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-oxblood">By invitation</p>
-            <h2 className="mt-6 text-balance font-display text-5xl leading-[1.03] md:text-7xl">Come for the world around it. Stay because the circle becomes part of your life.</h2>
-            <p className="mx-auto mt-7 max-w-2xl text-base leading-8 text-muted-foreground">Membership begins with fit. We are building slowly enough for the culture to matter.</p>
+          <div className="grid gap-12 lg:grid-cols-[0.68fr_1.32fr] lg:items-end">
+            <div>
+              <Globe2 className="h-5 w-5 text-oxblood" />
+              <p className="mt-6 text-[10px] font-semibold uppercase tracking-[0.28em] text-oxblood">Global by nature</p>
+              <h2 className="mt-5 font-display text-5xl leading-[1.02] md:text-6xl">Wherever life goes next, you should not have to start again.</h2>
+            </div>
+            <div className="lg:pl-10">
+              <p className="max-w-2xl text-base leading-8 text-muted-foreground">A family who already knows the city. An adviser somebody trusts. A school conversation with context. A place to stay, a table to join, a person worth meeting. The network should make the world feel smaller without making it feel generic.</p>
+              <div className="mt-10 flex flex-wrap gap-x-7 gap-y-3 font-display text-3xl text-foreground/80 md:text-4xl"><span>London</span><span>Paris</span><span>Dubai</span><span>Geneva</span><span>Lisbon</span><span>New York</span><span>Singapore</span><span>Monaco</span></div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <section className="bg-[#171716] py-32 text-white md:py-48">
+        <Container>
+          <div className="grid gap-16 lg:grid-cols-[0.76fr_1.24fr] lg:gap-28">
+            <div>
+              <Sparkles className="h-5 w-5 text-[#c9a56d]" />
+              <p className="mt-6 text-[10px] font-semibold uppercase tracking-[0.28em] text-white/55">Underneath it all</p>
+              <h2 className="mt-5 max-w-xl font-display text-5xl leading-[1.02] md:text-6xl">A serious private office, quietly behind the life.</h2>
+              <p className="mt-7 max-w-lg text-base leading-8 text-white/66">This is where Project Table goes further. The technology remembers context, prepares the room and keeps the threads connected. It should never become the personality of the membership.</p>
+              <div className="mt-8 flex flex-wrap gap-6"><Link to="/decision-room" className="inline-flex items-center gap-2 text-sm font-semibold">Decision Room <ArrowRight className="h-4 w-4" /></Link><Link to="/ecosystem" className="inline-flex items-center gap-2 text-sm font-semibold">Inside the private office <ArrowRight className="h-4 w-4" /></Link></div>
+            </div>
+            <div className="border-t border-white/18">
+              {privateOffice.map(([title, body], index) => (
+                <div key={title} className="grid gap-4 border-b border-white/18 py-8 sm:grid-cols-[54px_190px_1fr] md:py-10">
+                  <span className="font-display text-2xl text-[#c9a56d]">0{index + 1}</span>
+                  <h3 className="font-display text-3xl">{title}</h3>
+                  <p className="max-w-xl text-sm leading-7 text-white/58">{body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <figure className="mt-24 overflow-hidden md:mt-32"><img src={luxuryImages.office} alt="A quiet private office and study" className="h-[52vh] min-h-[440px] w-full object-cover" loading="lazy" /></figure>
+        </Container>
+      </section>
+
+      <section className="py-32 md:py-48">
+        <Container>
+          <div className="mx-auto max-w-5xl text-center">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-oxblood">By invitation</p>
+            <h2 className="mt-6 text-balance font-display text-5xl leading-[1.02] md:text-7xl">A private world should feel personal before it feels impressive.</h2>
+            <p className="mx-auto mt-7 max-w-2xl text-base leading-8 text-muted-foreground">Membership begins with fit. We are building slowly enough for the culture, the service and the relationships to matter.</p>
             <Button asChild size="lg" className="mt-9 rounded-full px-8"><Link to="/apply">Request membership</Link></Button>
           </div>
         </Container>
