@@ -2,19 +2,19 @@ export const site = {
   name: "Project Table",
   shortName: "Table",
   location: "London",
-  positioning: "Your life got complicated because it worked.",
-  supportingLine: "Private membership for the life behind the success.",
+  positioning: "A private world around the life you've built.",
+  supportingLine: "Belong. Move. Live. Raise. Connect. Pass it on.",
   ctaLabel: "Request a seat",
   description:
-    "A private London membership for founders, family enterprises and globally mobile families who want trusted people, better decisions, expert help, concierge execution and a stronger next generation around the same table.",
+    "A private membership for founders, family enterprises and globally minded families — bringing together trusted people, beautiful gatherings, global life, family learning, discreet concierge and a private office behind it all.",
 } as const;
 
-/** Keep the public header disciplined; deeper capabilities are revealed contextually. */
+/** Public navigation sells the life first; the operating system is revealed inside the story. */
 export const navItems = [
-  { to: "/the-table", label: "The Table" },
-  { to: "/decision-room", label: "Decision Room" },
-  { to: "/global-life", label: "Global Life" },
+  { to: "/the-table", label: "Belong" },
+  { to: "/global-life", label: "The World" },
+  { to: "/gatherings", label: "Gatherings" },
   { to: "/family-learning", label: "Families" },
-  { to: "/concierge", label: "Concierge" },
+  { to: "/concierge", label: "Private Office" },
   { to: "/membership", label: "Membership" },
 ] as const;
