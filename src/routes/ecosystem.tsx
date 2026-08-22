@@ -60,7 +60,7 @@ export const Route = createFileRoute("/ecosystem")({
   head: () => ({
     meta: [
       { title: `The Ecosystem — ${site.name}` },
-      { name: "description", content: "How Project Table connects trusted peers, a Life Decision Room, global life coordination, family learning, specialist partners, concierge execution and a rising-generation network." },
+      { name: "description", content: "How Montvelle connects trusted peers, a Life Decision Room, global life coordination, family learning, specialist partners, concierge execution and a rising-generation network." },
     ],
   }),
   component: EcosystemPage,
