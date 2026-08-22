@@ -72,6 +72,7 @@ import { Route as MemberPartnersRouteImport } from './routes/member.partners'
 import { Route as MemberProfileRouteImport } from './routes/member.profile'
 import { Route as MemberProgrammeRouteImport } from './routes/member.programme'
 import { Route as MemberTableRouteImport } from './routes/member.table'
+import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -389,6 +390,12 @@ const MemberTableRoute = MemberTableRouteImport.update({
   path: '/table',
   getParentRoute: () => MemberRoute,
 } as any)
+const LovableEmailTransactionalPreviewRoute =
+  LovableEmailTransactionalPreviewRouteImport.update({
+    id: '/lovable/email/transactional/preview',
+    path: '/lovable/email/transactional/preview',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -454,6 +461,7 @@ export interface FileRoutesByFullPath {
   '/admin/': typeof AdminIndexRoute
   '/journal/': typeof JournalIndexRoute
   '/member/': typeof MemberIndexRoute
+  '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -517,6 +525,7 @@ export interface FileRoutesByTo {
   '/admin': typeof AdminIndexRoute
   '/journal': typeof JournalIndexRoute
   '/member': typeof MemberIndexRoute
+  '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -583,6 +592,7 @@ export interface FileRoutesById {
   '/admin/': typeof AdminIndexRoute
   '/journal/': typeof JournalIndexRoute
   '/member/': typeof MemberIndexRoute
+  '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -650,6 +660,7 @@ export interface FileRouteTypes {
     | '/admin/'
     | '/journal/'
     | '/member/'
+    | '/lovable/email/transactional/preview'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -713,6 +724,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/journal'
     | '/member'
+    | '/lovable/email/transactional/preview'
   id:
     | '__root__'
     | '/'
@@ -778,6 +790,7 @@ export interface FileRouteTypes {
     | '/admin/'
     | '/journal/'
     | '/member/'
+    | '/lovable/email/transactional/preview'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -808,6 +821,7 @@ export interface RootRouteChildren {
   WorldRoute: typeof WorldRoute
   JournalSlugRoute: typeof JournalSlugRoute
   JournalIndexRoute: typeof JournalIndexRoute
+  LovableEmailTransactionalPreviewRoute: typeof LovableEmailTransactionalPreviewRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -1253,6 +1267,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MemberTableRouteImport
       parentRoute: typeof MemberRoute
     }
+    '/lovable/email/transactional/preview': {
+      id: '/lovable/email/transactional/preview'
+      path: '/lovable/email/transactional/preview'
+      fullPath: '/lovable/email/transactional/preview'
+      preLoaderRoute: typeof LovableEmailTransactionalPreviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -1373,6 +1394,7 @@ const rootRouteChildren: RootRouteChildren = {
   WorldRoute: WorldRoute,
   JournalSlugRoute: JournalSlugRoute,
   JournalIndexRoute: JournalIndexRoute,
+  LovableEmailTransactionalPreviewRoute: LovableEmailTransactionalPreviewRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
