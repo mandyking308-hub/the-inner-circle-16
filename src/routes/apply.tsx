@@ -19,9 +19,10 @@ export const Route = createFileRoute("/apply")({
       },
       { property: "og:title", content: `${site.ctaLabel} — ${site.name}` },
       {
-        name: "og:description",
+        property: "og:description",
         content: `Express interest in membership of ${site.name}.`,
       },
+
     ],
   }),
   component: ApplyPage,
