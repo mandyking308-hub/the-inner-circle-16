@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+<title id="title">Trusted partner network</title><desc id="desc">Original editorial illustration of a central member node connected by consent-led paths to specialist partner nodes.</desc>
+<rect width="1200" height="900" fill="#f0e9df"/>
+<rect x="70" y="70" width="1060" height="760" fill="#faf6ef" stroke="#25211d" stroke-width="3"/>
+<g stroke="#9a663f" stroke-width="3" fill="none" stroke-dasharray="10 12"><path d="M600 450 260 210M600 450 940 210M600 450 250 680M600 450 950 680M600 450 190 445M600 450 1010 445"/></g>
+<g fill="#25211d"><circle cx="600" cy="450" r="110"/><circle cx="260" cy="210" r="70"/><circle cx="940" cy="210" r="70"/><circle cx="250" cy="680" r="70"/><circle cx="950" cy="680" r="70"/><circle cx="190" cy="445" r="70"/><circle cx="1010" cy="445" r="70"/></g>
+<g fill="#f0e9df" font-family="Arial, sans-serif" text-anchor="middle"><text x="600" y="440" font-size="17" letter-spacing="3">MEMBER</text><text x="600" y="470" font-size="14">need + consent</text><text x="260" y="205" font-size="14">LEGAL</text><text x="260" y="227" font-size="12">TAX</text><text x="940" y="205" font-size="14">GLOBAL</text><text x="940" y="227" font-size="12">MOBILITY</text><text x="250" y="675" font-size="14">EDUCATION</text><text x="950" y="675" font-size="14">PROPERTY</text><text x="190" y="440" font-size="14">TRUSTS</text><text x="190" y="462" font-size="12">FIDUCIARY</text><text x="1010" y="440" font-size="14">HEALTH</text><text x="1010" y="462" font-size="12">SECURITY</text></g>
+<g fill="#b07a50"><circle cx="430" cy="330" r="10"/><circle cx="770" cy="330" r="10"/><circle cx="425" cy="565" r="10"/><circle cx="775" cy="565" r="10"/></g>
+<g transform="translate(430 105)"><rect width="340" height="80" fill="#dfcfba" stroke="#25211d" stroke-width="2"/><text x="170" y="35" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" letter-spacing="3" fill="#25211d">NO COLD ACCESS</text><text x="170" y="58" text-anchor="middle" font-family="Georgia, serif" font-size="19" fill="#25211d">Trust before transaction</text></g>
+</svg>

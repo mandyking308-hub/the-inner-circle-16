@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+<title id="title">Learning by doing</title><desc id="desc">Original editorial illustration of a workbench with notebook, laptop, presentation board, tools and an execution cycle.</desc>
+<rect width="1200" height="900" fill="#f4eee4"/>
+<rect x="70" y="70" width="1060" height="760" fill="#fbf7ef" stroke="#26221d" stroke-width="3"/>
+<g transform="translate(120 130)"><rect width="370" height="270" fill="#efe3d2" stroke="#26221d" stroke-width="3"/><text x="26" y="45" font-family="Arial, sans-serif" font-size="15" letter-spacing="3" fill="#96643e">EXECUTION LOOP</text><g font-family="Georgia, serif" font-size="30" fill="#26221d"><text x="30" y="105">Brief</text><text x="220" y="105">Plan</text><text x="30" y="180">Build</text><text x="220" y="180">Test</text><text x="120" y="245">Deliver</text></g><path d="M110 94h86M286 116v42M199 169H112M82 198v24M205 231h-55" fill="none" stroke="#a06a42" stroke-width="4" marker-end="url(#a)"/></g>
+<defs><marker id="a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0l6 3-6 3z" fill="#a06a42"/></marker></defs>
+<g transform="translate(570 130)"><rect x="0" y="0" width="470" height="270" rx="8" fill="#25221e"/><rect x="40" y="38" width="390" height="170" rx="4" fill="#ddd0bd"/><path d="M80 173l85-71 78 48 65-91 82 114" fill="none" stroke="#9c6740" stroke-width="6"/><rect x="145" y="224" width="180" height="18" rx="9" fill="#ddd0bd"/></g>
+<path d="M130 610h920M210 610v150m780-150v150" stroke="#26221d" stroke-width="5"/>
+<g transform="translate(190 450)"><rect width="260" height="150" rx="5" fill="#efe3d2" stroke="#26221d" stroke-width="3"/><path d="M20 36h180M20 70h220M20 104h150" stroke="#a06a42" stroke-width="5"/><path d="M205 30l28 28-56 56-34 8 8-34z" fill="#26221d"/></g>
+<g transform="translate(520 460)"><circle cx="90" cy="70" r="62" fill="#d9c4a8" stroke="#26221d" stroke-width="3"/><path d="M90 8v124M28 70h124" stroke="#26221d" stroke-width="3"/><circle cx="90" cy="70" r="18" fill="#a06a42"/></g>
+<g transform="translate(760 430)"><path d="M0 150h250L215 0H35z" fill="#25221e"/><rect x="50" y="28" width="150" height="92" fill="#efe3d2"/><path d="M75 95l35-30 30 22 30-39" fill="none" stroke="#a06a42" stroke-width="4"/></g>
+<g font-family="Arial, sans-serif" font-size="14" letter-spacing="2" fill="#6b6258"><text x="165" y="805">KNOW</text><text x="405" y="805">APPLY</text><text x="655" y="805">DELIVER</text><text x="910" y="805">REVIEW</text></g>
+</svg>

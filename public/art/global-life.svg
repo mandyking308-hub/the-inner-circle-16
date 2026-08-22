@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+<title id="title">Global life planning map</title><desc id="desc">Original editorial illustration of a globe, route lines, a passport, a home and planning cards.</desc>
+<rect width="1200" height="900" fill="#1f1d19"/>
+<circle cx="555" cy="410" r="260" fill="#292621" stroke="#eee7dc" stroke-width="3"/>
+<g fill="none" stroke="#b88155" stroke-width="3" opacity=".95"><ellipse cx="555" cy="410" rx="260" ry="92"/><ellipse cx="555" cy="410" rx="124" ry="260"/><path d="M295 410h520M336 284h438M336 536h438"/></g>
+<g fill="#eee7dc"><circle cx="412" cy="301" r="10"/><circle cx="671" cy="331" r="10"/><circle cx="515" cy="528" r="10"/><circle cx="744" cy="474" r="10"/></g>
+<path d="M412 301c78-70 168-57 259 30 59 56 85 101 73 143" fill="none" stroke="#eee7dc" stroke-width="4" stroke-dasharray="12 14"/>
+<g transform="translate(790 105)"><rect width="300" height="190" rx="8" fill="#eee7dc"/><rect x="22" y="22" width="256" height="146" rx="5" fill="#f7f2e9" stroke="#2a2722" stroke-width="3"/><circle cx="150" cy="91" r="42" fill="none" stroke="#b88155" stroke-width="4"/><path d="M108 91h84M150 49v84" stroke="#b88155" stroke-width="3"/><text x="32" y="45" font-family="Georgia, serif" font-size="18" fill="#2a2722">GLOBAL LIFE</text></g>
+<g transform="translate(785 370)"><rect width="330" height="360" rx="6" fill="#f7f2e9" stroke="#eee7dc" stroke-width="2"/><text x="28" y="52" font-family="Arial, sans-serif" font-size="16" letter-spacing="3" fill="#8b5e3b">MOVE ROOM</text><g stroke="#2a2722" stroke-width="2"><path d="M30 95h270M30 155h270M30 215h270M30 275h270"/></g><g fill="#2a2722" font-family="Arial, sans-serif" font-size="16"><text x="30" y="125">Residence</text><text x="30" y="185">Tax + legal</text><text x="30" y="245">Education</text><text x="30" y="305">Banking + property</text></g><g fill="#b88155"><circle cx="282" cy="120" r="8"/><circle cx="282" cy="180" r="8"/><circle cx="282" cy="240" r="8"/></g></g>
+<g transform="translate(90 610)"><path d="M0 90 110 0l110 90v125H0z" fill="#eee7dc"/><rect x="82" y="125" width="56" height="90" fill="#1f1d19"/><path d="M30 105h160" stroke="#b88155" stroke-width="4"/></g>
+</svg>

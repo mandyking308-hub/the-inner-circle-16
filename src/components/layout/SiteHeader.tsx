@@ -12,18 +12,18 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-border/70 bg-background/90 backdrop-blur">
-      <Container className="flex h-16 items-center justify-between lg:h-20">
+      <Container className="flex h-16 items-center justify-between xl:h-20">
         <Link to="/" className="group">
           <span className="block font-display text-lg tracking-tight text-foreground md:text-xl">{site.name}</span>
           <span className="mt-0.5 hidden text-[8px] uppercase tracking-[0.22em] text-muted-foreground sm:block">London · private community</span>
         </Link>
 
-        <nav className="hidden items-center gap-5 lg:flex xl:gap-6">
+        <nav className="hidden items-center gap-4 xl:flex 2xl:gap-6">
           {navItems.map((item) => (
             <Link
               key={item.to}
               to={item.to}
-              className="text-xs text-muted-foreground transition-colors hover:text-foreground"
+              className="whitespace-nowrap text-xs text-muted-foreground transition-colors hover:text-foreground"
               activeProps={{ className: "text-foreground" }}
             >
               {item.label}
@@ -35,7 +35,7 @@ export function SiteHeader() {
         </nav>
 
         <Sheet open={open} onOpenChange={setOpen}>
-          <SheetTrigger asChild className="lg:hidden">
+          <SheetTrigger asChild className="xl:hidden">
             <Button variant="ghost" size="icon" aria-label="Open menu"><Menu className="size-5" /></Button>
           </SheetTrigger>
           <SheetContent side="right" className="w-80 bg-background">
