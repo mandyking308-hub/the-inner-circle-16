@@ -115,8 +115,8 @@ export function PrivateShell({ mode, children }: PrivateShellProps) {
   }, [mode]);
 
   const identity = mode === "member" ? memberIdentity.name : "Concierge desk";
-  const secondary = mode === "member" ? `${memberIdentity.city} · private member` : "Project Table operations";
-  const initials = mode === "member" ? memberIdentity.name.split(" ").filter(Boolean).slice(0, 2).map((part) => part[0]).join("").toUpperCase() || "PT" : "PT";
+  const secondary = mode === "member" ? `${memberIdentity.city} · private member` : "Montvelle operations";
+  const initials = mode === "member" ? memberIdentity.name.split(" ").filter(Boolean).slice(0, 2).map((part) => part[0]).join("").toUpperCase() || "MV" : "MV";
   const isActive = (to: string, exact?: boolean) => exact ? pathname === to : pathname === to || pathname.startsWith(`${to}/`);
 
   return (

@@ -29,6 +29,6 @@ function ConciergePage() {
     ]}
     secondary={{ eyebrow: "Behind the service", title: "A private office that remembers the whole picture.", body: "When a request becomes a decision involving advisers, countries or family consequences, the deeper operating layer can organise the questions, surface what is missing and keep next actions visible without turning the experience into software theatre.", image: luxuryImages.office, imageAlt: "A quiet private office and study", linkTo: "/ecosystem", linkLabel: "Inside the private office" }}
     closingTitle="More time for the life you wanted. Less time managing the life around it."
-    closingBody="That is the standard Project Table is designed around: personal enough to know the context, serious enough to deliver when it matters."
+    closingBody="That is the standard Montvelle is designed around: personal enough to know the context, serious enough to deliver when it matters."
   />;
 }

@@ -39,7 +39,7 @@ function AuthPage() {
           <div className="border border-background/18 bg-foreground/80 p-6 backdrop-blur-md md:p-9">
             <div className="flex items-center gap-3"><LockKeyhole className="h-5 w-5 text-bronze" /><p className="eyebrow text-background/55">Private members</p></div>
             <h1 className="mt-6 font-display text-6xl leading-[0.96]">Member access</h1>
-            <p className="mt-5 max-w-xl text-sm leading-7 text-background/68">Project Table member spaces contain private family, relationship and decision context. Access is issued individually and should never be shared.</p>
+            <p className="mt-5 max-w-xl text-sm leading-7 text-background/68">Montvelle member spaces contain private family, relationship and decision context. Access is issued individually and should never be shared.</p>
             <form className="mt-8 space-y-5" onSubmit={(event) => event.preventDefault()}>
               <div className="space-y-2"><Label htmlFor="signin-email" className="text-background/75">Email</Label><Input id="signin-email" type="email" className="rounded-none border-background/25 bg-background/10 text-background placeholder:text-background/35" placeholder="Your membership email" /></div>
               <Button type="submit" className="w-full rounded-none bg-oxblood text-oxblood-foreground" disabled>Continue securely</Button>

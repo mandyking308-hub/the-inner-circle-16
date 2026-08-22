@@ -7,7 +7,7 @@ import { luxuryImages } from "@/data/luxuryImages";
 import { site } from "@/config/site";
 
 export const Route = createFileRoute("/about")({
-  head: () => ({ meta: [{ title: `Why this exists — ${site.name}` }, { name: "description", content: "Why Project Table exists: one private world around people, places, family, trusted help and serious private-office infrastructure." }] }),
+  head: () => ({ meta: [{ title: `Why this exists — ${site.name}` }, { name: "description", content: "Why Montvelle exists: one private world around people, places, family, trusted help and serious private-office infrastructure." }] }),
   component: AboutPage,
 });
 
@@ -19,7 +19,7 @@ function AboutPage() {
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(12,12,11,0.72)_0%,rgba(12,12,11,0.42)_42%,rgba(12,12,11,0.08)_78%)]" />
         <Container className="relative flex min-h-[78vh] items-end py-20 md:py-28">
           <div className="max-w-4xl">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-white/62">Why Project Table exists</p>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-white/62">Why Montvelle exists</p>
             <h1 className="mt-6 max-w-[11ch] font-display text-6xl leading-[0.93] md:text-8xl">A good life should feel connected.</h1>
             <p className="mt-7 max-w-2xl text-base leading-8 text-white/78">People, places, family, opportunity and trusted help should not live in completely separate worlds.</p>
           </div>
@@ -34,7 +34,7 @@ function AboutPage() {
               <h2 className="max-w-5xl font-display text-5xl leading-[1.02] md:text-7xl">The best parts of life are rarely organised by category.</h2>
               <div className="mt-9 grid gap-8 text-base leading-8 text-muted-foreground md:grid-cols-2">
                 <p>A move may involve schools, property, advisers, friendships, travel and family timing all at once. A business decision may affect the next generation. A useful introduction may matter more than another report.</p>
-                <p>Project Table brings those worlds closer together: a permanent circle, global relationships, family experiences, private service and a serious operating layer behind it when the question becomes important.</p>
+                <p>Montvelle brings those worlds closer together: a permanent circle, global relationships, family experiences, private service and a serious operating layer behind it when the question becomes important.</p>
               </div>
             </div>
           </div>
@@ -49,7 +49,7 @@ function AboutPage() {
               <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-oxblood">The human layer</p>
               <h2 className="mt-5 font-display text-5xl leading-[1.02] md:text-6xl">The right people change what becomes possible.</h2>
               <p className="mt-7 text-base leading-8 text-muted-foreground">A familiar Table. A family who already knows the city. An adviser introduced with context. A mentor who widens a young person's view. A host who knows who should meet.</p>
-              <p className="mt-5 text-sm leading-7 text-muted-foreground">Project Table is designed so relationships deepen rather than reset every time a new question appears.</p>
+              <p className="mt-5 text-sm leading-7 text-muted-foreground">Montvelle is designed so relationships deepen rather than reset every time a new question appears.</p>
               <Link to="/the-table" className="mt-8 inline-flex items-center gap-2 text-sm font-semibold">The Table <ArrowRight className="h-4 w-4" /></Link>
             </div>
           </div>

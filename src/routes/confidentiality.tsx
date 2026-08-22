@@ -3,7 +3,7 @@ import { LegalTemplate } from "@/components/marketing/LegalTemplate";
 import { site } from "@/config/site";
 
 export const Route = createFileRoute("/confidentiality")({
-  head: () => ({ meta: [{ title: `Confidentiality & No Solicitation — ${site.name}` }, { name: "description", content: "The confidentiality, consent and no-solicitation standard that protects Project Table member spaces." }] }),
+  head: () => ({ meta: [{ title: `Confidentiality & No Solicitation — ${site.name}` }, { name: "description", content: "The confidentiality, consent and no-solicitation standard that protects Montvelle member spaces." }] }),
   component: ConfidentialityPage,
 });
 

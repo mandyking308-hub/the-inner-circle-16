@@ -29,6 +29,6 @@ function GlobalLifePage() {
     ]}
     secondary={{ eyebrow: "When it gets serious", title: "The calm feeling on the outside needs good coordination underneath.", body: "Residence, tax, property, banking, schools and family timing can still matter enormously. The private office organises the questions, brings in qualified specialists and keeps the wider family picture visible while those decisions are made.", image: luxuryImages.office, imageAlt: "A quiet private office and study", linkTo: "/decision-room", linkLabel: "See the Decision Room" }}
     closingTitle="Wherever life goes next, you should not have to rebuild your entire world from scratch."
-    closingBody="Project Table is designed to make each new place feel connected to the people, relationships and context you already trust."
+    closingBody="Montvelle is designed to make each new place feel connected to the people, relationships and context you already trust."
   />;
 }

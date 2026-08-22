@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { ArrowUpRight, Menu } from "lucide-react";
 
 import { BrandMark } from "@/components/brand/BrandMark";
+import { LanguageSelector } from "@/components/common/LanguageSelector";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { navItems, site } from "@/config/site";
@@ -14,17 +15,18 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-foreground/8 bg-[#f6f1e8]/95 backdrop-blur-xl">
       <Container className="flex h-[78px] items-center justify-between">
-        <Link to="/" className="group flex items-center gap-3">
+        <Link to="/" className="group flex items-center gap-3" aria-label={`${site.name} home`}>
           <BrandMark compact />
-          <span className="font-display text-[1.55rem] leading-none text-foreground">{site.name}</span>
+          <span className="font-display text-[1.55rem] leading-none tracking-[-0.02em] text-foreground">{site.name}</span>
         </Link>
 
-        <nav className="hidden items-center gap-6 xl:flex">
+        <nav className="hidden items-center gap-5 xl:flex" aria-label="Primary navigation">
           {navItems.map((item) => (
             <Link key={item.to} to={item.to} className="whitespace-nowrap text-[10px] font-medium tracking-[0.02em] text-muted-foreground transition-colors hover:text-foreground" activeProps={{ className: "text-foreground" }}>
               {item.label}
             </Link>
           ))}
+          <LanguageSelector />
           <Link to="/auth" className="ml-1 text-[10px] font-medium text-muted-foreground transition-colors hover:text-foreground">Sign in</Link>
           <Button asChild size="sm" className="ml-1 rounded-full bg-foreground px-5 text-background hover:bg-foreground/88">
             <Link to="/apply">Request membership <ArrowUpRight className="ml-2 h-3.5 w-3.5" /></Link>
@@ -39,12 +41,13 @@ export function SiteHeader() {
             <div className="px-7 pb-5 pt-8">
               <div className="flex items-center gap-3"><BrandMark compact /><SheetTitle className="font-display text-2xl">{site.name}</SheetTitle></div>
             </div>
-            <nav className="flex flex-col px-7 py-6">
+            <nav className="flex flex-col px-7 py-6" aria-label="Mobile navigation">
               {navItems.map((item) => (
                 <Link key={item.to} to={item.to} onClick={() => setOpen(false)} className="border-b border-foreground/10 py-5 font-display text-3xl text-foreground">
                   {item.label}
                 </Link>
               ))}
+              <div className="mt-7"><LanguageSelector compact /></div>
               <Link to="/auth" onClick={() => setOpen(false)} className="mt-7 text-sm text-muted-foreground">Member sign in</Link>
               <Button asChild className="mt-6 rounded-full"><Link to="/apply" onClick={() => setOpen(false)}>Request membership</Link></Button>
             </nav>
