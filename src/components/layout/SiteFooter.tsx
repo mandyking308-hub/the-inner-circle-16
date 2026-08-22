@@ -6,59 +6,48 @@ import { site } from "@/config/site";
 import { Container } from "./Container";
 
 const communityLinks = [
-  { to: "/the-table", label: "The Table" },
-  { to: "/decision-room", label: "Decision Room" },
-  { to: "/global-life", label: "Global Life" },
-  { to: "/world", label: "The World" },
-  { to: "/family-learning", label: "Family Learning" },
-  { to: "/next-gen", label: "Next Generation" },
-  { to: "/partners", label: "Trusted Partners" },
-  { to: "/concierge", label: "Concierge" },
+  { to: "/the-table", label: "Belong" },
+  { to: "/global-life", label: "The World" },
   { to: "/gatherings", label: "Gatherings" },
-  { to: "/legacy", label: "Legacy" },
-  { to: "/impact", label: "Impact" },
+  { to: "/family-learning", label: "Families" },
+  { to: "/concierge", label: "Private Office" },
   { to: "/journal", label: "Journal" },
 ] as const;
 
 const trustLinks = [
   { to: "/about", label: "Why this exists" },
   { to: "/membership", label: "Membership" },
-  { to: "/principles", label: "Membership Principles" },
-  { to: "/confidentiality", label: "Confidentiality & No Solicitation" },
+  { to: "/principles", label: "Membership principles" },
+  { to: "/confidentiality", label: "Confidentiality" },
   { to: "/privacy", label: "Privacy" },
   { to: "/terms", label: "Terms" },
 ] as const;
 
 export function SiteFooter() {
   return (
-    <footer className="mt-24 border-t border-background/10 bg-foreground text-background">
-      <Container className="py-14 md:py-18">
-        <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr_0.7fr]">
+    <footer className="border-t border-foreground/10 bg-[#eee6da] text-foreground">
+      <Container className="py-20 md:py-28">
+        <div className="grid gap-14 lg:grid-cols-[1.2fr_0.8fr_0.7fr] lg:gap-20">
           <div>
-            <div className="flex items-center gap-3"><BrandMark inverse /><div><p className="font-display text-2xl">{site.name}</p><p className="mt-1 text-[8px] font-semibold uppercase tracking-[0.2em] text-background/40">London · by invitation</p></div></div>
-            <p className="mt-8 max-w-xl font-display text-4xl leading-[1.06] text-background">Your life got complicated because it worked.</p>
-            <p className="mt-5 max-w-md text-xs leading-6 text-background/55">Trusted peers, qualified specialists, concierge execution and family capability — organised around the life behind the success.</p>
-            <Link to="/apply" className="mt-7 inline-flex items-center gap-2 border-b border-bronze pb-1 text-xs font-semibold uppercase tracking-[0.14em]">Request a seat <ArrowUpRight className="h-3.5 w-3.5" /></Link>
+            <div className="flex items-center gap-3"><BrandMark /><div><p className="font-display text-2xl">{site.name}</p><p className="mt-1 text-[8px] font-semibold uppercase tracking-[0.22em] text-muted-foreground">London · by invitation</p></div></div>
+            <p className="mt-10 max-w-xl font-display text-5xl leading-[1.04]">A private world around the life you've built.</p>
+            <p className="mt-6 max-w-md text-sm leading-7 text-muted-foreground">Beautiful places, trusted people, family, culture, travel and a discreet private office behind it all.</p>
+            <Link to="/apply" className="mt-8 inline-flex items-center gap-2 text-sm font-semibold">Request membership <ArrowUpRight className="h-4 w-4" /></Link>
           </div>
 
           <nav>
-            <p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-background/35">The house</p>
-            <div className="mt-5 grid grid-cols-2 gap-x-6 gap-y-3">
-              {communityLinks.map((item) => <Link key={item.to} to={item.to} className="text-[11px] text-background/55 transition-colors hover:text-background">{item.label}</Link>)}
-            </div>
+            <p className="text-[9px] font-semibold uppercase tracking-[0.24em] text-muted-foreground">Explore</p>
+            <div className="mt-6 flex flex-col gap-4">{communityLinks.map((item) => <Link key={item.to} to={item.to} className="text-sm text-muted-foreground transition-colors hover:text-foreground">{item.label}</Link>)}</div>
           </nav>
 
           <nav>
-            <p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-background/35">Trust & access</p>
-            <div className="mt-5 flex flex-col gap-3">
-              {trustLinks.map((item) => <Link key={item.to} to={item.to} className="text-[11px] text-background/55 transition-colors hover:text-background">{item.label}</Link>)}
-              <Link to="/auth" className="mt-3 text-[11px] font-semibold text-bronze">Member sign in</Link>
-            </div>
+            <p className="text-[9px] font-semibold uppercase tracking-[0.24em] text-muted-foreground">Trust & access</p>
+            <div className="mt-6 flex flex-col gap-4">{trustLinks.map((item) => <Link key={item.to} to={item.to} className="text-sm text-muted-foreground transition-colors hover:text-foreground">{item.label}</Link>)}<Link to="/auth" className="mt-2 text-sm font-semibold text-oxblood">Member sign in</Link></div>
           </nav>
         </div>
 
-        <div className="mt-12 grid gap-4 border-t border-background/12 pt-6 text-[9px] leading-5 text-background/35 md:grid-cols-[1fr_auto]">
-          <p>Membership is by application and invitation. Project Table does not itself provide legal, tax, immigration, investment, fiduciary, medical or other regulated professional advice; members instruct appropriately qualified professionals where required.</p>
+        <div className="mt-16 grid gap-4 border-t border-foreground/10 pt-6 text-[10px] leading-5 text-muted-foreground md:grid-cols-[1fr_auto]">
+          <p>Membership is by application and invitation. Members instruct appropriately qualified professionals where regulated advice is required.</p>
           <p>Private community · London</p>
         </div>
       </Container>
