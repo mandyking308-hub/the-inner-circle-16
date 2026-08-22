@@ -1,4 +1,4 @@
-import { type ReactNode, useState } from "react";
+import { type ReactNode, useEffect, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import {
   BadgeCheck,
@@ -54,6 +54,7 @@ const adminGroups = [
     label: "Operations",
     items: [
       { to: "/admin", label: "Overview", icon: LayoutDashboard, exact: true },
+      { to: "/admin/launch-readiness", label: "Launch control", icon: ShieldCheck },
       { to: "/admin/concierge", label: "Concierge", icon: Compass },
       { to: "/admin/global-life", label: "Global Life", icon: Globe2 },
     ],
@@ -87,18 +88,35 @@ const adminGroups = [
   },
 ] as const;
 
-type PrivateShellProps = {
-  mode: "member" | "admin";
-  children: ReactNode;
-};
+type PrivateShellProps = { mode: "member" | "admin"; children: ReactNode };
+
+type MemberIdentity = { name: string; city: string };
 
 export function PrivateShell({ mode, children }: PrivateShellProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [memberIdentity, setMemberIdentity] = useState<MemberIdentity>({ name: "Amelia Hart", city: "London" });
   const pathname = useRouterState({ select: (state) => state.location.pathname });
   const groups = mode === "member" ? memberGroups : adminGroups;
-  const identity = mode === "member" ? "Amelia Hart" : "Concierge desk";
-  const secondary = mode === "member" ? "London Table 01" : "Project Table operations";
 
+  useEffect(() => {
+    if (mode !== "member") return;
+    const load = () => {
+      try {
+        const raw = window.localStorage.getItem("project-table:member-profile:v2");
+        if (!raw) return;
+        const profile = JSON.parse(raw) as { name?: string; city?: string };
+        setMemberIdentity({ name: profile.name || "Amelia Hart", city: profile.city || "London" });
+      } catch { /* keep preview identity */ }
+    };
+    load();
+    window.addEventListener("focus", load);
+    window.addEventListener("storage", load);
+    return () => { window.removeEventListener("focus", load); window.removeEventListener("storage", load); };
+  }, [mode]);
+
+  const identity = mode === "member" ? memberIdentity.name : "Concierge desk";
+  const secondary = mode === "member" ? `${memberIdentity.city} · private member` : "Project Table operations";
+  const initials = mode === "member" ? memberIdentity.name.split(" ").filter(Boolean).slice(0, 2).map((part) => part[0]).join("").toUpperCase() || "PT" : "PT";
   const isActive = (to: string, exact?: boolean) => exact ? pathname === to : pathname === to || pathname.startsWith(`${to}/`);
 
   return (
@@ -109,7 +127,7 @@ export function PrivateShell({ mode, children }: PrivateShellProps) {
             <button type="button" className="inline-flex h-9 w-9 items-center justify-center border border-border lg:hidden" onClick={() => setMobileOpen((value) => !value)} aria-label="Toggle private navigation">{mobileOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}</button>
             <div><p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-oxblood">{mode === "member" ? "Private member workspace" : "Concierge & operations"}</p><p className="mt-1 font-display text-xl text-foreground">{mode === "member" ? "Your private office" : "The house operating desk"}</p></div>
           </div>
-          <div className="flex items-center gap-3 text-right"><div className="hidden sm:block"><p className="text-xs font-semibold text-foreground">{identity}</p><p className="mt-0.5 text-[10px] text-muted-foreground">{secondary}</p></div><div className="flex h-9 w-9 items-center justify-center rounded-full bg-oxblood text-[10px] font-semibold text-oxblood-foreground">{mode === "member" ? "AH" : "PT"}</div></div>
+          <div className="flex items-center gap-3 text-right"><div className="hidden sm:block"><p className="text-xs font-semibold text-foreground">{identity}</p><p className="mt-0.5 text-[10px] text-muted-foreground">{secondary}</p></div><div className="flex h-9 w-9 items-center justify-center rounded-full bg-oxblood text-[10px] font-semibold text-oxblood-foreground">{initials}</div></div>
         </div>
       </header>
 
