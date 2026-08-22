@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { CheckCircle2, Clock3, Compass, Send } from "lucide-react";
+import { CheckCircle2, Clock3, Compass, MapPinned, Send } from "lucide-react";
 
 import { PageIntro } from "@/components/private/PrivateShell";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { conciergeCategories, conciergeRequests } from "@/data/infrastructure";
+import { conciergeCategories, conciergeRequests, reciprocalPlaces } from "@/data/infrastructure";
 
 export const Route = createFileRoute("/member/concierge")({
   component: MemberConciergePage,
@@ -55,6 +55,12 @@ function MemberConciergePage() {
       <section>
         <div className="flex items-center gap-3"><Clock3 className="h-5 w-5 text-bronze" /><div><p className="eyebrow text-bronze">Common request types</p><h2 className="mt-2 font-display text-3xl">The things that steal time because they cross categories</h2></div></div>
         <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-3">{conciergeCategories.map(([title, body]) => <article key={title} className="border border-border bg-card p-5"><h3 className="font-display text-2xl">{title}</h3><p className="mt-3 text-xs leading-6 text-muted-foreground">{body}</p></article>)}</div>
+      </section>
+
+      <section>
+        <div className="flex items-center gap-3"><MapPinned className="h-5 w-5 text-bronze" /><div><p className="eyebrow text-bronze">Places & reciprocal relationships</p><h2 className="mt-2 font-display text-3xl">A useful global network needs somewhere to land.</h2></div></div>
+        <p className="mt-4 max-w-3xl text-sm leading-7 text-muted-foreground">Over time the community can build formal relationships with clubs, workspaces, hotels and hosting venues. Until an agreement is signed, the platform records a relationship stage rather than promising access.</p>
+        <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-4">{reciprocalPlaces.map((place) => <article key={`${place.city}-${place.name}`} className="border border-border bg-card p-5"><p className="text-[10px] uppercase tracking-[0.16em] text-bronze">{place.city}</p><h3 className="mt-2 font-display text-2xl">{place.name}</h3><p className="mt-3 text-xs leading-6 text-muted-foreground">{place.type}</p><p className="mt-4 border-t border-border pt-3 text-[10px] uppercase tracking-[0.14em] text-muted-foreground">{place.status}</p></article>)}</div>
       </section>
     </div>
   );
