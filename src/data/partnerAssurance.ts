@@ -78,7 +78,7 @@ export const partnerAssurance: PartnerAssurance[] = [
     jurisdictions: ["United Kingdom", "France", "UAE"],
     regulatoryNote: "Recruitment and staffing provider; reference, right-to-work and role-specific screening processes vary by placement and jurisdiction.",
     conflicts: "Placement fee structure disclosed before member instruction.",
-    referralDisclosure: "No additional Project Table referral fee shown.",
+    referralDisclosure: "No additional Montvelle referral fee shown.",
     service: { responsiveness: 4.5, clarity: 4.4, expertise: 4.6, followThrough: 4.3 },
     completedBriefs: 9,
     memberFeedbackCount: 7,
