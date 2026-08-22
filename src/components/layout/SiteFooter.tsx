@@ -21,6 +21,7 @@ const trustLinks = [
   { to: "/membership", label: "Membership" },
   { to: "/principles", label: "Membership principles" },
   { to: "/confidentiality", label: "Confidentiality" },
+  { to: "/safeguarding", label: "Safeguarding" },
   { to: "/privacy", label: "Privacy" },
   { to: "/cookies", label: "Cookies" },
   { to: "/accessibility", label: "Accessibility" },
