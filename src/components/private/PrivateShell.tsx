@@ -1,13 +1,19 @@
 import { type ReactNode, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import {
+  BadgeCheck,
   BookOpen,
+  BriefcaseBusiness,
   CalendarDays,
   ChevronRight,
   CircleUserRound,
+  Compass,
+  Globe2,
+  GraduationCap,
   HandHeart,
   Home,
   Inbox,
+  Landmark,
   LayoutDashboard,
   Menu,
   MessageSquareText,
@@ -28,10 +34,16 @@ const memberNav = [
   { to: "/member/community", label: "Community", icon: Users },
   { to: "/member/introductions", label: "Introductions", icon: Network },
   { to: "/member/ask-offer", label: "Ask & Offer", icon: MessageSquareText },
+  { to: "/member/global-life", label: "Global Life", icon: Globe2 },
+  { to: "/member/family-architecture", label: "Family Architecture", icon: Landmark },
+  { to: "/member/learning", label: "Learning Studio", icon: GraduationCap },
+  { to: "/member/partners", label: "Trusted Partners", icon: BadgeCheck },
+  { to: "/member/concierge", label: "Concierge", icon: Compass },
   { to: "/member/events", label: "Events", icon: CalendarDays },
   { to: "/member/knowledge", label: "Knowledge", icon: BookOpen },
   { to: "/member/impact", label: "Impact", icon: HandHeart },
   { to: "/member/next-gen", label: "Next Gen", icon: Sparkles },
+  { to: "/member/alumni", label: "Rising Gen Alumni", icon: BriefcaseBusiness },
   { to: "/member/profile", label: "Profile", icon: CircleUserRound },
 ] as const;
 
@@ -40,6 +52,11 @@ const adminNav = [
   { to: "/admin/applications", label: "Applications", icon: Inbox },
   { to: "/admin/members", label: "Members", icon: Users },
   { to: "/admin/tables", label: "Tables", icon: TableProperties },
+  { to: "/admin/global-life", label: "Global Life", icon: Globe2 },
+  { to: "/admin/partners", label: "Partners", icon: BadgeCheck },
+  { to: "/admin/concierge", label: "Concierge", icon: Compass },
+  { to: "/admin/learning", label: "Learning", icon: GraduationCap },
+  { to: "/admin/alumni", label: "Alumni", icon: BriefcaseBusiness },
   { to: "/admin/events", label: "Events", icon: CalendarDays },
   { to: "/admin/introductions", label: "Introductions", icon: Network },
   { to: "/admin/content", label: "Knowledge", icon: BookOpen },
@@ -99,7 +116,7 @@ export function PrivateShell({ mode, children }: PrivateShellProps) {
 
       <div className="lg:grid lg:grid-cols-[250px_minmax(0,1fr)]">
         <aside
-          className={`${mobileOpen ? "block" : "hidden"} border-b border-border bg-card/35 lg:sticky lg:top-16 lg:block lg:h-[calc(100vh-4rem)] lg:border-b-0 lg:border-r`}
+          className={`${mobileOpen ? "block" : "hidden"} border-b border-border bg-card/35 lg:sticky lg:top-16 lg:block lg:h-[calc(100vh-4rem)] lg:overflow-y-auto lg:border-b-0 lg:border-r`}
         >
           <nav className="space-y-1 p-3 lg:p-4">
             {nav.map((item) => {
