@@ -4,9 +4,10 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "dev": "vite dev",
-    "build": "vite build",
-    "build:dev": "vite build --mode development",
+    "materialize:images": "bun scripts/materialize-luxury-images.ts",
+    "dev": "bun run materialize:images && vite dev",
+    "build": "bun run materialize:images && vite build",
+    "build:dev": "bun run materialize:images && vite build --mode development",
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write ."

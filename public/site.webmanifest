@@ -1,0 +1,12 @@
+{
+  "name": "Project Table",
+  "short_name": "Table",
+  "description": "Private membership for the life behind the success.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f2eadb",
+  "theme_color": "#651f24",
+  "icons": [
+    { "src": "/favicon.ico", "sizes": "48x48", "type": "image/x-icon" }
+  ]
+}

@@ -1,6 +1,7 @@
 import { createFileRoute, Outlet } from "@tanstack/react-router";
 
 import { PrivateShell } from "@/components/private/PrivateShell";
+import { PrivatePreviewGate } from "@/components/security/PrivatePreviewGate";
 import { site } from "@/config/site";
 
 export const Route = createFileRoute("/admin")({
@@ -8,7 +9,7 @@ export const Route = createFileRoute("/admin")({
     meta: [
       { title: `Concierge & operations — ${site.name}` },
       { name: "description", content: `Administration area for ${site.name}.` },
-      { name: "robots", content: "noindex" },
+      { name: "robots", content: "noindex,nofollow,noarchive" },
     ],
   }),
   component: AdminLayout,
@@ -16,8 +17,10 @@ export const Route = createFileRoute("/admin")({
 
 function AdminLayout() {
   return (
-    <PrivateShell mode="admin">
-      <Outlet />
-    </PrivateShell>
+    <PrivatePreviewGate>
+      <PrivateShell mode="admin">
+        <Outlet />
+      </PrivateShell>
+    </PrivatePreviewGate>
   );
 }
