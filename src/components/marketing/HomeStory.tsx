@@ -3,179 +3,188 @@ import {
   ArrowRight,
   BadgeCheck,
   BookOpenCheck,
+  Building2,
   Compass,
+  Globe2,
   HeartHandshake,
+  KeyRound,
   LayoutDashboard,
   Plane,
   ShieldCheck,
-  Sparkles,
   TableProperties,
 } from "lucide-react";
 
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/button";
+import { luxuryImages } from "@/data/luxuryImages";
 
-const operatingLayers = [
-  [TableProperties, "Judgement", "The Table", "A permanent circle that remembers the history behind the decision.", "/the-table"],
-  [LayoutDashboard, "Orchestration", "Decision Room", "Separate what the family must decide from what experts must advise and what someone must execute.", "/decision-room"],
-  [BadgeCheck, "Expertise", "Trusted Partners", "Recommendation-led specialists who earn trust without buying access to members.", "/partners"],
-  [Compass, "Execution", "Concierge", "One owner for the awkward work between countries, advisers and ordinary family life.", "/concierge"],
+const worldItems = [
+  [Plane, "Move", "Residence, visas, tax questions, schools, homes, banking and the order they need to happen in."],
+  [Building2, "Build", "Companies, advisers, family-office structure, reporting, property and the operating rhythm around them."],
+  [KeyRound, "Live", "Travel, private access, household help, health, security and the practical things that consume time."],
+  [HeartHandshake, "Pass it on", "Succession, philanthropy, next-generation capability, mentors and meaningful responsibility."],
 ] as const;
-
-const principles = [
-  ["Character", "Who someone is matters more than the size of the name on their card."],
-  ["Contribution", "Members are expected to add judgement, experience, introductions and time."],
-  ["Confidentiality", "The private room stays private. No harvesting, forwarding or content mining."],
-  ["No solicitation", "Business can happen. Prospecting is not why the room exists."],
-  ["Execution", "Every serious problem eventually needs an owner, a next action and a finish line."],
-];
 
 export function HomeStory() {
   return (
     <>
-      <section className="border-b border-foreground/15 py-20 md:py-28">
+      <section className="border-b border-foreground/15 bg-background py-20 md:py-28">
         <Container>
-          <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
+          <div className="grid gap-12 lg:grid-cols-[0.62fr_1.38fr] lg:gap-20">
             <div>
-              <p className="eyebrow text-oxblood">The premise</p>
-              <p className="mt-7 font-display text-4xl leading-[1.08] text-foreground md:text-5xl">The problem is not that successful families lack advisers.</p>
+              <p className="eyebrow text-oxblood">Why it exists</p>
+              <p className="mt-7 font-display text-4xl leading-[1.06] md:text-5xl">You should not have to become an expert in everything just because your life became international.</p>
             </div>
             <div className="border-l border-foreground/20 pl-6 md:pl-10">
-              <p className="max-w-4xl font-display text-4xl leading-[1.08] text-foreground md:text-6xl">
-                It is that <span className="text-oxblood">nobody owns the space between them.</span>
+              <p className="max-w-4xl font-display text-4xl leading-[1.07] md:text-6xl">
+                The problem is rarely finding an adviser. It is <span className="text-oxblood">getting the whole life to work together.</span>
               </p>
               <div className="mt-8 grid gap-6 text-sm leading-7 text-muted-foreground md:grid-cols-2">
-                <p>Build a company. Add property. Move country. Open banking. Find a school. Create a trust. Hire advisers. Think about succession. Prepare children for responsibility. The decisions stop arriving one at a time.</p>
-                <p>Project Table is designed for that overlap: peers for judgement, specialists for technical advice, concierge for execution and a family learning layer so capability compounds across generations.</p>
+                <p>One lawyer knows the trust. Another knows the company. Somebody else knows the visa. The school has its own timetable. The bank wants a different document. Meanwhile you still have a business to run and a family to live with.</p>
+                <p>Project Table is the place where the context stays together. People who understand the problem, specialists when expertise is needed, and one execution layer so the family is not left joining every gap alone.</p>
               </div>
             </div>
+          </div>
+        </Container>
+      </section>
+
+      <section className="relative overflow-hidden border-b border-background/15 bg-foreground text-background">
+        <div className="absolute inset-0 opacity-40"><img src={luxuryImages.table} alt="Private members in conversation around a London table" className="h-full w-full object-cover" /></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-foreground via-foreground/86 to-foreground/30" />
+        <Container className="relative py-24 md:py-32">
+          <div className="max-w-3xl">
+            <div className="flex items-center gap-3"><TableProperties className="h-5 w-5 text-bronze" /><p className="eyebrow text-bronze">The Table</p></div>
+            <h2 className="mt-6 font-display text-5xl leading-[0.98] md:text-7xl">The right room changes the quality of the decision.</h2>
+            <p className="mt-7 max-w-2xl text-base leading-8 text-background/72">Not networking for the sake of it. A small private circle where somebody has usually lived through some version of the thing keeping you awake: a sale, a move, a school decision, a family disagreement, a trust, a succession question, a new country.</p>
+            <p className="mt-5 max-w-2xl text-sm leading-7 text-background/58">No cold pitches. No buying access to members. No pressure to perform. The point is to leave with better judgement than you walked in with.</p>
+            <Link to="/the-table" className="mt-8 inline-flex items-center gap-2 text-sm font-semibold">Enter The Table <ArrowRight className="h-4 w-4 text-bronze" /></Link>
           </div>
         </Container>
       </section>
 
       <section className="border-b border-foreground/15 bg-linen py-20 md:py-28">
         <Container>
-          <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-            <div className="relative">
-              <div className="overflow-hidden border border-foreground/20 bg-foreground image-frame"><img src="/art/decision-room.svg" alt="The four-lane Life Decision Room" className="aspect-[4/3] w-full object-cover" /></div>
-              <div className="absolute -bottom-5 right-4 max-w-xs border border-foreground/20 bg-background p-4 md:right-8">
-                <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-oxblood">Member workflow</p>
-                <p className="mt-2 font-display text-2xl">Decide · Expert · Execute · Evidence</p>
+          <div className="grid gap-12 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
+            <div className="relative overflow-hidden border border-foreground/20 bg-foreground shadow-2xl">
+              <img src={luxuryImages.command} alt="A private family office decision room overlooking London" className="aspect-[16/11] w-full object-cover" />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-foreground via-foreground/80 to-transparent p-6 pt-24 text-background">
+                <p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-bronze">Inside membership</p>
+                <p className="mt-2 font-display text-3xl">A room for the decisions that touch everything else.</p>
               </div>
             </div>
             <div className="lg:pl-8">
-              <div className="flex items-center gap-3"><LayoutDashboard className="h-5 w-5 text-oxblood" /><p className="eyebrow text-oxblood">Flagship product</p></div>
+              <div className="flex items-center gap-3"><LayoutDashboard className="h-5 w-5 text-oxblood" /><p className="eyebrow text-oxblood">Life Decision Room</p></div>
               <h2 className="mt-5 text-balance font-display text-5xl leading-[1.01] md:text-6xl">Stop collecting advice. Start closing decisions.</h2>
-              <p className="mt-7 max-w-xl text-base leading-8 text-muted-foreground">A member opens one room for a major issue — moving country, building a family office, rethinking education or planning succession — and sees the whole problem as an executable system.</p>
+              <p className="mt-7 max-w-xl text-base leading-8 text-muted-foreground">Open one room for the issue. A move. A family-office build. A school rethink. Succession. Then separate what you need to decide, what a professional must advise on, what somebody must actually do and what proves it is finished.</p>
               <div className="mt-8 divide-y divide-foreground/15 border-y border-foreground/15">
                 {[
-                  ["Decide", "What belongs to the family and peers?"],
-                  ["Expert", "Where is qualified professional advice required?"],
+                  ["Decide", "What are we actually choosing?"],
+                  ["Expert", "Where do we need qualified advice?"],
                   ["Execute", "Who owns the next practical action?"],
-                  ["Evidence", "What proves the work is actually complete?"],
+                  ["Evidence", "What proves the work is complete?"],
                 ].map(([title, text], index) => <div key={title} className="grid grid-cols-[48px_105px_1fr] gap-3 py-4"><span className="font-display text-xl text-oxblood">0{index + 1}</span><span className="text-xs font-semibold uppercase tracking-[0.1em]">{title}</span><span className="text-xs leading-6 text-muted-foreground">{text}</span></div>)}
               </div>
-              <Link to="/decision-room" className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-foreground">See the Decision Room <ArrowRight className="h-4 w-4 text-oxblood" /></Link>
+              <Link to="/decision-room" className="mt-7 inline-flex items-center gap-2 text-sm font-semibold">See the Decision Room <ArrowRight className="h-4 w-4 text-oxblood" /></Link>
             </div>
           </div>
         </Container>
       </section>
 
-      <section className="border-b border-foreground/15 bg-foreground py-20 text-background md:py-28">
+      <section className="border-b border-foreground/15 bg-background py-20 md:py-28">
         <Container>
-          <div className="grid gap-10 lg:grid-cols-[0.65fr_1.35fr]">
+          <div className="mb-12 grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+            <div><p className="eyebrow text-oxblood">The world around the member</p><h2 className="mt-5 max-w-3xl font-display text-5xl leading-[1.02] md:text-6xl">Your life does not stop at one postcode. Neither should the support around it.</h2></div>
+            <p className="max-w-xl text-sm leading-7 text-muted-foreground lg:justify-self-end">A Tuesday can begin with a board call in London, move into a school question in another country and end with a lawyer, a bank and a property decision all waiting on the same answer. This is built for that reality.</p>
+          </div>
+
+          <div className="grid gap-px bg-foreground/15 md:grid-cols-2 lg:grid-cols-4">
+            {worldItems.map(([Icon, title, body]) => (
+              <article key={title} className="bg-linen p-6 md:p-7">
+                <Icon className="h-5 w-5 text-oxblood" />
+                <h3 className="mt-8 font-display text-4xl">{title}</h3>
+                <p className="mt-4 text-sm leading-7 text-muted-foreground">{body}</p>
+              </article>
+            ))}
+          </div>
+
+          <div className="mt-5 overflow-hidden border border-foreground/20 bg-foreground text-background">
+            <div className="grid lg:grid-cols-[1.2fr_0.8fr]">
+              <div className="min-h-[390px]"><img src={luxuryImages.jet} alt="International family travel and private aviation" className="h-full w-full object-cover object-center" /></div>
+              <div className="flex flex-col justify-center p-7 md:p-10">
+                <div className="flex items-center gap-3"><Globe2 className="h-5 w-5 text-bronze" /><p className="eyebrow text-bronze">Global Life</p></div>
+                <h3 className="mt-5 font-display text-5xl leading-tight">A move is never just a visa.</h3>
+                <p className="mt-5 text-sm leading-7 text-background/68">It is tax residence, entities, trusts, school calendars, housing, banking, insurance, healthcare, travel days and whether the family will actually enjoy living there. We keep the question whole before the specialists start answering their pieces.</p>
+                <Link to="/global-life" className="mt-7 inline-flex items-center gap-2 text-sm font-semibold">Explore Global Life <ArrowRight className="h-4 w-4 text-bronze" /></Link>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <section className="border-b border-foreground/15 bg-forest text-forest-foreground">
+        <Container className="py-20 md:py-28">
+          <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
             <div>
-              <p className="eyebrow text-background/55">The service stack</p>
-              <h2 className="mt-5 font-display text-5xl leading-[1.02] md:text-6xl">One house. Four different kinds of help.</h2>
-              <p className="mt-6 max-w-md text-sm leading-7 text-background/65">The point is not to collapse every profession into one service. It is to make the boundaries clear and the hand-offs excellent.</p>
+              <div className="flex items-center gap-3"><BookOpenCheck className="h-5 w-5 text-bronze" /><p className="eyebrow text-bronze">Family Learning Studio</p></div>
+              <h2 className="mt-5 font-display text-5xl leading-[1.02] md:text-6xl">Give them more than the outcome.</h2>
+              <p className="mt-6 max-w-xl text-base leading-8 text-forest-foreground/74">Children can inherit access, education and opportunity and still arrive in adult life without knowing how to make something happen. We want the opposite: knowledge, judgement, practical independence and the confidence to execute.</p>
+              <p className="mt-5 max-w-xl text-sm leading-7 text-forest-foreground/60">Run a small venture. Plan a real trip. Build with AI. Present to adults. Work with a mentor. Volunteer. Learn money. Learn how to recover when something goes wrong. Keep the evidence of what you can actually do.</p>
+              <Link to="/family-learning" className="mt-7 inline-flex items-center gap-2 text-sm font-semibold">Explore Family Learning <ArrowRight className="h-4 w-4 text-bronze" /></Link>
             </div>
-            <div className="grid gap-px bg-background/15 sm:grid-cols-2">
-              {operatingLayers.map(([Icon, line, title, body, to], index) => (
-                <Link key={title} to={to} className="group bg-foreground p-6 transition-colors hover:bg-background/5 md:p-7">
-                  <div className="flex items-start justify-between"><Icon className="h-5 w-5 text-bronze" /><span className="font-display text-2xl text-background/25">0{index + 1}</span></div>
-                  <p className="mt-10 text-[9px] font-semibold uppercase tracking-[0.2em] text-bronze">{line}</p>
-                  <h3 className="mt-2 font-display text-4xl">{title}</h3>
-                  <p className="mt-4 text-sm leading-7 text-background/65">{body}</p>
-                  <span className="mt-6 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em]">Enter <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" /></span>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      <section className="border-b border-foreground/15 py-20 md:py-28">
-        <Container>
-          <div className="mb-14 grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-end">
-            <div><p className="eyebrow text-oxblood">Where the existing market fragments</p><h2 className="mt-5 max-w-3xl font-display text-5xl leading-[1.02] md:text-6xl">Club. Family office. Concierge. Education. We connect the seams.</h2></div>
-            <p className="max-w-xl text-sm leading-7 text-muted-foreground lg:justify-self-end">Most families can buy each service separately. What is harder to buy is continuity: the same context surviving from a peer conversation into an adviser brief, an execution plan and what the next generation eventually needs to understand.</p>
-          </div>
-
-          <div className="space-y-5">
-            <article className="grid overflow-hidden border border-foreground/20 bg-card lg:grid-cols-[1.05fr_0.95fr]">
-              <div className="min-h-[330px]"><img src="/art/global-life.svg" alt="Global Life planning illustration" className="h-full w-full object-cover" /></div>
-              <div className="flex flex-col justify-center p-7 md:p-10"><div className="flex items-center gap-3"><Plane className="h-5 w-5 text-oxblood" /><p className="eyebrow text-oxblood">Global Life</p></div><h3 className="mt-4 font-display text-5xl leading-tight">A move is never just a visa.</h3><p className="mt-5 text-sm leading-7 text-muted-foreground">Residence, tax, companies, trusts, schools, housing, banking, healthcare, insurance and travel-day rules belong in one decision room before the family starts paying separate professionals to implement pieces.</p><Link to="/global-life" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold">Explore Global Life <ArrowRight className="h-4 w-4 text-oxblood" /></Link></div>
-            </article>
-
-            <article className="grid overflow-hidden border border-foreground/20 bg-forest text-forest-foreground lg:grid-cols-[0.95fr_1.05fr]">
-              <div className="flex flex-col justify-center p-7 md:p-10 lg:order-1"><div className="flex items-center gap-3"><BookOpenCheck className="h-5 w-5 text-bronze" /><p className="eyebrow text-forest-foreground/55">Family Learning Studio</p></div><h3 className="mt-4 font-display text-5xl leading-tight">Skill is not execution.</h3><p className="mt-5 text-sm leading-7 text-forest-foreground/70">Knowledge matters. But so does being handed a messy problem, finding what you need, making a plan and finishing for a real audience. The family curriculum adds money, enterprise, AI, communication, practical independence, service and evidence of capability.</p><Link to="/family-learning" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold">Explore Family Learning <ArrowRight className="h-4 w-4 text-bronze" /></Link></div>
-              <div className="min-h-[330px] lg:order-2"><img src="/art/learning-studio.svg" alt="Family Learning Studio illustration" className="h-full w-full object-cover" /></div>
-            </article>
-
-            <article className="grid overflow-hidden border border-foreground/20 bg-card lg:grid-cols-[1.05fr_0.95fr]">
-              <div className="min-h-[330px]"><img src="/art/concierge-desk.svg" alt="Concierge execution desk illustration" className="h-full w-full object-cover" /></div>
-              <div className="flex flex-col justify-center p-7 md:p-10"><div className="flex items-center gap-3"><Compass className="h-5 w-5 text-oxblood" /><p className="eyebrow text-oxblood">Concierge & execution</p></div><h3 className="mt-4 font-display text-5xl leading-tight">Advice is useful. Finished is better.</h3><p className="mt-5 text-sm leading-7 text-muted-foreground">The request desk is deliberately unglamorous: one outcome, one owner, one visible next action. It handles the work that gets lost between advisers, assistants, countries and family members.</p><Link to="/concierge" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold">Explore Concierge <ArrowRight className="h-4 w-4 text-oxblood" /></Link></div>
-            </article>
+            <div className="overflow-hidden border border-forest-foreground/20 shadow-2xl"><img src={luxuryImages.learning} alt="A family learning together in an elegant private study" className="aspect-[4/3] w-full object-cover" /></div>
           </div>
         </Container>
       </section>
 
       <section className="border-b border-foreground/15 bg-oxblood py-20 text-oxblood-foreground md:py-28">
         <Container>
-          <div className="grid gap-12 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
+          <div className="grid gap-12 lg:grid-cols-[0.75fr_1.25fr] lg:items-start">
             <div>
-              <div className="flex items-center gap-3"><ShieldCheck className="h-5 w-5 text-bronze" /><p className="eyebrow text-oxblood-foreground/55">Trusted Partner Network</p></div>
-              <h2 className="mt-5 font-display text-5xl leading-[1.02] md:text-6xl">Professionals should earn access through usefulness, not a cheque.</h2>
-              <p className="mt-6 max-w-xl text-sm leading-7 text-oxblood-foreground/70">A member-recommended and vetted provider network gives families a better starting point and gives excellent firms a reason to contribute — without turning the member directory into a prospect list.</p>
-              <Link to="/partners" className="mt-7 inline-flex items-center gap-2 text-sm font-semibold">See the partner model <ArrowRight className="h-4 w-4 text-bronze" /></Link>
+              <div className="flex items-center gap-3"><BadgeCheck className="h-5 w-5 text-bronze" /><p className="eyebrow text-bronze">Private Office</p></div>
+              <h2 className="mt-5 font-display text-5xl leading-[1.02] md:text-6xl">When you need somebody, you should not have to start with Google.</h2>
+              <p className="mt-6 max-w-xl text-sm leading-7 text-oxblood-foreground/70">The partner network is built around people members would actually recommend: lawyers, tax advisers, trustees, immigration specialists, educators, property people, health navigators, cyber specialists, recruiters and others who understand complex families.</p>
+              <p className="mt-4 max-w-xl text-sm leading-7 text-oxblood-foreground/70">They do not buy your contact details. They earn their place by being useful. Concierge can then carry the brief, make the introduction with consent and keep the next action visible.</p>
+              <div className="mt-7 flex flex-wrap gap-4"><Link to="/partners" className="inline-flex items-center gap-2 text-sm font-semibold">Trusted Partners <ArrowRight className="h-4 w-4 text-bronze" /></Link><Link to="/concierge" className="inline-flex items-center gap-2 text-sm font-semibold">Concierge <ArrowRight className="h-4 w-4 text-bronze" /></Link></div>
             </div>
-            <div className="overflow-hidden border border-oxblood-foreground/20 bg-background/5"><img src="/art/partner-network.svg" alt="Trusted Partner Network illustration" className="aspect-[4/3] w-full object-cover" /></div>
+            <div className="relative overflow-hidden border border-oxblood-foreground/20 bg-foreground shadow-2xl">
+              <img src={luxuryImages.table} alt="Private introductions and trusted relationships" className="aspect-[16/11] w-full object-cover" />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-foreground via-foreground/75 to-transparent p-6 pt-24 text-background">
+                <p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-bronze">The rule</p>
+                <p className="mt-2 font-display text-3xl">Trust first. Transaction second.</p>
+              </div>
+            </div>
           </div>
         </Container>
       </section>
 
       <section className="border-b border-foreground/15 bg-linen py-20 md:py-28">
         <Container>
-          <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-            <figure className="overflow-hidden border border-foreground/20 bg-card image-frame"><img src="/art/alumni-path.svg" alt="Rising generation pathway from learning to mentoring" className="aspect-[4/3] w-full object-cover" /></figure>
-            <div>
-              <div className="flex items-center gap-3"><HeartHandshake className="h-5 w-5 text-oxblood" /><p className="eyebrow text-oxblood">The family continuum</p></div>
-              <h2 className="mt-5 font-display text-5xl leading-[1.02] md:text-6xl">Do not inherit the outcome without learning how to create one.</h2>
-              <p className="mt-6 text-sm leading-7 text-muted-foreground">Learning flows into real projects, founder shadowing, apprenticeships, alumni relationships and eventually adult responsibility. The last stage is giving opportunities back to the cohort coming behind.</p>
-              <Link to="/alumni" className="mt-7 inline-flex items-center gap-2 text-sm font-semibold">Explore the Continuum <ArrowRight className="h-4 w-4 text-oxblood" /></Link>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      <section className="border-b border-foreground/15 py-20 md:py-28">
-        <Container>
           <div className="grid gap-10 lg:grid-cols-[0.6fr_1.4fr]">
-            <div><p className="eyebrow text-oxblood">The rules of the room</p><h2 className="mt-5 font-display text-4xl leading-tight">Trust is infrastructure too.</h2></div>
+            <div><div className="flex items-center gap-3"><ShieldCheck className="h-5 w-5 text-oxblood" /><p className="eyebrow text-oxblood">The house rules</p></div><h2 className="mt-5 font-display text-4xl leading-tight">Small enough to know who is in the room.</h2></div>
             <div className="divide-y divide-foreground/15 border-y border-foreground/15">
-              {principles.map(([title, copy], index) => <div key={title} className="grid gap-4 py-5 md:grid-cols-[55px_170px_1fr] md:items-center"><span className="font-display text-2xl text-oxblood">0{index + 1}</span><h3 className="font-display text-2xl">{title}</h3><p className="text-sm leading-7 text-muted-foreground">{copy}</p></div>)}
+              {[
+                ["Private", "What is shared in the room stays in the room."],
+                ["Useful", "Bring judgement, experience, introductions or genuine curiosity."],
+                ["No pitching", "Business can happen. Prospecting is not the point."],
+                ["Consent", "No introduction releases your details until both sides want it."],
+                ["Finish things", "A useful conversation should eventually become a decision, an action or a lesson."],
+              ].map(([title, copy], index) => <div key={title} className="grid gap-4 py-5 md:grid-cols-[55px_150px_1fr] md:items-center"><span className="font-display text-2xl text-oxblood">0{index + 1}</span><h3 className="font-display text-2xl">{title}</h3><p className="text-sm leading-7 text-muted-foreground">{copy}</p></div>)}
             </div>
           </div>
         </Container>
       </section>
 
-      <section className="py-20 md:py-28">
-        <Container>
-          <div className="relative overflow-hidden border border-foreground/20 bg-foreground p-8 text-background md:p-12 lg:p-16">
-            <Sparkles className="absolute right-8 top-8 h-5 w-5 text-bronze" />
-            <p className="eyebrow text-background/55">Founding cohort</p>
-            <h2 className="mt-5 max-w-5xl text-balance font-display text-5xl leading-[1.02] md:text-7xl">A private institution should become indispensable before it becomes large.</h2>
-            <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end"><p className="max-w-2xl text-sm leading-7 text-background/65">We are deliberately proving the room, the workflows and the service before optimising pricing or scale. Admission is about character, contribution, commitment and fit — not theatre.</p><Button asChild size="lg" className="rounded-none bg-oxblood px-8 text-oxblood-foreground hover:bg-background hover:text-foreground"><Link to="/apply">Request a seat <ArrowRight className="ml-2 h-4 w-4" /></Link></Button></div>
+      <section className="relative overflow-hidden bg-foreground text-background">
+        <img src={luxuryImages.command} alt="Private family office command room" className="absolute inset-0 h-full w-full object-cover opacity-30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-foreground via-foreground/88 to-foreground/55" />
+        <Container className="relative py-24 md:py-32">
+          <div className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
+            <div>
+              <p className="eyebrow text-bronze">Founding membership</p>
+              <h2 className="mt-5 max-w-4xl font-display text-5xl leading-[1.01] md:text-7xl">A private house for the life behind the success.</h2>
+              <p className="mt-6 max-w-2xl text-base leading-8 text-background/68">We are keeping the founding community deliberately small. The right member is not simply wealthy. They are building, deciding, contributing and thinking about what comes next.</p>
+            </div>
+            <Button asChild size="lg" className="rounded-none bg-oxblood px-9 text-oxblood-foreground hover:bg-background hover:text-foreground"><Link to="/apply">Request a seat <ArrowRight className="ml-2 h-4 w-4" /></Link></Button>
           </div>
         </Container>
       </section>
