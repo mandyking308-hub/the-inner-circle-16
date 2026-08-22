@@ -7,6 +7,7 @@ import {
   Globe2,
   GraduationCap,
   Landmark,
+  LayoutDashboard,
   Network,
   Sparkles,
   TableProperties,
@@ -34,10 +35,17 @@ function MemberHome() {
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <StatCard label="Your Table" value="10" note="London Table 01 · next session 17 September" />
-        <StatCard label="Introductions" value="2" note="One awaiting consent · one ready to make" />
+        <StatCard label="Decision room" value="25%" note="Move country · next: reconcile expert advice" />
         <StatCard label="Concierge requests" value="1" note="Education move brief · matching experts" />
-        <StatCard label="Open actions" value="3" note="Across Table and Global Life" />
+        <StatCard label="Open actions" value="3" note="Across Decision Room and Table" />
       </div>
+
+      <section className="border border-border bg-foreground p-6 text-background md:p-8">
+        <div className="grid gap-7 lg:grid-cols-[1fr_auto] lg:items-end">
+          <div><div className="flex items-center gap-3"><LayoutDashboard className="h-5 w-5 text-bronze" /><p className="eyebrow text-background/60">Flagship workspace</p></div><h2 className="mt-4 max-w-4xl font-display text-4xl leading-tight md:text-5xl">One complicated decision. Four lanes: decide, expert, execute, evidence.</h2><p className="mt-5 max-w-3xl text-sm leading-7 text-background/70">The Life Decision Room turns a move, family-office build, education reset or succession problem into a live execution board with owners, dependencies, specialist categories and a definition of done.</p></div>
+          <Link to="/member/control-room" className="inline-flex items-center gap-2 border border-background/30 px-5 py-3 text-sm transition-colors hover:bg-background hover:text-foreground">Open Decision Room <ArrowRight className="h-4 w-4" /></Link>
+        </div>
+      </section>
 
       <section>
         <div className="flex items-end justify-between gap-5"><div><p className="eyebrow text-bronze">Your infrastructure</p><h2 className="mt-2 font-display text-3xl">The rooms behind the room</h2></div></div>
