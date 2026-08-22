@@ -1,132 +1,112 @@
-import { FormEvent, useState } from "react";
-import { createFileRoute } from "@tanstack/react-router";
-import { CheckCircle2, LockKeyhole } from "lucide-react";
+import { type FormEvent, useState } from "react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowRight, CheckCircle2, LockKeyhole } from "lucide-react";
 
 import { Container } from "@/components/layout/Container";
-import { SectionHeading } from "@/components/layout/SectionHeading";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { loadApplications, saveApplications, type MembershipApplication } from "@/data/applicationStore";
+import { luxuryImages } from "@/data/luxuryImages";
 import { site } from "@/config/site";
 
 export const Route = createFileRoute("/apply")({
-  head: () => ({
-    meta: [
-      { title: `${site.ctaLabel} — ${site.name}` },
-      { name: "description", content: `Apply for membership of ${site.name}, a private ${site.location} community.` },
-      { property: "og:title", content: `${site.ctaLabel} — ${site.name}` },
-      { property: "og:description", content: `Express interest in membership of ${site.name}.` },
-    ],
-  }),
+  head: () => ({ meta: [{ title: `${site.ctaLabel} — ${site.name}` }, { name: "description", content: `Request membership of ${site.name}.` }] }),
   component: ApplyPage,
 });
 
 function ApplyPage() {
-  const [submitted, setSubmitted] = useState(false);
+  const [submitted, setSubmitted] = useState<MembershipApplication | null>(null);
 
   const submit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setSubmitted(true);
-    if (typeof window !== "undefined") {
-      const form = new FormData(event.currentTarget);
-      const record = Object.fromEntries(form.entries());
-      const existing = JSON.parse(window.localStorage.getItem("project-table-applications") ?? "[]");
-      window.localStorage.setItem("project-table-applications", JSON.stringify([...existing, { ...record, submittedAt: new Date().toISOString() }]));
-    }
-    window?.scrollTo?.({ top: 0, behavior: "smooth" });
+    const form = new FormData(event.currentTarget);
+    const application: MembershipApplication = {
+      id: `PT-${Date.now().toString().slice(-8)}`,
+      submittedAt: new Date().toISOString(),
+      status: "New",
+      name: String(form.get("name") ?? "").trim(),
+      email: String(form.get("email") ?? "").trim(),
+      location: String(form.get("location") ?? "").trim(),
+      profile: String(form.get("profile") ?? "").trim(),
+      membership: (String(form.get("membership") ?? "Individual") as MembershipApplication["membership"]),
+      building: String(form.get("building") ?? "").trim(),
+      complicated: String(form.get("complicated") ?? "").trim(),
+      contribution: String(form.get("contribution") ?? "").trim(),
+      referral: String(form.get("referral") ?? "").trim(),
+    };
+
+    const current = loadApplications();
+    saveApplications([application, ...current]);
+    setSubmitted(application);
+    event.currentTarget.reset();
   };
 
   return (
-    <section className="py-16 md:py-24">
-      <Container>
-        {submitted ? (
-          <div className="mx-auto max-w-2xl border border-border bg-card p-7 text-center md:p-12">
-            <CheckCircle2 className="mx-auto h-6 w-6 text-bronze" />
-            <p className="mt-6 eyebrow text-bronze">Application received</p>
-            <h1 className="mt-4 font-display text-5xl">Every application is personally reviewed.</h1>
-            <p className="mx-auto mt-5 max-w-xl text-sm leading-7 text-muted-foreground">We are building a small founding community and will contact you if there is a credible fit for the current room. No automated score makes the admission decision.</p>
-            <Button className="mt-7 rounded-none" variant="outline" onClick={() => setSubmitted(false)}>Return to application</Button>
+    <>
+      <section className="relative min-h-[560px] overflow-hidden bg-foreground text-background">
+        <img src={luxuryImages.table} alt="A private members table in London" className="absolute inset-0 h-full w-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-r from-foreground/96 via-foreground/78 to-foreground/18" />
+        <Container className="relative flex min-h-[560px] items-center py-20">
+          <div className="max-w-3xl">
+            <p className="eyebrow text-bronze">Request a seat</p>
+            <h1 className="mt-6 max-w-[11ch] font-display text-6xl leading-[0.93] md:text-8xl">Tell us what you are building — and what has become complicated.</h1>
+            <p className="mt-7 max-w-2xl text-base leading-8 text-background/70">We are more interested in the life behind the title than the title itself. A human reviews every founding application.</p>
           </div>
-        ) : (
-          <>
-            <SectionHeading eyebrow="Membership" title="Request a seat" description="Tell us who you are, what you are responsible for and what you would genuinely contribute to the room. We are interested in judgement, trajectory and character — not a public display of wealth." />
+        </Container>
+      </section>
 
-            <form className="mt-12 grid gap-8 lg:grid-cols-[1fr_320px]" onSubmit={submit}>
-              <div className="space-y-8 border border-border bg-card p-5 md:p-8">
-                <fieldset>
-                  <legend className="font-display text-3xl">You</legend>
-                  <div className="mt-6 grid gap-5 md:grid-cols-2">
-                    <Field label="Full name" name="name" required />
-                    <Field label="Email" name="email" type="email" required />
-                    <Field label="Phone" name="phone" />
-                    <Field label="City" name="city" required />
-                    <Field label="Role / title" name="role" required />
-                    <Field label="Organisation" name="organisation" required />
-                  </div>
-                  <div className="mt-5 space-y-2">
-                    <Label htmlFor="category">Membership category</Label>
-                    <select id="category" name="category" required className="h-10 w-full border border-input bg-background px-3 text-sm">
-                      <option value="">Select one</option>
-                      <option>Founder / Business Owner</option>
-                      <option>Family Enterprise Principal</option>
-                      <option>Investor / Family Office</option>
-                      <option>Trusted Adviser</option>
-                      <option>Philanthropy / Impact Leader</option>
-                    </select>
-                  </div>
-                  <Area label="Short professional biography" name="bio" rows={4} required />
-                </fieldset>
-
-                <fieldset className="border-t border-border pt-8">
-                  <legend className="font-display text-3xl">The room</legend>
-                  <Area label="What are you building or responsible for?" name="building" rows={4} required />
-                  <Area label="Why do you want to join?" name="why" rows={4} required />
-                  <Area label="What can you contribute to other members?" name="contribution" rows={4} required />
-                  <Area label="What do you want help thinking through?" name="challenge" rows={4} required />
-                </fieldset>
-
-                <fieldset className="border-t border-border pt-8">
-                  <legend className="font-display text-3xl">Context</legend>
-                  <div className="mt-6 grid gap-5 md:grid-cols-2">
-                    <Field label="Areas of expertise" name="expertise" placeholder="AI, governance, health, investment…" />
-                    <Field label="Impact interests" name="impact" placeholder="Health, education, climate…" />
-                    <Field label="Who referred you?" name="referral" placeholder="Optional" />
-                    <Field label="LinkedIn or website" name="link" placeholder="Optional" />
-                  </div>
-                </fieldset>
-
-                <label className="flex items-start gap-3 border-t border-border pt-6 text-sm leading-7">
-                  <input type="checkbox" name="principles" required className="mt-1.5" />
-                  <span>I understand that confidentiality and no-solicitation are membership principles, and that membership does not grant permission to harvest member data or pitch the community.</span>
-                </label>
-
-                <Button type="submit" size="lg" className="rounded-none px-8">Submit application</Button>
-              </div>
-
-              <aside className="space-y-5 lg:sticky lg:top-28 lg:self-start">
-                <div className="border border-border bg-foreground p-6 text-background">
-                  <LockKeyhole className="h-5 w-5 text-bronze" />
-                  <p className="mt-7 eyebrow text-background/60">What we do not ask for here</p>
-                  <ul className="mt-5 space-y-3 text-sm leading-6 text-background/75">
-                    <li>Net worth</li><li>Bank statements</li><li>Trust documents</li><li>Children's details</li><li>Home address</li>
-                  </ul>
-                  <p className="mt-5 border-t border-background/20 pt-5 text-xs leading-6 text-background/60">If verification is later required for a specific membership type, it should be handled privately and proportionately — never displayed to other members.</p>
+      <section className="py-16 md:py-24">
+        <Container>
+          <div className="grid gap-10 lg:grid-cols-[0.62fr_1.38fr]">
+            <aside className="lg:sticky lg:top-28 lg:self-start">
+              <div className="border border-foreground/15 bg-linen p-6 md:p-7">
+                <LockKeyhole className="h-5 w-5 text-oxblood" />
+                <h2 className="mt-6 font-display text-3xl">What happens next?</h2>
+                <div className="mt-5 space-y-4 text-sm leading-7 text-muted-foreground">
+                  <p>We read the application for fit, contribution and whether the current community can genuinely be useful to you.</p>
+                  <p>If there appears to be a fit, the next step is a conversation — not an automated checkout page.</p>
+                  <p>Founding membership is deliberately small while the service is being proved.</p>
                 </div>
-                <div className="border border-border bg-card p-5"><p className="eyebrow text-bronze">Founding stage</p><p className="mt-3 text-sm leading-7 text-muted-foreground">Applications are being curated manually while the first London Tables are formed. The goal is a strong room before a large membership number.</p></div>
-              </aside>
-            </form>
-          </>
-        )}
-      </Container>
-    </section>
+              </div>
+              <p className="mt-4 text-[10px] leading-5 text-muted-foreground">Private preview: applications are currently stored in this browser and appear in the prototype Admin review queue. Production launch will move this workflow to the secure database.</p>
+            </aside>
+
+            <div>
+              {submitted ? (
+                <div className="border border-foreground/15 bg-card p-7 md:p-10">
+                  <CheckCircle2 className="h-6 w-6 text-oxblood" />
+                  <p className="mt-7 text-[10px] font-semibold uppercase tracking-[0.2em] text-oxblood">Application received</p>
+                  <h2 className="mt-3 font-display text-5xl">Thank you, {submitted.name.split(" ")[0] || "there"}.</h2>
+                  <p className="mt-5 max-w-2xl text-sm leading-7 text-muted-foreground">Your application is now in the private review queue as <strong>{submitted.id}</strong>. In this preview you can open Admin → Applications to see the same record arrive there.</p>
+                  <div className="mt-8 flex flex-wrap gap-3"><Button asChild className="rounded-none"><Link to="/admin/applications">View admin queue <ArrowRight className="ml-2 h-4 w-4" /></Link></Button><Button type="button" variant="outline" className="rounded-none" onClick={() => setSubmitted(null)}>Submit another</Button></div>
+                </div>
+              ) : (
+                <form onSubmit={submit} className="border border-foreground/15 bg-card p-6 md:p-9">
+                  <div className="grid gap-5 md:grid-cols-2">
+                    <div className="space-y-2"><Label htmlFor="name">Name</Label><Input id="name" name="name" required className="rounded-none" /></div>
+                    <div className="space-y-2"><Label htmlFor="email">Email</Label><Input id="email" name="email" type="email" required className="rounded-none" /></div>
+                    <div className="space-y-2"><Label htmlFor="location">Where does life happen?</Label><Input id="location" name="location" placeholder="e.g. London / Dubai / New York" className="rounded-none" /></div>
+                    <div className="space-y-2"><Label htmlFor="profile">What best describes you?</Label><Input id="profile" name="profile" placeholder="Founder, family business, investor, adviser..." className="rounded-none" /></div>
+                    <div className="space-y-2 md:col-span-2"><Label htmlFor="membership">Which door seems most relevant?</Label><select id="membership" name="membership" className="h-10 w-full rounded-none border border-input bg-background px-3 text-sm"><option>Individual</option><option>Family</option><option>Trusted Partner</option></select></div>
+                  </div>
+
+                  <div className="mt-7 space-y-6 border-t border-foreground/12 pt-7">
+                    <div className="space-y-2"><Label htmlFor="building">What are you building or responsible for?</Label><Textarea id="building" name="building" rows={4} required className="rounded-none" placeholder="The business, family enterprise, investment work or professional responsibility that matters most right now." /></div>
+                    <div className="space-y-2"><Label htmlFor="complicated">What has become complicated?</Label><Textarea id="complicated" name="complicated" rows={5} required className="rounded-none" placeholder="A move, succession, schools, advisers, growth, family governance, time, access — tell us the real version." /></div>
+                    <div className="space-y-2"><Label htmlFor="contribution">What would you bring to the room?</Label><Textarea id="contribution" name="contribution" rows={4} required className="rounded-none" placeholder="Experience, judgement, relationships, a sector you know deeply, willingness to mentor or something else useful." /></div>
+                    <div className="space-y-2"><Label htmlFor="referral">How did you hear about us?</Label><Input id="referral" name="referral" placeholder="Member introduction, event, search, other" className="rounded-none" /></div>
+                  </div>
+
+                  <Button type="submit" size="lg" className="mt-8 w-full rounded-none bg-oxblood">Send private application <ArrowRight className="ml-2 h-4 w-4" /></Button>
+                  <p className="mt-4 text-center text-[10px] leading-5 text-muted-foreground">No payment is taken at application. Partner applicants do not receive member access simply by applying.</p>
+                </form>
+              )}
+            </div>
+          </div>
+        </Container>
+      </section>
+    </>
   );
-}
-
-function Field({ label, name, type = "text", required, placeholder }: { label: string; name: string; type?: string; required?: boolean; placeholder?: string }) {
-  return <div className="space-y-2"><Label htmlFor={name}>{label}</Label><Input id={name} name={name} type={type} required={required} placeholder={placeholder} className="rounded-none" /></div>;
-}
-
-function Area({ label, name, rows, required }: { label: string; name: string; rows: number; required?: boolean }) {
-  return <div className="mt-5 space-y-2"><Label htmlFor={name}>{label}</Label><Textarea id={name} name={name} rows={rows} required={required} className="rounded-none" /></div>;
 }
