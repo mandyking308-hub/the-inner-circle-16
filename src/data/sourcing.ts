@@ -388,7 +388,12 @@ export function matchBench(sourcing: Pick<SourcingCase, "category" | "cities" | 
       }
     }
 
-    if (score < 4) continue;
+    const categoryMatch = supplier.category === sourcing.category;
+    const focusMatch = reason.includes("Focus language overlaps the need");
+    // A city alone is not a match. The bench only surfaces on category, or on
+    // language that genuinely answers the need.
+    if (!categoryMatch && !focusMatch) continue;
+    if (score < 5) continue;
     matches.push({
       supplierId: supplier.id,
       supplier: supplier.name,
