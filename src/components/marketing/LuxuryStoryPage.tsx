@@ -20,6 +20,7 @@ export function LuxuryStoryPage({
   introduction,
   heroImage,
   heroAlt,
+  heroPositionClassName = "object-center",
   statementEyebrow = "The idea",
   statement,
   statementBody,
@@ -37,6 +38,7 @@ export function LuxuryStoryPage({
   introduction: string;
   heroImage: string;
   heroAlt: string;
+  heroPositionClassName?: string;
   statementEyebrow?: string;
   statement: string;
   statementBody: string;
@@ -52,7 +54,7 @@ export function LuxuryStoryPage({
   return (
     <>
       <section className="relative min-h-[78vh] overflow-hidden bg-[#171716] text-white">
-        <img src={heroImage} alt={heroAlt} className="absolute inset-0 h-full w-full object-cover" fetchPriority="high" />
+        <img src={heroImage} alt={heroAlt} className={`absolute inset-0 h-full w-full object-cover ${heroPositionClassName}`} fetchPriority="high" />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,11,10,0.72)_0%,rgba(11,11,10,0.42)_43%,rgba(11,11,10,0.08)_78%)]" />
         <Container className="relative flex min-h-[78vh] items-end py-20 md:py-28">
           <div className="max-w-4xl">
