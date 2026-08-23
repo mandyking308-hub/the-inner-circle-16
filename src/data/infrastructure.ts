@@ -94,6 +94,20 @@ export const trustedPartners = [
   },
 ] as const;
 
+export type MemberFacingPartner = {
+  id: string;
+  name: string;
+  category: string;
+  focus: string;
+};
+
+/**
+ * Real, approved, member-facing advisers and providers.
+ * Intentionally empty: a record is added here only once the provider has been
+ * used on a real matter, given two references and cleared assurance.
+ */
+export const approvedMemberFacingPartners: MemberFacingPartner[] = [];
+
 export const partnerValue = [
   {
     title: "Qualified demand, not a mailing list",
