@@ -56,14 +56,14 @@ function GlobalLifePage() {
       {/* Hero */}
       <section className="relative min-h-[620px] overflow-hidden bg-foreground text-background md:min-h-[760px]">
         <img
-          src={luxuryImages.world}
-          alt="A coastal residence terrace above a Mediterranean bay"
-          width={1600}
-          height={1000}
+          src={heroCoastalResidence}
+          alt="An infinity pool on the stone terrace of a private Mediterranean residence above a blue bay"
+          width={1920}
+          height={1200}
           className="absolute inset-0 h-full w-full object-cover object-center"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(12,12,11,0.80)_0%,rgba(12,12,11,0.48)_48%,rgba(12,12,11,0.06)_86%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,12,11,0.25)_0%,rgba(12,12,11,0.58)_45%,rgba(12,12,11,0.82)_100%)] md:hidden" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(12,12,11,0.74)_0%,rgba(12,12,11,0.40)_50%,rgba(12,12,11,0.04)_88%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,12,11,0.18)_0%,rgba(12,12,11,0.52)_45%,rgba(12,12,11,0.80)_100%)] md:hidden" />
         <Container className="relative flex min-h-[620px] items-end py-20 md:min-h-[760px] md:py-28">
           <div className="max-w-3xl">
             <p className="eyebrow text-bronze">Global Life</p>
