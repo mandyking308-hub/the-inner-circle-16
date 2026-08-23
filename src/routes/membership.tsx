@@ -27,7 +27,7 @@ const included = [
   },
   {
     title: "The next generation, included",
-    body: "Family and rising-generation access, where recorded in your Membership Schedule.",
+    body: "Household access for approved adults and the rising generation — each with their own login and their own permissions, as recorded in your Membership Schedule.",
   },
   {
     title: "A serious private office behind it",

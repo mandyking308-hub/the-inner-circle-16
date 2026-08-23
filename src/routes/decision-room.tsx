@@ -48,7 +48,7 @@ export function DecisionRoomPage() {
 
       <section className="border-b border-background/10 bg-foreground py-20 text-background md:py-28">
         <Container>
-          <div className="mb-12 grid gap-8 lg:grid-cols-[0.75fr_1.25fr] lg:items-end"><div><p className="eyebrow text-bronze">Four rooms already built</p><h2 className="mt-5 font-display text-5xl leading-[1.02] md:text-6xl">Start where life is already complicated.</h2></div><p className="max-w-xl text-sm leading-7 text-background/60 lg:justify-self-end">These are not articles. Inside membership they become working boards with tasks, owners, dependencies, progress and direct routes into the Table, Trusted Partners and Concierge.</p></div>
+          <div className="mb-12 grid gap-8 lg:grid-cols-[0.75fr_1.25fr] lg:items-end"><div><p className="eyebrow text-bronze">Four rooms already built</p><h2 className="mt-5 font-display text-5xl leading-[1.02] md:text-6xl">Start where life is already complicated.</h2></div><p className="max-w-xl text-sm leading-7 text-background/60 lg:justify-self-end">These are not articles. Inside membership they become working boards with tasks, owners, dependencies, progress and direct routes into the Table, sourced outside expertise and the Private Office.</p></div>
           <div className="divide-y divide-background/15 border-y border-background/15">
             {[
               ["Move country", "Residence, tax, entities, trusts, schools, homes, banking, insurance, healthcare and day counts."],
