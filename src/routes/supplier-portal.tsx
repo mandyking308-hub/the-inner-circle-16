@@ -6,6 +6,8 @@ import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/button";
 import { enableSupplierPreview } from "@/components/supplier/SupplierShell";
 import { site } from "@/config/site";
+import { supplierLegalVersionBundle } from "@/config/legal";
+import { recordSupplierAcceptance } from "@/lib/legalAcceptance";
 import { supplierOrgs } from "@/data/privateServices";
 
 export const Route = createFileRoute("/supplier-portal")({
