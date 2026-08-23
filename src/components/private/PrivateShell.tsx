@@ -196,14 +196,9 @@ export function PrivateShell({ mode, children }: PrivateShellProps) {
                         onClick={() => setMobileOpen(false)}
                         className={`group flex items-center justify-between border-l-2 px-3 py-3 text-[12px] transition-colors ${active ? "border-oxblood bg-background/8 text-background" : "border-transparent text-background/55 hover:bg-background/5 hover:text-background"}`}
                       >
-                        <span className="flex items-center gap-3">
-                          <Icon
-                            className={`h-3.5 w-3.5 ${active ? "text-bronze" : "text-background/35"}`}
-                          />
-                          {item.label}
-                        </span>
-                        
+                        <span className="tracking-[0.02em]">{item.label}</span>
                       </Link>
+
                     );
                   })}
                 </div>
