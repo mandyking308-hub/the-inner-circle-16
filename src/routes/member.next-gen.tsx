@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { BookOpenCheck, BriefcaseBusiness, HandHeart, Sparkles } from "lucide-react";
 
 import { PageIntro } from "@/components/private/PrivateShell";
 
@@ -9,25 +8,21 @@ export const Route = createFileRoute("/member/next-gen")({
 
 const programmes = [
   {
-    icon: BookOpenCheck,
     title: "Stewardship foundations",
     age: "Family-led · staged by age",
     description: "Ownership, responsibility, decision-making and the difference between having access to assets and being ready to govern them.",
   },
   {
-    icon: BriefcaseBusiness,
     title: "Build something",
     age: "Project based",
     description: "Entrepreneurship through real small projects: idea, customer, cost, execution, reflection and what happens when the plan fails.",
   },
   {
-    icon: Sparkles,
     title: "Technology & AI",
     age: "Practical literacy",
     description: "How modern tools work, how to use them responsibly and how to think about privacy, automation, creativity and judgement.",
   },
   {
-    icon: HandHeart,
     title: "Philanthropy in practice",
     age: "Family + community",
     description: "Young people learn to examine a problem, ask what is genuinely useful and understand that giving money is not the same as creating impact.",
@@ -45,12 +40,10 @@ function NextGenPage() {
 
       <div className="grid gap-4 md:grid-cols-2">
         {programmes.map((programme) => {
-          const Icon = programme.icon;
           return (
             <article key={programme.title} className="border border-border bg-card p-5 md:p-6">
               <div className="flex items-start justify-between gap-3">
-                <Icon className="h-5 w-5 text-bronze" />
-                <span className="text-[10px] uppercase tracking-[0.16em] text-muted-foreground">{programme.age}</span>
+                                <span className="text-[10px] uppercase tracking-[0.16em] text-muted-foreground">{programme.age}</span>
               </div>
               <h2 className="mt-5 font-display text-3xl">{programme.title}</h2>
               <p className="mt-3 text-sm leading-7 text-muted-foreground">{programme.description}</p>

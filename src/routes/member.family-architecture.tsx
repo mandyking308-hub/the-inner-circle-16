@@ -1,6 +1,5 @@
 import { type FormEvent, useEffect, useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { Building2, FileText, Globe2, Landmark, ShieldCheck, UserRound } from "lucide-react";
 
 import { PageIntro } from "@/components/private/PrivateShell";
 import { Button } from "@/components/ui/button";
@@ -40,15 +39,6 @@ const starterState: ArchitectureState = {
   ],
 };
 
-const typeIcon: Record<EntityType, typeof UserRound> = {
-  Person: UserRound,
-  Company: Building2,
-  "Trust / Foundation": ShieldCheck,
-  "Property / Asset": Landmark,
-  Adviser: UserRound,
-  Jurisdiction: Globe2,
-  "Document reference": FileText,
-};
 
 function FamilyArchitecturePage() {
   const [state, setState] = useState<ArchitectureState>(starterState);
@@ -110,8 +100,7 @@ function FamilyArchitecturePage() {
         <div className="flex items-end justify-between gap-5"><div><p className="eyebrow text-oxblood">Architecture graph</p><h2 className="mt-2 font-display text-4xl">The entities</h2></div><span className="text-xs text-muted-foreground">{state.entities.length} entities · {state.relationships.length} relationships</span></div>
         <div className="mt-5 grid gap-4 xl:grid-cols-3">
           {grouped.map(({ type, entities }) => {
-            const Icon = typeIcon[type];
-            return <article key={type} className="border border-border bg-card"><div className="flex items-center justify-between border-b border-border p-4"><div className="flex items-center gap-3"><Icon className="h-4 w-4 text-oxblood" /><h3 className="font-display text-2xl">{type}</h3></div><span className="text-[9px] uppercase tracking-[0.14em] text-muted-foreground">{entities.length}</span></div><div className="divide-y divide-border">{entities.length ? entities.map((entity) => <div key={entity.id} className="group p-4"><div className="flex items-start justify-between gap-3"><div><p className="text-sm font-semibold">{entity.name}</p>{entity.note ? <p className="mt-2 text-xs leading-6 text-muted-foreground">{entity.note}</p> : null}</div><button type="button" onClick={() => removeEntity(entity.id)} aria-label={`Remove ${entity.name}`} className="opacity-40 transition-opacity hover:opacity-100"></button></div></div>) : <p className="p-4 text-xs text-muted-foreground">Nothing added yet.</p>}</div></article>;
+            return <article key={type} className="border border-border bg-card"><div className="flex items-center justify-between border-b border-border p-4"><div className="flex items-center gap-3"><h3 className="font-display text-2xl">{type}</h3></div><span className="text-[9px] uppercase tracking-[0.14em] text-muted-foreground">{entities.length}</span></div><div className="divide-y divide-border">{entities.length ? entities.map((entity) => <div key={entity.id} className="group p-4"><div className="flex items-start justify-between gap-3"><div><p className="text-sm font-semibold">{entity.name}</p>{entity.note ? <p className="mt-2 text-xs leading-6 text-muted-foreground">{entity.note}</p> : null}</div><button type="button" onClick={() => removeEntity(entity.id)} aria-label={`Remove ${entity.name}`} className="text-[9px] uppercase tracking-[0.14em] text-muted-foreground opacity-60 transition-opacity hover:opacity-100">Remove</button></div></div>) : <p className="p-4 text-xs text-muted-foreground">Nothing added yet.</p>}</div></article>;
           })}
         </div>
       </section>
