@@ -1,25 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
-import { z } from "zod";
 
 import { membershipPricing } from "@/config/membershipPricing";
-
-const checkoutInput = z.object({
-  name: z.string().trim().min(2).max(120),
-  email: z.string().trim().email().max(254),
-  country: z.string().trim().min(2).max(80).optional(),
-  acceptedTerms: z.literal(true),
-  requestedImmediateService: z.literal(true),
-});
-
-const checkoutResponse = z.object({
-  checkout_url: z.string().url(),
-  session_id: z.string().optional(),
-});
-
-function dodoApiBaseUrl() {
-  const environment = process.env["DODO_PAYMENTS_ENVIRONMENT"]?.trim();
-  return environment === "live_mode" ? "https://live.dodopayments.com" : "https://test.dodopayments.com";
-}
+import { checkoutInput, checkoutResponse, dodoApiBaseUrl } from "@/functions/membershipCheckout.server";
 
 /**
  * The annual product is intentionally configured as a one-time 12-month
@@ -27,6 +9,9 @@ function dodoApiBaseUrl() {
  * renewal pricing explicit while Montvelle follows a rising annual price
  * strategy. The joining product is a separate one-time fee. Both are placed in
  * the same hosted Dodo Checkout Session.
+ *
+ * Dodo Payments may act as merchant of record for the transaction where
+ * configured; GSM operates and performs the membership itself.
  */
 export const createMembershipCheckoutFn = createServerFn({ method: "POST" })
   .validator((input: unknown) => checkoutInput.parse(input))
@@ -63,9 +48,12 @@ export const createMembershipCheckoutFn = createServerFn({ method: "POST" })
           offer: `founding_membership_${membershipPricing.pricingYear}`,
           annual_fee_pence: String(membershipPricing.annualPence),
           joining_fee_pence: String(membershipPricing.joiningPence),
-          country: data.country ?? "not_provided",
-          terms_acknowledged: "true",
-          immediate_service_requested: "true",
+          country_of_residence: data.country ?? "not_provided",
+          legal_version_bundle: data.legalVersionBundle,
+          terms_accepted_at: data.acceptedAt,
+          terms_acknowledged: String(data.acceptedTerms),
+          admission_checks_acknowledged: String(data.acknowledgedAdmissionChecks),
+          immediate_service_requested: String(data.requestedImmediateService),
         },
       }),
     });
