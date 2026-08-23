@@ -18,9 +18,15 @@ import {
   type MemberSourcingRequest,
 } from "@/data/memberSourcing";
 
-export const Route = createFileRoute("/member/services")({ component: MemberServicesPage });
+export const Route = createFileRoute("/member/services")({
+  validateSearch: (search: Record<string, unknown>) => ({
+    need: typeof search["need"] === "string" ? (search["need"] as string).slice(0, 400) : undefined,
+  }),
+  component: MemberServicesPage,
+});
 
 function MemberServicesPage() {
+  const { need: prefilledNeed } = Route.useSearch();
   const [requests, setRequests] = useState<MemberSourcingRequest[]>([]);
   const [hydrated, setHydrated] = useState(false);
   const [selectedId, setSelectedId] = useState("");
@@ -174,6 +180,7 @@ function MemberServicesPage() {
             name="need"
             required
             rows={4}
+            defaultValue={prefilledNeed ?? ""}
             className="rounded-none"
             placeholder="Describe the thing itself, and anything that cannot change."
           />
