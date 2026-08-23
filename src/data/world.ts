@@ -1,8 +1,18 @@
+import worldLondon from "@/assets/world-london.jpg";
+import worldDubai from "@/assets/world-dubai.jpg";
+import worldGeneva from "@/assets/world-geneva.jpg";
+import worldLisbon from "@/assets/world-lisbon.jpg";
+import worldNewYork from "@/assets/world-newyork.jpg";
+import worldSingapore from "@/assets/world-singapore.jpg";
+import worldMonaco from "@/assets/world-monaco.jpg";
+import worldParis from "@/assets/world-paris.jpg";
+
 export type WorldPlace = {
   city: string;
   country: string;
   theme: string;
   line: string;
+  image: string;
 };
 
 export const worldNodes: WorldPlace[] = [
@@ -11,48 +21,56 @@ export const worldNodes: WorldPlace[] = [
     country: "United Kingdom",
     theme: "Home & Family",
     line: "Home, school, advisers, culture and capital can all sit within one familiar rhythm.",
+    image: worldLondon,
   },
   {
     city: "Dubai",
     country: "United Arab Emirates",
     theme: "Business & Residence",
     line: "A place for business, family, residence and regional connections — with the right local people around you.",
+    image: worldDubai,
   },
   {
     city: "Geneva",
     country: "Switzerland",
     theme: "Health & Family Office",
     line: "Private health, philanthropy, family-office relationships and trusted advisers, coordinated with discretion.",
+    image: worldGeneva,
   },
   {
     city: "Lisbon",
     country: "Portugal",
     theme: "Residence & Lifestyle",
     line: "A gentler base for residence and family life, with support around property, education and settling in.",
+    image: worldLisbon,
   },
   {
     city: "New York",
     country: "United States",
     theme: "Business & Culture",
     line: "For business, education, culture and relationships — with the right introductions when they matter.",
+    image: worldNewYork,
   },
   {
     city: "Singapore",
     country: "Singapore",
     theme: "Asia & Family Office",
     line: "A thoughtful base for Asia, connecting family office, education, residence and trusted local expertise.",
+    image: worldSingapore,
   },
   {
     city: "Monaco",
     country: "Monaco",
     theme: "Residence & Lifestyle",
     line: "A compact world of residence, property and private relationships, handled with care and privacy.",
+    image: worldMonaco,
   },
   {
     city: "Paris",
     country: "France",
     theme: "Culture & Family",
     line: "Close enough to feel familiar, different enough to open another world of culture, education and everyday life.",
+    image: worldParis,
   },
 ];
 
