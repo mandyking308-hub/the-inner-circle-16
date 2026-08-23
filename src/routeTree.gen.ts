@@ -18,6 +18,7 @@ import { Route as ApplyRouteImport } from './routes/apply'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ConciergeRouteImport } from './routes/concierge'
 import { Route as ConfidentialityRouteImport } from './routes/confidentiality'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as DecisionRoomRouteImport } from './routes/decision-room'
 import { Route as DemoRouteImport } from './routes/demo'
@@ -145,6 +146,11 @@ const ConciergeRoute = ConciergeRouteImport.update({
 const ConfidentialityRoute = ConfidentialityRouteImport.update({
   id: '/confidentiality',
   path: '/confidentiality',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CookiesRoute = CookiesRouteImport.update({
@@ -575,6 +581,7 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/concierge': typeof ConciergeRoute
   '/confidentiality': typeof ConfidentialityRoute
+  '/contact': typeof ContactRoute
   '/cookies': typeof CookiesRoute
   '/decision-room': typeof DecisionRoomRoute
   '/demo': typeof DemoRoute
@@ -668,6 +675,7 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/concierge': typeof ConciergeRoute
   '/confidentiality': typeof ConfidentialityRoute
+  '/contact': typeof ContactRoute
   '/cookies': typeof CookiesRoute
   '/decision-room': typeof DecisionRoomRoute
   '/demo': typeof DemoRoute
@@ -761,6 +769,7 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/concierge': typeof ConciergeRoute
   '/confidentiality': typeof ConfidentialityRoute
+  '/contact': typeof ContactRoute
   '/cookies': typeof CookiesRoute
   '/decision-room': typeof DecisionRoomRoute
   '/demo': typeof DemoRoute
@@ -857,6 +866,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/concierge'
     | '/confidentiality'
+    | '/contact'
     | '/cookies'
     | '/decision-room'
     | '/demo'
@@ -950,6 +960,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/concierge'
     | '/confidentiality'
+    | '/contact'
     | '/cookies'
     | '/decision-room'
     | '/demo'
@@ -1042,6 +1053,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/concierge'
     | '/confidentiality'
+    | '/contact'
     | '/cookies'
     | '/decision-room'
     | '/demo'
@@ -1137,6 +1149,7 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   ConciergeRoute: typeof ConciergeRoute
   ConfidentialityRoute: typeof ConfidentialityRoute
+  ContactRoute: typeof ContactRoute
   CookiesRoute: typeof CookiesRoute
   DecisionRoomRoute: typeof DecisionRoomRoute
   DemoRoute: typeof DemoRoute
@@ -1231,6 +1244,13 @@ declare module '@tanstack/react-router' {
       path: '/confidentiality'
       fullPath: '/confidentiality'
       preLoaderRoute: typeof ConfidentialityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cookies': {
@@ -1972,6 +1992,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   ConciergeRoute: ConciergeRoute,
   ConfidentialityRoute: ConfidentialityRoute,
+  ContactRoute: ContactRoute,
   CookiesRoute: CookiesRoute,
   DecisionRoomRoute: DecisionRoomRoute,
   DemoRoute: DemoRoute,
