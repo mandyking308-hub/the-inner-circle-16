@@ -19,9 +19,8 @@ import {
 } from "@/data/memberSourcing";
 
 export const Route = createFileRoute("/member/services")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    need: typeof search["need"] === "string" ? (search["need"] as string).slice(0, 400) : undefined,
-  }),
+  validateSearch: (search: Record<string, unknown>): { need?: string } =>
+    typeof search["need"] === "string" ? { need: (search["need"] as string).slice(0, 400) } : {},
   component: MemberServicesPage,
 });
 

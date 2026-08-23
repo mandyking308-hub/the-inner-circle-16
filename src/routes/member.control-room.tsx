@@ -11,9 +11,8 @@ import { decisionRooms, type DecisionIcon, type DecisionLane, type DecisionRoomT
 import { luxuryImages } from "@/data/luxuryImages";
 
 export const Route = createFileRoute("/member/control-room")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    topic: typeof search["topic"] === "string" ? (search["topic"] as string).slice(0, 120) : undefined,
-  }),
+  validateSearch: (search: Record<string, unknown>): { topic?: string } =>
+    typeof search["topic"] === "string" ? { topic: (search["topic"] as string).slice(0, 120) } : {},
   component: ControlRoomPage,
 });
 
