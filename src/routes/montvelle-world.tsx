@@ -84,6 +84,19 @@ function MontvelleWorldPage() {
               Membership opens a private environment built around your life rather than around software: what needs you
               today, what someone else is already carrying, and everything that can safely wait.
             </p>
+            <div className="mt-9 flex flex-wrap items-center gap-5">
+              <Button asChild className="rounded-none bg-background px-7 py-6 text-foreground hover:bg-background/90">
+                <Link to="/apply">
+                  Request membership <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <Link
+                to="/auth"
+                className="border-b border-bronze/60 pb-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-bronze transition-colors hover:text-background"
+              >
+                Member access
+              </Link>
+            </div>
           </div>
         </Container>
       </section>
