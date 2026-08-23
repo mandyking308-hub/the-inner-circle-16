@@ -5,7 +5,7 @@ import { site } from "@/config/site";
 import { pageImages } from "@/data/pageImages";
 
 export const Route = createFileRoute("/global-life")({
-  head: () => ({ meta: [{ title: `The World — ${site.name}` }, { name: "description", content: "Private support for families whose lives span more than one city or country — from schools and homes to trusted people and the practical details around a move." }],
+  head: () => ({ meta: [{ title: `Global Life — ${site.name}` }, { name: "description", content: "Private support for families whose lives span more than one city or country — from schools and homes to trusted people and the practical details around a move." }],
     links: [{ rel: "canonical", href: `${site.url}/global-life` }], }),
   component: GlobalLifePage,
 });
