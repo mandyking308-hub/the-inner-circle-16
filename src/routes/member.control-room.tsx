@@ -1,6 +1,5 @@
 import { type FormEvent, useEffect, useMemo, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Globe2, GraduationCap, Landmark, ShieldCheck } from "lucide-react";
 
 import { PageIntro } from "@/components/private/PrivateShell";
 import { Button } from "@/components/ui/button";
@@ -18,7 +17,6 @@ export const Route = createFileRoute("/member/control-room")({
 
 const STORAGE_KEY = "project-table:decision-room:v2";
 const laneOrder: DecisionLane[] = ["DECIDE", "EXPERT", "EXECUTE", "EVIDENCE"];
-const icons: Record<DecisionIcon, typeof Globe2> = { globe: Globe2, landmark: Landmark, learning: GraduationCap, shield: ShieldCheck };
 
 type DecisionLogEntry = { id: string; text: string; date: string };
 type DocumentReference = { id: string; name: string; note: string };
@@ -154,7 +152,7 @@ function ControlRoomPage() {
       </section>
 
       <section className="flex gap-2 overflow-x-auto pb-1">
-        {rooms.map((room) => { const Icon = icons[room.icon]; const selected = room.id === active.id; return <button key={room.id} type="button" onClick={() => setState((current) => ({ ...current, activeId: room.id }))} className={`min-w-[210px] border p-5 text-left transition-colors ${selected ? "border-oxblood bg-oxblood text-oxblood-foreground" : "border-border bg-card hover:bg-accent"}`}><Icon className={`h-5 w-5 ${selected ? "text-bronze" : "text-muted-foreground"}`} /><p className="mt-5 text-[9px] font-semibold uppercase tracking-[0.18em] opacity-60">Decision room</p><h3 className="mt-2 font-display text-2xl">{room.label}</h3></button>; })}
+        {rooms.map((room) => { const selected = room.id === active.id; return <button key={room.id} type="button" onClick={() => setState((current) => ({ ...current, activeId: room.id }))} className={`min-w-[210px] border p-5 text-left transition-colors ${selected ? "border-oxblood bg-oxblood text-oxblood-foreground" : "border-border bg-card hover:bg-accent"}`}><p className="mt-5 text-[9px] font-semibold uppercase tracking-[0.18em] opacity-60">Decision room</p><h3 className="mt-2 font-display text-2xl">{room.label}</h3></button>; })}
       </section>
 
       <section className="border border-border bg-card">

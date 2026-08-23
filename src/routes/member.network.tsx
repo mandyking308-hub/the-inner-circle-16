@@ -1,5 +1,4 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { MessageSquareText, Network, TableProperties, Users } from "lucide-react";
 
 import { PageIntro } from "@/components/private/PrivateShell";
 
@@ -8,25 +7,21 @@ export const Route = createFileRoute("/member/network")({ component: CommunityHu
 function CommunityHubPage() {
   const rooms = [
     [
-      TableProperties,
       "My Table",
       "Your permanent peer circle, next agenda, confidential challenges and commitments.",
       "/member/table",
     ],
     [
-      Users,
       "Member Community",
       "People in Montvelle, the experience they hold, and why they might be relevant to what you are working on.",
       "/member/community",
     ],
     [
-      Network,
       "Introductions",
       "Ask for a warm introduction with context, a desired outcome and consent on both sides.",
       "/member/introductions",
     ],
     [
-      MessageSquareText,
       "Ask & Offer",
       "Put a real need or a useful offer in front of the community, without cold outreach.",
       "/member/ask-offer",
@@ -41,7 +36,7 @@ function CommunityHubPage() {
         description="The value is not a list of impressive names. It is knowing who might be relevant, why an introduction makes sense, and whether both sides want it."
       />
       <div className="grid gap-px bg-border md:grid-cols-2">
-        {rooms.map(([Icon, title, body, to]) => (
+        {rooms.map(([title, body, to]) => (
           <Link key={title} to={to} className="group bg-card p-6 transition-colors hover:bg-accent">
             <Icon className="h-5 w-5 text-oxblood" />
             <h2 className="mt-7 font-display text-3xl">{title}</h2>

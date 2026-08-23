@@ -1,6 +1,5 @@
 import { useMemo, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Search } from "lucide-react";
 
 import { PageIntro } from "@/components/private/PrivateShell";
 import { Input } from "@/components/ui/input";

@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { BriefcaseBusiness, GraduationCap, HeartHandshake, Network } from "lucide-react";
 
 import { PageIntro } from "@/components/private/PrivateShell";
 import { Button } from "@/components/ui/button";
@@ -21,13 +20,12 @@ function MemberAlumniPage() {
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         {[
-          [GraduationCap, "Learn", "Master skills and build an evidence portfolio."],
-          [BriefcaseBusiness, "Work", "Take on real projects, shadowing and apprenticeships."],
-          [Network, "Belong", "Build an age-appropriate peer and mentor network."],
-          [HeartHandshake, "Give back", "Return later as a mentor, host, employer or donor."],
-        ].map(([Icon, title, body]) => {
-          const Component = Icon as typeof GraduationCap;
-          return <article key={String(title)} className="border border-border bg-card p-5"><Component className="h-5 w-5 text-bronze" /><h2 className="mt-5 font-display text-3xl">{String(title)}</h2><p className="mt-3 text-xs leading-6 text-muted-foreground">{String(body)}</p></article>;
+          ["Learn", "Master skills and build an evidence portfolio."],
+          ["Work", "Take on real projects, shadowing and apprenticeships."],
+          ["Belong", "Build an age-appropriate peer and mentor network."],
+          ["Give back", "Return later as a mentor, host, employer or donor."],
+        ].map(([title, body]) => {
+          return <article key={String(title)} className="border border-border bg-card p-5"><h2 className="mt-5 font-display text-3xl">{String(title)}</h2><p className="mt-3 text-xs leading-6 text-muted-foreground">{String(body)}</p></article>;
         })}
       </div>
 
