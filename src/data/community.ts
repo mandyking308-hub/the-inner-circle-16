@@ -23,6 +23,8 @@ export type Gathering = {
   status: "Open" | "Approval required" | "Waitlist";
   description: string;
   seats: string;
+  /** Illustrative preview fixture — not confirmed Montvelle inventory. */
+  demo: boolean;
 };
 
 export type AskOffer = {
@@ -48,7 +50,7 @@ export const members: Member[] = [
   {
     id: "amelia-hart",
     name: "DEMO Member A",
-    initials: "AH",
+    initials: "A",
     role: "Founder & CEO",
     organisation: "DEMO Technology Enterprise",
     city: "London",
@@ -62,7 +64,7 @@ export const members: Member[] = [
   {
     id: "daniel-okafor",
     name: "DEMO Member B",
-    initials: "DO",
+    initials: "B",
     role: "Principal",
     organisation: "DEMO Family Enterprise",
     city: "London",
@@ -76,7 +78,7 @@ export const members: Member[] = [
   {
     id: "sophia-chen",
     name: "DEMO Member C",
-    initials: "SC",
+    initials: "C",
     role: "Investment Director",
     organisation: "DEMO Investment Firm",
     city: "London",
@@ -90,7 +92,7 @@ export const members: Member[] = [
   {
     id: "james-whitmore",
     name: "DEMO Member D",
-    initials: "JW",
+    initials: "D",
     role: "Managing Partner",
     organisation: "DEMO Legal Practice",
     city: "London",
@@ -104,7 +106,7 @@ export const members: Member[] = [
   {
     id: "layla-rahman",
     name: "DEMO Member E",
-    initials: "LR",
+    initials: "E",
     role: "Founder",
     organisation: "DEMO Health Enterprise",
     city: "London",
@@ -118,7 +120,7 @@ export const members: Member[] = [
   {
     id: "marcus-vella",
     name: "DEMO Member F",
-    initials: "MV",
+    initials: "F",
     role: "Chair",
     organisation: "DEMO Consumer Group",
     city: "London",
@@ -132,7 +134,7 @@ export const members: Member[] = [
   {
     id: "maya-patel",
     name: "DEMO Member G",
-    initials: "MP",
+    initials: "G",
     role: "Founder",
     organisation: "DEMO Education Enterprise",
     city: "London",
@@ -146,7 +148,7 @@ export const members: Member[] = [
   {
     id: "oliver-reed",
     name: "DEMO Member H",
-    initials: "OR",
+    initials: "H",
     role: "Partner",
     organisation: "DEMO Advisory Practice",
     city: "London",
@@ -160,7 +162,7 @@ export const members: Member[] = [
   {
     id: "nina-brooks",
     name: "DEMO Member I",
-    initials: "NB",
+    initials: "I",
     role: "Executive Director",
     organisation: "DEMO Foundation",
     city: "London",
@@ -174,7 +176,7 @@ export const members: Member[] = [
   {
     id: "theo-morgan",
     name: "DEMO Member J",
-    initials: "TM",
+    initials: "J",
     role: "Founder",
     organisation: "DEMO Manufacturing Enterprise",
     city: "Cambridge",
@@ -188,7 +190,7 @@ export const members: Member[] = [
   {
     id: "elena-rossi",
     name: "DEMO Member K",
-    initials: "ER",
+    initials: "K",
     role: "Principal",
     organisation: "DEMO Family Office",
     city: "Milan",
@@ -202,7 +204,7 @@ export const members: Member[] = [
   {
     id: "idris-khan",
     name: "DEMO Member L",
-    initials: "IK",
+    initials: "L",
     role: "Co-Founder",
     organisation: "DEMO Security Enterprise",
     city: "London",
@@ -228,6 +230,7 @@ export const gatherings: Gathering[] = [
     status: "Approval required",
     description: "A confidential working session on succession, management independence and identity after operating leadership.",
     seats: "10 seats · Table members",
+    demo: true,
   },
   {
     id: "ai-salon",
@@ -239,6 +242,7 @@ export const gatherings: Gathering[] = [
     status: "Open",
     description: "Practical discussion on private AI infrastructure, governance, security and where automation genuinely helps.",
     seats: "24 seats",
+    demo: true,
   },
   {
     id: "breakfast-governance",
@@ -250,6 +254,7 @@ export const gatherings: Gathering[] = [
     status: "Open",
     description: "A small breakfast for founders moving from personal decision-making to boards, family councils and documented principles.",
     seats: "12 seats",
+    demo: true,
   },
   {
     id: "impact-visit",
@@ -261,6 +266,7 @@ export const gatherings: Gathering[] = [
     status: "Waitlist",
     description: "Meet an operating charity team and examine where expertise, introductions and unrestricted capital can change delivery.",
     seats: "16 seats",
+    demo: true,
   },
 ];
 
