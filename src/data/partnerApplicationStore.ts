@@ -29,7 +29,7 @@ export const starterPartnerApplications: PartnerApplication[] = [
     id: "PP-FOUND-004",
     submittedAt: "2026-08-20T09:15:00.000Z",
     status: "References",
-    contactName: "Eleanor March",
+    contactName: "DEMO Partner Contact A",
     email: "eleanor@example.com",
     firm: "March Private Client Advisory",
     category: "Legal & Tax",
