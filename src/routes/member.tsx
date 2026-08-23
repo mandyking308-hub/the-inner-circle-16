@@ -17,7 +17,7 @@ export const Route = createFileRoute("/member")({
 
 function MemberLayout() {
   return (
-    <PrivatePreviewGate>
+    <PrivatePreviewGate scope="member">
       <PrivateShell mode="member">
         <Outlet />
       </PrivateShell>

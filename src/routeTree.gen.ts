@@ -20,6 +20,7 @@ import { Route as ConciergeRouteImport } from './routes/concierge'
 import { Route as ConfidentialityRouteImport } from './routes/confidentiality'
 import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as DecisionRoomRouteImport } from './routes/decision-room'
+import { Route as DemoRouteImport } from './routes/demo'
 import { Route as EcosystemRouteImport } from './routes/ecosystem'
 import { Route as FamilyLearningRouteImport } from './routes/family-learning'
 import { Route as GatheringsRouteImport } from './routes/gatherings'
@@ -153,6 +154,11 @@ const CookiesRoute = CookiesRouteImport.update({
 const DecisionRoomRoute = DecisionRoomRouteImport.update({
   id: '/decision-room',
   path: '/decision-room',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemoRoute = DemoRouteImport.update({
+  id: '/demo',
+  path: '/demo',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EcosystemRoute = EcosystemRouteImport.update({
@@ -565,6 +571,7 @@ export interface FileRoutesByFullPath {
   '/confidentiality': typeof ConfidentialityRoute
   '/cookies': typeof CookiesRoute
   '/decision-room': typeof DecisionRoomRoute
+  '/demo': typeof DemoRoute
   '/ecosystem': typeof EcosystemRoute
   '/family-learning': typeof FamilyLearningRoute
   '/gatherings': typeof GatheringsRoute
@@ -656,6 +663,7 @@ export interface FileRoutesByTo {
   '/confidentiality': typeof ConfidentialityRoute
   '/cookies': typeof CookiesRoute
   '/decision-room': typeof DecisionRoomRoute
+  '/demo': typeof DemoRoute
   '/ecosystem': typeof EcosystemRoute
   '/family-learning': typeof FamilyLearningRoute
   '/gatherings': typeof GatheringsRoute
@@ -747,6 +755,7 @@ export interface FileRoutesById {
   '/confidentiality': typeof ConfidentialityRoute
   '/cookies': typeof CookiesRoute
   '/decision-room': typeof DecisionRoomRoute
+  '/demo': typeof DemoRoute
   '/ecosystem': typeof EcosystemRoute
   '/family-learning': typeof FamilyLearningRoute
   '/gatherings': typeof GatheringsRoute
@@ -841,6 +850,7 @@ export interface FileRouteTypes {
     | '/confidentiality'
     | '/cookies'
     | '/decision-room'
+    | '/demo'
     | '/ecosystem'
     | '/family-learning'
     | '/gatherings'
@@ -932,6 +942,7 @@ export interface FileRouteTypes {
     | '/confidentiality'
     | '/cookies'
     | '/decision-room'
+    | '/demo'
     | '/ecosystem'
     | '/family-learning'
     | '/gatherings'
@@ -1022,6 +1033,7 @@ export interface FileRouteTypes {
     | '/confidentiality'
     | '/cookies'
     | '/decision-room'
+    | '/demo'
     | '/ecosystem'
     | '/family-learning'
     | '/gatherings'
@@ -1115,6 +1127,7 @@ export interface RootRouteChildren {
   ConfidentialityRoute: typeof ConfidentialityRoute
   CookiesRoute: typeof CookiesRoute
   DecisionRoomRoute: typeof DecisionRoomRoute
+  DemoRoute: typeof DemoRoute
   EcosystemRoute: typeof EcosystemRoute
   FamilyLearningRoute: typeof FamilyLearningRoute
   GatheringsRoute: typeof GatheringsRoute
@@ -1220,6 +1233,13 @@ declare module '@tanstack/react-router' {
       path: '/decision-room'
       fullPath: '/decision-room'
       preLoaderRoute: typeof DecisionRoomRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demo': {
+      id: '/demo'
+      path: '/demo'
+      fullPath: '/demo'
+      preLoaderRoute: typeof DemoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/ecosystem': {
@@ -1933,6 +1953,7 @@ const rootRouteChildren: RootRouteChildren = {
   ConfidentialityRoute: ConfidentialityRoute,
   CookiesRoute: CookiesRoute,
   DecisionRoomRoute: DecisionRoomRoute,
+  DemoRoute: DemoRoute,
   EcosystemRoute: EcosystemRoute,
   FamilyLearningRoute: FamilyLearningRoute,
   GatheringsRoute: GatheringsRoute,

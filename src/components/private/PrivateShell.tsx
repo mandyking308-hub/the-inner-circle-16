@@ -28,6 +28,7 @@ import {
 
 import { BrandMark } from "@/components/brand/BrandMark";
 import { site } from "@/config/site";
+import { isDemoMode } from "@/lib/demoMode";
 
 const memberGroups = [
   {
@@ -105,6 +106,7 @@ export function PrivateShell({ mode, children }: PrivateShellProps) {
     name: "DEMO Member",
     city: "London",
   });
+  const [demo, setDemo] = useState(false);
   const pathname = useRouterState({ select: (state) => state.location.pathname });
   const groups = mode === "member" ? memberGroups : adminGroups;
 
@@ -129,6 +131,8 @@ export function PrivateShell({ mode, children }: PrivateShellProps) {
     };
   }, [mode]);
 
+  useEffect(() => setDemo(isDemoMode()), []);
+
   const identity = mode === "member" ? memberIdentity.name : "Concierge desk";
   const secondary =
     mode === "member" ? `${memberIdentity.city} · private member` : "Montvelle operations";
@@ -147,6 +151,11 @@ export function PrivateShell({ mode, children }: PrivateShellProps) {
 
   return (
     <div className="min-h-screen bg-background">
+      {demo && mode === "member" ? (
+        <div className="sticky top-0 z-50 border-b border-bronze/40 bg-foreground px-4 py-2 text-center text-[10px] uppercase tracking-[0.2em] text-bronze lg:pl-[250px]">
+          Demonstration · illustrative data only
+        </div>
+      ) : null}
       <header className="sticky top-0 z-40 border-b border-foreground/15 bg-background/95 backdrop-blur-xl lg:pl-[250px]">
         <div className="flex h-[68px] items-center justify-between px-4 md:px-7 lg:px-9">
           <div className="flex items-center gap-4">
