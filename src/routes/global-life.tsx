@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/button";
 import { site } from "@/config/site";
-import { luxuryImages } from "@/data/luxuryImages";
+import heroCoastalResidence from "@/assets/gl2-hero-coastal-residence.jpg";
 import secondHome from "@/assets/gl2-second-home-terrace.jpg";
 import residenceDetail from "@/assets/gl2-residence-detail.jpg";
 
