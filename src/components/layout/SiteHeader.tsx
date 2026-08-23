@@ -28,7 +28,7 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-5 min-[1440px]:gap-7 min-[1180px]:flex" aria-label="Primary navigation">
+        <nav className="hidden items-center gap-5 min-[1440px]:gap-7 min-[1280px]:flex" aria-label="Primary navigation">
           {navItems.map((item) => (
             <Link
               key={item.to}
@@ -41,7 +41,7 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-3 min-[1180px]:flex">
+        <div className="hidden items-center gap-3 min-[1280px]:flex">
           <LanguageSelector inverse />
           <Button
             asChild
@@ -55,7 +55,7 @@ export function SiteHeader() {
         </div>
 
         <Sheet open={open} onOpenChange={setOpen}>
-          <SheetTrigger asChild className="min-[1180px]:hidden">
+          <SheetTrigger asChild className="min-[1280px]:hidden">
             <Button variant="ghost" size="icon" aria-label="Open menu" className="text-background hover:bg-background/10 hover:text-background">
               <Menu className="size-5" />
             </Button>
