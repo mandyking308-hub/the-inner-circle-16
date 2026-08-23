@@ -1,3 +1,5 @@
+import type { ApplicationReference } from "@/lib/applicationReferences";
+
 export const PARTNER_APPLICATION_STORAGE_KEY = "project-table:partner-applications";
 
 export type PartnerApplicationStatus = "New" | "Screening" | "References" | "Conversation" | "Approved" | "Declined";
@@ -15,7 +17,9 @@ export type PartnerApplication = {
   familyExperience: string;
   whyRelevant: string;
   memberBenefit: string;
-  references: string;
+  /** Private assurance-review data. Never expose in member/supplier/public views. */
+  references: [ApplicationReference, ApplicationReference];
+  referenceConsent: boolean;
   conflicts: string;
 };
 
@@ -33,7 +37,11 @@ export const starterPartnerApplications: PartnerApplication[] = [
     familyExperience: "Cross-border founder and family-enterprise work involving ownership, succession and adviser coordination.",
     whyRelevant: "We are strongest where the family has several advisers and needs the legal work to fit a broader implementation plan.",
     memberBenefit: "Priority initial triage for complex cross-border briefs.",
-    references: "Two private-client references available on request.",
+    references: [
+      { name: "Helena Voss", organisation: "Voss Family Office — Principal", email: "helena@example.com", relationship: "Instructed us on a cross-border succession matter over three years.", phone: "" },
+      { name: "Daniel Okoye", organisation: "Okoye Trust Company — Director", email: "daniel@example.com", relationship: "Co-adviser on several shared family mandates.", phone: "" },
+    ],
+    referenceConsent: true,
     conflicts: "No referral payments requested. Any future commercial arrangement to be disclosed before member introductions.",
   },
 ];
