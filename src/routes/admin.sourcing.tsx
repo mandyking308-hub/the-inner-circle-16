@@ -546,7 +546,7 @@ function ProspectRow({
           </>
         ) : null}
         <Button variant="ghost" className="rounded-none" onClick={() => onPatch(prospect.id, { status: "Declined" })}>
-          Not suitable
+          Declined
         </Button>
       </div>
     </div>

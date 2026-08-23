@@ -220,7 +220,7 @@ function MemberServicesPage() {
                 </div>
                 <h2 className="mt-2 font-display text-xl leading-tight">{request.title}</h2>
                 <p className={`mt-2 text-[11px] leading-5 ${selected?.id === request.id ? "text-background/60" : "text-muted-foreground"}`}>
-                  {request.nextUpdate}
+                  {request.respondedAt ? request.nextUpdate : "Next update: within 24 hours of receipt"}
                 </p>
               </button>
             ))}
@@ -278,8 +278,9 @@ function MemberServicesPage() {
               <p className="mt-5 text-sm leading-7 text-muted-foreground">{memberStatusNote[selected.status]}</p>
               <p className="mt-2 text-sm leading-7">
                 <span className="text-[10px] uppercase tracking-[0.14em] text-oxblood">Next update · </span>
-                {selected.nextUpdate}
+                {selected.respondedAt ? selected.nextUpdate : "Within 24 hours of receipt"}
               </p>
+
               <div className="mt-6 space-y-3 border-t border-border pt-5">
                 {selected.updates.map((update) => (
                   <div key={update.id} className="flex gap-4">

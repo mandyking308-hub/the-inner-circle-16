@@ -15,7 +15,7 @@ function AdminServices() {
     <div className="space-y-8">
       <PageIntro
         eyebrow="Private Services"
-        title="The service bench, and who stands behind it."
+        title="Demo service records, for internal checks only."
         description="Every offering carries a named supplier, a service standard and a booking route. Nothing reaches a member without both."
       />
 
