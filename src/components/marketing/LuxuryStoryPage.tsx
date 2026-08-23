@@ -20,6 +20,8 @@ export function LuxuryStoryPage({
   introduction,
   heroImage,
   heroAlt,
+  heroPositionClassName = "object-center",
+  statementEyebrow = "The idea",
   statement,
   statementBody,
   feature,
@@ -36,6 +38,8 @@ export function LuxuryStoryPage({
   introduction: string;
   heroImage: string;
   heroAlt: string;
+  heroPositionClassName?: string;
+  statementEyebrow?: string;
   statement: string;
   statementBody: string;
   feature: StoryFeature;
@@ -50,7 +54,7 @@ export function LuxuryStoryPage({
   return (
     <>
       <section className="relative min-h-[78vh] overflow-hidden bg-[#171716] text-white">
-        <img src={heroImage} alt={heroAlt} className="absolute inset-0 h-full w-full object-cover" fetchPriority="high" />
+        <img src={heroImage} alt={heroAlt} className={`absolute inset-0 h-full w-full object-cover ${heroPositionClassName}`} fetchPriority="high" />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,11,10,0.72)_0%,rgba(11,11,10,0.42)_43%,rgba(11,11,10,0.08)_78%)]" />
         <Container className="relative flex min-h-[78vh] items-end py-20 md:py-28">
           <div className="max-w-4xl">
@@ -65,7 +69,7 @@ export function LuxuryStoryPage({
       <section className="py-32 md:py-48">
         <Container>
           <div className="grid gap-12 lg:grid-cols-[0.68fr_1.32fr] lg:gap-24">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-oxblood">The idea</p>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-oxblood">{statementEyebrow}</p>
             <div><h2 className="max-w-5xl text-balance font-display text-5xl leading-[1.02] md:text-7xl">{statement}</h2><p className="mt-8 max-w-3xl text-base leading-8 text-muted-foreground md:text-lg">{statementBody}</p></div>
           </div>
         </Container>
