@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 
 import { Button } from "@/components/ui/button";
+import { expertCouncilNeed } from "@/components/private/RequestCtas";
 import { findKnowledgeDoc } from "@/data/knowledgeLibrary";
 
 export const Route = createFileRoute("/member/knowledge/$id")({
@@ -102,6 +103,27 @@ function KnowledgeDetailPage() {
             <p className="mt-5 text-[10px] leading-5 text-background/50">
               Both options open with this subject already filled in. Nothing is sent until you send it.
             </p>
+          </div>
+
+          <div className="border border-border bg-card p-5">
+            <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-oxblood">
+              Beyond the archive
+            </p>
+            <h2 className="mt-3 font-display text-2xl leading-tight">
+              Need expertise beyond the archive? Assemble an Expert Council.
+            </h2>
+            <p className="mt-3 text-xs leading-6 text-muted-foreground">
+              A council is created for your actual decision — not a standing panel. Give us the
+              outcome, the geography and the timing, and we research worldwide, check who genuinely
+              fits and come back with a short, considered shortlist.
+            </p>
+            <Link
+              to="/member/services"
+              search={{ need: expertCouncilNeed(doc.title) }}
+              className="mt-5 inline-flex items-center border border-foreground bg-foreground px-4 py-3 text-[10px] font-semibold uppercase tracking-[0.14em] text-background transition-colors hover:bg-oxblood"
+            >
+              Assemble an Expert Council
+            </Link>
           </div>
 
           {doc.boundary ? (

@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { PageIntro } from "@/components/private/PrivateShell";
+import { BuildCircleCta } from "@/components/private/RequestCtas";
 import { Input } from "@/components/ui/input";
 import { members } from "@/data/community";
 import { getRelationshipContext } from "@/data/relationshipIntelligence";
@@ -51,6 +52,8 @@ function CommunityPage() {
       </div>
 
       {!filtered.length ? <div className="border border-border bg-card p-8 text-center"><h2 className="mt-4 font-display text-3xl">No obvious match in the community.</h2><p className="mt-3 text-sm text-muted-foreground">If the right expertise sits outside the community, tell us and we will go and find it.</p><Link to="/member/services" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold">Ask Montvelle to find the right person </Link></div> : null}
+
+      <BuildCircleCta />
 
       <div className="flex items-start gap-3 border border-border bg-accent/30 p-4 text-xs leading-6 text-muted-foreground">Member profiles and relationship context are for trusted relationship-building inside the community. Exporting, scraping or using them for unsolicited sales is a membership breach.</div>
     </div>

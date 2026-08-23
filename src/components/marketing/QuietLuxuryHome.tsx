@@ -301,7 +301,7 @@ export function QuietLuxuryHome() {
             <p className="mt-7 max-w-xl text-base leading-8 text-muted-foreground">
               Not another concierge app. Montvelle World is the private environment where the whole picture of a
               family's life stays in one place — the requests in motion, the decisions being weighed, the people you
-              choose to know, and the household around you.
+              choose to know — and the experts we find and assemble around a decision when you need them, and the household around you.
             </p>
             <p className="mt-5 max-w-xl text-base leading-8 text-muted-foreground">
               A conventional concierge holds a phone number and a memory. A private club holds a room. Montvelle holds
@@ -342,8 +342,12 @@ export function QuietLuxuryHome() {
                 copy: "Gatherings and private moments held for you, kept quietly in one diary.",
               },
               {
-                name: "Community",
-                copy: "Introductions only where both sides have agreed. Nothing is browsable, nothing is broadcast.",
+                name: "Expert Councils",
+                copy: "A council assembled around your decision, not a standing panel. We search worldwide and return a short, checked list.",
+              },
+              {
+                name: "Community & your circle",
+                copy: "Consent-led introductions, plus help building the wider circle of people useful to a particular goal.",
               },
               {
                 name: "Family & household",

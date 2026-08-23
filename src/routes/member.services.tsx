@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { BuildCircleCta, ExpertCouncilCta } from "@/components/private/RequestCtas";
 import {
   formatReceived,
   memberRequestStatuses,
@@ -161,6 +162,8 @@ function MemberServicesPage() {
         ))}
       </section>
 
+      <ExpertCouncilCta />
+
       <form
         onSubmit={submit}
         className="grid gap-5 border border-border bg-card p-6 md:grid-cols-2 md:p-8"
@@ -245,6 +248,8 @@ function MemberServicesPage() {
           </Button>
         </div>
       </form>
+
+      <BuildCircleCta />
 
       <section className="border border-border bg-card p-6">
         <div className="flex items-start gap-3">

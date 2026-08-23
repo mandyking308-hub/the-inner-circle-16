@@ -117,8 +117,8 @@ function MontvelleWorldPage() {
             <p className="mt-7 text-base leading-8 text-muted-foreground">
               Every request receives an immediate acknowledgement and a meaningful response within twenty-four hours —
               a real answer or a clear account of what is being done and when it will land. There is no supplier
-              directory to browse. You describe what you need; Montvelle sources and coordinates the right expertise
-              around it.
+              directory to browse and no stocked network. You describe what you need; we search worldwide and coordinate the
+              right organisations and people around it.
             </p>
           </div>
           <div className="mt-12 grid gap-px bg-border md:grid-cols-2 lg:grid-cols-3">
@@ -140,8 +140,12 @@ function MontvelleWorldPage() {
                 body: "Gatherings and private moments held for your household in one diary, with the context attached to each.",
               },
               {
-                name: "Community",
-                body: "Consent-led introductions between members. Nothing is browsable and nothing is broadcast; both sides agree before a name is shared.",
+                name: "Expert Councils",
+                body: "Assembled on request around one member's actual decision — never a standing panel or a stocked list. You give the outcome, geography and timing; we search worldwide, check who genuinely fits, and return a small considered shortlist or coordinate the introductions.",
+              },
+              {
+                name: "Community & your circle",
+                body: "Consent-led introductions between members, plus the wider circle we help you build: people useful to a particular move, business or family goal, whether they sit inside Montvelle or outside it. Someone you already trust can be brought into a single matter without becoming a member.",
               },
               {
                 name: "Family & household access",
