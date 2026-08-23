@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { familyMembershipPricing, membershipPricing } from "@/config/membershipPricing";
 import { site } from "@/config/site";
 import { createMembershipCheckoutFn } from "@/functions/membershipCheckout";
+import { recordCheckoutAcceptance } from "@/lib/legalAcceptance";
 import membershipHero from "@/assets/membership-hero-dinner.jpg";
 import membershipRoom from "@/assets/membership-standard-room.jpg";
 
