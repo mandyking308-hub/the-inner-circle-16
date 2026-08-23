@@ -165,7 +165,14 @@ function MembershipPage() {
                   <p className="mt-3 max-w-2xl text-sm leading-7 text-muted-foreground">{item.body}</p>
                 </div>
               ))}
+              <Link
+                to="/montvelle-world"
+                className="mt-9 inline-block border-b border-foreground/25 pb-1 text-xs uppercase tracking-[0.22em] text-foreground/70 transition-colors hover:border-oxblood hover:text-oxblood"
+              >
+                Inside Montvelle World →
+              </Link>
             </div>
+
           </div>
         </Container>
       </section>
