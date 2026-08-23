@@ -36,7 +36,7 @@ const sections: { heading: string; body: string }[] = [
   },
   {
     heading: "If you ask us to start straight away",
-    body: "Montvelle asks separately, at checkout, whether you want service to begin during the cancellation period. This is a distinct question from accepting the contractual documents and is never assumed. If you ask us to begin immediately and then cancel within the 14 days, you remain entitled to cancel, but we may charge a proportionate amount for the service actually supplied up to the moment you told us you were cancelling, calculated against the total contract price. If you do not ask us to begin immediately, service starts after the cancellation period ends.",
+    body: "Montvelle asks separately, at the point your membership documents are issued for acceptance, whether you want service to begin during the cancellation period. This is a distinct question from accepting the contractual documents and is never assumed. If you ask us to begin immediately and then cancel within the 14 days, you remain entitled to cancel, but we may charge a proportionate amount for the service actually supplied up to the moment you told us you were cancelling, calculated against the total contract price. If you do not ask us to begin immediately, service starts after the cancellation period ends.",
   },
   {
     heading: "Fully performed services",
@@ -48,7 +48,7 @@ const sections: { heading: string; body: string }[] = [
   },
   {
     heading: "Admission fee and annual fee",
-    body: "Where a cancellation right applies and is validly exercised, we will refund amounts due without undue delay and in any event within 14 days of being informed, using the same means of payment you used, unless you agree otherwise. Where the payment provider is the merchant of record for the transaction, the refund is processed through that provider's flow and may appear on your statement under their descriptor.",
+    body: "Where a cancellation right applies and is validly exercised, we will refund amounts due without undue delay and in any event within 14 days of being informed, by an appropriate method — normally by transfer back to the originating account, where that is practical and lawful — unless you agree otherwise. We may ask you to confirm account details for the return, and we will never ask for them by unsolicited message.",
   },
   {
     heading: "Outside the cancellation period",

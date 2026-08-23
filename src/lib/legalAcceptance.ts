@@ -22,11 +22,10 @@ export const ACCEPTANCE_STORAGE_KEY = "montvelle:legal-acceptance-preview";
 export const ACCEPTANCE_STORAGE_LIMIT = 50;
 
 export type AcceptanceEventType =
-  | "checkout_acceptance"
   | "signin_acceptance"
   | "supplier_acceptance";
 
-export type AcceptanceRole = "member" | "supplier" | "checkout";
+export type AcceptanceRole = "member" | "supplier";
 
 export type LegalAcceptanceRecord = {
   eventType: AcceptanceEventType;
@@ -100,15 +99,6 @@ export function recordSupplierAcceptance(identityReference?: string | null) {
     eventType: "supplier_acceptance",
     role: "supplier",
     documentKeys: supplierLegalBundle,
-    identityReference: identityReference ?? null,
-  });
-}
-
-export function recordCheckoutAcceptance(identityReference?: string | null) {
-  return recordAcceptance({
-    eventType: "checkout_acceptance",
-    role: "checkout",
-    documentKeys: memberLegalBundle,
     identityReference: identityReference ?? null,
   });
 }

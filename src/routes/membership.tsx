@@ -1,14 +1,9 @@
-import { type FormEvent, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { familyMembershipPricing, membershipPricing } from "@/config/membershipPricing";
 import { site } from "@/config/site";
-import { createMembershipCheckoutFn } from "@/functions/membershipCheckout";
-import { recordCheckoutAcceptance } from "@/lib/legalAcceptance";
 import { memberLegalVersionBundle } from "@/config/legal";
 import membershipHero from "@/assets/membership-hero-dinner.jpg";
 import membershipRoom from "@/assets/membership-standard-room.jpg";
@@ -72,53 +67,7 @@ export const Route = createFileRoute("/membership")({
 });
 
 function MembershipPage() {
-  const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState("");
 
-  const beginCheckout = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setError("");
-    setSubmitting(true);
-    const form = new FormData(event.currentTarget);
-
-    const acceptedTerms = form.get("acceptedTerms") === "on";
-    const acknowledgedAdmissionChecks = form.get("acknowledgedAdmissionChecks") === "on";
-    const requestedImmediateService = form.get("requestedImmediateService") === "on";
-
-    if (!acceptedTerms || !acknowledgedAdmissionChecks) {
-      setError("Please confirm both acceptance statements before continuing to checkout.");
-      setSubmitting(false);
-      return;
-    }
-
-    // PREVIEW EVIDENCE ONLY — mirrored server-side once production auth is live.
-    const acceptance = recordCheckoutAcceptance(String(form.get("email") ?? "").trim() || null);
-
-    try {
-      const result = await createMembershipCheckoutFn({
-        data: {
-          name: String(form.get("name") ?? "").trim(),
-          email: String(form.get("email") ?? "").trim(),
-          ...(String(form.get("country") ?? "").trim()
-            ? { country: String(form.get("country") ?? "").trim() }
-            : {}),
-          acceptedTerms: true as const,
-          acknowledgedAdmissionChecks: true as const,
-          requestedImmediateService,
-          legalVersionBundle: acceptance.legalVersionBundle,
-          acceptedAt: acceptance.timestamp,
-        },
-      });
-      window.location.assign(result.checkoutUrl);
-    } catch (cause) {
-      setError(
-        cause instanceof Error
-          ? cause.message
-          : "Secure checkout could not be started. Please try again shortly.",
-      );
-      setSubmitting(false);
-    }
-  };
 
   return (
     <>
@@ -310,7 +259,7 @@ function MembershipPage() {
                 href="#enrol"
                 className="mt-8 inline-flex items-center gap-2 border-b border-oxblood pb-1 text-sm font-medium text-oxblood transition-opacity hover:opacity-70"
               >
-                Continue to secure checkout </a>
+                How enrolment works </a>
             </div>
 
             <div className="bg-[#efe6d7] p-8 md:p-11">
@@ -365,170 +314,98 @@ function MembershipPage() {
             <div id="enrol">
               <div className="border border-foreground/12 bg-[#171716] p-8 text-white md:p-12">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#d8b36c]">
-                  Individual membership · private enrolment
+                  Private enrolment
                 </p>
                 <h3 className="mt-5 font-display text-4xl leading-[1.04] md:text-5xl">
-                  Take your seat.
+                  There is no checkout here.
                 </h3>
                 <p className="mt-6 max-w-md text-sm leading-7 text-white/60">
-                  Three details, then a secure hosted checkout handled entirely by our payment
-                  partner. Montvelle never sees or stores your card or bank credentials.
+                  Montvelle membership is not bought online. It begins with a request, and is
+                  settled privately once you have been admitted and the documents are agreed.
                 </p>
 
-                <form onSubmit={beginCheckout} className="mt-10 space-y-7">
-                  <div className="space-y-2.5">
-                    <Label
-                      htmlFor="membership-name"
-                      className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/50"
-                    >
-                      Full name
-                    </Label>
-                    <Input
-                      id="membership-name"
-                      name="name"
-                      required
-                      autoComplete="name"
-                      className="h-12 rounded-none border-0 border-b border-white/20 bg-transparent px-0 text-white shadow-none focus-visible:border-[#d8b36c] focus-visible:ring-0"
-                    />
-                  </div>
-                  <div className="space-y-2.5">
-                    <Label
-                      htmlFor="membership-email"
-                      className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/50"
-                    >
-                      Email
-                    </Label>
-                    <Input
-                      id="membership-email"
-                      name="email"
-                      type="email"
-                      required
-                      autoComplete="email"
-                      className="h-12 rounded-none border-0 border-b border-white/20 bg-transparent px-0 text-white shadow-none focus-visible:border-[#d8b36c] focus-visible:ring-0"
-                    />
-                  </div>
-                  <div className="space-y-2.5">
-                    <Label
-                      htmlFor="membership-country"
-                      className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/50"
-                    >
-                      Country of residence
-                    </Label>
-                    <Input
-                      id="membership-country"
-                      name="country"
-                      required
-                      autoComplete="country-name"
-                      className="h-12 rounded-none border-0 border-b border-white/20 bg-transparent px-0 text-white shadow-none focus-visible:border-[#d8b36c] focus-visible:ring-0"
-                    />
-                  </div>
-
-                  <div className="space-y-5 border-t border-white/12 pt-8">
-                    <p className="text-[11px] leading-6 text-white/45">
-                      Before you continue: you will receive and may retain the current contractual
-                      documents shown below, and your Membership Schedule records the approved
-                      member, the term and the agreed commercial details. Your cancellation rights
-                      are set out in{" "}
-                      <Link to="/cancellation" className="text-white/80 underline underline-offset-2">
-                        Cancellation Rights
-                      </Link>
-                      . Document set {memberLegalVersionBundle}.
-                    </p>
-                    <label className="flex gap-4 text-[11px] leading-6 text-white/55">
-                      <input
-                        type="checkbox"
-                        name="acceptedTerms"
-                        required
-                        className="mt-1 h-3.5 w-3.5 shrink-0 accent-[#d8b36c]"
-                      />
+                <ol className="mt-10 space-y-7 border-t border-white/12 pt-8">
+                  {[
+                    {
+                      title: "Request membership",
+                      body: "You tell us about the household and what you are trying to achieve. Nothing is charged at this stage.",
+                    },
+                    {
+                      title: "Admission review",
+                      body: "Admission, sanctions, fraud, safety and compliance checks. Payment never overrides them, and applying does not imply approval.",
+                    },
+                    {
+                      title: "Documents and Schedule",
+                      body: "On approval we provide the current Membership Agreement and your Membership Schedule, recording the approved member or household, the term and the agreed commercial details.",
+                    },
+                    {
+                      title: "Private payment instructions",
+                      body: "Bank transfer instructions and a payment reference are issued to you directly, in private. They are never published on this website.",
+                    },
+                    {
+                      title: "Activation",
+                      body: "Membership activates after admission checks, acceptance of the Membership Agreement and Schedule, and cleared funds.",
+                    },
+                  ].map((step, index) => (
+                    <li key={step.title} className="flex gap-6">
+                      <span className="font-display text-2xl text-[#d8b36c]">{`0${index + 1}`}</span>
                       <span>
-                        I have read and agree to the{" "}
-                        <Link
-                          to="/membership-agreement"
-                          className="text-white/80 underline underline-offset-2"
-                        >
-                          Membership Agreement
-                        </Link>
-                        ,{" "}
-                        <Link to="/terms" className="text-white/80 underline underline-offset-2">
-                          Website Terms
-                        </Link>
-                        ,{" "}
-                        <Link to="/privacy" className="text-white/80 underline underline-offset-2">
-                          Privacy Notice
-                        </Link>{" "}
-                        and{" "}
-                        <Link
-                          to="/confidentiality"
-                          className="text-white/80 underline underline-offset-2"
-                        >
-                          Confidentiality &amp; No Solicitation standard
-                        </Link>
-                        . My Membership Schedule records the approved member, term and commercial
-                        details.
+                        <span className="block font-display text-2xl leading-snug">{step.title}</span>
+                        <span className="mt-2 block max-w-md text-sm leading-7 text-white/55">
+                          {step.body}
+                        </span>
                       </span>
-                    </label>
-                    <label className="flex gap-4 text-[11px] leading-6 text-white/55">
-                      <input
-                        type="checkbox"
-                        name="acknowledgedAdmissionChecks"
-                        required
-                        className="mt-1 h-3.5 w-3.5 shrink-0 accent-[#d8b36c]"
-                      />
-                      <span>
-                        I understand that payment does not override GSM&rsquo;s admission,
-                        sanctions, fraud, safety or compliance checks. If a membership is not
-                        accepted, the membership and admission fees paid for it are returned,
-                        subject to mandatory law and payment-provider processing.
-                      </span>
-                    </label>
-                    <label className="flex gap-4 border-t border-white/12 pt-5 text-[11px] leading-6 text-white/55">
-                      <input
-                        type="checkbox"
-                        name="requestedImmediateService"
-                        className="mt-1 h-3.5 w-3.5 shrink-0 accent-[#d8b36c]"
-                      />
-                      <span>
-                        Optional, and separate from the acceptances above: I ask that onboarding and
-                        service preparation begin as soon as GSM accepts my membership, including
-                        during any statutory cancellation period. Where such a right applies and I
-                        then cancel, a proportionate amount for services already supplied may be
-                        deducted from any refund to the extent permitted by applicable law. If I
-                        leave this unticked, service preparation begins after the cancellation
-                        period ends.
-                      </span>
-                    </label>
-                  </div>
+                    </li>
+                  ))}
+                </ol>
 
-                  {error ? (
-                    <p
-                      className="border border-[#d8b36c]/35 bg-[#d8b36c]/8 p-4 text-xs leading-6 text-[#f1d69d]"
-                      role="alert"
-                    >
-                      {error}
-                    </p>
-                  ) : null}
-
+                <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4 border-t border-white/12 pt-8">
                   <Button
-                    type="submit"
+                    asChild
                     size="lg"
-                    disabled={submitting}
-                    className="h-14 w-full rounded-none bg-[#d8b36c] text-sm font-semibold tracking-wide text-[#15130f] hover:bg-[#e4c47f]"
+                    className="h-14 rounded-none bg-[#d8b36c] px-8 text-sm font-semibold tracking-wide text-[#15130f] hover:bg-[#e4c47f]"
                   >
-                    {submitting
-                      ? "Opening secure checkout…"
-                      : `Continue securely · ${membershipPricing.firstYearDisplay}`}
-                    </Button>
-                </form>
+                    <Link to="/apply">Request membership</Link>
+                  </Button>
+                  <Link
+                    to="/contact"
+                    className="text-sm text-white/60 underline-offset-4 transition-colors hover:text-white/90 hover:underline"
+                  >
+                    Or contact Montvelle with a question
+                  </Link>
+                </div>
 
-                <div className="mt-10 flex gap-4 border-t border-white/12 pt-7">
+                <p className="mt-8 text-[11px] leading-6 text-white/45">
+                  The contractual documents are published in full before you are asked to accept
+                  anything: the{" "}
+                  <Link to="/membership-agreement" className="text-white/80 underline underline-offset-2">
+                    Membership Agreement
+                  </Link>
+                  ,{" "}
+                  <Link to="/terms" className="text-white/80 underline underline-offset-2">
+                    Website Terms
+                  </Link>
+                  ,{" "}
+                  <Link to="/privacy" className="text-white/80 underline underline-offset-2">
+                    Privacy Notice
+                  </Link>
+                  ,{" "}
+                  <Link to="/confidentiality" className="text-white/80 underline underline-offset-2">
+                    Confidentiality &amp; No Solicitation standard
+                  </Link>{" "}
+                  and{" "}
+                  <Link to="/cancellation" className="text-white/80 underline underline-offset-2">
+                    Cancellation Rights
+                  </Link>
+                  . Document set {memberLegalVersionBundle}.
+                </p>
+
+                <div className="mt-9 flex gap-4 border-t border-white/12 pt-7">
                   <p className="text-[10px] leading-5 text-white/45">
                     Montvelle is operated by {site.operator}, a Delaware limited liability company,
-                    which performs the membership and services. Where configured, Dodo Payments acts
-                    as the payment and transaction merchant of record for checkout, payment, tax and
-                    refund processing, and its checkout and receipt may identify it as the payment
-                    seller under its own payment terms. Membership activates only after acceptance,
-                    required checks, contractual acceptance and cleared funds.
+                    which performs the membership and services. Fees are settled by bank transfer
+                    against instructions issued privately after approval. Montvelle does not take
+                    card payments on this website and does not publish account details.
                   </p>
                 </div>
               </div>

@@ -91,7 +91,6 @@ import { Route as MemberProfileRouteImport } from './routes/member.profile'
 import { Route as MemberProgrammeRouteImport } from './routes/member.programme'
 import { Route as MemberServicesRouteImport } from './routes/member.services'
 import { Route as MemberTableRouteImport } from './routes/member.table'
-import { Route as MembershipCompleteRouteImport } from './routes/membership.complete'
 import { Route as SupplierIndexRouteImport } from './routes/supplier.index'
 import { Route as SupplierAvailabilityRouteImport } from './routes/supplier.availability'
 import { Route as SupplierBookingsRouteImport } from './routes/supplier.bookings'
@@ -516,11 +515,6 @@ const MemberTableRoute = MemberTableRouteImport.update({
   path: '/table',
   getParentRoute: () => MemberRoute,
 } as any)
-const MembershipCompleteRoute = MembershipCompleteRouteImport.update({
-  id: '/complete',
-  path: '/complete',
-  getParentRoute: () => MembershipRoute,
-} as any)
 const SupplierIndexRoute = SupplierIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -606,7 +600,7 @@ export interface FileRoutesByFullPath {
   '/legacy': typeof LegacyRoute
   '/legal': typeof LegalRoute
   '/member': typeof MemberRouteWithChildren
-  '/membership': typeof MembershipRouteWithChildren
+  '/membership': typeof MembershipRoute
   '/membership-agreement': typeof MembershipAgreementRoute
   '/montvelle-world': typeof MontvelleWorldRoute
   '/next-gen': typeof NextGenRoute
@@ -663,7 +657,6 @@ export interface FileRoutesByFullPath {
   '/member/programme': typeof MemberProgrammeRoute
   '/member/services': typeof MemberServicesRoute
   '/member/table': typeof MemberTableRoute
-  '/membership/complete': typeof MembershipCompleteRoute
   '/supplier/availability': typeof SupplierAvailabilityRoute
   '/supplier/bookings': typeof SupplierBookingsRoute
   '/supplier/messages': typeof SupplierMessagesRoute
@@ -701,7 +694,7 @@ export interface FileRoutesByTo {
   '/impact': typeof ImpactRoute
   '/legacy': typeof LegacyRoute
   '/legal': typeof LegalRoute
-  '/membership': typeof MembershipRouteWithChildren
+  '/membership': typeof MembershipRoute
   '/membership-agreement': typeof MembershipAgreementRoute
   '/montvelle-world': typeof MontvelleWorldRoute
   '/next-gen': typeof NextGenRoute
@@ -757,7 +750,6 @@ export interface FileRoutesByTo {
   '/member/programme': typeof MemberProgrammeRoute
   '/member/services': typeof MemberServicesRoute
   '/member/table': typeof MemberTableRoute
-  '/membership/complete': typeof MembershipCompleteRoute
   '/supplier/availability': typeof SupplierAvailabilityRoute
   '/supplier/bookings': typeof SupplierBookingsRoute
   '/supplier/messages': typeof SupplierMessagesRoute
@@ -798,7 +790,7 @@ export interface FileRoutesById {
   '/legacy': typeof LegacyRoute
   '/legal': typeof LegalRoute
   '/member': typeof MemberRouteWithChildren
-  '/membership': typeof MembershipRouteWithChildren
+  '/membership': typeof MembershipRoute
   '/membership-agreement': typeof MembershipAgreementRoute
   '/montvelle-world': typeof MontvelleWorldRoute
   '/next-gen': typeof NextGenRoute
@@ -855,7 +847,6 @@ export interface FileRoutesById {
   '/member/programme': typeof MemberProgrammeRoute
   '/member/services': typeof MemberServicesRoute
   '/member/table': typeof MemberTableRoute
-  '/membership/complete': typeof MembershipCompleteRoute
   '/supplier/availability': typeof SupplierAvailabilityRoute
   '/supplier/bookings': typeof SupplierBookingsRoute
   '/supplier/messages': typeof SupplierMessagesRoute
@@ -954,7 +945,6 @@ export interface FileRouteTypes {
     | '/member/programme'
     | '/member/services'
     | '/member/table'
-    | '/membership/complete'
     | '/supplier/availability'
     | '/supplier/bookings'
     | '/supplier/messages'
@@ -1048,7 +1038,6 @@ export interface FileRouteTypes {
     | '/member/programme'
     | '/member/services'
     | '/member/table'
-    | '/membership/complete'
     | '/supplier/availability'
     | '/supplier/bookings'
     | '/supplier/messages'
@@ -1145,7 +1134,6 @@ export interface FileRouteTypes {
     | '/member/programme'
     | '/member/services'
     | '/member/table'
-    | '/membership/complete'
     | '/supplier/availability'
     | '/supplier/bookings'
     | '/supplier/messages'
@@ -1186,7 +1174,7 @@ export interface RootRouteChildren {
   LegacyRoute: typeof LegacyRoute
   LegalRoute: typeof LegalRoute
   MemberRoute: typeof MemberRouteWithChildren
-  MembershipRoute: typeof MembershipRouteWithChildren
+  MembershipRoute: typeof MembershipRoute
   MembershipAgreementRoute: typeof MembershipAgreementRoute
   MontvelleWorldRoute: typeof MontvelleWorldRoute
   NextGenRoute: typeof NextGenRoute
@@ -1783,13 +1771,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MemberTableRouteImport
       parentRoute: typeof MemberRoute
     }
-    '/membership/complete': {
-      id: '/membership/complete'
-      path: '/complete'
-      fullPath: '/membership/complete'
-      preLoaderRoute: typeof MembershipCompleteRouteImport
-      parentRoute: typeof MembershipRoute
-    }
     '/supplier/': {
       id: '/supplier/'
       path: '/'
@@ -1986,18 +1967,6 @@ const MemberRouteChildren: MemberRouteChildren = {
 const MemberRouteWithChildren =
   MemberRoute._addFileChildren(MemberRouteChildren)
 
-interface MembershipRouteChildren {
-  MembershipCompleteRoute: typeof MembershipCompleteRoute
-}
-
-const MembershipRouteChildren: MembershipRouteChildren = {
-  MembershipCompleteRoute: MembershipCompleteRoute,
-}
-
-const MembershipRouteWithChildren = MembershipRoute._addFileChildren(
-  MembershipRouteChildren,
-)
-
 interface SupplierRouteChildren {
   SupplierAvailabilityRoute: typeof SupplierAvailabilityRoute
   SupplierBookingsRoute: typeof SupplierBookingsRoute
@@ -2045,7 +2014,7 @@ const rootRouteChildren: RootRouteChildren = {
   LegacyRoute: LegacyRoute,
   LegalRoute: LegalRoute,
   MemberRoute: MemberRouteWithChildren,
-  MembershipRoute: MembershipRouteWithChildren,
+  MembershipRoute: MembershipRoute,
   MembershipAgreementRoute: MembershipAgreementRoute,
   MontvelleWorldRoute: MontvelleWorldRoute,
   NextGenRoute: NextGenRoute,

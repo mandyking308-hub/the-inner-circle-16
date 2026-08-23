@@ -2,20 +2,18 @@
  * Central legal document versioning.
  *
  * INTERNAL NOTE — this pack has NOT been reviewed by external counsel. Before
- * live trading it requires review for UK/EU/US (Delaware) plus the Dodo
- * merchant-of-record arrangement, then local addenda as member geographies
- * expand. Acceptance evidence recorded in the browser is preview evidence
+ * live trading it requires review for UK/EU/US (Delaware), then local addenda
+ * as member geographies expand. Acceptance evidence recorded in the browser is preview evidence
  * only; it is not a production audit store.
  *
- * Every clickwrap surface (checkout, member sign-in, supplier sign-in) records
+ * Every clickwrap surface (member sign-in, supplier sign-in) records
  * the bundle version below alongside a timestamp. When production auth and the
  * database are enabled, the same `legalVersionBundle` string should be written
  * server-side against the authenticated identity.
  *
  * INTERNAL NOTE: this pack is a good-faith internal draft. A final pack
  * requires external counsel review (UK/EU/US/Delaware consumer, distance
- * selling and privacy law, plus the Dodo Payments merchant-of-record
- * position), then local addenda as member geographies expand.
+ * selling and privacy law), then local addenda as member geographies expand.
  */
 
 export type LegalDocumentKey =
@@ -95,7 +93,7 @@ export const legalDocuments: Record<LegalDocumentKey, LegalDocument> = {
   },
 };
 
-/** Documents a member accepts at checkout and at every sign-in. */
+/** Documents a member accepts at every sign-in. */
 export const memberLegalBundle: LegalDocumentKey[] = [
   "membershipAgreement",
   "websiteTerms",
