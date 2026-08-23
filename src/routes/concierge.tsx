@@ -28,7 +28,7 @@ function ConciergePage() {
     title="When life becomes more complex, it should not feel more complicated."
     introduction="Homes, family, advisers, travel, schools, decisions and the things that sit between them — held together quietly, so you can see what matters without carrying every detail yourself."
     heroImage={poHeroStudy}
-    heroPositionClassName="object-[72%_62%] md:object-[64%_center]"
+    heroPositionClassName="object-[58%_100%] md:object-[64%_center]"
     heroAlt="A family in quiet conversation with a trusted adviser in a private home library"
     statementEyebrow="The private office"
     statement="The value is not in having more people to call. It is having one place that understands the whole picture."
