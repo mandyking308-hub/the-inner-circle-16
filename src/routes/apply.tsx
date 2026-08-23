@@ -11,6 +11,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { loadApplications, saveApplications, type MembershipApplication } from "@/data/applicationStore";
 import { luxuryImages } from "@/data/luxuryImages";
 import { submitMembershipIntake } from "@/lib/applicationIntake";
+import { parseReferences } from "@/lib/applicationReferences";
+import { TwoReferences } from "@/components/apply/TwoReferences";
 import { site } from "@/config/site";
 
 export const Route = createFileRoute("/apply")({
@@ -31,6 +33,12 @@ function ApplyPage() {
     const formElement = event.currentTarget;
     const form = new FormData(formElement);
     const membership = String(form.get("membership") ?? "Individual") === "Family" ? "Family" : "Individual";
+    const parsedReferences = parseReferences(form);
+    if (!parsedReferences.ok) {
+      setError(parsedReferences.message);
+      setSubmitting(false);
+      return;
+    }
     const input = {
       name: String(form.get("name") ?? "").trim(),
       email: String(form.get("email") ?? "").trim(),
@@ -42,6 +50,8 @@ function ApplyPage() {
       contribution: String(form.get("contribution") ?? "").trim(),
       referral: String(form.get("referral") ?? "").trim(),
       website: String(form.get("website") ?? "").trim(),
+      references: parsedReferences.references,
+      referenceConsent: true as const,
     };
 
     try {
@@ -59,13 +69,15 @@ function ApplyPage() {
         complicated: input.complicated,
         contribution: input.contribution,
         referral: input.referral,
+        references: input.references,
+        referenceConsent: input.referenceConsent,
       };
       setSubmitted(application);
       setTurnstileToken("");
       formElement.reset();
     } catch (cause) {
       const code = cause instanceof Error ? cause.message : "SUBMISSION_FAILED";
-      setError(code === "SECURITY_CHECK_REQUIRED" ? "Please complete the private application security check and try again." : "We could not send the application just now. Please try again shortly.");
+      setError(code === "SECURITY_CHECK_REQUIRED" ? "Please complete the private application security check and try again." : code.startsWith("REFERENCE") ? "Please complete both references and confirm you have permission to share their details." : "We could not send the application just now. Please try again shortly.");
     } finally {
       setSubmitting(false);
     }
@@ -95,7 +107,7 @@ function ApplyPage() {
 
             <div>
               {submitted ? (
-                <div className="border border-foreground/15 bg-card p-7 md:p-10"><CheckCircle2 className="h-6 w-6 text-oxblood" /><p className="mt-7 text-[10px] font-semibold uppercase tracking-[0.2em] text-oxblood">Application received</p><h2 className="mt-3 font-display text-5xl">Thank you, {submitted.name.split(" ")[0] || "there"}.</h2><p className="mt-5 max-w-2xl text-sm leading-7 text-muted-foreground">Your application reference is <strong>{submitted.id}</strong>. The membership team will review what you are responsible for, what has become complicated and what you would bring to the room. If there appears to be a fit, the next step is a conversation.</p><Button asChild variant="outline" className="mt-8 rounded-none"><Link to="/journal">Read the Journal <ArrowRight className="ml-2 h-4 w-4" /></Link></Button></div>
+                <div className="border border-foreground/15 bg-card p-7 md:p-10"><CheckCircle2 className="h-6 w-6 text-oxblood" /><p className="mt-7 text-[10px] font-semibold uppercase tracking-[0.2em] text-oxblood">Application received</p><h2 className="mt-3 font-display text-5xl">Thank you, {submitted.name.split(" ")[0] || "there"}.</h2><p className="mt-5 max-w-2xl text-sm leading-7 text-muted-foreground">Your application reference is <strong>{submitted.id}</strong>. Your application now moves into personal review, including a discreet word with the two references you gave us. If there appears to be a fit, the next step is a conversation.</p><Button asChild variant="outline" className="mt-8 rounded-none"><Link to="/journal">Read the Journal <ArrowRight className="ml-2 h-4 w-4" /></Link></Button></div>
               ) : (
                 <form onSubmit={submit} className="border border-foreground/15 bg-card p-6 md:p-9">
                   <div className="grid gap-5 md:grid-cols-2">
@@ -110,6 +122,14 @@ function ApplyPage() {
                     <div className="space-y-2"><Label htmlFor="complicated">What has become complicated?</Label><Textarea id="complicated" name="complicated" rows={5} required className="rounded-none" placeholder="A move, succession, schools, advisers, growth, family governance, time, access — tell us the real version." /></div>
                     <div className="space-y-2"><Label htmlFor="contribution">What would you bring to the room?</Label><Textarea id="contribution" name="contribution" rows={4} required className="rounded-none" placeholder="Experience, judgement, relationships, a sector you know deeply, willingness to mentor or something else useful." /></div>
                     <div className="space-y-2"><Label htmlFor="referral">How did you hear about us?</Label><Input id="referral" name="referral" placeholder="Member introduction, event, search, other" className="rounded-none" /></div>
+                  </div>
+                  <TwoReferences
+                    intro="Everyone who joins is introduced by two people. Please give us two people we may speak to as part of the admission review — someone who knows what you are responsible for, and someone who knows how you are to work alongside. We contact them discreetly, and only once."
+                    relationshipLabel="How do you know each other?"
+                    relationshipPlaceholder="A sentence is plenty — how long you have known one another and in what context."
+                    consentLabel="I have their permission to share these details, and Montvelle may contact them as part of my application review."
+                  />
+                  <div className="mt-7 space-y-6 border-t border-foreground/12 pt-7">
                     <div className="absolute -left-[10000px] top-auto h-px w-px overflow-hidden" aria-hidden="true"><Label htmlFor="website">Website</Label><Input id="website" name="website" tabIndex={-1} autoComplete="off" /></div>
                     <TurnstileGate action="membership_apply" onToken={setTurnstileToken} />
                   </div>

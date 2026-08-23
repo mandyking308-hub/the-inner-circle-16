@@ -8,7 +8,7 @@ type Props = {
   relationshipLabel: string;
   relationshipPlaceholder: string;
   consentLabel: string;
-  showOrganisation?: boolean;
+  showOrganisation?: boolean | undefined;
 };
 
 function ReferenceBlock({
