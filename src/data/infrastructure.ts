@@ -18,6 +18,13 @@ export const partnerCategories = [
   "Clubs & Hospitality",
 ] as const;
 
+/**
+ * DEMO ONLY — internal admin/supplier QA fixtures.
+ * These organisations are not real Montvelle relationships and must never be
+ * rendered in any member-facing surface. Member-facing partner listings read
+ * `approvedMemberFacingPartners` below, which stays empty until a provider has
+ * genuinely completed references and assurance.
+ */
 export const trustedPartners = [
   {
     id: "partner-01",
