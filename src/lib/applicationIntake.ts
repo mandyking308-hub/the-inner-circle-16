@@ -1,5 +1,6 @@
 import type { MembershipApplication } from "@/data/applicationStore";
 import type { PartnerApplication } from "@/data/partnerApplicationStore";
+import { referenceConsentSchema, referencePairSchema } from "@/lib/applicationReferences";
 
 const env = import.meta.env as Record<string, string | undefined>;
 const intakeUrl = env['VITE_APPLICATION_INTAKE_URL']?.trim();
@@ -28,11 +29,17 @@ async function postIntake(payload: Record<string, unknown>, turnstileToken: stri
   return result.reference;
 }
 
+function assertReferences(input: { references: unknown; referenceConsent: unknown }) {
+  if (!referencePairSchema.safeParse(input.references).success) throw new Error("REFERENCES_REQUIRED");
+  if (!referenceConsentSchema.safeParse(input.referenceConsent).success) throw new Error("REFERENCE_CONSENT_REQUIRED");
+}
+
 export async function submitMembershipIntake(
   input: MembershipInput,
   turnstileToken: string,
   previewSave: (application: MembershipApplication) => void,
 ): Promise<IntakeResult> {
+  assertReferences(input);
   if (intakeUrl) {
     const reference = await postIntake({
       kind: "membership",
@@ -45,6 +52,8 @@ export async function submitMembershipIntake(
       complicated: input.complicated,
       contribution: input.contribution,
       referral: input.referral,
+      references: input.references,
+      referenceConsent: input.referenceConsent,
       website: input.website,
     }, turnstileToken);
     return { reference, mode: "production" };
@@ -64,6 +73,8 @@ export async function submitMembershipIntake(
     complicated: input.complicated,
     contribution: input.contribution,
     referral: input.referral,
+    references: input.references,
+    referenceConsent: input.referenceConsent,
   });
   return { reference, mode: "preview" };
 }
@@ -73,6 +84,7 @@ export async function submitPartnerIntake(
   turnstileToken: string,
   previewSave: (application: PartnerApplication) => void,
 ): Promise<IntakeResult> {
+  assertReferences(input);
   if (intakeUrl) {
     const reference = await postIntake({
       kind: "partner",
@@ -87,6 +99,7 @@ export async function submitPartnerIntake(
       whyRelevant: input.whyRelevant,
       memberBenefit: input.memberBenefit,
       references: input.references,
+      referenceConsent: input.referenceConsent,
       conflicts: input.conflicts,
       website: input.website,
     }, turnstileToken);
@@ -108,6 +121,7 @@ export async function submitPartnerIntake(
     whyRelevant: input.whyRelevant,
     memberBenefit: input.memberBenefit,
     references: input.references,
+    referenceConsent: input.referenceConsent,
     conflicts: input.conflicts,
   });
   return { reference, mode: "preview" };
