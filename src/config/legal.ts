@@ -1,6 +1,12 @@
 /**
  * Central legal document versioning.
  *
+ * INTERNAL NOTE — this pack has NOT been reviewed by external counsel. Before
+ * live trading it requires review for UK/EU/US (Delaware) plus the Dodo
+ * merchant-of-record arrangement, then local addenda as member geographies
+ * expand. Acceptance evidence recorded in the browser is preview evidence
+ * only; it is not a production audit store.
+ *
  * Every clickwrap surface (checkout, member sign-in, supplier sign-in) records
  * the bundle version below alongside a timestamp. When production auth and the
  * database are enabled, the same `legalVersionBundle` string should be written
