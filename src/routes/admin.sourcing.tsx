@@ -25,6 +25,13 @@ import {
   type SourcingStage,
   type SupplierProspect,
 } from "@/data/sourcing";
+import {
+  memberRequestStatuses,
+  readMemberRequests,
+  writeMemberRequests,
+  type MemberRequestStatus,
+  type MemberSourcingRequest,
+} from "@/data/memberSourcing";
 
 export const Route = createFileRoute("/admin/sourcing")({ component: SourcingDesk });
 
