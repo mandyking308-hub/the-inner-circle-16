@@ -33,17 +33,26 @@ const memberGroups = [
     label: "Private office",
     items: [
       { to: "/member", label: "Today", icon: Home, exact: true },
-      { to: "/member/control-room", label: "Decision Room", icon: LayoutDashboard },
+      { to: "/member/control-room", label: "Decisions", icon: LayoutDashboard },
       { to: "/member/concierge", label: "Concierge", icon: Compass },
-      { to: "/member/table", label: "My Table", icon: TableProperties },
+      { to: "/member/services", label: "Private Services", icon: Sparkles },
+      { to: "/member/bookings", label: "Bookings", icon: CalendarDays },
+      { to: "/member/messages", label: "Messages", icon: Inbox },
     ],
   },
   {
     label: "The wider house",
     items: [
+      { to: "/member/table", label: "My Table", icon: TableProperties },
       { to: "/member/family", label: "Family", icon: Landmark },
       { to: "/member/network", label: "Network", icon: Network },
       { to: "/member/programme", label: "Programme", icon: CalendarDays },
+    ],
+  },
+  {
+    label: "You",
+    items: [
+      { to: "/member/preferences", label: "My Preferences", icon: BookOpen },
       { to: "/member/profile", label: "Account & privacy", icon: CircleUserRound },
     ],
   },
