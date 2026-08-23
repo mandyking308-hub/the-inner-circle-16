@@ -238,6 +238,9 @@ function MemberHome() {
               ))
             )}
           </ul>
+          <p className="mt-3 text-[10px] uppercase tracking-[0.14em] text-muted-foreground/70">
+            Preview · diary and invitations shown here are illustrative
+          </p>
           <Link
             to="/member/events"
             className="mt-6 inline-flex items-center gap-2 text-sm font-semibold"
