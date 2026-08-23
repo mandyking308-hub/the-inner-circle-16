@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { journalArticles } from "@/data/journal";
 import { knowledgeLibrary } from "@/data/knowledgeLibrary";
+import { ExpertCouncilCta } from "@/components/private/RequestCtas";
 
 export const Route = createFileRoute("/member/knowledge/")({ component: KnowledgePage });
 
@@ -265,6 +266,8 @@ function KnowledgePage() {
             Open public Journal </Link>
         </Button>
       </section>
+
+      <ExpertCouncilCta topic={category === "All" ? undefined : category} />
     </div>
   );
 }
