@@ -1,30 +1,6 @@
 import { type ReactNode, useEffect, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
-import {
-  BadgeCheck,
-  BookOpen,
-  BriefcaseBusiness,
-  CalendarDays,
-  ChevronRight,
-  CircleUserRound,
-  Compass,
-  Globe2,
-  GraduationCap,
-  HandHeart,
-  Home,
-  Inbox,
-  Landmark,
-  LayoutDashboard,
-  Menu,
-  Network,
-  Settings,
-  ShieldCheck,
-  Sparkles,
-  TableProperties,
-  Users,
-  X,
-  FileSearch,
-} from "lucide-react";
+import { BadgeCheck, BookOpen, BriefcaseBusiness, CalendarDays, CircleUserRound, Compass, FileSearch, Globe2, GraduationCap, HandHeart, Home, Inbox, Landmark, LayoutDashboard, Menu, Network, Settings, ShieldCheck, Sparkles, TableProperties, Users, X } from "lucide-react";
 
 import { BrandMark } from "@/components/brand/BrandMark";
 import { site } from "@/config/site";
@@ -228,7 +204,7 @@ export function PrivateShell({ mode, children }: PrivateShellProps) {
                           />
                           {item.label}
                         </span>
-                        {active ? <ChevronRight className="h-3 w-3 text-bronze" /> : null}
+                        {active ? : null}
                       </Link>
                     );
                   })}
@@ -238,7 +214,6 @@ export function PrivateShell({ mode, children }: PrivateShellProps) {
           </nav>
           <div className="border-t border-background/12 p-5">
             <div className="flex items-start gap-3">
-              <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-bronze" />
               <div>
                 <p className="text-[9px] font-semibold uppercase tracking-[0.17em] text-background/60">
                   Confidential by default

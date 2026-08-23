@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { BookOpenCheck, BriefcaseBusiness, HandHeart, LockKeyhole, ShieldCheck, Sparkles } from "lucide-react";
+import { BookOpenCheck, BriefcaseBusiness, HandHeart, Sparkles } from "lucide-react";
 
 import { PageIntro } from "@/components/private/PrivateShell";
 
@@ -64,10 +64,10 @@ function NextGenPage() {
           <p className="eyebrow text-background/60">Protected by design</p>
           <h2 className="mt-3 font-display text-4xl">Not a junior version of the adult club.</h2>
           <div className="mt-6 space-y-4 text-sm leading-7 text-background/75">
-            <p className="flex gap-3"><ShieldCheck className="mt-1 h-4 w-4 shrink-0 text-bronze" />Guardian/admin approval for under-18 accounts and activities.</p>
-            <p className="flex gap-3"><LockKeyhole className="mt-1 h-4 w-4 shrink-0 text-bronze" />No access to adult Table challenges, private member discussions or unrestricted member contact details.</p>
-            <p className="flex gap-3"><ShieldCheck className="mt-1 h-4 w-4 shrink-0 text-bronze" />No stranger-to-child direct messaging. Introductions and mentoring are programme-managed.</p>
-            <p className="flex gap-3"><LockKeyhole className="mt-1 h-4 w-4 shrink-0 text-bronze" />No public display of family wealth, inheritance expectations or sensitive family structure.</p>
+            <p className="flex gap-3">Guardian/admin approval for under-18 accounts and activities.</p>
+            <p className="flex gap-3">No access to adult Table challenges, private member discussions or unrestricted member contact details.</p>
+            <p className="flex gap-3">No stranger-to-child direct messaging. Introductions and mentoring are programme-managed.</p>
+            <p className="flex gap-3">No public display of family wealth, inheritance expectations or sensitive family structure.</p>
           </div>
         </div>
 

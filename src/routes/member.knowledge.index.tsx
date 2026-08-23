@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Bookmark, Search, Sparkles } from "lucide-react";
+import { Search } from "lucide-react";
 
 import { PageIntro } from "@/components/private/PrivateShell";
 import { Button } from "@/components/ui/button";
@@ -99,12 +99,10 @@ function KnowledgePage() {
   const OpenLink = ({ item, className }: { item: ArchiveResult; className?: string }) =>
     item.to === "journal" ? (
       <Link to="/journal/$slug" params={{ slug: item.slug }} className={className}>
-        Read <ArrowRight className="h-3.5 w-3.5" />
-      </Link>
+        Read </Link>
     ) : (
       <Link to="/member/knowledge/$id" params={{ id: item.slug }} className={className}>
-        Open <ArrowRight className="h-3.5 w-3.5" />
-      </Link>
+        Open </Link>
     );
 
   return (
@@ -118,7 +116,6 @@ function KnowledgePage() {
       <section className="border border-border bg-foreground p-6 text-background md:p-8">
         <div className="grid gap-6 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
           <div>
-            <Sparkles className="h-5 w-5 text-bronze" />
             <p className="mt-6 text-[9px] font-semibold uppercase tracking-[0.2em] text-background/45">Ask the Archive</p>
             <h2 className="mt-3 font-display text-4xl leading-tight">Start with the problem, not the category.</h2>
           </div>
@@ -172,7 +169,6 @@ function KnowledgePage() {
       <section className="border border-border bg-card p-4 md:p-5">
         <div className="grid gap-3 lg:grid-cols-[1fr_auto]">
           <label className="relative block">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <Input
               value={query}
               onChange={(event) => setQuery(event.target.value)}
@@ -210,8 +206,7 @@ function KnowledgePage() {
                 onClick={() => toggleSaved(item.id)}
                 aria-label={saved.includes(item.id) ? "Remove saved item" : "Save item"}
               >
-                <Bookmark className={`h-4 w-4 ${saved.includes(item.id) ? "fill-current text-oxblood" : "text-muted-foreground"}`} />
-              </button>
+                </button>
             </div>
             <h2 className="mt-5 font-display text-3xl leading-tight">{item.title}</h2>
             <p className="mt-4 text-sm leading-7 text-muted-foreground">{item.summary}</p>
@@ -268,8 +263,7 @@ function KnowledgePage() {
           className="mt-7 rounded-none border-background/30 bg-transparent text-background hover:bg-background hover:text-foreground"
         >
           <Link to="/journal">
-            Open public Journal <ArrowRight className="ml-2 h-4 w-4" />
-          </Link>
+            Open public Journal </Link>
         </Button>
       </section>
     </div>

@@ -1,6 +1,5 @@
 import { FormEvent, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { CheckCircle2, CircleDashed, Handshake, LockKeyhole } from "lucide-react";
 
 import { PageIntro } from "@/components/private/PrivateShell";
 import { Button } from "@/components/ui/button";
@@ -53,13 +52,11 @@ export default function IntroductionsPage() {
       <div className="grid gap-5 xl:grid-cols-[0.9fr_1.1fr]">
         <section className="border border-border bg-card p-5 md:p-6">
           <div className="flex items-center gap-3">
-            <Handshake className="h-4 w-4 text-bronze" />
             <p className="eyebrow">Request an introduction</p>
           </div>
 
           {submitted ? (
             <div className="mt-7 border-t border-border pt-6">
-              <CheckCircle2 className="h-5 w-5 text-bronze" />
               <h2 className="mt-4 font-display text-3xl">Request received.</h2>
               <p className="mt-3 text-sm leading-7 text-muted-foreground">
                 Concierge will review the context first. If the introduction looks useful, we ask
@@ -130,10 +127,8 @@ export default function IntroductionsPage() {
                 </div>
                 <div className="flex items-start gap-2 text-xs">
                   {item.status === "Introduced" || item.status === "Consent received" ? (
-                    <CheckCircle2 className="h-4 w-4 text-bronze" />
-                  ) : (
-                    <CircleDashed className="h-4 w-4 text-bronze" />
-                  )}
+                    ) : (
+                    )}
                   {item.status}
                 </div>
               </div>
@@ -143,7 +138,6 @@ export default function IntroductionsPage() {
       </div>
 
       <div className="flex items-start gap-3 border border-border bg-accent/25 p-4 text-xs leading-6 text-muted-foreground">
-        <LockKeyhole className="mt-0.5 h-4 w-4 shrink-0 text-bronze" />
         Introductions are part of the community service, not inventory for sale. Members and
         advisers cannot pay to be placed in front of another member.
       </div>

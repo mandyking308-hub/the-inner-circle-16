@@ -1,5 +1,4 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Handshake, ShieldCheck } from "lucide-react";
 
 import { PageIntro } from "@/components/private/PrivateShell";
 import { Button } from "@/components/ui/button";
@@ -21,7 +20,6 @@ function MemberPartnersPage() {
       />
 
       <section className="border border-border bg-card p-8 md:p-12">
-        <ShieldCheck className="h-6 w-6 text-oxblood" />
         <h2 className="mt-6 max-w-2xl font-display text-4xl leading-tight">
           Tell us the matter. We will go and find the right people.
         </h2>
@@ -40,12 +38,10 @@ function MemberPartnersPage() {
         <div className="mt-8 flex flex-wrap gap-3">
           <Button asChild className="rounded-none bg-oxblood">
             <Link to="/member/services">
-              Make a request <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
+              Make a request </Link>
           </Button>
           <Button asChild variant="outline" className="rounded-none">
             <Link to="/member/concierge">
-              <Handshake className="mr-2 h-4 w-4" />
               Speak to the Private Office
             </Link>
           </Button>

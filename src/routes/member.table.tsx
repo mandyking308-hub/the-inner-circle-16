@@ -1,6 +1,5 @@
 import { FormEvent, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { CheckCircle2, LockKeyhole, Send } from "lucide-react";
 
 import { PageIntro } from "@/components/private/PrivateShell";
 import { Button } from "@/components/ui/button";
@@ -65,7 +64,6 @@ function TablePage() {
 
           <div className="border border-border bg-card p-5">
             <div className="flex items-start gap-3">
-              <LockKeyhole className="mt-0.5 h-4 w-4 shrink-0 text-bronze" />
               <div>
                 <p className="text-sm font-medium">Chatham House rules, plus context.</p>
                 <p className="mt-2 text-xs leading-6 text-muted-foreground">
@@ -83,7 +81,6 @@ function TablePage() {
           <h2 className="mt-3 font-display text-3xl">What decision deserves the room?</h2>
           {submitted ? (
             <div className="mt-6 flex items-start gap-3 border-t border-border pt-5">
-              <CheckCircle2 className="mt-0.5 h-5 w-5 text-bronze" />
               <div>
                 <p className="text-sm font-medium">Challenge submitted privately.</p>
                 <p className="mt-1 text-xs leading-6 text-muted-foreground">
@@ -100,8 +97,7 @@ function TablePage() {
                 placeholder="State the decision, the constraint and what you need from the Table. Avoid a polished presentation — bring the real problem."
               />
               <Button type="submit" className="mt-4 rounded-none">
-                Submit confidentially <Send className="ml-2 h-3.5 w-3.5" />
-              </Button>
+                Submit confidentially </Button>
             </form>
           )}
         </div>

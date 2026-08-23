@@ -1,6 +1,5 @@
 import { type FormEvent, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, ShieldCheck } from "lucide-react";
 
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/button";
@@ -134,8 +133,7 @@ function MembershipPage() {
                 href="#join"
                 className="inline-flex items-center gap-2 border-b border-[#d8b36c] pb-1 text-sm font-medium tracking-wide text-[#d8b36c] transition-colors hover:text-[#e8c98d]"
               >
-                Membership & enrolment <ArrowRight className="h-4 w-4" />
-              </a>
+                Membership & enrolment </a>
               <Link
                 to="/apply"
                 className="text-sm text-white/60 underline-offset-4 transition-colors hover:text-white/90 hover:underline"
@@ -294,8 +292,7 @@ function MembershipPage() {
                 href="#enrol"
                 className="mt-8 inline-flex items-center gap-2 border-b border-oxblood pb-1 text-sm font-medium text-oxblood transition-opacity hover:opacity-70"
               >
-                Continue to secure checkout <ArrowRight className="h-4 w-4" />
-              </a>
+                Continue to secure checkout </a>
             </div>
 
             <div className="bg-[#efe6d7] p-8 md:p-11">
@@ -322,8 +319,7 @@ function MembershipPage() {
               </div>
               <Button asChild className="mt-8 h-12 rounded-none bg-oxblood px-7 text-sm">
                 <Link to="/apply" search={{ membership: "Family" }}>
-                  Discuss family membership <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
+                  Discuss family membership </Link>
               </Button>
             </div>
           </div>
@@ -489,12 +485,10 @@ function MembershipPage() {
                     {submitting
                       ? "Opening secure checkout…"
                       : `Continue securely · ${membershipPricing.firstYearDisplay}`}
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
+                    </Button>
                 </form>
 
                 <div className="mt-10 flex gap-4 border-t border-white/12 pt-7">
-                  <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-[#d8b36c]" />
                   <p className="text-[10px] leading-5 text-white/45">
                     Montvelle is operated by {site.operator}, a Delaware limited liability company.
                     Membership activates only after acceptance, required checks, contractual
@@ -515,8 +509,7 @@ function MembershipPage() {
                   to="/apply"
                   className="inline-flex items-center gap-2 border-b border-oxblood pb-1 text-sm font-medium text-oxblood transition-opacity hover:opacity-70"
                 >
-                  Request membership <ArrowRight className="h-4 w-4" />
-                </Link>
+                  Request membership </Link>
               </div>
             </div>
           </div>

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, CalendarDays, Inbox, LayoutDashboard, Sparkles } from "lucide-react";
 
 import { PageIntro } from "@/components/private/PrivateShell";
 import { knowledge } from "@/data/community";
@@ -157,8 +156,7 @@ function MemberHome() {
                   <h3 className="font-display text-2xl leading-tight">{item.label}</h3>
                   <p className="mt-2 text-xs leading-6 text-muted-foreground">{item.detail}</p>
                 </div>
-                <ArrowRight className="h-4 w-4 text-oxblood transition-transform group-hover:translate-x-1" />
-              </Link>
+                </Link>
             ))}
           </div>
         )}
@@ -168,7 +166,6 @@ function MemberHome() {
         <div className="flex flex-wrap items-start justify-between gap-5">
           <div>
             <div className="flex items-center gap-3">
-              <Sparkles className="h-5 w-5 text-oxblood" />
               <p className="eyebrow text-oxblood">Montvelle is handling</p>
             </div>
             <h2 className="mt-5 font-display text-3xl leading-tight">
@@ -185,8 +182,7 @@ function MemberHome() {
             to="/member/services"
             className="inline-flex items-center gap-2 border border-border px-5 py-3 text-sm font-semibold transition-colors hover:bg-accent"
           >
-            Make a request <ArrowRight className="h-4 w-4 text-oxblood" />
-          </Link>
+            Make a request </Link>
         </div>
         {open.length > 0 ? (
           <ul className="mt-6 divide-y divide-border border-y border-border text-sm">
@@ -213,7 +209,6 @@ function MemberHome() {
       <div className="grid gap-px bg-border lg:grid-cols-2">
         <section className="bg-card p-6 md:p-7">
           <div className="flex items-center gap-3">
-            <CalendarDays className="h-5 w-5 text-oxblood" />
             <p className="eyebrow text-oxblood">Coming up</p>
           </div>
           <h2 className="mt-5 font-display text-3xl leading-tight">
@@ -247,13 +242,11 @@ function MemberHome() {
             to="/member/events"
             className="mt-6 inline-flex items-center gap-2 text-sm font-semibold"
           >
-            See your invitations <ArrowRight className="h-4 w-4 text-oxblood" />
-          </Link>
+            See your invitations </Link>
         </section>
 
         <section className="bg-foreground p-6 text-background md:p-7">
           <div className="flex items-center gap-3">
-            <LayoutDashboard className="h-5 w-5 text-bronze" />
             <p className="eyebrow text-background/50">Decision Room</p>
           </div>
           <p className="mt-6 text-[10px] font-semibold uppercase tracking-[0.18em] text-bronze">
@@ -268,15 +261,13 @@ function MemberHome() {
             to="/member/control-room"
             className="mt-6 inline-flex items-center gap-2 text-sm font-semibold"
           >
-            Open the Decision Room <ArrowRight className="h-4 w-4 text-bronze" />
-          </Link>
+            Open the Decision Room </Link>
         </section>
       </div>
 
       {worthKnowing ? (
         <section className="border border-border bg-card p-6 md:p-7">
           <div className="flex items-center gap-3">
-            <Inbox className="h-5 w-5 text-oxblood" />
             <p className="eyebrow text-oxblood">Worth knowing</p>
           </div>
           <h2 className="mt-5 max-w-3xl font-display text-3xl leading-tight">
@@ -289,8 +280,7 @@ function MemberHome() {
             to="/member/knowledge"
             className="mt-6 inline-flex items-center gap-2 text-sm font-semibold"
           >
-            Read this <ArrowRight className="h-4 w-4 text-oxblood" />
-          </Link>
+            Read this </Link>
         </section>
       ) : null}
     </div>

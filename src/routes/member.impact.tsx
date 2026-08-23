@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowUpRight, HandHeart } from "lucide-react";
 
 import { PageIntro } from "@/components/private/PrivateShell";
 import { Button } from "@/components/ui/button";
@@ -28,8 +27,7 @@ function ImpactPage() {
             <article key={project.title} className="border border-border bg-card p-5 md:p-6">
               <div className="flex items-center justify-between gap-3">
                 <span className="text-[10px] uppercase tracking-[0.18em] text-bronze">{project.theme}</span>
-                <HandHeart className="h-4 w-4 text-muted-foreground" />
-              </div>
+                </div>
               <h2 className="mt-5 font-display text-3xl leading-tight">{project.title}</h2>
               <p className="mt-4 text-sm leading-7 text-muted-foreground">{project.description}</p>
               <div className="mt-6 border-t border-border pt-4">
@@ -40,8 +38,7 @@ function ImpactPage() {
                 <p className="mt-5 border-t border-border pt-4 text-xs leading-6 text-muted-foreground">Interest registered. Concierge will contact you privately about the most useful way to engage.</p>
               ) : (
                 <Button className="mt-5 rounded-none" variant="outline" onClick={() => setInterest((current) => ({ ...current, [project.title]: true }))}>
-                  I may be able to help <ArrowUpRight className="ml-2 h-3.5 w-3.5" />
-                </Button>
+                  I may be able to help </Button>
               )}
             </article>
           );

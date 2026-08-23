@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, MessageSquareText, Network, TableProperties, Users } from "lucide-react";
+import { MessageSquareText, Network, TableProperties, Users } from "lucide-react";
 
 import { PageIntro } from "@/components/private/PrivateShell";
 
@@ -48,8 +48,7 @@ function CommunityHubPage() {
             <p className="mt-4 text-sm leading-7 text-muted-foreground">{body}</p>
             <span className="mt-7 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em]">
               Open{" "}
-              <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-            </span>
+              </span>
           </Link>
         ))}
       </div>
@@ -68,8 +67,7 @@ function CommunityHubPage() {
           to="/member/services"
           className="mt-6 inline-flex items-center gap-2 text-sm font-semibold"
         >
-          Make a request <ArrowRight className="h-4 w-4 text-bronze" />
-        </Link>
+          Make a request </Link>
       </section>
     </div>
   );

@@ -1,5 +1,4 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowLeft, ArrowRight, Info, LayoutDashboard, Sparkles } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { findKnowledgeDoc } from "@/data/knowledgeLibrary";
@@ -25,7 +24,7 @@ function KnowledgeNotFound() {
         to="/member/knowledge"
         className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-oxblood"
       >
-        <ArrowLeft className="h-4 w-4" /> Back to Knowledge
+        Back to Knowledge
       </Link>
     </div>
   );
@@ -41,7 +40,7 @@ function KnowledgeDetailPage() {
           to="/member/knowledge"
           className="inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-muted-foreground hover:text-foreground"
         >
-          <ArrowLeft className="h-3.5 w-3.5" /> Knowledge
+          Knowledge
         </Link>
         <p className="mt-6 text-[9px] uppercase tracking-[0.18em] text-oxblood">
           {doc.type} · {doc.category} · {doc.readTime}
@@ -84,7 +83,7 @@ function KnowledgeDetailPage() {
                   to="/member/control-room"
                   search={{ topic: doc.decisionRoom ?? doc.title }}
                 >
-                  <LayoutDashboard className="mr-2 h-4 w-4" /> Start a Decision Room
+                  Start a Decision Room
                 </Link>
               </Button>
               <Button
@@ -96,7 +95,7 @@ function KnowledgeDetailPage() {
                   to="/member/services"
                   search={{ need: doc.requestPrompt ?? `We would like help with: ${doc.title}.` }}
                 >
-                  <Sparkles className="mr-2 h-4 w-4" /> Ask Montvelle to handle this
+                  Ask Montvelle to handle this
                 </Link>
               </Button>
             </div>
@@ -107,7 +106,6 @@ function KnowledgeDetailPage() {
 
           {doc.boundary ? (
             <div className="border border-border bg-accent/30 p-5">
-              <Info className="h-4 w-4 text-oxblood" />
               <p className="mt-3 text-[11px] leading-6 text-muted-foreground">{doc.boundary}</p>
             </div>
           ) : null}
@@ -116,8 +114,7 @@ function KnowledgeDetailPage() {
             to="/member/knowledge"
             className="inline-flex items-center gap-2 text-sm font-semibold text-oxblood"
           >
-            More in the archive <ArrowRight className="h-3.5 w-3.5" />
-          </Link>
+            More in the archive </Link>
         </aside>
       </div>
     </article>
