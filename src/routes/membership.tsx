@@ -523,9 +523,12 @@ function MembershipPage() {
 
                 <div className="mt-10 flex gap-4 border-t border-white/12 pt-7">
                   <p className="text-[10px] leading-5 text-white/45">
-                    Montvelle is operated by {site.operator}, a Delaware limited liability company.
-                    Membership activates only after acceptance, required checks, contractual
-                    acceptance and cleared funds.
+                    Montvelle is operated by {site.operator}, a Delaware limited liability company,
+                    which performs the membership and services. Where configured, Dodo Payments acts
+                    as the payment and transaction merchant of record for checkout, payment, tax and
+                    refund processing, and its checkout and receipt may identify it as the payment
+                    seller under its own payment terms. Membership activates only after acceptance,
+                    required checks, contractual acceptance and cleared funds.
                   </p>
                 </div>
               </div>
