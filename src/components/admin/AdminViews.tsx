@@ -31,10 +31,10 @@ const applications = [
 ];
 
 const introQueue = [
-  { from: "DEMO Member", to: "Marcus Vella", reason: "Founder-to-chair transition", status: "Consent received" },
-  { from: "Daniel Okafor", to: "Nina Brooks", reason: "Family philanthropy structure", status: "Ask recipient" },
-  { from: "Maya Patel", to: "Idris Khan", reason: "Child-safe technology review", status: "Reviewing" },
-  { from: "Layla Rahman", to: "External operator", reason: "Gulf healthcare launch", status: "Source candidate" },
+  { from: "DEMO Member", to: "DEMO Member F", reason: "Founder-to-chair transition", status: "Consent received" },
+  { from: "DEMO Member B", to: "DEMO Member I", reason: "Family philanthropy structure", status: "Ask recipient" },
+  { from: "DEMO Member G", to: "DEMO Member L", reason: "Child-safe technology review", status: "Reviewing" },
+  { from: "DEMO Member E", to: "External operator", reason: "Gulf healthcare launch", status: "Source candidate" },
 ];
 
 function StatusPill({ children }: { children: string }) {

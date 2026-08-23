@@ -14,13 +14,13 @@ export const Route = createFileRoute("/member/introductions")({
 
 const statuses = [
   {
-    person: "Marcus Vella",
+    person: "DEMO Member F",
     reason: "Founder-to-chair transition",
     status: "Consent received",
     detail: "Marcus is happy to connect. Concierge will send a short contextual introduction today.",
   },
   {
-    person: "Elena Rossi",
+    person: "DEMO Member K",
     reason: "Modernising family-office systems",
     status: "Reviewing",
     detail: "Concierge is checking relevance and whether Elena has capacity for this conversation.",
