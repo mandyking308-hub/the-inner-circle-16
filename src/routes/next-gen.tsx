@@ -3,11 +3,12 @@ import { ArrowRight, BriefcaseBusiness, GraduationCap, ShieldCheck, Sparkles } f
 
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/button";
-import { luxuryImages } from "@/data/luxuryImages";
+import { pageImages } from "@/data/pageImages";
 import { site } from "@/config/site";
 
 export const Route = createFileRoute("/next-gen")({
-  head: () => ({ meta: [{ title: `Next Generation — ${site.name}` }, { name: "description", content: "A protected rising-generation programme for stewardship, execution, enterprise, technology, philanthropy and real-world capability." }] }),
+  head: () => ({ meta: [{ title: `Next Generation — ${site.name}` }, { name: "description", content: "A protected rising-generation programme for stewardship, execution, enterprise, technology, philanthropy and real-world capability." }],
+    links: [{ rel: "canonical", href: `${site.url}/next-gen` }], }),
   component: NextGenPublicPage,
 });
 
@@ -15,7 +16,7 @@ function NextGenPublicPage() {
   return (
     <>
       <section className="relative min-h-[720px] overflow-hidden bg-foreground text-background">
-        <img src={luxuryImages.learning} alt="A parent and young person learning together in an elegant private study" className="absolute inset-0 h-full w-full object-cover" />
+        <img src={pageImages.nextGenHero} alt="A parent and young person learning together in an elegant private study" className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-foreground/96 via-foreground/72 to-foreground/16" />
         <Container className="relative flex min-h-[720px] items-center py-20">
           <div className="max-w-3xl"><p className="eyebrow text-bronze">The next generation</p><h1 className="mt-6 max-w-[10ch] font-display text-6xl leading-[0.93] md:text-8xl">Prepare capability before responsibility arrives.</h1><p className="mt-7 max-w-2xl text-base leading-8 text-background/72">A child should not discover the family business, ownership, money, advisers and responsibility for the first time when the paperwork says it is theirs. Exposure can begin earlier — carefully, gradually and without turning childhood into a board meeting.</p><Button asChild size="lg" className="mt-9 rounded-none bg-oxblood px-8"><Link to="/family-learning">Explore Family Learning <ArrowRight className="ml-2 h-4 w-4" /></Link></Button></div>
@@ -54,7 +55,7 @@ function NextGenPublicPage() {
 
       <section className="border-b border-foreground/15 py-20 md:py-28">
         <Container>
-          <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center"><div className="overflow-hidden border border-foreground/15"><img src={luxuryImages.learning} alt="A young person building capability in an elegant learning environment" className="aspect-[4/3] w-full object-cover" /></div><div><BriefcaseBusiness className="h-5 w-5 text-oxblood" /><p className="mt-7 eyebrow text-oxblood">The Continuum</p><h2 className="mt-4 font-display text-5xl leading-[1.02]">Education should connect to real rooms and real work.</h2><p className="mt-6 text-sm leading-7 text-muted-foreground">As young people become ready, learning can lead into mentor office hours, founder shadowing, project briefs, apprenticeships, internships and an alumni network. The final stage is not access. It is responsibility: returning later to create opportunities for the cohort behind them.</p><Link to="/alumni" className="mt-7 inline-flex items-center gap-2 text-sm font-semibold">Explore the Continuum <ArrowRight className="h-4 w-4" /></Link></div></div>
+          <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center"><div className="overflow-hidden border border-foreground/15"><img src={pageImages.nextGenMentor} alt="A young person building capability in an elegant learning environment" className="aspect-[4/3] w-full object-cover" /></div><div><BriefcaseBusiness className="h-5 w-5 text-oxblood" /><p className="mt-7 eyebrow text-oxblood">The Continuum</p><h2 className="mt-4 font-display text-5xl leading-[1.02]">Education should connect to real rooms and real work.</h2><p className="mt-6 text-sm leading-7 text-muted-foreground">As young people become ready, learning can lead into mentor office hours, founder shadowing, project briefs, apprenticeships, internships and an alumni network. The final stage is not access. It is responsibility: returning later to create opportunities for the cohort behind them.</p><Link to="/alumni" className="mt-7 inline-flex items-center gap-2 text-sm font-semibold">Explore the Continuum <ArrowRight className="h-4 w-4" /></Link></div></div>
         </Container>
       </section>
 

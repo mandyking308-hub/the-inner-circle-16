@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, LockKeyhole, ShieldCheck } from "lucide-react";
 
+import { BrandMark } from "@/components/brand/BrandMark";
 import { Container } from "@/components/layout/Container";
 import { enableInternalPreview } from "@/components/security/PrivatePreviewGate";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { luxuryImages } from "@/data/luxuryImages";
+import { pageImages } from "@/data/pageImages";
 import { site } from "@/config/site";
 
 export const Route = createFileRoute("/auth")({
@@ -32,13 +33,14 @@ function AuthPage() {
 
   return (
     <section className="relative min-h-[760px] overflow-hidden bg-foreground text-background">
-      <img src={luxuryImages.command} alt="A private family office workspace" className="absolute inset-0 h-full w-full object-cover" />
+      <img src={pageImages.authEntry} alt="A private family office workspace" className="absolute inset-0 h-full w-full object-cover" />
       <div className="absolute inset-0 bg-gradient-to-r from-foreground/96 via-foreground/86 to-foreground/48" />
       <Container className="relative flex min-h-[760px] items-center py-16 md:py-24">
         <div className="grid w-full gap-5 lg:grid-cols-[1fr_0.82fr]">
           <div className="border border-background/18 bg-foreground/80 p-6 backdrop-blur-md md:p-9">
-            <div className="flex items-center gap-3"><LockKeyhole className="h-5 w-5 text-bronze" /><p className="eyebrow text-background/55">Private members</p></div>
-            <h1 className="mt-6 font-display text-6xl leading-[0.96]">Member access</h1>
+            <div className="flex items-center gap-4"><BrandMark /><div><p className="font-display text-2xl leading-none">{site.name}</p><p className="mt-2 text-[8px] font-semibold uppercase tracking-[0.22em] text-background/40">Private members</p></div></div>
+            <div className="mt-8 flex items-center gap-3"><LockKeyhole className="h-5 w-5 text-bronze" /><p className="eyebrow text-background/55">Entry</p></div>
+            <h1 className="mt-5 font-display text-6xl leading-[0.96]">Member access</h1>
             <p className="mt-5 max-w-xl text-sm leading-7 text-background/68">Montvelle member spaces contain private family, relationship and decision context. Access is issued individually and should never be shared.</p>
             <form className="mt-8 space-y-5" onSubmit={(event) => event.preventDefault()}>
               <div className="space-y-2"><Label htmlFor="signin-email" className="text-background/75">Email</Label><Input id="signin-email" type="email" className="rounded-none border-background/25 bg-background/10 text-background placeholder:text-background/35" placeholder="Your membership email" /></div>

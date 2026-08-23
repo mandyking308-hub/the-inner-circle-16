@@ -17,7 +17,7 @@ export function SiteHeader() {
         Welcome to {site.name}. {site.positioning}
       </div>
 
-      <div className="mx-auto flex w-full max-w-[110rem] items-center justify-between gap-6 px-6 py-4 sm:px-10 lg:px-14">
+      <div className="mx-auto flex w-full max-w-[110rem] items-center justify-between gap-6 px-6 py-4 sm:px-10 lg:px-12">
         <Link to="/" className="flex items-center gap-3" aria-label={`${site.name} home`}>
           <BrandMark compact />
           <span className="leading-none">
@@ -28,12 +28,12 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-7 xl:flex" aria-label="Primary navigation">
+        <nav className="hidden items-center gap-5 min-[1440px]:gap-7 min-[1280px]:flex" aria-label="Primary navigation">
           {navItems.map((item) => (
             <Link
               key={item.to}
               to={item.to}
-              className="whitespace-nowrap text-[13px] text-background/78 transition-colors hover:text-gold"
+              className="whitespace-nowrap text-[12px] min-[1440px]:text-[13px] text-background/78 transition-colors hover:text-gold"
               activeProps={{ className: "text-gold" }}
             >
               {item.label}
@@ -41,7 +41,7 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-4 xl:flex">
+        <div className="hidden items-center gap-3 min-[1280px]:flex">
           <LanguageSelector inverse />
           <Button
             asChild
@@ -55,7 +55,7 @@ export function SiteHeader() {
         </div>
 
         <Sheet open={open} onOpenChange={setOpen}>
-          <SheetTrigger asChild className="xl:hidden">
+          <SheetTrigger asChild className="min-[1280px]:hidden">
             <Button variant="ghost" size="icon" aria-label="Open menu" className="text-background hover:bg-background/10 hover:text-background">
               <Menu className="size-5" />
             </Button>

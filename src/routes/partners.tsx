@@ -4,11 +4,12 @@ import { ArrowRight, BadgeCheck, Handshake, ShieldCheck, UsersRound } from "luci
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/button";
 import { partnerValue } from "@/data/infrastructure";
-import { luxuryImages } from "@/data/luxuryImages";
+import { pageImages } from "@/data/pageImages";
 import { site } from "@/config/site";
 
 export const Route = createFileRoute("/partners")({
-  head: () => ({ meta: [{ title: `Trusted Partners — ${site.name}` }, { name: "description", content: "A recommendation-led specialist network where excellent firms earn trust through useful work rather than buying access to members." }] }),
+  head: () => ({ meta: [{ title: `Trusted Partners — ${site.name}` }, { name: "description", content: "A recommendation-led specialist network where excellent firms earn trust through useful work rather than buying access to members." }],
+    links: [{ rel: "canonical", href: `${site.url}/partners` }], }),
   component: PartnersPage,
 });
 
@@ -16,7 +17,7 @@ function PartnersPage() {
   return (
     <>
       <section className="relative min-h-[680px] overflow-hidden bg-foreground text-background">
-        <img src={luxuryImages.table} alt="A private circle of members and advisers in London" className="absolute inset-0 h-full w-full object-cover" />
+        <img src={pageImages.partnersHero} alt="A private circle of members and advisers in London" className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-foreground/96 via-foreground/78 to-foreground/20" />
         <Container className="relative flex min-h-[680px] items-center py-20">
           <div className="max-w-3xl">

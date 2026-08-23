@@ -62,6 +62,7 @@ export const Route = createFileRoute("/ecosystem")({
       { title: `The Ecosystem — ${site.name}` },
       { name: "description", content: "How Montvelle connects trusted peers, a Life Decision Room, global life coordination, family learning, specialist partners, concierge execution and a rising-generation network." },
     ],
+    links: [{ rel: "canonical", href: `${site.url}/ecosystem` }],
   }),
   component: EcosystemPage,
 });

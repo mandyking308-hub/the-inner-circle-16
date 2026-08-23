@@ -3,7 +3,8 @@ import { LegalTemplate } from "@/components/marketing/LegalTemplate";
 import { site } from "@/config/site";
 
 export const Route = createFileRoute("/cookies")({
-  head: () => ({ meta: [{ title: `Cookies — ${site.name}` }, { name: "description", content: "How Montvelle uses cookies, local storage and similar technologies." }] }),
+  head: () => ({ meta: [{ title: `Cookies — ${site.name}` }, { name: "description", content: "How Montvelle uses cookies, local storage and similar technologies." }],
+    links: [{ rel: "canonical", href: `${site.url}/cookies` }], }),
   component: CookiesPage,
 });
 

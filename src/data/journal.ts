@@ -7,7 +7,7 @@ export type JournalArticle = {
   deck: string;
   readTime: string;
   date: string;
-  image: "jet" | "table" | "command" | "learning";
+  image: "journal1" | "journal2" | "journal3" | "journal4" | "journal5" | "journal6";
   introduction: string;
   sections: JournalSection[];
 };
@@ -20,7 +20,7 @@ export const journalArticles: JournalArticle[] = [
     deck: "The second country, the school decision, the advisers, the structures and the family questions are not side issues. Together they become a new system to run.",
     readTime: "7 min",
     date: "August 2026",
-    image: "jet",
+    image: "journal1",
     introduction: "Success rarely arrives as one neat event. It accumulates. A business grows. Opportunities move across borders. A family needs more privacy, more advisers and more deliberate decisions. Each problem usually has an expert, while nobody is responsible for the whole picture.",
     sections: [
       { heading: "Complexity is often the hidden cost of progress", body: "A founder may still be running the company while becoming the person who must coordinate schools, property, tax counsel, accountants, trustees, insurance, travel, family expectations and a dozen deadlines that did not exist five years earlier. The answer is not necessarily another adviser. It is an operating layer that makes the dependencies visible." },
@@ -35,7 +35,7 @@ export const journalArticles: JournalArticle[] = [
     deck: "Residence, tax, schools, property, banking, companies and family life should be modelled as one decision before implementation begins.",
     readTime: "8 min",
     date: "August 2026",
-    image: "jet",
+    image: "journal2",
     introduction: "Country comparisons become dangerous when one attractive feature is allowed to stand in for the whole life. A tax regime can be compelling and the school logistics impossible. A residence route can be straightforward while company control, banking or family routines become much harder.",
     sections: [
       { heading: "Start with the family brief", body: "Before asking which country is best, decide what the family is trying to optimise: business access, education, tax, lifestyle, healthcare, proximity to relatives, long-term rights, travel or optionality. Rank the priorities before advisers begin answering different versions of the question." },
@@ -50,7 +50,7 @@ export const journalArticles: JournalArticle[] = [
     deck: "Knowing how to use a tool is different from being handed a messy problem and delivering something useful for another person.",
     readTime: "6 min",
     date: "August 2026",
-    image: "learning",
+    image: "journal3",
     introduction: "Education can produce a young person who understands many things and still feels lost when the brief is vague, the deadline is real and somebody else is relying on the outcome. Execution is a separate capability. It can be taught deliberately.",
     sections: [
       { heading: "Move from exercises to briefs", body: "A real brief has constraints, an audience, trade-offs and consequences. Plan a trip, run a small venture, organise an event, interview a professional, automate a household task or research a charitable decision. Academic knowledge becomes more durable when it has to survive contact with reality." },
@@ -65,7 +65,7 @@ export const journalArticles: JournalArticle[] = [
     deck: "Usually before you need the building, the title or the full headcount. The first need is coordination, continuity and decision ownership.",
     readTime: "7 min",
     date: "August 2026",
-    image: "command",
+    image: "journal4",
     introduction: "Families often imagine a family office as a staffed institution that arrives after enormous wealth. In practice the useful question is simpler: has the complexity become too important to live inside one person’s inbox and memory?",
     sections: [
       { heading: "Start with functions, not headcount", body: "Cash oversight, entity administration, adviser coordination, property, insurance, document control, family governance, philanthropy and key dates all need ownership. Some can stay outsourced. What matters is that the operating model makes responsibility obvious." },
@@ -80,7 +80,7 @@ export const journalArticles: JournalArticle[] = [
     deck: "The transfer of assets is a legal event. The transfer of judgement takes years.",
     readTime: "7 min",
     date: "August 2026",
-    image: "learning",
+    image: "journal5",
     introduction: "Families can spend decades creating assets and surprisingly little time preparing the people who may one day be responsible for them. The solution is not to burden children with adult anxiety. It is to increase exposure and responsibility gradually.",
     sections: [
       { heading: "Separate information from authority", body: "A young person can learn how a business works long before they have decision rights. They can observe a charitable decision before managing a budget. They can meet advisers before being expected to choose one. Staged exposure makes responsibility less abrupt." },
@@ -95,7 +95,7 @@ export const journalArticles: JournalArticle[] = [
     deck: "Excellent specialists can still produce a fragmented plan. The family needs a shared question register, dependencies, owners and a decision log.",
     readTime: "8 min",
     date: "August 2026",
-    image: "command",
+    image: "journal6",
     introduction: "Cross-border work becomes exhausting when every professional receives a slightly different brief. The family then becomes responsible for translating between lawyers, accountants, tax counsel, immigration specialists, bankers and trustees while each one understandably focuses on their own mandate.",
     sections: [
       { heading: "Write one version of the problem", body: "Start with the outcome, the current facts, the target timing and the questions that need professional answers. Give every adviser the same underlying timeline so assumptions can be compared rather than discovered months later." },

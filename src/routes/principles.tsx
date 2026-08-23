@@ -3,7 +3,8 @@ import { LegalTemplate } from "@/components/marketing/LegalTemplate";
 import { site } from "@/config/site";
 
 export const Route = createFileRoute("/principles")({
-  head: () => ({ meta: [{ title: `Membership Principles — ${site.name}` }, { name: "description", content: "The cultural constitution of Montvelle membership: character, contribution, commitment, confidentiality and no solicitation." }] }),
+  head: () => ({ meta: [{ title: `Membership Principles — ${site.name}` }, { name: "description", content: "The cultural constitution of Montvelle membership: character, contribution, commitment, confidentiality and no solicitation." }],
+    links: [{ rel: "canonical", href: `${site.url}/principles` }], }),
   component: PrinciplesPage,
 });
 

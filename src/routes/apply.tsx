@@ -9,12 +9,13 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { loadApplications, saveApplications, type MembershipApplication } from "@/data/applicationStore";
-import { luxuryImages } from "@/data/luxuryImages";
+import { pageImages } from "@/data/pageImages";
 import { submitMembershipIntake } from "@/lib/applicationIntake";
 import { site } from "@/config/site";
 
 export const Route = createFileRoute("/apply")({
-  head: () => ({ meta: [{ title: `${site.ctaLabel} — ${site.name}` }, { name: "description", content: `Request membership of ${site.name}.` }] }),
+  head: () => ({ meta: [{ title: `${site.ctaLabel} — ${site.name}` }, { name: "description", content: `Request membership of ${site.name}.` }],
+    links: [{ rel: "canonical", href: `${site.url}/apply` }], }),
   component: ApplyPage,
 });
 
@@ -74,7 +75,7 @@ function ApplyPage() {
   return (
     <>
       <section className="relative min-h-[560px] overflow-hidden bg-foreground text-background">
-        <img src={luxuryImages.table} alt="A private members table in London" className="absolute inset-0 h-full w-full object-cover" />
+        <img src={pageImages.applyHero} alt="A private members table in London" className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-foreground/96 via-foreground/78 to-foreground/18" />
         <Container className="relative flex min-h-[560px] items-center py-20">
           <div className="max-w-3xl"><p className="eyebrow text-bronze">Request a seat</p><h1 className="mt-6 max-w-[11ch] font-display text-6xl leading-[0.93] md:text-8xl">Tell us what you are building — and what has become complicated.</h1><p className="mt-7 max-w-2xl text-base leading-8 text-background/70">We are more interested in the life behind the title than the title itself. Every application is personally reviewed.</p></div>

@@ -3,7 +3,8 @@ import { LegalTemplate } from "@/components/marketing/LegalTemplate";
 import { site } from "@/config/site";
 
 export const Route = createFileRoute("/legal")({
-  head: () => ({ meta: [{ title: `Legal notice — ${site.name}` }, { name: "description", content: "Corporate, regulatory and legal information for Montvelle." }] }),
+  head: () => ({ meta: [{ title: `Legal notice — ${site.name}` }, { name: "description", content: "Corporate, regulatory and legal information for Montvelle." }],
+    links: [{ rel: "canonical", href: `${site.url}/legal` }], }),
   component: LegalNoticePage,
 });
 
