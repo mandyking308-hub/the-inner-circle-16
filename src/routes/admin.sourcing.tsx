@@ -56,12 +56,14 @@ function SourcingDesk() {
   const [lane, setLane] = useState<Lane>("open");
   const [selectedId, setSelectedId] = useState<string>("");
   const [draft, setDraft] = useState<{ name: string; body: string } | null>(null);
+  const [memberRequests, setMemberRequests] = useState<MemberSourcingRequest[]>([]);
 
   useEffect(() => {
     const loadedCases = readSourcingCases();
     setCases(loadedCases);
     setProspects(readProspects());
     setRuns(readSearchRuns());
+    setMemberRequests(readMemberRequests());
     setSelectedId(loadedCases[0]?.id ?? "");
     setHydrated(true);
   }, []);
@@ -71,7 +73,43 @@ function SourcingDesk() {
     writeSourcingCases(cases);
     writeProspects(prospects);
     writeSearchRuns(runs);
-  }, [hydrated, cases, prospects, runs]);
+    writeMemberRequests(memberRequests);
+  }, [hydrated, cases, prospects, runs, memberRequests]);
+
+  const updateMemberRequest = (id: string, updater: (item: MemberSourcingRequest) => MemberSourcingRequest) =>
+    setMemberRequests((current) => current.map((item) => (item.id === id ? updater(item) : item)));
+
+  const setMemberStatus = (id: string, status: MemberRequestStatus) =>
+    updateMemberRequest(id, (item) => ({
+      ...item,
+      status,
+      updates: [...item.updates, { id: `u-${Date.now()}`, at: today(), note: `Status set to ${status.toLowerCase()}.` }],
+    }));
+
+  const publishOption = (id: string, event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    const note = String(data.get("note") ?? "").trim();
+    if (!note) return;
+    updateMemberRequest(id, (item) => ({
+      ...item,
+      status: "Options ready",
+      options: [
+        ...item.options,
+        {
+          id: `opt-${Date.now()}`,
+          label: `Option ${String.fromCharCode(65 + item.options.length)}`,
+          note,
+          indicative: String(data.get("indicative") ?? "").trim() || "Indicative price to follow",
+          availability: String(data.get("availability") ?? "").trim() || "Availability being confirmed",
+          status: "Proposed",
+        },
+      ],
+      updates: [...item.updates, { id: `u-${Date.now()}`, at: today(), note: "An option was checked and released to you." }],
+    }));
+    form.reset();
+  };
 
   const selected = cases.find((item) => item.id === selectedId) ?? cases[0];
   const bench = useMemo(() => (selected ? matchBench(selected) : []), [selected]);
