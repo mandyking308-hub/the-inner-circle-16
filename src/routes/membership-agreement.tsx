@@ -8,7 +8,11 @@ export const Route = createFileRoute("/membership-agreement")({
   head: () => ({
     meta: [
       { title: `Membership Agreement — ${site.name}` },
-      { name: "description", content: "The Montvelle Membership Agreement governing paid membership with Global Solutions Management LLC." },
+      {
+        name: "description",
+        content:
+          "The Montvelle Membership Agreement governing paid membership with Global Solutions Management LLC.",
+      },
     ],
   }),
   component: MembershipAgreementPage,

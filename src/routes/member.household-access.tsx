@@ -38,12 +38,20 @@ const REQUESTABLE_ROLES = ROLES.filter((role) => role !== "Household Principal")
 const roleCards: Record<Role, { line: string; may: string[]; never: string[] }> = {
   "Household Principal": {
     line: "The primary, contractual member — and the household administrator by default.",
-    may: ["Request access for others", "Hold membership-level settings", "See what is shared with the household"],
+    may: [
+      "Request access for others",
+      "Hold membership-level settings",
+      "See what is shared with the household",
+    ],
     never: ["Read another approved adult's private requests, messages or matters"],
   },
   "Adult Household Member": {
     line: "A spouse, partner or approved adult family member, with their own identity and their own login.",
-    may: ["Their own requests, messages, profile and privacy", "Broad access where agreed", "Optionally act as household co-admin"],
+    may: [
+      "Their own requests, messages, profile and privacy",
+      "Broad access where agreed",
+      "Optionally act as household co-admin",
+    ],
     never: ["Become the contractual payer unless the Membership Schedule says so"],
   },
   "Next Generation": {
@@ -54,13 +62,22 @@ const roleCards: Record<Role, { line: string; may: string[]; never: string[] }> 
   "Household Delegate": {
     line: "An assistant, family-office or household delegate acting on instruction. Delegated access is not membership.",
     may: ["Selected Requests", "Arrangements and bookings", "Messages relating to those matters"],
-    never: ["Community, My Table, personal invitations, family-sensitive material or Decision Rooms"],
+    never: [
+      "Community, My Table, personal invitations, family-sensitive material or Decision Rooms",
+    ],
   },
 };
 
 const roleDefaults: Record<Role, Area[]> = {
   "Household Principal": [...AREAS],
-  "Adult Household Member": ["Requests", "Arrangements", "Messages", "Invitations", "Community", "Family"],
+  "Adult Household Member": [
+    "Requests",
+    "Arrangements",
+    "Messages",
+    "Invitations",
+    "Community",
+    "Family",
+  ],
   "Next Generation": ["Invitations", "Family"],
   "Household Delegate": ["Requests", "Arrangements", "Messages"],
 };
@@ -179,10 +196,13 @@ function HouseholdAccessPage() {
 
   const toggleCoAdmin = (id: string) =>
     setPeople((current) =>
-      current.map((person) => (person.id === id ? { ...person, coAdmin: !person.coAdmin } : person)),
+      current.map((person) =>
+        person.id === id ? { ...person, coAdmin: !person.coAdmin } : person,
+      ),
     );
 
-  const withdraw = (id: string) => setPeople((current) => current.filter((person) => person.id !== id));
+  const withdraw = (id: string) =>
+    setPeople((current) => current.filter((person) => person.id !== id));
 
   return (
     <div className="space-y-8">
@@ -223,11 +243,15 @@ function HouseholdAccessPage() {
       <section className="border border-border bg-card p-5 md:p-6">
         <p className="eyebrow text-oxblood">Request household access</p>
         <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground">
-          As Household Principal you may ask Montvelle to extend access to a spouse or partner, an adult family member, a
-          next-generation user or a household delegate. Approved adult family membership is subject to Montvelle approval
-          and the Membership Schedule — a request does not make someone a member.
+          As Household Principal you may ask Montvelle to extend access to a spouse or partner, an
+          adult family member, a next-generation user or a household delegate. Approved adult family
+          membership is subject to Montvelle approval and the Membership Schedule — a request does
+          not make someone a member.
         </p>
-        <form onSubmit={requestAccess} className="mt-6 grid gap-4 lg:grid-cols-[1fr_1fr_1fr_auto] lg:items-end">
+        <form
+          onSubmit={requestAccess}
+          className="mt-6 grid gap-4 lg:grid-cols-[1fr_1fr_1fr_auto] lg:items-end"
+        >
           <div className="space-y-2">
             <Label htmlFor="hh-name">Name</Label>
             <Input
@@ -270,13 +294,16 @@ function HouseholdAccessPage() {
           </Button>
         </form>
         {submitted ? (
-          <p className="mt-4 border border-oxblood/25 bg-oxblood/5 p-3 text-xs leading-6 text-oxblood" role="status">
+          <p
+            className="mt-4 border border-oxblood/25 bg-oxblood/5 p-3 text-xs leading-6 text-oxblood"
+            role="status"
+          >
             Request noted for {submitted}. It sits as pending review until Montvelle confirms it.
           </p>
         ) : null}
         <p className="mt-4 text-[11px] leading-6 text-muted-foreground">
-          Preview only in this environment: nothing is emailed, no live account is created, and nothing here approves
-          itself.
+          Preview only in this environment: nothing is emailed, no live account is created, and
+          nothing here approves itself.
         </p>
       </section>
 
@@ -288,7 +315,9 @@ function HouseholdAccessPage() {
             <article key={person.id} className="border border-border bg-card p-5 md:p-6">
               <div className="flex flex-wrap items-start justify-between gap-4">
                 <div>
-                  <p className="text-[9px] uppercase tracking-[0.16em] text-oxblood">{person.role}</p>
+                  <p className="text-[9px] uppercase tracking-[0.16em] text-oxblood">
+                    {person.role}
+                  </p>
                   <h3 className="mt-2 font-display text-3xl leading-tight">{person.name}</h3>
                   <p className="mt-2 text-xs text-muted-foreground">{person.email}</p>
                 </div>
@@ -299,7 +328,12 @@ function HouseholdAccessPage() {
                     {person.status}
                   </span>
                   {person.role === "Household Principal" ? null : (
-                    <Button type="button" variant="outline" className="rounded-none" onClick={() => withdraw(person.id)}>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      className="rounded-none"
+                      onClick={() => withdraw(person.id)}
+                    >
                       <Trash2 className="mr-2 h-3.5 w-3.5" />
                       {pending ? "Withdraw request" : "Remove access"}
                     </Button>
@@ -309,8 +343,8 @@ function HouseholdAccessPage() {
 
               {pending ? (
                 <p className="mt-4 text-xs leading-6 text-muted-foreground">
-                  Awaiting Montvelle review. Until it is confirmed and recorded in the Membership Schedule, this person
-                  has no access and is not a Montvelle member.
+                  Awaiting Montvelle review. Until it is confirmed and recorded in the Membership
+                  Schedule, this person has no access and is not a Montvelle member.
                 </p>
               ) : null}
 
@@ -346,17 +380,18 @@ function HouseholdAccessPage() {
                       className="mt-1"
                     />
                     <span className="text-muted-foreground">
-                      <strong className="text-foreground">Household co-admin.</strong> An access role only — it does not
-                      make this person the contractual payer unless the Membership Schedule says so, and it does not open
-                      another adult&apos;s private matters.
+                      <strong className="text-foreground">Household co-admin.</strong> An access
+                      role only — it does not make this person the contractual payer unless the
+                      Membership Schedule says so, and it does not open another adult&apos;s private
+                      matters.
                     </span>
                   </label>
                 ) : null}
 
                 <p className="mt-4 text-[11px] leading-6 text-muted-foreground">
-                  Their own requests and messages are <strong>{person.scope.toLowerCase()}</strong>. Sharing across the
-                  household happens matter by matter, deliberately — never automatically, and never in either direction by
-                  seniority.
+                  Their own requests and messages are <strong>{person.scope.toLowerCase()}</strong>.
+                  Sharing across the household happens matter by matter, deliberately — never
+                  automatically, and never in either direction by seniority.
                 </p>
               </div>
             </article>
@@ -372,9 +407,10 @@ function HouseholdAccessPage() {
             Not everyone in a family should see everything.
           </h2>
           <p className="mt-5 max-w-3xl text-sm leading-7 text-background/65">
-            A spouse or partner may be given broad access if you both wish it. A next-generation member sees an
-            age-appropriate part of the house. A delegate sees only the matters delegated to them. Being the Household
-            Principal does not give sight of another approved adult&apos;s private requests, messages or decisions.
+            A spouse or partner may be given broad access if you both wish it. A next-generation
+            member sees an age-appropriate part of the house. A delegate sees only the matters
+            delegated to them. Being the Household Principal does not give sight of another approved
+            adult&apos;s private requests, messages or decisions.
           </p>
           <p className="mt-6 border-t border-background/15 pt-5 text-xs leading-6 text-background/55">
             An authorised delegate is not a Montvelle member.
@@ -382,9 +418,12 @@ function HouseholdAccessPage() {
         </div>
         <div className="border border-border bg-card p-6">
           <ShieldCheck className="h-5 w-5 text-oxblood" />
-          <p className="mt-6 font-display text-2xl leading-tight">Your own privacy sits with you.</p>
+          <p className="mt-6 font-display text-2xl leading-tight">
+            Your own privacy sits with you.
+          </p>
           <p className="mt-4 text-sm leading-7 text-muted-foreground">
-            What you keep private to yourself, and what you choose to share with the household, is set in your own account.
+            What you keep private to yourself, and what you choose to share with the household, is
+            set in your own account.
           </p>
           <Link
             to="/member/profile"
