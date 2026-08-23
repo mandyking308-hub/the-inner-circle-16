@@ -110,61 +110,60 @@ function MontvelleWorldPage() {
         </Container>
       </section>
 
+      <section className="border-b border-border bg-background py-20 md:py-28">
+        <Container>
+          <div className="grid gap-14 lg:grid-cols-[0.85fr_1.15fr]">
+            <div>
+              <p className="eyebrow text-oxblood">The pain</p>
+              <h2 className="mt-6 max-w-[18ch] font-display text-4xl leading-[1.02] md:text-6xl">
+                The problem nobody sees from the outside.
+              </h2>
+              <p className="mt-7 max-w-md text-sm leading-8 text-muted-foreground">
+                Success creates complexity: countries, homes, schools, advisers, businesses, travel,
+                family, private life. Excellent specialists solve their own part. Almost nobody holds
+                the whole picture — so the family does, unpaid and permanently on duty.
+              </p>
+            </div>
+            <div className="divide-y divide-border border-y border-border">
+              {fragmentation.map((item, index) => (
+                <article key={item.title} className="grid gap-4 py-8 md:grid-cols-[64px_1fr] md:gap-8">
+                  <span className="font-display text-3xl text-bronze">{String(index + 1).padStart(2, "0")}</span>
+                  <div>
+                    <h3 className="font-display text-3xl leading-tight md:text-4xl">{item.title}</h3>
+                    <p className="mt-4 max-w-2xl text-sm leading-7 text-muted-foreground">{item.body}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </section>
+
       <section className="border-b border-border bg-linen py-20 md:py-28">
         <Container>
           <div className="max-w-3xl">
-            <p className="eyebrow text-oxblood">Inside the environment</p>
+            <p className="eyebrow text-oxblood">One picture</p>
             <h2 className="mt-6 font-display text-4xl leading-[1.02] md:text-6xl">
-              What is actually there when you sign in.
+              One place holds the whole picture.
             </h2>
             <p className="mt-7 text-base leading-8 text-muted-foreground">
-              Every request receives an immediate acknowledgement and a meaningful response within twenty-four hours —
-              a real answer or a clear account of what is being done and when it will land. There is no supplier
-              directory to browse and no stocked network. You describe what you need; we search worldwide and coordinate the
-              right organisations and people around it.
+              Not a dashboard to maintain. A private environment where the context already lives, so
+              the people helping you do not need to be briefed from the beginning each time.
             </p>
           </div>
-          <div className="mt-12 grid gap-px bg-border md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 grid gap-px bg-border md:grid-cols-3">
             {[
               {
                 name: "Today",
-                body: "Three sections, in order: what needs you, what Montvelle is already handling, and what is coming up. Nothing competing for attention.",
+                body: "Three sections, in order: what needs you, what Montvelle is already handling, and what is coming up. Nothing else competing for your attention.",
               },
               {
-                name: "Requests",
-                body: "One intake for anything — a move, a school place, a difficult arrangement. Acknowledged at once, answered meaningfully within 24 hours.",
+                name: "Ask Montvelle",
+                body: "One request for anything — a move, a school place, a difficult arrangement. Acknowledged immediately, with a meaningful answer, update or set of checked options within twenty-four hours.",
               },
               {
                 name: "Decision Room",
-                body: "For decisions that outlast a phone call: the central question, the options being weighed, the sequence, and who holds each next step.",
-              },
-              {
-                name: "Invitations",
-                body: "Gatherings and private moments held for your household in one diary, with the context attached to each.",
-              },
-              {
-                name: "Expert Councils",
-                body: "Assembled on request around one member's actual decision — never a standing panel or a stocked list. You give the outcome, geography and timing; we search worldwide, check who genuinely fits, and return a small considered shortlist or coordinate the introductions.",
-              },
-              {
-                name: "Community & your circle",
-                body: "Consent-led introductions between members, plus the wider circle we help you build: people useful to a particular move, business or family goal, whether they sit inside Montvelle or outside it. Someone you already trust can be brought into a single matter without becoming a member.",
-              },
-              {
-                name: "Family & household access",
-                body: "Approved adults hold their own login, their own requests and their own privacy. The Principal does not see another adult's private matters by default; sharing is deliberate, area by area. Next-generation access is age-appropriate, and an authorised delegate is not a Montvelle member.",
-              },
-              {
-                name: "Messages",
-                body: "A continuous private line to people who already hold your context, so nothing has to be explained twice.",
-              },
-              {
-                name: "Knowledge",
-                body: "Briefings, playbooks and essays written around the decisions families actually face — each opening to real material, not a summary of one.",
-              },
-              {
-                name: "Preferences",
-                body: "How your household likes things done, recorded once and applied quietly from then on.",
+                body: "For decisions that outlast a phone call: the central question, the options being weighed, the sequence, the dependencies, and who holds each next step.",
               },
             ].map((item) => (
               <article key={item.name} className="bg-linen p-6 md:p-7">
@@ -173,43 +172,90 @@ function MontvelleWorldPage() {
               </article>
             ))}
           </div>
-          <div className="mt-12 flex flex-wrap items-center gap-5">
-            <Button asChild className="rounded-none bg-foreground px-7 py-6 text-background hover:bg-oxblood">
-              <Link to="/demo">
-                Explore the demo <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-            <p className="max-w-md text-xs leading-6 text-muted-foreground">
-              The demo is an illustrative walkthrough using fictional data. No real member information appears in it.
-            </p>
+        </Container>
+      </section>
+
+      <section className="border-b border-border bg-background py-20 md:py-28">
+        <Container>
+          <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr]">
+            <div>
+              <p className="eyebrow text-oxblood">Expert Council</p>
+              <h2 className="mt-6 max-w-[20ch] font-display text-4xl leading-[1.02] md:text-6xl">
+                When expertise is needed, we build the team around the problem.
+              </h2>
+            </div>
+            <div>
+              <p className="text-base leading-8 text-muted-foreground">
+                There is no standing committee and no directory to browse. You give us the outcome,
+                the geography, the timing and anything that cannot change. We then search worldwide,
+                approach the organisations and individuals who genuinely fit, check them properly,
+                and return a small considered shortlist — or coordinate the introductions ourselves.
+              </p>
+              <p className="mt-6 text-base leading-8 text-muted-foreground">
+                A move to Monaco may need residence and immigration counsel, cross-border tax advice,
+                property, schooling, banking, insurance, household logistics and, where it matters,
+                community and access. We hold the dependencies between them so you are not the one
+                translating between eight offices.
+              </p>
+              <p className="mt-6 text-sm leading-7 text-muted-foreground">
+                Where a decision warrants it, and only with your consent, a chosen expert can be
+                attached to that Decision Room with the minimum information necessary — never broad
+                access to your household or to Montvelle.
+              </p>
+            </div>
           </div>
         </Container>
       </section>
 
-
-      <section className="border-b border-border bg-background py-20 md:py-28">
+      <section className="border-b border-border bg-linen py-20 md:py-28">
         <Container>
-          <div className="grid gap-14 lg:grid-cols-[0.85fr_1.15fr]">
+          <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr]">
             <div>
-              <p className="eyebrow text-oxblood">What it is for</p>
-              <h2 className="mt-6 max-w-[18ch] font-display text-4xl leading-[1.02] md:text-6xl">
-                Five things it should quietly do for you.
+              <p className="eyebrow text-oxblood">Your circle</p>
+              <h2 className="mt-6 max-w-[20ch] font-display text-4xl leading-[1.02] md:text-6xl">
+                When life changes, your circle should change with it.
               </h2>
+              <p className="mt-7 max-w-md text-sm leading-8 text-muted-foreground">
+                Membership does not hand you a list of everybody and call it a network. The useful
+                circle around a household is built deliberately, over time, around what the family is
+                actually doing.
+              </p>
             </div>
             <div className="divide-y divide-border border-y border-border">
-              {outcomes.map((outcome, index) => (
-                <article key={outcome.title} className="grid gap-4 py-8 md:grid-cols-[64px_1fr] md:gap-8">
-                  <span className="font-display text-3xl text-bronze">{String(index + 1).padStart(2, "0")}</span>
-                  <div>
-                    <h3 className="font-display text-3xl leading-tight md:text-4xl">{outcome.title}</h3>
-                    <p className="mt-4 max-w-2xl text-sm leading-7 text-muted-foreground">{outcome.body}</p>
-                  </div>
-                </article>
+              {[
+                ["A new country", "Peers who made the same move, the operators who make a household work locally, schools, clubs, the people worth knowing in that city."],
+                ["A business decision", "Operators and advisers who have been through the same transaction, sector or succession question."],
+                ["A child or a stage of life", "Education, transitions, first responsibilities — and adults who can speak to a next-generation member without a family agenda."],
+                ["Someone you already trust", "Ask us to bring a person you name into one matter or circle. They receive no general access and do not become a Montvelle member."],
+              ].map(([title, body]) => (
+                <div key={title} className="grid gap-3 py-7 md:grid-cols-[240px_1fr] md:gap-10">
+                  <h3 className="font-display text-2xl md:text-3xl">{title}</h3>
+                  <p className="max-w-2xl text-sm leading-7 text-muted-foreground">{body}</p>
+                </div>
               ))}
             </div>
           </div>
         </Container>
       </section>
+
+      <section className="border-b border-border bg-background py-20 md:py-28">
+        <Container>
+          <div className="max-w-3xl">
+            <p className="eyebrow text-oxblood">Privacy</p>
+            <h2 className="mt-6 font-display text-4xl leading-[1.02] md:text-6xl">
+              The household stays private by design.
+            </h2>
+            <p className="mt-7 text-base leading-8 text-muted-foreground">
+              Approved adults hold their own login, their own requests and their own privacy. The
+              Principal does not see another adult's private matters by default; anything shared is
+              shared deliberately, area by area. Next-generation access is age-appropriate and never
+              includes financial or private adult matters. An authorised household delegate is not a
+              member and sees only the requests and messages they have been given.
+            </p>
+          </div>
+        </Container>
+      </section>
+
 
       <section className="bg-background py-20 md:py-28">
         <Container>
