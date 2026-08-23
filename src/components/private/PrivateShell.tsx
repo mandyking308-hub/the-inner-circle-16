@@ -102,7 +102,7 @@ type MemberIdentity = { name: string; city: string };
 export function PrivateShell({ mode, children }: PrivateShellProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [memberIdentity, setMemberIdentity] = useState<MemberIdentity>({
-    name: "Amelia Hart",
+    name: "DEMO Member",
     city: "London",
   });
   const pathname = useRouterState({ select: (state) => state.location.pathname });
@@ -115,7 +115,7 @@ export function PrivateShell({ mode, children }: PrivateShellProps) {
         const raw = window.localStorage.getItem("project-table:member-profile:v2");
         if (!raw) return;
         const profile = JSON.parse(raw) as { name?: string; city?: string };
-        setMemberIdentity({ name: profile.name || "Amelia Hart", city: profile.city || "London" });
+        setMemberIdentity({ name: profile.name || "DEMO Member", city: profile.city || "London" });
       } catch {
         /* keep preview identity */
       }
