@@ -39,8 +39,13 @@ const never = [
 function SupplierPortalPage() {
   const navigate = useNavigate();
   const [supplierId, setSupplierId] = useState(supplierOrgs[0]!.id);
+  /** Required at every supplier sign-in; never remembered between sessions. */
+  const [accepted, setAccepted] = useState(false);
 
   const enter = () => {
+    if (!accepted) return;
+    // PREVIEW EVIDENCE ONLY — see src/lib/legalAcceptance.ts.
+    recordSupplierAcceptance(supplierId);
     enableSupplierPreview(supplierId);
     void navigate({ to: "/supplier" });
   };
