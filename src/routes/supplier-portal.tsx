@@ -125,8 +125,9 @@ function SupplierPortalPage() {
               <ShieldCheck className="h-5 w-5 text-bronze" />
               <h2 className="mt-6 font-display text-3xl leading-tight">Not yet a Montvelle partner?</h2>
               <p className="mt-4 text-sm leading-7 text-background/65">
-                We work with a small number of providers, chosen slowly and reviewed regularly. If you believe your work
-                belongs here, you are welcome to apply.
+                Most providers reach us the same way: a member needed something, we came looking, and the work was done
+                properly. An invitation follows that. If you would rather introduce yourself, you may apply — two
+                references and assurance are required either way.
               </p>
               <Button
                 asChild
