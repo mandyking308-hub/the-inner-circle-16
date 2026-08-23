@@ -6,7 +6,7 @@ import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { membershipPricing } from "@/config/membershipPricing";
+import { familyMembershipPricing, membershipPricing } from "@/config/membershipPricing";
 import { site } from "@/config/site";
 import { createMembershipCheckoutFn } from "@/functions/membershipCheckout";
 import membershipHero from "@/assets/membership-hero-dinner.jpg";
