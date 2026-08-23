@@ -19,6 +19,8 @@ const columnTwo = [
   { to: "/global-life", label: "Global Life" },
   { to: "/impact", label: "Giving" },
   { to: "/about", label: "Our Story" },
+  { to: "/montvelle-world", label: "Montvelle World" },
+  { to: "/supplier-portal", label: "Supplier Portal" },
 ] as const;
 
 const legalLinks = [
