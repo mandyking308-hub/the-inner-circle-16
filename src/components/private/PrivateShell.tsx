@@ -23,6 +23,7 @@ import {
   TableProperties,
   Users,
   X,
+  FileSearch,
 } from "lucide-react";
 
 import { BrandMark } from "@/components/brand/BrandMark";
@@ -65,6 +66,7 @@ const adminGroups = [
       { to: "/admin", label: "Overview", icon: LayoutDashboard, exact: true },
       { to: "/admin/launch-readiness", label: "Launch control", icon: ShieldCheck },
       { to: "/admin/concierge", label: "Concierge", icon: Compass },
+      { to: "/admin/sourcing", label: "Sourcing Desk", icon: FileSearch },
       { to: "/admin/services", label: "Private Services", icon: Sparkles },
       { to: "/admin/bookings", label: "Bookings", icon: CalendarDays },
       { to: "/admin/messages", label: "Messages", icon: Inbox },

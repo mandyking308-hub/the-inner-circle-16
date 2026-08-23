@@ -23,6 +23,7 @@ export type ServiceCategory =
   | "Property"
   | "Security"
   | "Cultural access"
+  | "Clubs & access"
   | "Professional advice";
 
 export const serviceCategories: ServiceCategory[] = [
@@ -34,6 +35,7 @@ export const serviceCategories: ServiceCategory[] = [
   "Property",
   "Security",
   "Cultural access",
+  "Clubs & access",
   "Professional advice",
 ];
 
