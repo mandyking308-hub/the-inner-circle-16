@@ -16,6 +16,14 @@ import { PageIntro, StatCard } from "@/components/private/PrivateShell";
 import { asksOffers, knowledge } from "@/data/community";
 import { luxuryImages } from "@/data/luxuryImages";
 import { readPrivateOfficeSummary, type PrivateOfficeSummary } from "@/data/privateOfficeSummary";
+import {
+  bookingStatusLabel,
+  needsReplyCount,
+  readBookings,
+  readThreads,
+  type Booking,
+  type Thread,
+} from "@/data/memberWorld";
 
 export const Route = createFileRoute("/member/")({ component: MemberHome });
 
@@ -42,15 +50,28 @@ const fallback: PrivateOfficeSummary = {
 function MemberHome() {
   const [summary, setSummary] = useState<PrivateOfficeSummary>(fallback);
   const [dateLabel, setDateLabel] = useState("Private office");
+  const [bookings, setBookings] = useState<Booking[]>([]);
+  const [threads, setThreads] = useState<Thread[]>([]);
   const firstAsk = asksOffers[0]!;
   const recommendation = knowledge[1]!;
   const firstName = summary.memberName.split(" ")[0] || "there";
+  const awaiting = bookings.filter((booking) => booking.status === "awaiting");
+  const nextBookings = bookings
+    .filter((booking) => booking.status === "upcoming" || booking.status === "awaiting" || booking.status === "in_progress")
+    .slice(0, 3);
+  const replies = needsReplyCount(threads);
 
   useEffect(() => {
     setSummary(readPrivateOfficeSummary());
+    setBookings(readBookings());
+    setThreads(readThreads());
     setDateLabel(new Intl.DateTimeFormat("en-GB", { weekday: "long", day: "numeric", month: "long" }).format(new Date()));
 
-    const refresh = () => setSummary(readPrivateOfficeSummary());
+    const refresh = () => {
+      setSummary(readPrivateOfficeSummary());
+      setBookings(readBookings());
+      setThreads(readThreads());
+    };
     window.addEventListener("focus", refresh);
     window.addEventListener("storage", refresh);
     return () => {
@@ -96,6 +117,50 @@ function MemberHome() {
         <StatCard label="Family learning" value={summary.learningProgress.split(" ")[0] ?? "—"} note={summary.learningGoal} />
         <StatCard label="Next gathering" value={summary.nextGatheringDate.split(" ").slice(0, 2).join(" ")} note={`${summary.nextGatheringTitle} · ${summary.nextGatheringResponse}`} />
       </div>
+
+      <section className="grid gap-px bg-border lg:grid-cols-2">
+        <div className="bg-card p-6 md:p-7">
+          <div className="flex items-center gap-3"><CalendarDays className="h-5 w-5 text-oxblood" /><p className="eyebrow text-oxblood">Bookings</p></div>
+          <h2 className="mt-5 font-display text-3xl leading-tight">
+            {awaiting.length > 0
+              ? `${awaiting.length} request${awaiting.length === 1 ? "" : "s"} awaiting confirmation.`
+              : "Everything arranged is confirmed."}
+          </h2>
+          <ul className="mt-5 divide-y divide-border border-y border-border text-sm">
+            {nextBookings.length === 0 ? (
+              <li className="py-3 text-muted-foreground">Nothing in the diary yet.</li>
+            ) : (
+              nextBookings.map((booking) => (
+                <li key={booking.id} className="flex items-start justify-between gap-4 py-3">
+                  <span>
+                    <span className="block">{booking.serviceTitle}</span>
+                    <span className="mt-1 block text-xs text-muted-foreground">{booking.city} · {booking.when}</span>
+                  </span>
+                  <span className="shrink-0 text-[9px] uppercase tracking-[0.14em] text-muted-foreground">
+                    {bookingStatusLabel[booking.status]}
+                  </span>
+                </li>
+              ))
+            )}
+          </ul>
+          <Link to="/member/bookings" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold">Open bookings <ArrowRight className="h-4 w-4 text-oxblood" /></Link>
+        </div>
+        <div className="bg-card p-6 md:p-7">
+          <div className="flex items-center gap-3"><Compass className="h-5 w-5 text-oxblood" /><p className="eyebrow text-oxblood">Messages</p></div>
+          <h2 className="mt-5 font-display text-3xl leading-tight">
+            {replies > 0 ? `${replies} conversation${replies === 1 ? "" : "s"} waiting on you.` : "No one is waiting on a reply."}
+          </h2>
+          <ul className="mt-5 divide-y divide-border border-y border-border text-sm">
+            {threads.slice(0, 3).map((thread) => (
+              <li key={thread.id} className="py-3">
+                <span className="block">{thread.subject}</span>
+                <span className="mt-1 block text-xs text-muted-foreground">{thread.context}</span>
+              </li>
+            ))}
+          </ul>
+          <Link to="/member/messages" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold">Open messages <ArrowRight className="h-4 w-4 text-oxblood" /></Link>
+        </div>
+      </section>
 
       <section className="border border-border bg-card">
         <div className="flex items-end justify-between gap-5 border-b border-border p-5 md:p-6"><div><p className="eyebrow text-oxblood">What needs your attention</p><h2 className="mt-2 font-display text-4xl">A short list, not another inbox.</h2></div><Compass className="h-5 w-5 text-oxblood" /></div>

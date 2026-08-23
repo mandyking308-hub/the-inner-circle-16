@@ -33,17 +33,26 @@ const memberGroups = [
     label: "Private office",
     items: [
       { to: "/member", label: "Today", icon: Home, exact: true },
-      { to: "/member/control-room", label: "Decision Room", icon: LayoutDashboard },
+      { to: "/member/control-room", label: "Decisions", icon: LayoutDashboard },
       { to: "/member/concierge", label: "Concierge", icon: Compass },
-      { to: "/member/table", label: "My Table", icon: TableProperties },
+      { to: "/member/services", label: "Private Services", icon: Sparkles },
+      { to: "/member/bookings", label: "Bookings", icon: CalendarDays },
+      { to: "/member/messages", label: "Messages", icon: Inbox },
     ],
   },
   {
     label: "The wider house",
     items: [
+      { to: "/member/table", label: "My Table", icon: TableProperties },
       { to: "/member/family", label: "Family", icon: Landmark },
       { to: "/member/network", label: "Network", icon: Network },
       { to: "/member/programme", label: "Programme", icon: CalendarDays },
+    ],
+  },
+  {
+    label: "You",
+    items: [
+      { to: "/member/preferences", label: "My Preferences", icon: BookOpen },
       { to: "/member/profile", label: "Account & privacy", icon: CircleUserRound },
     ],
   },
@@ -56,6 +65,9 @@ const adminGroups = [
       { to: "/admin", label: "Overview", icon: LayoutDashboard, exact: true },
       { to: "/admin/launch-readiness", label: "Launch control", icon: ShieldCheck },
       { to: "/admin/concierge", label: "Concierge", icon: Compass },
+      { to: "/admin/services", label: "Private Services", icon: Sparkles },
+      { to: "/admin/bookings", label: "Bookings", icon: CalendarDays },
+      { to: "/admin/messages", label: "Messages", icon: Inbox },
       { to: "/admin/global-life", label: "Global Life", icon: Globe2 },
     ],
   },
@@ -133,7 +145,7 @@ export function PrivateShell({ mode, children }: PrivateShellProps) {
 
       <aside className={`${mobileOpen ? "fixed inset-x-0 top-[68px] z-50 block h-[calc(100vh-68px)]" : "hidden"} bg-foreground text-background lg:fixed lg:inset-y-0 lg:left-0 lg:z-50 lg:block lg:w-[250px]`}>
         <div className="flex h-full flex-col">
-          <Link to="/" className="flex h-[96px] items-center gap-3 border-b border-background/12 px-5"><BrandMark inverse /><div><p className="font-display text-2xl leading-none">{site.name}</p><p className="mt-2 text-[8px] font-semibold uppercase tracking-[0.2em] text-background/40">Private operating system</p></div></Link>
+          <Link to="/" className="flex h-[96px] items-center gap-3 border-b border-background/12 px-5"><BrandMark inverse /><div><p className="font-display text-2xl leading-none">{site.name}</p><p className="mt-2 text-[8px] font-semibold uppercase tracking-[0.2em] text-background/40">Montvelle World</p></div></Link>
           <nav className="flex-1 overflow-y-auto px-3 py-5">
             {groups.map((group) => (
               <div key={group.label} className="mb-7 last:mb-0">
