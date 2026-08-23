@@ -145,7 +145,7 @@ export function PrivateShell({ mode, children }: PrivateShellProps) {
             </button>
             <div>
               <p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-oxblood">
-                {mode === "member" ? "Private member workspace" : "Concierge & operations"}
+                {mode === "member" ? "Your private household" : "Concierge & operations"}
               </p>
               <p className="mt-1 font-display text-xl text-foreground">
                 {mode === "member" ? "Your private office" : "The house operating desk"}
