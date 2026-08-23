@@ -50,7 +50,7 @@ export const starterPartnerApplications: PartnerApplication[] = [
         phone: "",
       },
       {
-        name: "DEMO Partner Contact",
+        name: "DEMO Partner Contact B",
         organisation: "Okoye Trust Company — Director",
         email: "daniel@example.com",
         relationship: "Co-adviser on several shared family mandates.",
