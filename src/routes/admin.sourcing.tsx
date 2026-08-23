@@ -588,6 +588,26 @@ function SourcingDesk() {
                         Add to approved bench
                       </Button>
                       <Button
+                        variant="outline"
+                        size="sm"
+                        className="rounded-none"
+                        onClick={() =>
+                          updateProspect(prospect.id, (item) => ({ ...item, relationship: "Used", response: "Replied" }))
+                        }
+                      >
+                        Mark used
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="rounded-none"
+                        onClick={() =>
+                          updateProspect(prospect.id, (item) => ({ ...item, relationship: "Invite considered", worthInviting: true }))
+                        }
+                      >
+                        Worth inviting
+                      </Button>
+                      <Button
                         variant="ghost"
                         size="sm"
                         className="rounded-none text-muted-foreground"
@@ -596,6 +616,16 @@ function SourcingDesk() {
                         Not suitable
                       </Button>
                     </div>
+
+                    <label className="block border-t border-border pt-3">
+                      <span className="text-[9px] uppercase tracking-[0.13em] text-muted-foreground">Post-service outcome</span>
+                      <Input
+                        defaultValue={prospect.postServiceOutcome ?? ""}
+                        onBlur={(event) => updateProspect(prospect.id, (item) => ({ ...item, postServiceOutcome: event.target.value }))}
+                        className="mt-2 rounded-none text-xs"
+                        placeholder="How it actually went, once the member has been served."
+                      />
+                    </label>
 
                     {!readyForBench(prospect) ? (
                       <p className="text-[10px] leading-5 text-muted-foreground">
