@@ -41,8 +41,8 @@ function WorldPage() {
           height={1200}
           className="absolute inset-0 h-full w-full object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-foreground/95 via-foreground/78 to-foreground/25" />
-        <div className="absolute inset-0 bg-foreground/25" />
+        <div className="absolute inset-0 bg-gradient-to-r from-foreground/80 via-foreground/45 to-transparent" />
+        <div className="absolute inset-0 bg-foreground/10" />
         <Container className="relative flex min-h-[640px] items-center py-20 md:min-h-[760px]">
           <div className="max-w-3xl">
             <p className="eyebrow text-bronze">The World</p>
