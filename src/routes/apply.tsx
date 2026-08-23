@@ -23,6 +23,7 @@ export const Route = createFileRoute("/apply")({
 });
 
 function ApplyPage() {
+  const { membership: preselectedMembership = "Individual" } = Route.useSearch();
   const [submitted, setSubmitted] = useState<MembershipApplication | null>(null);
   const [turnstileToken, setTurnstileToken] = useState("");
   const [submitting, setSubmitting] = useState(false);
