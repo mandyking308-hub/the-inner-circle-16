@@ -22,15 +22,19 @@ function MemberPartnersPage() {
 
       <section className="border border-border bg-card p-8 md:p-12">
         <ShieldCheck className="h-6 w-6 text-oxblood" />
-        <h2 className="mt-6 max-w-2xl font-display text-4xl leading-tight">Tell us the matter. We will go and find the right people.</h2>
+        <h2 className="mt-6 max-w-2xl font-display text-4xl leading-tight">
+          Tell us the matter. We will go and find the right people.
+        </h2>
         <div className="mt-6 max-w-3xl space-y-4 text-sm leading-7 text-muted-foreground">
           <p>
-            We search, make the enquiries, check what comes back and bring you a small number of options that are genuinely suited to the
-            matter — with the reason for each introduction made plain.
+            We search, make the enquiries, check what comes back and bring you a small number of
+            options that are genuinely suited to the matter — with the reason for each introduction
+            made plain.
           </p>
           <p>
-            Where an introduction is made, we tell you how we came to that person, what we checked, and whether any commercial arrangement
-            exists. You always choose your own professionals and your own scope.
+            Where an introduction is made, we tell you how we came to that person, what we checked,
+            and whether any commercial arrangement exists. You always choose your own professionals
+            and your own scope.
           </p>
         </div>
         <div className="mt-8 flex flex-wrap gap-3">

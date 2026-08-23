@@ -7,7 +7,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-export const Route = createFileRoute("/member/household-access")({ component: HouseholdAccessPage });
+export const Route = createFileRoute("/member/household-access")({
+  component: HouseholdAccessPage,
+});
 
 const STORAGE_KEY = "montvelle:household-access:v1";
 
@@ -22,14 +24,23 @@ const AREAS = [
 ] as const;
 type Area = (typeof AREAS)[number];
 
-const ROLES = ["Household Principal", "Adult Household Member", "Next Generation", "Household Delegate"] as const;
+const ROLES = [
+  "Household Principal",
+  "Adult Household Member",
+  "Next Generation",
+  "Household Delegate",
+] as const;
 type Role = (typeof ROLES)[number];
 
 const roleNotes: Record<Role, string> = {
-  "Household Principal": "The contractual member. Administers household access and membership-level settings by default.",
-  "Adult Household Member": "A spouse, partner or approved adult family member with their own login and their own private matters.",
-  "Next Generation": "Age-appropriate access. No automatic sight of private financial, succession or Decision Room material.",
-  "Household Delegate": "An EA, family-office or household delegate. Sees only the matters specifically delegated to them.",
+  "Household Principal":
+    "The contractual member. Administers household access and membership-level settings by default.",
+  "Adult Household Member":
+    "A spouse, partner or approved adult family member with their own login and their own private matters.",
+  "Next Generation":
+    "Age-appropriate access. No automatic sight of private financial, succession or Decision Room material.",
+  "Household Delegate":
+    "An EA, family-office or household delegate. Sees only the matters specifically delegated to them.",
 };
 
 const roleDefaults: Record<Role, Area[]> = {
@@ -82,7 +93,11 @@ const demoHousehold: HouseholdPerson[] = [
 function HouseholdAccessPage() {
   const [people, setPeople] = useState<HouseholdPerson[]>(demoHousehold);
   const [hydrated, setHydrated] = useState(false);
-  const [form, setForm] = useState<{ name: string; email: string; role: Role }>({ name: "", email: "", role: "Adult Household Member" });
+  const [form, setForm] = useState<{ name: string; email: string; role: Role }>({
+    name: "",
+    email: "",
+    role: "Adult Household Member",
+  });
 
   useEffect(() => {
     try {
@@ -121,12 +136,18 @@ function HouseholdAccessPage() {
     setPeople((current) =>
       current.map((person) =>
         person.id === id
-          ? { ...person, areas: person.areas.includes(area) ? person.areas.filter((item) => item !== area) : [...person.areas, area] }
+          ? {
+              ...person,
+              areas: person.areas.includes(area)
+                ? person.areas.filter((item) => item !== area)
+                : [...person.areas, area],
+            }
           : person,
       ),
     );
 
-  const revoke = (id: string) => setPeople((current) => current.filter((person) => person.id !== id));
+  const revoke = (id: string) =>
+    setPeople((current) => current.filter((person) => person.id !== id));
 
   return (
     <div className="space-y-8">
@@ -148,14 +169,30 @@ function HouseholdAccessPage() {
 
       <section className="border border-border bg-card p-5 md:p-6">
         <p className="eyebrow text-oxblood">Invite someone to the household</p>
-        <form onSubmit={invite} className="mt-5 grid gap-4 lg:grid-cols-[1fr_1fr_1fr_auto] lg:items-end">
+        <form
+          onSubmit={invite}
+          className="mt-5 grid gap-4 lg:grid-cols-[1fr_1fr_1fr_auto] lg:items-end"
+        >
           <div className="space-y-2">
             <Label htmlFor="hh-name">Name</Label>
-            <Input id="hh-name" value={form.name} onChange={(event) => setForm((c) => ({ ...c, name: event.target.value }))} className="rounded-none" placeholder="Full name" />
+            <Input
+              id="hh-name"
+              value={form.name}
+              onChange={(event) => setForm((c) => ({ ...c, name: event.target.value }))}
+              className="rounded-none"
+              placeholder="Full name"
+            />
           </div>
           <div className="space-y-2">
             <Label htmlFor="hh-email">Email</Label>
-            <Input id="hh-email" type="email" value={form.email} onChange={(event) => setForm((c) => ({ ...c, email: event.target.value }))} className="rounded-none" placeholder="Their own login" />
+            <Input
+              id="hh-email"
+              type="email"
+              value={form.email}
+              onChange={(event) => setForm((c) => ({ ...c, email: event.target.value }))}
+              className="rounded-none"
+              placeholder="Their own login"
+            />
           </div>
           <div className="space-y-2">
             <Label htmlFor="hh-role">Role</Label>
@@ -166,7 +203,9 @@ function HouseholdAccessPage() {
               className="h-10 w-full border border-input bg-background px-3 text-sm"
             >
               {ROLES.map((role) => (
-                <option key={role} value={role}>{role}</option>
+                <option key={role} value={role}>
+                  {role}
+                </option>
               ))}
             </select>
           </div>
@@ -176,7 +215,8 @@ function HouseholdAccessPage() {
           </Button>
         </form>
         <p className="mt-4 text-[11px] leading-6 text-muted-foreground">
-          Invitations are preview-only in this environment. Nothing is emailed and no live account is created.
+          Invitations are preview-only in this environment. Nothing is emailed and no live account
+          is created.
         </p>
       </section>
 
@@ -190,9 +230,16 @@ function HouseholdAccessPage() {
                 <p className="mt-2 text-xs text-muted-foreground">{person.email}</p>
               </div>
               <div className="flex items-center gap-3">
-                <span className="border border-border px-2.5 py-1 text-[9px] uppercase tracking-[0.14em] text-muted-foreground">{person.status}</span>
+                <span className="border border-border px-2.5 py-1 text-[9px] uppercase tracking-[0.14em] text-muted-foreground">
+                  {person.status}
+                </span>
                 {person.role === "Household Principal" ? null : (
-                  <Button type="button" variant="outline" className="rounded-none" onClick={() => revoke(person.id)}>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    className="rounded-none"
+                    onClick={() => revoke(person.id)}
+                  >
                     <Trash2 className="mr-2 h-3.5 w-3.5" />
                     Revoke
                   </Button>
@@ -201,7 +248,9 @@ function HouseholdAccessPage() {
             </div>
 
             <div className="mt-5 border-t border-border pt-4">
-              <p className="text-[9px] uppercase tracking-[0.14em] text-muted-foreground">Areas they can see</p>
+              <p className="text-[9px] uppercase tracking-[0.14em] text-muted-foreground">
+                Areas they can see
+              </p>
               <div className="mt-3 flex flex-wrap gap-2">
                 {AREAS.map((area) => {
                   const on = person.areas.includes(area);
@@ -219,8 +268,9 @@ function HouseholdAccessPage() {
                 })}
               </div>
               <p className="mt-4 text-[11px] text-muted-foreground">
-                Their own requests and messages are <strong>{person.scope.toLowerCase()}</strong>. Nobody in the household sees another person&apos;s
-                private matters unless it has been shared deliberately.
+                Their own requests and messages are <strong>{person.scope.toLowerCase()}</strong>.
+                Nobody in the household sees another person&apos;s private matters unless it has
+                been shared deliberately.
               </p>
             </div>
           </article>
@@ -229,10 +279,13 @@ function HouseholdAccessPage() {
 
       <section className="border border-border bg-foreground p-6 text-background md:p-8">
         <p className="eyebrow text-background/50">The household rule</p>
-        <h2 className="mt-4 max-w-4xl font-display text-4xl leading-tight">Not everyone in a family should see everything.</h2>
+        <h2 className="mt-4 max-w-4xl font-display text-4xl leading-tight">
+          Not everyone in a family should see everything.
+        </h2>
         <p className="mt-5 max-w-3xl text-sm leading-7 text-background/65">
-          A spouse or partner can be given broad access if you wish. A next-generation member sees an age-appropriate part of the house. An
-          assistant or family-office delegate sees only the matters you delegate. You can change or withdraw any of it here at any time.
+          A spouse or partner can be given broad access if you wish. A next-generation member sees
+          an age-appropriate part of the house. An assistant or family-office delegate sees only the
+          matters you delegate. You can change or withdraw any of it here at any time.
         </p>
       </section>
     </div>
