@@ -84,7 +84,7 @@ function EcosystemPage() {
     <>
       <section className="border-b border-border py-20 md:py-28">
         <Container>
-          <p className="eyebrow text-bronze">The operating system</p>
+          <p className="eyebrow text-bronze">How Montvelle works</p>
           <h1 className="mt-5 max-w-5xl font-display text-5xl leading-[1.02] md:text-7xl">
             The room is only the beginning.
           </h1>
