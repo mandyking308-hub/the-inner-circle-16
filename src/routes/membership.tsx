@@ -423,9 +423,20 @@ function MembershipPage() {
                   </div>
 
                   <div className="space-y-5 border-t border-white/12 pt-8">
+                    <p className="text-[11px] leading-6 text-white/45">
+                      Before you continue: you will receive and may retain the current contractual
+                      documents shown below, and your Membership Schedule records the approved
+                      member, the term and the agreed commercial details. Your cancellation rights
+                      are set out in{" "}
+                      <Link to="/cancellation" className="text-white/80 underline underline-offset-2">
+                        Cancellation Rights
+                      </Link>
+                      . Document set {memberLegalVersionBundle}.
+                    </p>
                     <label className="flex gap-4 text-[11px] leading-6 text-white/55">
                       <input
                         type="checkbox"
+                        name="acceptedTerms"
                         required
                         className="mt-1 h-3.5 w-3.5 shrink-0 accent-[#d8b36c]"
                       />
@@ -459,27 +470,31 @@ function MembershipPage() {
                     <label className="flex gap-4 text-[11px] leading-6 text-white/55">
                       <input
                         type="checkbox"
+                        name="acknowledgedAdmissionChecks"
                         required
                         className="mt-1 h-3.5 w-3.5 shrink-0 accent-[#d8b36c]"
                       />
                       <span>
-                        I ask that onboarding and service preparation begin as soon as GSM accepts
-                        my membership. Where a statutory cancellation right applies, services
-                        already supplied may be deducted from any refund to the extent permitted by
-                        applicable law.
+                        I understand that payment does not override GSM&rsquo;s admission,
+                        sanctions, fraud, safety or compliance checks. If a membership is not
+                        accepted, the membership and admission fees paid for it are returned,
+                        subject to mandatory law and payment-provider processing.
                       </span>
                     </label>
-                    <label className="flex gap-4 text-[11px] leading-6 text-white/55">
+                    <label className="flex gap-4 border-t border-white/12 pt-5 text-[11px] leading-6 text-white/55">
                       <input
                         type="checkbox"
-                        required
+                        name="requestedImmediateService"
                         className="mt-1 h-3.5 w-3.5 shrink-0 accent-[#d8b36c]"
                       />
                       <span>
-                        I understand that payment does not override GSM's admission, sanctions,
-                        fraud, safety or compliance checks. If a membership is not accepted, the
-                        membership and admission fees paid for it are returned, subject to mandatory
-                        law and payment-provider processing.
+                        Optional, and separate from the acceptances above: I ask that onboarding and
+                        service preparation begin as soon as GSM accepts my membership, including
+                        during any statutory cancellation period. Where such a right applies and I
+                        then cancel, a proportionate amount for services already supplied may be
+                        deducted from any refund to the extent permitted by applicable law. If I
+                        leave this unticked, service preparation begins after the cancellation
+                        period ends.
                       </span>
                     </label>
                   </div>
