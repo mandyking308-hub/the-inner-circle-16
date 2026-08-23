@@ -29,6 +29,7 @@ import { Route as LegacyRouteImport } from './routes/legacy'
 import { Route as LegalRouteImport } from './routes/legal'
 import { Route as MemberRouteImport } from './routes/member'
 import { Route as MembershipRouteImport } from './routes/membership'
+import { Route as MembershipAgreementRouteImport } from './routes/membership-agreement'
 import { Route as NextGenRouteImport } from './routes/next-gen'
 import { Route as PartnerApplicationRouteImport } from './routes/partner-application'
 import { Route as PartnersRouteImport } from './routes/partners'
@@ -178,6 +179,11 @@ const MemberRoute = MemberRouteImport.update({
 const MembershipRoute = MembershipRouteImport.update({
   id: '/membership',
   path: '/membership',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MembershipAgreementRoute = MembershipAgreementRouteImport.update({
+  id: '/membership-agreement',
+  path: '/membership-agreement',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NextGenRoute = NextGenRouteImport.update({
@@ -454,6 +460,7 @@ export interface FileRoutesByFullPath {
   '/legal': typeof LegalRoute
   '/member': typeof MemberRouteWithChildren
   '/membership': typeof MembershipRouteWithChildren
+  '/membership-agreement': typeof MembershipAgreementRoute
   '/next-gen': typeof NextGenRoute
   '/partner-application': typeof PartnerApplicationRoute
   '/partners': typeof PartnersRoute
@@ -524,6 +531,7 @@ export interface FileRoutesByTo {
   '/legacy': typeof LegacyRoute
   '/legal': typeof LegalRoute
   '/membership': typeof MembershipRouteWithChildren
+  '/membership-agreement': typeof MembershipAgreementRoute
   '/next-gen': typeof NextGenRoute
   '/partner-application': typeof PartnerApplicationRoute
   '/partners': typeof PartnersRoute
@@ -597,6 +605,7 @@ export interface FileRoutesById {
   '/legal': typeof LegalRoute
   '/member': typeof MemberRouteWithChildren
   '/membership': typeof MembershipRouteWithChildren
+  '/membership-agreement': typeof MembershipAgreementRoute
   '/next-gen': typeof NextGenRoute
   '/partner-application': typeof PartnerApplicationRoute
   '/partners': typeof PartnersRoute
@@ -671,6 +680,7 @@ export interface FileRouteTypes {
     | '/legal'
     | '/member'
     | '/membership'
+    | '/membership-agreement'
     | '/next-gen'
     | '/partner-application'
     | '/partners'
@@ -741,6 +751,7 @@ export interface FileRouteTypes {
     | '/legacy'
     | '/legal'
     | '/membership'
+    | '/membership-agreement'
     | '/next-gen'
     | '/partner-application'
     | '/partners'
@@ -813,6 +824,7 @@ export interface FileRouteTypes {
     | '/legal'
     | '/member'
     | '/membership'
+    | '/membership-agreement'
     | '/next-gen'
     | '/partner-application'
     | '/partners'
@@ -886,6 +898,7 @@ export interface RootRouteChildren {
   LegalRoute: typeof LegalRoute
   MemberRoute: typeof MemberRouteWithChildren
   MembershipRoute: typeof MembershipRouteWithChildren
+  MembershipAgreementRoute: typeof MembershipAgreementRoute
   NextGenRoute: typeof NextGenRoute
   PartnerApplicationRoute: typeof PartnerApplicationRoute
   PartnersRoute: typeof PartnersRoute
@@ -1041,6 +1054,13 @@ declare module '@tanstack/react-router' {
       path: '/membership'
       fullPath: '/membership'
       preLoaderRoute: typeof MembershipRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/membership-agreement': {
+      id: '/membership-agreement'
+      path: '/membership-agreement'
+      fullPath: '/membership-agreement'
+      preLoaderRoute: typeof MembershipAgreementRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/next-gen': {
@@ -1518,6 +1538,7 @@ const rootRouteChildren: RootRouteChildren = {
   LegalRoute: LegalRoute,
   MemberRoute: MemberRouteWithChildren,
   MembershipRoute: MembershipRouteWithChildren,
+  MembershipAgreementRoute: MembershipAgreementRoute,
   NextGenRoute: NextGenRoute,
   PartnerApplicationRoute: PartnerApplicationRoute,
   PartnersRoute: PartnersRoute,
