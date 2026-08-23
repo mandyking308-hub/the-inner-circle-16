@@ -56,7 +56,7 @@ export type ServiceOffering = {
   needs: string[];
 };
 
-/** Supplier organisations. Existing Trusted Partners are reused as the professional bench. */
+/** DEMO supplier organisations, internal QA only. Never member-facing. */
 export type SupplierOrg = {
   id: string;
   name: string;
@@ -69,7 +69,7 @@ export type SupplierOrg = {
   partnerId?: string;
 };
 
-const professionalBench: SupplierOrg[] = trustedPartners.map((partner) => ({
+const demoProfessionalSuppliers: SupplierOrg[] = trustedPartners.map((partner) => ({
   id: partner.id,
   name: partner.name,
   category: "Professional advice",
@@ -156,17 +156,17 @@ const lifestyleSuppliers: SupplierOrg[] = [
 
 /**
  * DEMO ONLY — internal fixtures for admin and supplier-portal QA.
- * Montvelle is demand-led and has no standing supplier bench. These records
+ * Montvelle is demand-led and has no standing supplier list. These records
  * must never render in any member-facing surface (/member/services and
  * /member/partners are request-led and read live records only).
  */
-export const supplierOrgs: SupplierOrg[] = [...lifestyleSuppliers, ...professionalBench];
+export const supplierOrgs: SupplierOrg[] = [...lifestyleSuppliers, ...demoProfessionalSuppliers];
 
 export const getSupplier = (id: string) => supplierOrgs.find((supplier) => supplier.id === id);
 
 /**
  * DEMO ONLY — internal fixtures for admin and supplier-portal QA.
- * Montvelle is demand-led and has no standing supplier bench. These records
+ * Montvelle is demand-led and has no standing supplier list. These records
  * must never render in any member-facing surface (/member/services and
  * /member/partners are request-led and read live records only).
  */
