@@ -82,9 +82,11 @@ function MontvelleWorldPage() {
               Your world. Held in one place.
             </h1>
             <p className="mt-8 max-w-xl text-base leading-8 text-background/72">
-              Membership opens a private environment built around your life rather than around software: what needs you
-              today, what someone else is already carrying, and everything that can safely wait.
+              Tell us what you are trying to achieve. We find the right people, assemble the right
+              expertise, build the right circle around you, coordinate the moving parts — and keep
+              the context, so you never have to start again.
             </p>
+
             <div className="mt-9 flex flex-wrap items-center gap-5">
               <Button asChild className="rounded-none bg-background px-7 py-6 text-foreground hover:bg-background/90">
                 <Link to="/apply">
