@@ -26,8 +26,8 @@ const included = [
     body: "Global Life and private-service coordination, wherever the year happens to take you.",
   },
   {
-    title: "The next generation, included",
-    body: "Household access for approved adults and the rising generation — each with their own login and their own permissions, as recorded in your Membership Schedule.",
+    title: "Room for the next generation",
+    body: "Age-appropriate next-generation participation and approved household access are agreed with us and recorded in your Membership Schedule — each approved person with their own login and their own permissions.",
   },
   {
     title: "A serious private office behind it",
