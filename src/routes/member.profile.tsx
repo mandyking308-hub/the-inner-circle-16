@@ -1,6 +1,6 @@
 import { type FormEvent, useEffect, useState } from "react";
-import { createFileRoute } from "@tanstack/react-router";
-import { Bell, Eye, EyeOff, ShieldCheck } from "lucide-react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Bell, Eye, EyeOff, Lock, ShieldCheck } from "lucide-react";
 
 import { PageIntro } from "@/components/private/PrivateShell";
 import { Button } from "@/components/ui/button";
