@@ -54,7 +54,7 @@ export const Route = createFileRoute("/membership")({
   head: () => ({
     meta: [
       { title: `Membership — ${site.name}` },
-      { name: "description", content: `Montvelle founding membership: ${membershipPricing.annualDisplay} per 12 months plus a one-time ${membershipPricing.joiningDisplay} admission and onboarding fee.` },
+      { name: "description", content: `One standard of Montvelle membership in two forms: individual at ${membershipPricing.annualDisplay} per 12 months plus a one-time ${membershipPricing.joiningDisplay} admission fee, or family membership ${familyMembershipPricing.fromAnnualDisplay} per 12 months, confirmed in the Membership Schedule.` },
       { property: "og:title", content: `Membership — ${site.name}` },
       { property: "og:description", content: "A private membership for families building something intended to outlast them." },
       { property: "og:type", content: "website" },
