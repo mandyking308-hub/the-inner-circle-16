@@ -22,8 +22,10 @@ const columnTwo = [
 ] as const;
 
 const legalLinks = [
-  { to: "/privacy", label: "Privacy" },
+  { to: "/membership-agreement", label: "Membership Agreement" },
   { to: "/terms", label: "Terms" },
+  { to: "/privacy", label: "Privacy" },
+  { to: "/confidentiality", label: "Confidentiality" },
   { to: "/legal", label: "Legal" },
   { to: "/cookies", label: "Cookies" },
   { to: "/accessibility", label: "Accessibility" },
