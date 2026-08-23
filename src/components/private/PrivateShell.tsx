@@ -204,7 +204,7 @@ export function PrivateShell({ mode, children }: PrivateShellProps) {
                           />
                           {item.label}
                         </span>
-                        {active ? : null}
+                        
                       </Link>
                     );
                   })}

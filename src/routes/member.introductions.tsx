@@ -126,9 +126,7 @@ export default function IntroductionsPage() {
                   </p>
                 </div>
                 <div className="flex items-start gap-2 text-xs">
-                  {item.status === "Introduced" || item.status === "Consent received" ? (
-                    ) : (
-                    )}
+                  
                   {item.status}
                 </div>
               </div>

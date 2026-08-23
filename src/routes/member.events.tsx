@@ -150,7 +150,7 @@ function EventsPage() {
                     </p>
                     <h3 className="mt-2 font-display text-2xl">{event.title}</h3>
                   </div>
-                  {response?.response ? : null}
+                  
                 </div>
                 <p className="mt-3 text-xs opacity-60">
                   {event.date} · {event.time}

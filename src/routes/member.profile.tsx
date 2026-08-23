@@ -262,9 +262,7 @@ function ProfilePage() {
 
           <section className="border border-border bg-foreground p-5 text-background">
             <div className="flex items-center gap-3">
-              {profile.showEnterpriseStage ? (
-                ) : (
-                )}
+              
               <p className="eyebrow text-background/60">Never social profile data</p>
             </div>
             <ul className="mt-5 space-y-3 text-sm leading-6 text-background/75">
