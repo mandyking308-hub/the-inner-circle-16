@@ -4,7 +4,7 @@ import { ArrowRight, LockKeyhole, ShieldCheck } from "lucide-react";
 import { z } from "zod";
 
 import { Container } from "@/components/layout/Container";
-import { enableInternalPreview } from "@/components/security/PrivatePreviewGate";
+import { enableInternalPreview, enableMemberPreview } from "@/components/security/PrivatePreviewGate";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -30,6 +30,8 @@ const emailSchema = z.string().trim().email().max(255);
 function AuthPage() {
   const navigate = useNavigate();
   const [preview, setPreview] = useState(false);
+  /** Only an explicit `?preview=admin` on the internal host offers operations access. */
+  const [adminPreview, setAdminPreview] = useState(false);
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   /**
@@ -43,12 +45,10 @@ function AuthPage() {
     const internalHost = isInternalPreviewHost();
     const params = new URLSearchParams(window.location.search);
     const flag = params.get("preview");
-    const internal = internalHost || flag === "1" || flag === "member";
-    setPreview(internal);
-    if (!internal) return;
-    enableInternalPreview();
-    // `?preview=member` lands here and must still pass the acceptance gate —
-    // it no longer redirects straight into the member workspace.
+    setPreview(internalHost || flag === "1" || flag === "member" || flag === "admin");
+    setAdminPreview(internalHost && flag === "admin");
+    // No preview access is granted on mount. Access is granted only after the
+    // acceptance gate below, and member sign-in never grants operations access.
   }, [navigate]);
 
   const enterWorkspace = (to: "/member" | "/admin") => {
@@ -58,7 +58,12 @@ function AuthPage() {
     }
     // PREVIEW EVIDENCE ONLY — must be persisted server-side once real auth is live.
     recordMemberSignInAcceptance(email.trim() || null);
-    enableInternalPreview();
+    if (to === "/admin") {
+      if (!adminPreview) return;
+      enableInternalPreview();
+    } else {
+      enableMemberPreview();
+    }
     void navigate({ to });
   };
 
@@ -78,9 +83,10 @@ function AuthPage() {
     setPreviewIdentity(parsed.data);
     // PREVIEW EVIDENCE ONLY — see src/lib/legalAcceptance.ts.
     recordMemberSignInAcceptance(parsed.data);
-    enableInternalPreview();
+    enableMemberPreview();
     void navigate({ to: "/member" });
   };
+
 
   return (
     <section className="relative min-h-[760px] overflow-hidden bg-foreground text-background">
@@ -145,17 +151,19 @@ function AuthPage() {
                     onClick={() => enterWorkspace("/member")}
                     className="rounded-none bg-background text-foreground hover:bg-bronze"
                   >
-                    Enter member workspace <ArrowRight className="ml-2 h-4 w-4" />
+                    Enter the member environment <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
-                  <Button
-                    type="button"
-                    variant="outline"
-                    disabled={!accepted}
-                    onClick={() => enterWorkspace("/admin")}
-                    className="rounded-none border-background/30 bg-transparent text-background hover:bg-background hover:text-foreground"
-                  >
-                    Open operations workspace
-                  </Button>
+                  {adminPreview ? (
+                    <Button
+                      type="button"
+                      variant="outline"
+                      disabled={!accepted}
+                      onClick={() => enterWorkspace("/admin")}
+                      className="rounded-none border-background/30 bg-transparent text-background hover:bg-background hover:text-foreground"
+                    >
+                      Open operations preview
+                    </Button>
+                  ) : null}
                 </div>
                 {!accepted ? (
                   <p className="mt-3 text-[10px] leading-5 text-background/45">

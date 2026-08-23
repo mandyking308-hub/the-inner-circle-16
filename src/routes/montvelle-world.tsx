@@ -147,7 +147,7 @@ function MontvelleWorldPage() {
               One place holds the whole picture.
             </h2>
             <p className="mt-7 text-base leading-8 text-muted-foreground">
-              Not a dashboard to maintain. A private environment where the context already lives, so
+              Not another system to maintain. A private environment where the context already lives, so
               the people helping you do not need to be briefed from the beginning each time.
             </p>
           </div>
