@@ -75,6 +75,7 @@ import { Route as MemberPartnersRouteImport } from './routes/member.partners'
 import { Route as MemberProfileRouteImport } from './routes/member.profile'
 import { Route as MemberProgrammeRouteImport } from './routes/member.programme'
 import { Route as MemberTableRouteImport } from './routes/member.table'
+import { Route as MembershipCompleteRouteImport } from './routes/membership.complete'
 import { Route as LovableEmailAuthPreviewRouteImport } from './routes/lovable/email/auth/preview'
 import { Route as LovableEmailAuthWebhookRouteImport } from './routes/lovable/email/auth/webhook'
 import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
@@ -410,6 +411,11 @@ const MemberTableRoute = MemberTableRouteImport.update({
   path: '/table',
   getParentRoute: () => MemberRoute,
 } as any)
+const MembershipCompleteRoute = MembershipCompleteRouteImport.update({
+  id: '/complete',
+  path: '/complete',
+  getParentRoute: () => MembershipRoute,
+} as any)
 const LovableEmailAuthPreviewRoute = LovableEmailAuthPreviewRouteImport.update({
   id: '/lovable/email/auth/preview',
   path: '/lovable/email/auth/preview',
@@ -447,7 +453,7 @@ export interface FileRoutesByFullPath {
   '/legacy': typeof LegacyRoute
   '/legal': typeof LegalRoute
   '/member': typeof MemberRouteWithChildren
-  '/membership': typeof MembershipRoute
+  '/membership': typeof MembershipRouteWithChildren
   '/next-gen': typeof NextGenRoute
   '/partner-application': typeof PartnerApplicationRoute
   '/partners': typeof PartnersRoute
@@ -491,6 +497,7 @@ export interface FileRoutesByFullPath {
   '/member/profile': typeof MemberProfileRoute
   '/member/programme': typeof MemberProgrammeRoute
   '/member/table': typeof MemberTableRoute
+  '/membership/complete': typeof MembershipCompleteRoute
   '/admin/': typeof AdminIndexRoute
   '/journal/': typeof JournalIndexRoute
   '/member/': typeof MemberIndexRoute
@@ -516,7 +523,7 @@ export interface FileRoutesByTo {
   '/impact': typeof ImpactRoute
   '/legacy': typeof LegacyRoute
   '/legal': typeof LegalRoute
-  '/membership': typeof MembershipRoute
+  '/membership': typeof MembershipRouteWithChildren
   '/next-gen': typeof NextGenRoute
   '/partner-application': typeof PartnerApplicationRoute
   '/partners': typeof PartnersRoute
@@ -560,6 +567,7 @@ export interface FileRoutesByTo {
   '/member/profile': typeof MemberProfileRoute
   '/member/programme': typeof MemberProgrammeRoute
   '/member/table': typeof MemberTableRoute
+  '/membership/complete': typeof MembershipCompleteRoute
   '/admin': typeof AdminIndexRoute
   '/journal': typeof JournalIndexRoute
   '/member': typeof MemberIndexRoute
@@ -588,7 +596,7 @@ export interface FileRoutesById {
   '/legacy': typeof LegacyRoute
   '/legal': typeof LegalRoute
   '/member': typeof MemberRouteWithChildren
-  '/membership': typeof MembershipRoute
+  '/membership': typeof MembershipRouteWithChildren
   '/next-gen': typeof NextGenRoute
   '/partner-application': typeof PartnerApplicationRoute
   '/partners': typeof PartnersRoute
@@ -632,6 +640,7 @@ export interface FileRoutesById {
   '/member/profile': typeof MemberProfileRoute
   '/member/programme': typeof MemberProgrammeRoute
   '/member/table': typeof MemberTableRoute
+  '/membership/complete': typeof MembershipCompleteRoute
   '/admin/': typeof AdminIndexRoute
   '/journal/': typeof JournalIndexRoute
   '/member/': typeof MemberIndexRoute
@@ -705,6 +714,7 @@ export interface FileRouteTypes {
     | '/member/profile'
     | '/member/programme'
     | '/member/table'
+    | '/membership/complete'
     | '/admin/'
     | '/journal/'
     | '/member/'
@@ -774,6 +784,7 @@ export interface FileRouteTypes {
     | '/member/profile'
     | '/member/programme'
     | '/member/table'
+    | '/membership/complete'
     | '/admin'
     | '/journal'
     | '/member'
@@ -845,6 +856,7 @@ export interface FileRouteTypes {
     | '/member/profile'
     | '/member/programme'
     | '/member/table'
+    | '/membership/complete'
     | '/admin/'
     | '/journal/'
     | '/member/'
@@ -873,7 +885,7 @@ export interface RootRouteChildren {
   LegacyRoute: typeof LegacyRoute
   LegalRoute: typeof LegalRoute
   MemberRoute: typeof MemberRouteWithChildren
-  MembershipRoute: typeof MembershipRoute
+  MembershipRoute: typeof MembershipRouteWithChildren
   NextGenRoute: typeof NextGenRoute
   PartnerApplicationRoute: typeof PartnerApplicationRoute
   PartnersRoute: typeof PartnersRoute
@@ -1353,6 +1365,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MemberTableRouteImport
       parentRoute: typeof MemberRoute
     }
+    '/membership/complete': {
+      id: '/membership/complete'
+      path: '/complete'
+      fullPath: '/membership/complete'
+      preLoaderRoute: typeof MembershipCompleteRouteImport
+      parentRoute: typeof MembershipRoute
+    }
     '/lovable/email/auth/preview': {
       id: '/lovable/email/auth/preview'
       path: '/lovable/email/auth/preview'
@@ -1466,6 +1485,18 @@ const MemberRouteChildren: MemberRouteChildren = {
 const MemberRouteWithChildren =
   MemberRoute._addFileChildren(MemberRouteChildren)
 
+interface MembershipRouteChildren {
+  MembershipCompleteRoute: typeof MembershipCompleteRoute
+}
+
+const MembershipRouteChildren: MembershipRouteChildren = {
+  MembershipCompleteRoute: MembershipCompleteRoute,
+}
+
+const MembershipRouteWithChildren = MembershipRoute._addFileChildren(
+  MembershipRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
@@ -1486,7 +1517,7 @@ const rootRouteChildren: RootRouteChildren = {
   LegacyRoute: LegacyRoute,
   LegalRoute: LegalRoute,
   MemberRoute: MemberRouteWithChildren,
-  MembershipRoute: MembershipRoute,
+  MembershipRoute: MembershipRouteWithChildren,
   NextGenRoute: NextGenRoute,
   PartnerApplicationRoute: PartnerApplicationRoute,
   PartnersRoute: PartnersRoute,
