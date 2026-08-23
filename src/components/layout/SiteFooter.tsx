@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { ArrowRight, Instagram, Linkedin, Youtube } from "lucide-react";
 
 import { BrandMark } from "@/components/brand/BrandMark";
-import { LanguageSelector, translationNotice } from "@/components/common/LanguageSelector";
+import { translationNotice } from "@/components/common/LanguageSelector";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { site } from "@/config/site";
@@ -92,7 +92,6 @@ export function SiteFooter() {
           </div>
 
           <div className="flex items-start gap-4 lg:justify-end">
-            <LanguageSelector inverse />
             <div className="flex items-center gap-3 text-background/60">
               <a href="https://www.linkedin.com" aria-label="LinkedIn" className="hover:text-gold">
                 <Linkedin className="h-4 w-4" />

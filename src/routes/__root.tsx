@@ -14,6 +14,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
+import { FloatingLanguageSelector } from "@/components/common/FloatingLanguageSelector";
 import { site } from "@/config/site";
 import { luxuryImages } from "@/data/luxuryImages";
 
@@ -81,5 +82,5 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const pathname = useRouterState({ select: (state) => state.location.pathname });
   const isPrivateArea = pathname === "/member" || pathname.startsWith("/member/") || pathname === "/admin" || pathname.startsWith("/admin/") || pathname === "/supplier" || pathname.startsWith("/supplier/");
-  return <QueryClientProvider client={queryClient}>{isPrivateArea ? <Outlet /> : <div className="flex min-h-screen flex-col bg-background paper-grain"><SiteHeader /><main className="flex-1"><Outlet /></main><SiteFooter /></div>}</QueryClientProvider>;
+  return <QueryClientProvider client={queryClient}>{isPrivateArea ? <Outlet /> : <div className="flex min-h-screen flex-col bg-background paper-grain"><SiteHeader /><main className="flex-1"><Outlet /></main><SiteFooter /><FloatingLanguageSelector /></div>}</QueryClientProvider>;
 }
