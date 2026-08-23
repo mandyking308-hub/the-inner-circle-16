@@ -17,10 +17,12 @@ export const site = {
 
 /** Public navigation sells the life first; the operating system is revealed inside the story. */
 export const navItems = [
-  { to: "/the-table", label: "Belong" },
-  { to: "/global-life", label: "The World" },
-  { to: "/gatherings", label: "Gatherings" },
-  { to: "/family-learning", label: "Families" },
-  { to: "/concierge", label: "Private Office" },
+  { to: "/world", label: "The World" },
   { to: "/membership", label: "Membership" },
+  { to: "/concierge", label: "Private Office" },
+  { to: "/family-learning", label: "Family" },
+  { to: "/gatherings", label: "Gatherings" },
+  { to: "/global-life", label: "Global Life" },
+  { to: "/impact", label: "Giving" },
+  { to: "/about", label: "Our Story" },
 ] as const;

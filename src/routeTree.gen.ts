@@ -11,12 +11,14 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as AccessibilityRouteImport } from './routes/accessibility'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AlumniRouteImport } from './routes/alumni'
 import { Route as ApplyRouteImport } from './routes/apply'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ConciergeRouteImport } from './routes/concierge'
 import { Route as ConfidentialityRouteImport } from './routes/confidentiality'
+import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as DecisionRoomRouteImport } from './routes/decision-room'
 import { Route as EcosystemRouteImport } from './routes/ecosystem'
 import { Route as FamilyLearningRouteImport } from './routes/family-learning'
@@ -24,6 +26,7 @@ import { Route as GatheringsRouteImport } from './routes/gatherings'
 import { Route as GlobalLifeRouteImport } from './routes/global-life'
 import { Route as ImpactRouteImport } from './routes/impact'
 import { Route as LegacyRouteImport } from './routes/legacy'
+import { Route as LegalRouteImport } from './routes/legal'
 import { Route as MemberRouteImport } from './routes/member'
 import { Route as MembershipRouteImport } from './routes/membership'
 import { Route as NextGenRouteImport } from './routes/next-gen'
@@ -86,6 +89,11 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AccessibilityRoute = AccessibilityRouteImport.update({
+  id: '/accessibility',
+  path: '/accessibility',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminRoute = AdminRouteImport.update({
   id: '/admin',
   path: '/admin',
@@ -114,6 +122,11 @@ const ConciergeRoute = ConciergeRouteImport.update({
 const ConfidentialityRoute = ConfidentialityRouteImport.update({
   id: '/confidentiality',
   path: '/confidentiality',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CookiesRoute = CookiesRouteImport.update({
+  id: '/cookies',
+  path: '/cookies',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DecisionRoomRoute = DecisionRoomRouteImport.update({
@@ -149,6 +162,11 @@ const ImpactRoute = ImpactRouteImport.update({
 const LegacyRoute = LegacyRouteImport.update({
   id: '/legacy',
   path: '/legacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalRoute = LegalRouteImport.update({
+  id: '/legal',
+  path: '/legal',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MemberRoute = MemberRouteImport.update({
@@ -412,12 +430,14 @@ const LovableEmailTransactionalPreviewRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/accessibility': typeof AccessibilityRoute
   '/admin': typeof AdminRouteWithChildren
   '/alumni': typeof AlumniRoute
   '/apply': typeof ApplyRoute
   '/auth': typeof AuthRoute
   '/concierge': typeof ConciergeRoute
   '/confidentiality': typeof ConfidentialityRoute
+  '/cookies': typeof CookiesRoute
   '/decision-room': typeof DecisionRoomRoute
   '/ecosystem': typeof EcosystemRoute
   '/family-learning': typeof FamilyLearningRoute
@@ -425,6 +445,7 @@ export interface FileRoutesByFullPath {
   '/global-life': typeof GlobalLifeRoute
   '/impact': typeof ImpactRoute
   '/legacy': typeof LegacyRoute
+  '/legal': typeof LegalRoute
   '/member': typeof MemberRouteWithChildren
   '/membership': typeof MembershipRoute
   '/next-gen': typeof NextGenRoute
@@ -480,11 +501,13 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/accessibility': typeof AccessibilityRoute
   '/alumni': typeof AlumniRoute
   '/apply': typeof ApplyRoute
   '/auth': typeof AuthRoute
   '/concierge': typeof ConciergeRoute
   '/confidentiality': typeof ConfidentialityRoute
+  '/cookies': typeof CookiesRoute
   '/decision-room': typeof DecisionRoomRoute
   '/ecosystem': typeof EcosystemRoute
   '/family-learning': typeof FamilyLearningRoute
@@ -492,6 +515,7 @@ export interface FileRoutesByTo {
   '/global-life': typeof GlobalLifeRoute
   '/impact': typeof ImpactRoute
   '/legacy': typeof LegacyRoute
+  '/legal': typeof LegalRoute
   '/membership': typeof MembershipRoute
   '/next-gen': typeof NextGenRoute
   '/partner-application': typeof PartnerApplicationRoute
@@ -547,12 +571,14 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/accessibility': typeof AccessibilityRoute
   '/admin': typeof AdminRouteWithChildren
   '/alumni': typeof AlumniRoute
   '/apply': typeof ApplyRoute
   '/auth': typeof AuthRoute
   '/concierge': typeof ConciergeRoute
   '/confidentiality': typeof ConfidentialityRoute
+  '/cookies': typeof CookiesRoute
   '/decision-room': typeof DecisionRoomRoute
   '/ecosystem': typeof EcosystemRoute
   '/family-learning': typeof FamilyLearningRoute
@@ -560,6 +586,7 @@ export interface FileRoutesById {
   '/global-life': typeof GlobalLifeRoute
   '/impact': typeof ImpactRoute
   '/legacy': typeof LegacyRoute
+  '/legal': typeof LegalRoute
   '/member': typeof MemberRouteWithChildren
   '/membership': typeof MembershipRoute
   '/next-gen': typeof NextGenRoute
@@ -617,12 +644,14 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/accessibility'
     | '/admin'
     | '/alumni'
     | '/apply'
     | '/auth'
     | '/concierge'
     | '/confidentiality'
+    | '/cookies'
     | '/decision-room'
     | '/ecosystem'
     | '/family-learning'
@@ -630,6 +659,7 @@ export interface FileRouteTypes {
     | '/global-life'
     | '/impact'
     | '/legacy'
+    | '/legal'
     | '/member'
     | '/membership'
     | '/next-gen'
@@ -685,11 +715,13 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/accessibility'
     | '/alumni'
     | '/apply'
     | '/auth'
     | '/concierge'
     | '/confidentiality'
+    | '/cookies'
     | '/decision-room'
     | '/ecosystem'
     | '/family-learning'
@@ -697,6 +729,7 @@ export interface FileRouteTypes {
     | '/global-life'
     | '/impact'
     | '/legacy'
+    | '/legal'
     | '/membership'
     | '/next-gen'
     | '/partner-application'
@@ -751,12 +784,14 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/accessibility'
     | '/admin'
     | '/alumni'
     | '/apply'
     | '/auth'
     | '/concierge'
     | '/confidentiality'
+    | '/cookies'
     | '/decision-room'
     | '/ecosystem'
     | '/family-learning'
@@ -764,6 +799,7 @@ export interface FileRouteTypes {
     | '/global-life'
     | '/impact'
     | '/legacy'
+    | '/legal'
     | '/member'
     | '/membership'
     | '/next-gen'
@@ -820,12 +856,14 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AccessibilityRoute: typeof AccessibilityRoute
   AdminRoute: typeof AdminRouteWithChildren
   AlumniRoute: typeof AlumniRoute
   ApplyRoute: typeof ApplyRoute
   AuthRoute: typeof AuthRoute
   ConciergeRoute: typeof ConciergeRoute
   ConfidentialityRoute: typeof ConfidentialityRoute
+  CookiesRoute: typeof CookiesRoute
   DecisionRoomRoute: typeof DecisionRoomRoute
   EcosystemRoute: typeof EcosystemRoute
   FamilyLearningRoute: typeof FamilyLearningRoute
@@ -833,6 +871,7 @@ export interface RootRouteChildren {
   GlobalLifeRoute: typeof GlobalLifeRoute
   ImpactRoute: typeof ImpactRoute
   LegacyRoute: typeof LegacyRoute
+  LegalRoute: typeof LegalRoute
   MemberRoute: typeof MemberRouteWithChildren
   MembershipRoute: typeof MembershipRoute
   NextGenRoute: typeof NextGenRoute
@@ -864,6 +903,13 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/accessibility': {
+      id: '/accessibility'
+      path: '/accessibility'
+      fullPath: '/accessibility'
+      preLoaderRoute: typeof AccessibilityRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin': {
@@ -906,6 +952,13 @@ declare module '@tanstack/react-router' {
       path: '/confidentiality'
       fullPath: '/confidentiality'
       preLoaderRoute: typeof ConfidentialityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cookies': {
+      id: '/cookies'
+      path: '/cookies'
+      fullPath: '/cookies'
+      preLoaderRoute: typeof CookiesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/decision-room': {
@@ -955,6 +1008,13 @@ declare module '@tanstack/react-router' {
       path: '/legacy'
       fullPath: '/legacy'
       preLoaderRoute: typeof LegacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal': {
+      id: '/legal'
+      path: '/legal'
+      fullPath: '/legal'
+      preLoaderRoute: typeof LegalRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/member': {
@@ -1409,12 +1469,14 @@ const MemberRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AccessibilityRoute: AccessibilityRoute,
   AdminRoute: AdminRouteWithChildren,
   AlumniRoute: AlumniRoute,
   ApplyRoute: ApplyRoute,
   AuthRoute: AuthRoute,
   ConciergeRoute: ConciergeRoute,
   ConfidentialityRoute: ConfidentialityRoute,
+  CookiesRoute: CookiesRoute,
   DecisionRoomRoute: DecisionRoomRoute,
   EcosystemRoute: EcosystemRoute,
   FamilyLearningRoute: FamilyLearningRoute,
@@ -1422,6 +1484,7 @@ const rootRouteChildren: RootRouteChildren = {
   GlobalLifeRoute: GlobalLifeRoute,
   ImpactRoute: ImpactRoute,
   LegacyRoute: LegacyRoute,
+  LegalRoute: LegalRoute,
   MemberRoute: MemberRouteWithChildren,
   MembershipRoute: MembershipRoute,
   NextGenRoute: NextGenRoute,

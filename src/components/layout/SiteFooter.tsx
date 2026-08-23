@@ -1,66 +1,123 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight, Instagram, Linkedin, Youtube } from "lucide-react";
 
 import { BrandMark } from "@/components/brand/BrandMark";
 import { LanguageSelector, translationNotice } from "@/components/common/LanguageSelector";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { site } from "@/config/site";
-import { Container } from "./Container";
 
-const exploreLinks = [
-  { to: "/the-table", label: "The Table" },
-  { to: "/global-life", label: "The World" },
-  { to: "/gatherings", label: "Gatherings" },
-  { to: "/family-learning", label: "Families" },
+const columnOne = [
+  { to: "/world", label: "The World" },
+  { to: "/membership", label: "Membership" },
   { to: "/concierge", label: "Private Office" },
-  { to: "/journal", label: "Journal" },
+  { to: "/family-learning", label: "Family" },
 ] as const;
 
-const trustLinks = [
-  { to: "/about", label: "Why this exists" },
-  { to: "/membership", label: "Membership" },
-  { to: "/principles", label: "Membership principles" },
-  { to: "/confidentiality", label: "Confidentiality" },
+const columnTwo = [
+  { to: "/gatherings", label: "Gatherings" },
+  { to: "/global-life", label: "Global Life" },
+  { to: "/impact", label: "Giving" },
+  { to: "/about", label: "Our Story" },
+] as const;
+
+const legalLinks = [
   { to: "/privacy", label: "Privacy" },
+  { to: "/terms", label: "Terms" },
+  { to: "/legal", label: "Legal" },
   { to: "/cookies", label: "Cookies" },
   { to: "/accessibility", label: "Accessibility" },
-  { to: "/terms", label: "Terms" },
-  { to: "/legal", label: "Legal notice" },
 ] as const;
 
 export function SiteFooter() {
   return (
-    <footer className="bg-[#171716] text-white">
-      <Container className="py-24 md:py-32">
-        <div className="grid gap-16 lg:grid-cols-[1.35fr_0.65fr_0.65fr] lg:gap-24">
+    <footer className="bg-ink text-background">
+      <div className="mx-auto w-full max-w-[110rem] px-6 py-16 sm:px-10 lg:px-14">
+        <div className="grid gap-12 lg:grid-cols-[0.9fr_0.5fr_0.5fr_1fr_0.6fr]">
           <div>
-            <div className="flex items-center gap-3"><BrandMark /><p className="font-display text-2xl tracking-[-0.02em]">{site.name}</p></div>
-            <p className="mt-10 max-w-2xl font-display text-5xl leading-[1.02] md:text-6xl">A private world around the life you've built.</p>
-            <p className="mt-7 max-w-md text-sm leading-7 text-white/58">Trusted people, beautiful places, family, culture, travel and a serious private office behind it all.</p>
-            <Link to="/apply" className="mt-8 inline-flex items-center gap-2 text-sm font-semibold">Request membership <ArrowUpRight className="h-4 w-4" /></Link>
-            <div className="mt-10"><LanguageSelector inverse /></div>
-            <p className="mt-3 max-w-sm text-[9px] leading-4 text-white/34">{translationNotice}</p>
+            <div className="flex items-center gap-3">
+              <BrandMark compact />
+              <span className="leading-none">
+                <span className="font-display text-2xl tracking-[0.08em]">{site.name.toUpperCase()}</span>
+                <span className="mt-1 block text-[8px] uppercase tracking-[0.34em] text-background/55">
+                  A private world
+                </span>
+              </span>
+            </div>
+            <p className="mt-6 max-w-xs text-xs leading-6 text-background/55">{site.supportingLine}</p>
           </div>
 
-          <nav aria-label="Explore Montvelle">
-            <p className="text-[9px] font-semibold uppercase tracking-[0.24em] text-white/42">Explore</p>
-            <div className="mt-7 flex flex-col gap-4">{exploreLinks.map((item) => <Link key={item.to} to={item.to} className="text-sm text-white/62 transition-colors hover:text-white">{item.label}</Link>)}</div>
+          <nav aria-label="Explore Montvelle" className="flex flex-col gap-3">
+            {columnOne.map((item) => (
+              <Link key={item.to} to={item.to} className="text-sm text-background/62 hover:text-gold">
+                {item.label}
+              </Link>
+            ))}
           </nav>
 
-          <nav aria-label="Membership and legal information">
-            <p className="text-[9px] font-semibold uppercase tracking-[0.24em] text-white/42">Membership & trust</p>
-            <div className="mt-7 flex flex-col gap-4">{trustLinks.map((item) => <Link key={item.to} to={item.to} className="text-sm text-white/62 transition-colors hover:text-white">{item.label}</Link>)}<Link to="/auth" className="mt-2 text-sm font-semibold text-white">Member sign in</Link></div>
+          <nav aria-label="More about Montvelle" className="flex flex-col gap-3">
+            {columnTwo.map((item) => (
+              <Link key={item.to} to={item.to} className="text-sm text-background/62 hover:text-gold">
+                {item.label}
+              </Link>
+            ))}
           </nav>
-        </div>
 
-        <div className="mt-20 grid gap-5 border-t border-white/12 pt-7 text-[10px] leading-5 text-white/40 md:grid-cols-[1fr_auto]">
-          <div className="max-w-4xl space-y-2">
-            <p>{site.legalNotice}</p>
-            <p>Membership is by application and invitation. Montvelle is not a law firm, investment adviser, tax adviser, medical provider, immigration adviser, fiduciary or other regulated professional practice. Members instruct appropriately qualified professionals where regulated advice or services are required.</p>
-            <p>© {new Date().getFullYear()} {site.operator}. All rights reserved.</p>
+          <div>
+            <p className="text-[9px] font-semibold uppercase tracking-[0.26em] text-gold">Stay connected</p>
+            <p className="mt-3 text-sm text-background/62">Discreet updates and invitations.</p>
+            <form className="mt-4 flex max-w-sm gap-0" onSubmit={(event) => event.preventDefault()}>
+              <label className="sr-only" htmlFor="footer-email">
+                Your email
+              </label>
+              <Input
+                id="footer-email"
+                type="email"
+                placeholder="Your email"
+                className="rounded-none border-background/25 bg-transparent text-background placeholder:text-background/40"
+              />
+              <Button
+                type="submit"
+                aria-label="Subscribe"
+                className="rounded-none bg-gold px-4 text-ink hover:bg-gold/90"
+              >
+                <ArrowRight className="h-4 w-4" />
+              </Button>
+            </form>
+            <p className="mt-3 max-w-sm text-[9px] leading-4 text-background/34">{translationNotice}</p>
           </div>
-          <p className="md:text-right">{site.domain}<br />London · global membership</p>
+
+          <div className="flex items-start gap-4 lg:justify-end">
+            <LanguageSelector inverse />
+            <div className="flex items-center gap-3 text-background/60">
+              <a href="https://www.linkedin.com" aria-label="LinkedIn" className="hover:text-gold">
+                <Linkedin className="h-4 w-4" />
+              </a>
+              <a href="https://www.instagram.com" aria-label="Instagram" className="hover:text-gold">
+                <Instagram className="h-4 w-4" />
+              </a>
+              <a href="https://www.youtube.com" aria-label="YouTube" className="hover:text-gold">
+                <Youtube className="h-4 w-4" />
+              </a>
+            </div>
+          </div>
         </div>
-      </Container>
+
+        <div className="mt-14 flex flex-col gap-4 border-t border-background/12 pt-6 text-[10px] text-background/42 lg:flex-row lg:items-center lg:justify-between">
+          <p>
+            © {new Date().getFullYear()} {site.name}. All rights reserved.
+          </p>
+          <nav className="flex flex-wrap gap-6" aria-label="Legal">
+            {legalLinks.map((item) => (
+              <Link key={item.to} to={item.to} className="hover:text-background">
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+          <p>{site.legalNotice}</p>
+          <p>By invitation only</p>
+        </div>
+      </div>
     </footer>
   );
 }
