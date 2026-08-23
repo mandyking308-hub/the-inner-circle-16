@@ -444,3 +444,12 @@ export const stageCounts = (cases: SourcingCase[]) =>
     accumulator[stage] = cases.filter((item) => item.stage === stage).length;
     return accumulator;
   }, {} as Record<SourcingStage, number>);
+
+export const readReadyState = (prospect: SupplierProspect) => {
+  const outstanding: string[] = [];
+  if (prospect.dueDiligence !== "Complete") outstanding.push("due diligence");
+  if (prospect.references !== "Complete") outstanding.push("references");
+  if (!prospect.invitedToApply) outstanding.push("an invitation to apply");
+  if (!outstanding.length) return "Ready for the approved bench.";
+  return `Outstanding before the bench: ${outstanding.join(", ")}.`;
+};
