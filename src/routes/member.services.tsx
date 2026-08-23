@@ -1,297 +1,315 @@
-import { useMemo, useState } from "react";
+import { type FormEvent, useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, BadgeCheck, Clock3, MapPin, ShieldCheck } from "lucide-react";
+import { ArrowRight, CheckCircle2, Lock, Search, Send } from "lucide-react";
 
 import { PageIntro } from "@/components/private/PrivateShell";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import {
-  bookingModeLabel,
-  bookingModeNote,
-  getSupplier,
-  serviceCategories,
-  serviceNeeds,
-  serviceOfferings,
-  type ServiceOffering,
-} from "@/data/privateServices";
-import { readBookings, writeBookings, type Booking } from "@/data/memberWorld";
+  memberRequestStatuses,
+  memberStatusNote,
+  neutralTitle,
+  readMemberRequests,
+  writeMemberRequests,
+  type MemberSourcingRequest,
+} from "@/data/memberSourcing";
 
 export const Route = createFileRoute("/member/services")({ component: MemberServicesPage });
 
-const cities = ["All", ...Array.from(new Set(serviceOfferings.flatMap((service) => service.cities))).sort()];
-
 function MemberServicesPage() {
-  const [need, setNeed] = useState<string>("");
-  const [query, setQuery] = useState("");
-  const [city, setCity] = useState("All");
-  const [category, setCategory] = useState("All");
-  const [mode, setMode] = useState("All");
-  const [selected, setSelected] = useState<ServiceOffering | null>(null);
-  const [placed, setPlaced] = useState<string | null>(null);
+  const [requests, setRequests] = useState<MemberSourcingRequest[]>([]);
+  const [hydrated, setHydrated] = useState(false);
+  const [selectedId, setSelectedId] = useState("");
+  const [confirmation, setConfirmation] = useState<string | null>(null);
 
-  const results = useMemo(() => {
-    const text = query.trim().toLowerCase();
-    return serviceOfferings.filter((service) => {
-      if (need && !service.needs.includes(need)) return false;
-      if (city !== "All" && !service.cities.includes(city)) return false;
-      if (category !== "All" && service.category !== category) return false;
-      if (mode !== "All" && bookingModeLabel[service.mode] !== mode) return false;
-      if (!text) return true;
-      return `${service.title} ${service.summary} ${service.supplier} ${service.category}`.toLowerCase().includes(text);
-    });
-  }, [need, query, city, category, mode]);
+  useEffect(() => {
+    const loaded = readMemberRequests();
+    setRequests(loaded);
+    setSelectedId(loaded[0]?.id ?? "");
+    setHydrated(true);
+  }, []);
 
-  const started = Boolean(need || query || city !== "All" || category !== "All" || mode !== "All");
-  const shown = started ? results.slice(0, 8) : [];
+  useEffect(() => {
+    if (hydrated) writeMemberRequests(requests);
+  }, [hydrated, requests]);
 
-  const place = (service: ServiceOffering) => {
-    const id = `BKG-${Date.now().toString().slice(-4)}`;
-    const booking: Booking = {
-      id,
-      serviceId: service.id,
-      serviceTitle: service.title,
-      supplierId: service.supplierId,
-      supplier: service.supplier,
-      mode: service.mode,
-      city: service.cities[0] ?? "London",
-      when: "To be agreed",
-      household: "Hart household",
-      sharedContext: ["City", "Preferred dates", "Party size where relevant"],
-      quote: service.indicative,
-      payment: service.indicative.toLowerCase().includes("quote") ? "quote_pending" : "not_required",
-      cancellation: service.terms,
-      arrival: "To be confirmed once the provider replies.",
-      status: "awaiting",
-      conciergeOwner: service.mode === "introduction" ? "Concierge desk" : undefined,
-      threadId: `THR-${id}`,
-      createdAt: new Date().toISOString().slice(0, 10),
+  const selected = requests.find((request) => request.id === selectedId) ?? requests[0];
+
+  const submit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    const need = String(data.get("need") ?? "").trim();
+    if (!need) return;
+    const city = String(data.get("city") ?? "").trim();
+    const today = new Date().toISOString().slice(0, 10);
+    const request: MemberSourcingRequest = {
+      id: `MSR-${Date.now().toString().slice(-4)}`,
+      title: neutralTitle(need, city),
+      need,
+      city: city || "Not stated",
+      timeframe: String(data.get("timeframe") ?? "").trim() || "Not stated",
+      logistics: String(data.get("logistics") ?? "").trim() || "Not stated",
+      preferences: String(data.get("preferences") ?? "").trim() || "Not stated",
+      budget: String(data.get("budget") ?? "").trim() || "Not stated",
+      fullHandling: data.get("fullHandling") === "on",
+      status: "Received",
+      opened: today,
+      updates: [{ id: `u-${Date.now()}`, at: today, note: "Received. We will confirm the brief with you before approaching anyone." }],
+      options: [],
     };
-    writeBookings([booking, ...readBookings()]);
-    setPlaced(`${bookingModeLabel[service.mode]} placed with ${service.supplier}. It is now in your bookings.`);
-    setSelected(null);
+    setRequests((current) => [request, ...current]);
+    setSelectedId(request.id);
+    setConfirmation("Received. The desk will confirm the brief with you, then begin the search.");
+    form.reset();
   };
+
+  const chooseOption = (requestId: string, optionId: string) =>
+    setRequests((current) =>
+      current.map((request) =>
+        request.id === requestId
+          ? {
+              ...request,
+              options: request.options.map((option) =>
+                option.id === optionId ? { ...option, status: "Chosen" as const } : { ...option, status: "Set aside" as const },
+              ),
+              updates: [
+                ...request.updates,
+                { id: `u-${Date.now()}`, at: new Date().toISOString().slice(0, 10), note: "You chose an option. The desk will arrange it and confirm." },
+              ],
+            }
+          : request,
+      ),
+    );
 
   return (
     <div className="space-y-8">
       <PageIntro
         eyebrow="Private Services"
-        title="Start with what you need."
-        description="Rather than a directory, this begins with the thing you are trying to arrange. A small number of routes we already trust will follow — and serious matters are introduced personally, not booked instantly."
+        title="Tell us what you need. We will go and find it."
+        description="There is no catalogue to browse here, and no list of names to work through. You describe what you are trying to arrange; we search the market, make the enquiries, compare what comes back and return with a small number of good options — checked, priced and available."
         action={
           <Button asChild variant="outline" className="rounded-none">
-            <Link to="/member/partners">Professional bench</Link>
+            <Link to="/member/concierge">Concierge cases</Link>
           </Button>
         }
       />
 
-      {placed ? (
-        <div className="border border-border bg-card p-5 text-sm">
-          {placed}{" "}
-          <Link to="/member/bookings" className="font-semibold underline underline-offset-4">
-            Open bookings
-          </Link>
-        </div>
-      ) : null}
+      {confirmation ? <div className="border border-border bg-card p-5 text-sm">{confirmation}</div> : null}
 
-      <section className="border border-border bg-card p-6 md:p-7">
-        <p className="eyebrow text-oxblood">What do you need?</p>
-        <div className="mt-5 flex flex-wrap gap-2">
-          {serviceNeeds.map((item) => (
-            <button
-              key={item}
-              type="button"
-              onClick={() => setNeed(need === item ? "" : item)}
-              className={`border px-3 py-2 text-xs transition-colors ${need === item ? "border-foreground bg-foreground text-background" : "border-border text-muted-foreground hover:text-foreground"}`}
-            >
-              {item}
-            </button>
-          ))}
+      <section className="grid gap-px border border-border bg-border md:grid-cols-3">
+        {[
+          ["You describe it", "In your own words, with whatever constraints actually matter."],
+          ["We search and enquire", "We approach providers ourselves, with the minimum they need to know."],
+          ["We bring back options", "A short list, checked for suitability, terms and availability."],
+        ].map(([title, note]) => (
+          <article key={title} className="bg-card p-6">
+            <p className="text-[9px] uppercase tracking-[0.16em] text-oxblood">{title}</p>
+            <p className="mt-3 text-xs leading-6 text-muted-foreground">{note}</p>
+          </article>
+        ))}
+      </section>
+
+      <form onSubmit={submit} className="grid gap-5 border border-border bg-card p-6 md:grid-cols-2 md:p-8">
+        <div className="md:col-span-2">
+          <p className="eyebrow text-oxblood">A new request</p>
+          <h2 className="mt-3 font-display text-3xl">What are you trying to arrange?</h2>
         </div>
 
-        <div className="mt-6 grid gap-3 lg:grid-cols-[1.4fr_0.9fr_1.1fr_1fr]">
-          <Input
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            placeholder="Or describe it in your own words"
+        <div className="space-y-2 md:col-span-2">
+          <Label htmlFor="need">What you need</Label>
+          <Textarea
+            id="need"
+            name="need"
+            required
+            rows={4}
             className="rounded-none"
+            placeholder="Describe the thing itself, and anything that cannot change."
           />
-          <select
-            value={city}
-            onChange={(event) => setCity(event.target.value)}
-            className="border border-border bg-background px-3 py-2 text-sm"
-            aria-label="City"
-          >
-            {cities.map((item) => (
-              <option key={item}>{item}</option>
-            ))}
-          </select>
-          <select
-            value={category}
-            onChange={(event) => setCategory(event.target.value)}
-            className="border border-border bg-background px-3 py-2 text-sm"
-            aria-label="Category"
-          >
-            {["All", ...serviceCategories].map((item) => (
-              <option key={item}>{item}</option>
-            ))}
-          </select>
-          <select
-            value={mode}
-            onChange={(event) => setMode(event.target.value)}
-            className="border border-border bg-background px-3 py-2 text-sm"
-            aria-label="Booking mode"
-          >
-            {["All", "Book now", "Request availability", "Private introduction"].map((item) => (
-              <option key={item}>{item}</option>
-            ))}
-          </select>
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="city">Where</Label>
+          <Input id="city" name="city" className="rounded-none" placeholder="City or region" />
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="timeframe">Dates or timeframe</Label>
+          <Input id="timeframe" name="timeframe" className="rounded-none" placeholder="Fixed dates, or a window" />
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="logistics">Party or household logistics</Label>
+          <Input id="logistics" name="logistics" className="rounded-none" placeholder="Numbers, luggage, access, anything practical" />
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="budget">Budget range (optional)</Label>
+          <Input id="budget" name="budget" className="rounded-none" placeholder="Leave blank if you would rather see the market" />
+        </div>
+        <div className="space-y-2 md:col-span-2">
+          <Label htmlFor="preferences">Preferences</Label>
+          <Textarea id="preferences" name="preferences" rows={3} className="rounded-none" placeholder="Standards, dislikes, discretion requirements, anyone already involved." />
+        </div>
+
+        <label className="flex items-start gap-3 border-t border-border pt-4 text-xs leading-6 md:col-span-2">
+          <input type="checkbox" name="fullHandling" className="mt-1" />
+          <span>
+            <strong>Handle the whole thing.</strong> Montvelle should search, negotiate, book and stay with it through to the day, rather than
+            returning options for me to arrange myself.
+          </span>
+        </label>
+
+        <div className="md:col-span-2">
+          <Button type="submit" className="rounded-none bg-oxblood">
+            <Send className="mr-2 h-4 w-4" />
+            Send this to the desk
+          </Button>
+        </div>
+      </form>
+
+      <section className="border border-border bg-card p-6">
+        <div className="flex items-start gap-3">
+          <Lock className="mt-0.5 h-5 w-5 text-oxblood" />
+          <div>
+            <p className="text-sm font-semibold">How we approach providers</p>
+            <p className="mt-2 max-w-4xl text-xs leading-6 text-muted-foreground">
+              To find the right thing we will often approach providers we have not worked with before. When we do, we give them only what they
+              need in order to answer — the shape of the request, the city and the timing. Your name, your household and the reason behind the
+              request stay with us unless you tell us otherwise.
+            </p>
+          </div>
         </div>
       </section>
 
-      {!started ? (
-        <section className="border border-border bg-foreground p-7 text-background md:p-9">
-          <p className="eyebrow text-bronze">How this works</p>
-          <h2 className="mt-4 max-w-3xl font-display text-4xl leading-tight">
-            A small number of good routes, not a marketplace.
-          </h2>
-          <div className="mt-8 grid gap-px bg-background/15 md:grid-cols-3">
-            {(["book", "request", "introduction"] as const).map((item) => (
-              <article key={item} className="bg-foreground p-5">
-                <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-bronze">
-                  {bookingModeLabel[item]}
-                </p>
-                <p className="mt-3 text-xs leading-6 text-background/62">{bookingModeNote[item]}</p>
-              </article>
-            ))}
+      <div className="grid gap-5 xl:grid-cols-[320px_1fr]">
+        <aside className="border border-border bg-card xl:self-start">
+          <div className="border-b border-border p-4">
+            <p className="eyebrow text-oxblood">Your requests</p>
           </div>
-          <p className="mt-8 max-w-3xl text-xs leading-6 text-background/55">
-            Legal, tax, fiduciary and medical matters are always routed as a private introduction. They are never
-            offered as an instant booking.
-          </p>
-        </section>
-      ) : (
-        <section className="space-y-4">
-          <p className="text-xs uppercase tracking-[0.16em] text-muted-foreground">
-            {results.length} route{results.length === 1 ? "" : "s"} we would suggest
-          </p>
-          {shown.map((service) => {
-            const supplier = getSupplier(service.supplierId);
-            return (
-              <article key={service.id} className="border border-border bg-card p-6">
-                <div className="flex flex-wrap items-start justify-between gap-4">
-                  <div>
-                    <p className="text-[10px] uppercase tracking-[0.17em] text-oxblood">{service.category}</p>
-                    <h2 className="mt-2 font-display text-3xl">{service.title}</h2>
-                    <p className="mt-1 text-xs text-muted-foreground">{service.supplier}</p>
-                  </div>
-                  <span className="border border-border px-3 py-1.5 text-[9px] uppercase tracking-[0.14em] text-muted-foreground">
-                    {bookingModeLabel[service.mode]}
+          <div className="divide-y divide-border">
+            {requests.map((request) => (
+              <button
+                key={request.id}
+                type="button"
+                onClick={() => setSelectedId(request.id)}
+                className={`block w-full p-4 text-left transition-colors ${selected?.id === request.id ? "bg-foreground text-background" : "hover:bg-accent"}`}
+              >
+                <div className="flex items-center justify-between gap-3">
+                  <span className={`text-[9px] uppercase tracking-[0.14em] ${selected?.id === request.id ? "text-bronze" : "text-oxblood"}`}>
+                    {request.status}
                   </span>
+                  <span className="text-[9px] opacity-55">{request.opened}</span>
                 </div>
-                <p className="mt-4 max-w-3xl text-sm leading-7 text-muted-foreground">{service.summary}</p>
-                <div className="mt-5 grid gap-4 border-y border-border py-4 sm:grid-cols-2 lg:grid-cols-4">
-                  <div>
-                    <p className="text-[9px] uppercase tracking-[0.14em] text-muted-foreground">Where</p>
-                    <p className="mt-1 flex items-center gap-1.5 text-sm">
-                      <MapPin className="h-3.5 w-3.5 text-bronze" />
-                      {service.cities.join(" · ")}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-[9px] uppercase tracking-[0.14em] text-muted-foreground">Standard</p>
-                    <p className="mt-1 flex items-center gap-1.5 text-sm">
-                      <Clock3 className="h-3.5 w-3.5 text-bronze" />
-                      {supplier?.responseTime ?? "By arrangement"}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-[9px] uppercase tracking-[0.14em] text-muted-foreground">Member benefit</p>
-                    <p className="mt-1 text-sm">{service.benefit}</p>
-                  </div>
-                  <div>
-                    <p className="text-[9px] uppercase tracking-[0.14em] text-muted-foreground">Indicative</p>
-                    <p className="mt-1 text-sm">{service.indicative}</p>
-                  </div>
-                </div>
-                <div className="mt-5 flex flex-wrap gap-2">
-                  <Button className="rounded-none" onClick={() => place(service)}>
-                    {bookingModeLabel[service.mode]}
-                  </Button>
-                  <Button variant="outline" className="rounded-none" onClick={() => setSelected(service)}>
-                    More about this
-                  </Button>
-                  <Button asChild variant="ghost" className="rounded-none">
-                    <Link to="/member/concierge">Ask Montvelle to handle this</Link>
-                  </Button>
-                </div>
-              </article>
-            );
-          })}
-          {results.length === 0 ? (
-            <div className="border border-border bg-card p-6 text-sm text-muted-foreground">
-              Nothing on the bench matches that yet.{" "}
-              <Link to="/member/concierge" className="font-semibold text-foreground underline underline-offset-4">
-                Ask the concierge desk to source someone.
-              </Link>
-            </div>
-          ) : null}
-        </section>
-      )}
+                <h2 className="mt-2 font-display text-xl leading-tight">{request.title}</h2>
+              </button>
+            ))}
+            {requests.length === 0 ? <p className="p-5 text-sm text-muted-foreground">Nothing open yet.</p> : null}
+          </div>
+        </aside>
 
-      {selected ? (
-        <section className="border border-border bg-foreground p-6 text-background md:p-8">
-          <div className="grid gap-8 xl:grid-cols-[0.9fr_1.1fr]">
-            <div>
-              <p className="eyebrow text-bronze">{selected.supplier}</p>
-              <h2 className="mt-3 font-display text-4xl">{selected.title}</h2>
-              <p className="mt-4 text-sm leading-7 text-background/65">{selected.summary}</p>
-              <p className="mt-6 flex items-start gap-3 text-xs leading-6 text-background/62">
-                <BadgeCheck className="mt-0.5 h-4 w-4 shrink-0 text-bronze" />
-                {selected.whyTrusted}
+        {selected ? (
+          <section className="min-w-0 space-y-5">
+            <article className="border border-border bg-foreground p-6 text-background md:p-8">
+              <p className="text-[9px] uppercase tracking-[0.16em] text-bronze">
+                {selected.id} · opened {selected.opened}
+                {selected.fullHandling ? " · handled end to end" : ""}
               </p>
-            </div>
-            <div className="grid gap-px bg-background/15 sm:grid-cols-2">
-              <article className="bg-foreground p-5">
-                <p className="text-[9px] uppercase tracking-[0.14em] text-background/45">Service standard</p>
-                <p className="mt-2 text-xs leading-6 text-background/70">{selected.standard}</p>
-              </article>
-              <article className="bg-foreground p-5">
-                <p className="text-[9px] uppercase tracking-[0.14em] text-background/45">Booking route</p>
-                <p className="mt-2 text-xs leading-6 text-background/70">{bookingModeNote[selected.mode]}</p>
-              </article>
-              <article className="bg-foreground p-5">
-                <p className="text-[9px] uppercase tracking-[0.14em] text-background/45">Indicative</p>
-                <p className="mt-2 text-xs leading-6 text-background/70">{selected.indicative}</p>
-              </article>
-              <article className="bg-foreground p-5">
-                <p className="text-[9px] uppercase tracking-[0.14em] text-background/45">Terms</p>
-                <p className="mt-2 text-xs leading-6 text-background/70">{selected.terms}</p>
-              </article>
-              <article className="bg-foreground p-5 sm:col-span-2">
-                <p className="flex items-center gap-2 text-[9px] uppercase tracking-[0.14em] text-background/45">
-                  <ShieldCheck className="h-3.5 w-3.5 text-bronze" /> What the provider sees
+              <h2 className="mt-3 font-display text-4xl leading-tight">{selected.title}</h2>
+              <p className="mt-5 max-w-3xl text-sm leading-7 text-background/65">{selected.need}</p>
+              <dl className="mt-7 grid gap-4 border-t border-background/15 pt-6 sm:grid-cols-2 lg:grid-cols-4">
+                {[
+                  ["Where", selected.city],
+                  ["When", selected.timeframe],
+                  ["Logistics", selected.logistics],
+                  ["Budget", selected.budget],
+                ].map(([label, value]) => (
+                  <div key={label}>
+                    <dt className="text-[9px] uppercase tracking-[0.14em] text-background/45">{label}</dt>
+                    <dd className="mt-1.5 text-sm leading-6">{value}</dd>
+                  </div>
+                ))}
+              </dl>
+            </article>
+
+            <article className="border border-border bg-card p-6">
+              <div className="flex items-center gap-3">
+                <Search className="h-5 w-5 text-oxblood" />
+                <h3 className="font-display text-3xl">Where this has got to</h3>
+              </div>
+              <ol className="mt-6 grid gap-px bg-border sm:grid-cols-3 lg:grid-cols-6">
+                {memberRequestStatuses.map((status) => {
+                  const reached = memberRequestStatuses.indexOf(status) <= memberRequestStatuses.indexOf(selected.status);
+                  return (
+                    <li key={status} className={`bg-card p-4 ${reached ? "" : "opacity-45"}`}>
+                      <p className={`text-[9px] uppercase tracking-[0.13em] ${reached ? "text-oxblood" : "text-muted-foreground"}`}>{status}</p>
+                    </li>
+                  );
+                })}
+              </ol>
+              <p className="mt-5 text-sm leading-7 text-muted-foreground">{memberStatusNote[selected.status]}</p>
+              <div className="mt-6 space-y-3 border-t border-border pt-5">
+                {selected.updates.map((update) => (
+                  <div key={update.id} className="flex gap-4">
+                    <p className="w-24 shrink-0 text-[10px] uppercase tracking-[0.12em] text-muted-foreground">{update.at}</p>
+                    <p className="text-xs leading-6">{update.note}</p>
+                  </div>
+                ))}
+              </div>
+            </article>
+
+            <article className="border border-border bg-card p-6">
+              <h3 className="font-display text-3xl">Options</h3>
+              {selected.options.length ? (
+                <div className="mt-5 space-y-3">
+                  {selected.options.map((option) => (
+                    <div key={option.id} className="border border-border bg-background p-5">
+                      <div className="flex flex-wrap items-start justify-between gap-4">
+                        <div className="max-w-2xl">
+                          <p className="text-[9px] uppercase tracking-[0.14em] text-oxblood">{option.label}</p>
+                          <p className="mt-2 text-sm leading-6">{option.note}</p>
+                          <p className="mt-3 text-xs text-muted-foreground">
+                            {option.indicative} · {option.availability}
+                          </p>
+                        </div>
+                        {option.status === "Chosen" ? (
+                          <span className="flex items-center gap-2 text-[10px] uppercase tracking-[0.14em] text-oxblood">
+                            <CheckCircle2 className="h-4 w-4" />
+                            Chosen
+                          </span>
+                        ) : option.status === "Set aside" ? (
+                          <span className="text-[10px] uppercase tracking-[0.14em] text-muted-foreground">Set aside</span>
+                        ) : (
+                          <Button variant="outline" className="rounded-none" onClick={() => chooseOption(selected.id, option.id)}>
+                            Take this one
+                          </Button>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="mt-4 max-w-3xl text-sm leading-7 text-muted-foreground">
+                  Nothing to show yet. Options appear here only once we have spoken to the providers ourselves and checked what they said.
                 </p>
-                <p className="mt-2 text-xs leading-6 text-background/70">
-                  Only the minimum a booking requires — city, date, party size and any preference you choose to share.
-                  Your private preferences are never passed on by default.
-                </p>
-              </article>
-            </div>
+              )}
+            </article>
+          </section>
+        ) : null}
+      </div>
+
+      <section className="border border-border bg-foreground p-6 text-background md:p-8">
+        <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="eyebrow text-background/50">Something larger than a single arrangement?</p>
+            <h2 className="mt-3 font-display text-3xl">Give the whole problem to Concierge.</h2>
           </div>
-          <div className="mt-7 flex flex-wrap gap-2">
-            <Button className="rounded-none bg-background text-foreground hover:bg-background/90" onClick={() => place(selected)}>
-              {bookingModeLabel[selected.mode]} <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-            <Button
-              variant="outline"
-              className="rounded-none border-background/35 bg-transparent text-background hover:bg-background hover:text-foreground"
-              onClick={() => setSelected(null)}
-            >
-              Close
-            </Button>
-          </div>
-        </section>
-      ) : null}
+          <Button asChild variant="outline" className="rounded-none border-background/30 bg-transparent text-background hover:bg-background hover:text-foreground">
+            <Link to="/member/concierge">
+              Open a concierge case <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+          </Button>
+        </div>
+      </section>
     </div>
   );
 }
