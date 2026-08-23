@@ -24,5 +24,5 @@ export const navItems = [
   { to: "/gatherings", label: "Gatherings" },
   { to: "/global-life", label: "Global Life" },
   { to: "/impact", label: "Giving" },
-  { to: "/about", label: "Our Story" },
+  { to: "/montvelle-world", label: "Montvelle World" },
 ] as const;
