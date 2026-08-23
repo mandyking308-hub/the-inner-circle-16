@@ -1,18 +1,30 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Globe2, MapPinned, ShieldCheck } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/button";
-import { luxuryImages } from "@/data/luxuryImages";
 import { worldNodes, worldPrinciples } from "@/data/world";
 import { site } from "@/config/site";
+import worldHero from "@/assets/world-hero-terrace.jpg";
 
 export const Route = createFileRoute("/world")({
   head: () => ({
     meta: [
       { title: `The World — ${site.name}` },
-      { name: "description", content: "A growing global intelligence layer for families whose lives, businesses and advisers cross borders." },
+      {
+        name: "description",
+        content:
+          "The places, people and possibilities that matter to your family — brought closer, easier to navigate and connected around the way you actually live.",
+      },
+      { property: "og:title", content: `The World — ${site.name}` },
+      {
+        property: "og:description",
+        content: "A wider world, made more personal. The places that become part of your life.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: `${site.url}/world` }],
   }),
   component: WorldPage,
 });
@@ -20,55 +32,110 @@ export const Route = createFileRoute("/world")({
 function WorldPage() {
   return (
     <>
-      <section className="relative min-h-[720px] overflow-hidden bg-foreground text-background">
-        <img src={luxuryImages.jet} alt="A globally mobile family arriving by private aviation" className="absolute inset-0 h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-r from-foreground/96 via-foreground/74 to-foreground/18" />
-        <Container className="relative flex min-h-[720px] items-center py-20">
+      {/* Hero */}
+      <section className="relative min-h-[640px] overflow-hidden bg-foreground text-background md:min-h-[760px]">
+        <img
+          src={worldHero}
+          alt="A family together on a sunlit terrace of a European coastal residence"
+          width={1920}
+          height={1200}
+          className="absolute inset-0 h-full w-full object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-foreground/93 via-foreground/64 to-foreground/12" />
+        <Container className="relative flex min-h-[640px] items-center py-20 md:min-h-[760px]">
           <div className="max-w-3xl">
-            <p className="eyebrow text-bronze">The world around the family</p>
-            <h1 className="mt-6 max-w-[10ch] font-display text-6xl leading-[0.93] md:text-8xl">Global life should feel connected, not scattered.</h1>
-            <p className="mt-7 max-w-2xl text-base leading-8 text-background/72">A family may live in one country, own companies in another, educate children in a third and rely on advisers in four more. The useful product is not a list of cities. It is one view of how the whole life fits together.</p>
+            <p className="eyebrow text-bronze">The World</p>
+            <h1 className="mt-6 max-w-[13ch] font-display text-5xl leading-[0.96] md:text-8xl">
+              A wider world, made more personal.
+            </h1>
+            <p className="mt-7 max-w-xl text-base leading-8 text-background/75">
+              The places, people and possibilities that matter to your family — brought closer,
+              easier to navigate and connected around the way you actually live.
+            </p>
             <div className="mt-9 flex flex-wrap gap-3">
-              <Button asChild size="lg" className="rounded-none bg-oxblood px-8"><Link to="/global-life">Open Global Life <ArrowRight className="ml-2 h-4 w-4" /></Link></Button>
-              <Button asChild size="lg" variant="outline" className="rounded-none border-background/35 bg-transparent px-8 text-background hover:bg-background hover:text-foreground"><Link to="/membership">Membership</Link></Button>
+              <Button asChild size="lg" className="rounded-none px-8">
+                <a href="#places">
+                  Explore the world <ArrowRight className="ml-2 h-4 w-4" />
+                </a>
+              </Button>
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="rounded-none border-background/35 bg-transparent px-8 text-background hover:bg-background hover:text-foreground"
+              >
+                <Link to="/membership">Membership</Link>
+              </Button>
             </div>
           </div>
         </Container>
       </section>
 
-      <section className="border-b border-foreground/15 bg-linen py-20 md:py-28">
+      {/* Places that matter */}
+      <section id="places" className="scroll-mt-24 border-b border-foreground/12 bg-linen py-20 md:py-28">
         <Container>
-          <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
-            <div><p className="eyebrow text-oxblood">A growing intelligence layer</p><h2 className="mt-5 font-display text-5xl leading-[1.02] md:text-6xl">Useful geography, without pretending we have an office everywhere.</h2></div>
-            <p className="max-w-xl text-sm leading-7 text-muted-foreground lg:justify-self-end">Each node below represents a place where member experience, family decisions or deliberate relationship-building make local intelligence useful. Formal partners, reciprocal places and benefits are only shown when they actually exist.</p>
+          <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+            <div>
+              <p className="eyebrow text-bronze">Places that matter</p>
+              <h2 className="mt-5 font-display text-5xl leading-[1.03] md:text-6xl">
+                The places that become part of your life.
+              </h2>
+            </div>
+            <p className="max-w-xl text-sm leading-7 text-muted-foreground lg:justify-self-end">
+              Some places are home. Others become important through family, education, business,
+              health, culture, friendships or simply because you love being there. Montvelle helps
+              you move through them with more familiarity, better local context and the right people
+              around you.
+            </p>
           </div>
-          <div className="mt-12 grid gap-px bg-foreground/15 md:grid-cols-2 xl:grid-cols-4">
-            {worldNodes.map((node) => (
-              <article key={node.city} className="bg-background p-6 md:p-7">
-                <div className="flex items-start justify-between gap-4"><div><p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-oxblood">{node.status}</p><h3 className="mt-3 font-display text-4xl">{node.city}</h3><p className="mt-1 text-xs text-muted-foreground">{node.region}</p></div><MapPinned className="h-5 w-5 text-bronze" /></div>
-                <p className="mt-5 text-sm leading-7 text-muted-foreground">{node.line}</p>
-                <div className="mt-5 flex flex-wrap gap-2">{node.usefulFor.map((item) => <span key={item} className="border border-foreground/12 px-2 py-1 text-[9px] uppercase tracking-[0.12em] text-muted-foreground">{item}</span>)}</div>
-                <p className="mt-5 border-t border-foreground/12 pt-4 text-[10px] leading-5 text-muted-foreground">{node.note}</p>
+
+          <div className="mt-14 grid gap-x-10 gap-y-12 sm:grid-cols-2 xl:grid-cols-4">
+            {worldNodes.map((place) => (
+              <article key={place.city} className="border-t border-foreground/20 pt-6">
+                <h3 className="font-display text-4xl leading-none">{place.city}</h3>
+                <p className="mt-3 text-sm font-medium tracking-[0.02em] text-foreground/70">
+                  {place.country}
+                </p>
+                <p className="mt-6 text-[10px] uppercase tracking-[0.2em] text-bronze">{place.theme}</p>
+                <p className="mt-3 text-sm leading-7 text-muted-foreground">{place.line}</p>
               </article>
             ))}
           </div>
         </Container>
       </section>
 
-      <section className="border-b border-background/10 bg-foreground py-20 text-background md:py-28">
+      {/* What matters */}
+      <section className="bg-foreground py-24 text-background md:py-32">
         <Container>
-          <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
-            <div><Globe2 className="h-5 w-5 text-bronze" /><p className="mt-7 eyebrow text-background/50">The standard</p><h2 className="mt-4 font-display text-5xl leading-[1.02]">Global should mean coordinated.</h2></div>
-            <div className="grid gap-px bg-background/15 sm:grid-cols-2">{worldPrinciples.map((item) => <article key={item.title} className="bg-foreground p-6"><h3 className="font-display text-3xl">{item.title}</h3><p className="mt-4 text-sm leading-7 text-background/62">{item.body}</p></article>)}</div>
+          <div className="max-w-3xl">
+            <p className="eyebrow text-bronze">What matters</p>
+            <h2 className="mt-5 font-display text-5xl leading-[1.03] md:text-6xl">
+              Wherever you are, the experience should still feel familiar.
+            </h2>
+          </div>
+          <div className="mt-16 grid gap-x-14 gap-y-14 md:grid-cols-2">
+            {worldPrinciples.map((item) => (
+              <article key={item.title} className="max-w-md">
+                <h3 className="font-display text-3xl leading-tight">{item.title}</h3>
+                <p className="mt-5 text-sm leading-8 text-background/65">{item.body}</p>
+              </article>
+            ))}
           </div>
         </Container>
       </section>
 
+      {/* Closing */}
       <section className="py-20 md:py-28">
         <Container>
-          <div className="grid gap-8 border border-foreground/15 bg-card p-7 md:p-10 lg:grid-cols-[1fr_auto] lg:items-end">
-            <div><ShieldCheck className="h-5 w-5 text-oxblood" /><h2 className="mt-5 max-w-4xl font-display text-5xl leading-[1.02]">The family owns the decision. Local specialists own the regulated advice. We keep the whole picture visible.</h2></div>
-            <Button asChild size="lg" className="rounded-none bg-oxblood px-8"><Link to="/apply">Request a seat <ArrowRight className="ml-2 h-4 w-4" /></Link></Button>
+          <div className="grid gap-8 border border-foreground/15 bg-card p-8 md:p-12 lg:grid-cols-[1fr_auto] lg:items-end">
+            <h2 className="max-w-4xl font-display text-4xl leading-[1.05] md:text-5xl">
+              The world can be wide without ever feeling disconnected.
+            </h2>
+            <Button asChild size="lg" className="rounded-none px-8">
+              <Link to="/apply">
+                Membership inquiry <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
           </div>
         </Container>
       </section>
