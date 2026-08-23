@@ -74,6 +74,7 @@ import { Route as MemberEventsRouteImport } from './routes/member.events'
 import { Route as MemberFamilyRouteImport } from './routes/member.family'
 import { Route as MemberFamilyArchitectureRouteImport } from './routes/member.family-architecture'
 import { Route as MemberGlobalLifeRouteImport } from './routes/member.global-life'
+import { Route as MemberHouseholdAccessRouteImport } from './routes/member.household-access'
 import { Route as MemberImpactRouteImport } from './routes/member.impact'
 import { Route as MemberIntroductionsRouteImport } from './routes/member.introductions'
 import { Route as MemberKnowledgeRouteImport } from './routes/member.knowledge'
@@ -425,6 +426,11 @@ const MemberGlobalLifeRoute = MemberGlobalLifeRouteImport.update({
   path: '/global-life',
   getParentRoute: () => MemberRoute,
 } as any)
+const MemberHouseholdAccessRoute = MemberHouseholdAccessRouteImport.update({
+  id: '/household-access',
+  path: '/household-access',
+  getParentRoute: () => MemberRoute,
+} as any)
 const MemberImpactRoute = MemberImpactRouteImport.update({
   id: '/impact',
   path: '/impact',
@@ -610,6 +616,7 @@ export interface FileRoutesByFullPath {
   '/member/family': typeof MemberFamilyRoute
   '/member/family-architecture': typeof MemberFamilyArchitectureRoute
   '/member/global-life': typeof MemberGlobalLifeRoute
+  '/member/household-access': typeof MemberHouseholdAccessRoute
   '/member/impact': typeof MemberImpactRoute
   '/member/introductions': typeof MemberIntroductionsRoute
   '/member/knowledge': typeof MemberKnowledgeRoute
@@ -698,6 +705,7 @@ export interface FileRoutesByTo {
   '/member/family': typeof MemberFamilyRoute
   '/member/family-architecture': typeof MemberFamilyArchitectureRoute
   '/member/global-life': typeof MemberGlobalLifeRoute
+  '/member/household-access': typeof MemberHouseholdAccessRoute
   '/member/impact': typeof MemberImpactRoute
   '/member/introductions': typeof MemberIntroductionsRoute
   '/member/knowledge': typeof MemberKnowledgeRoute
@@ -790,6 +798,7 @@ export interface FileRoutesById {
   '/member/family': typeof MemberFamilyRoute
   '/member/family-architecture': typeof MemberFamilyArchitectureRoute
   '/member/global-life': typeof MemberGlobalLifeRoute
+  '/member/household-access': typeof MemberHouseholdAccessRoute
   '/member/impact': typeof MemberImpactRoute
   '/member/introductions': typeof MemberIntroductionsRoute
   '/member/knowledge': typeof MemberKnowledgeRoute
@@ -883,6 +892,7 @@ export interface FileRouteTypes {
     | '/member/family'
     | '/member/family-architecture'
     | '/member/global-life'
+    | '/member/household-access'
     | '/member/impact'
     | '/member/introductions'
     | '/member/knowledge'
@@ -971,6 +981,7 @@ export interface FileRouteTypes {
     | '/member/family'
     | '/member/family-architecture'
     | '/member/global-life'
+    | '/member/household-access'
     | '/member/impact'
     | '/member/introductions'
     | '/member/knowledge'
@@ -1062,6 +1073,7 @@ export interface FileRouteTypes {
     | '/member/family'
     | '/member/family-architecture'
     | '/member/global-life'
+    | '/member/household-access'
     | '/member/impact'
     | '/member/introductions'
     | '/member/knowledge'
@@ -1588,6 +1600,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MemberGlobalLifeRouteImport
       parentRoute: typeof MemberRoute
     }
+    '/member/household-access': {
+      id: '/member/household-access'
+      path: '/household-access'
+      fullPath: '/member/household-access'
+      preLoaderRoute: typeof MemberHouseholdAccessRouteImport
+      parentRoute: typeof MemberRoute
+    }
     '/member/impact': {
       id: '/member/impact'
       path: '/impact'
@@ -1818,6 +1837,7 @@ interface MemberRouteChildren {
   MemberFamilyRoute: typeof MemberFamilyRoute
   MemberFamilyArchitectureRoute: typeof MemberFamilyArchitectureRoute
   MemberGlobalLifeRoute: typeof MemberGlobalLifeRoute
+  MemberHouseholdAccessRoute: typeof MemberHouseholdAccessRoute
   MemberImpactRoute: typeof MemberImpactRoute
   MemberIntroductionsRoute: typeof MemberIntroductionsRoute
   MemberKnowledgeRoute: typeof MemberKnowledgeRoute
@@ -1845,6 +1865,7 @@ const MemberRouteChildren: MemberRouteChildren = {
   MemberFamilyRoute: MemberFamilyRoute,
   MemberFamilyArchitectureRoute: MemberFamilyArchitectureRoute,
   MemberGlobalLifeRoute: MemberGlobalLifeRoute,
+  MemberHouseholdAccessRoute: MemberHouseholdAccessRoute,
   MemberImpactRoute: MemberImpactRoute,
   MemberIntroductionsRoute: MemberIntroductionsRoute,
   MemberKnowledgeRoute: MemberKnowledgeRoute,
