@@ -85,7 +85,7 @@ function ConciergePage() {
               <h2 className="max-w-[18ch] text-balance font-display text-[2.75rem] leading-[1.03] md:text-6xl">
                 You should not have to start from the beginning every time.
               </h2>
-              <div className="mt-12 grid gap-12 md:grid-cols-[1fr_0.85fr] md:items-end md:gap-16">
+              <div className="mt-10 grid gap-12 md:grid-cols-[1fr_0.9fr] md:items-start md:gap-16">
                 <p className="max-w-xl text-base leading-8 text-muted-foreground md:text-lg">
                   The people around you may each know one part of your life. Montvelle remembers how the parts fit together, so conversations begin with context and decisions feel easier to carry.
                 </p>
