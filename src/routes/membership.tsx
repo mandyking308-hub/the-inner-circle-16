@@ -9,6 +9,7 @@ import { familyMembershipPricing, membershipPricing } from "@/config/membershipP
 import { site } from "@/config/site";
 import { createMembershipCheckoutFn } from "@/functions/membershipCheckout";
 import { recordCheckoutAcceptance } from "@/lib/legalAcceptance";
+import { memberLegalVersionBundle } from "@/config/legal";
 import membershipHero from "@/assets/membership-hero-dinner.jpg";
 import membershipRoom from "@/assets/membership-standard-room.jpg";
 
