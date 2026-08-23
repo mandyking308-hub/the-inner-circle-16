@@ -31,29 +31,22 @@ import { site } from "@/config/site";
 
 const memberGroups = [
   {
-    label: "Private office",
+    label: "Montvelle World",
     items: [
       { to: "/member", label: "Today", icon: Home, exact: true },
-      { to: "/member/control-room", label: "Decisions", icon: LayoutDashboard },
-      { to: "/member/concierge", label: "Concierge", icon: Compass },
-      { to: "/member/services", label: "Private Services", icon: Sparkles },
-      { to: "/member/bookings", label: "Bookings", icon: CalendarDays },
+      { to: "/member/services", label: "Requests", icon: Sparkles },
+      { to: "/member/control-room", label: "Decision Room", icon: LayoutDashboard },
+      { to: "/member/events", label: "Invitations", icon: CalendarDays },
+      { to: "/member/network", label: "Community", icon: Users },
+      { to: "/member/family", label: "Family", icon: Landmark },
       { to: "/member/messages", label: "Messages", icon: Inbox },
     ],
   },
   {
-    label: "The wider house",
-    items: [
-      { to: "/member/table", label: "My Table", icon: TableProperties },
-      { to: "/member/family", label: "Family", icon: Landmark },
-      { to: "/member/network", label: "Network", icon: Network },
-      { to: "/member/programme", label: "Programme", icon: CalendarDays },
-    ],
-  },
-  {
-    label: "You",
+    label: "Your household",
     items: [
       { to: "/member/preferences", label: "My Preferences", icon: BookOpen },
+      { to: "/member/household-access", label: "Household & Access", icon: ShieldCheck },
       { to: "/member/profile", label: "Account & privacy", icon: CircleUserRound },
     ],
   },
