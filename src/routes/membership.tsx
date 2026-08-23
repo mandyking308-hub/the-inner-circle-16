@@ -209,33 +209,75 @@ function MembershipPage() {
         <Container>
           <div className="max-w-2xl">
             <p className="text-[10px] font-semibold uppercase tracking-[0.26em] text-oxblood">Enrolment</p>
-            <h2 className="mt-6 font-display text-4xl leading-[1.04] md:text-5xl">The founding rate.</h2>
+            <h2 className="mt-6 font-display text-4xl leading-[1.04] md:text-5xl">One standard, in two forms.</h2>
             <p className="mt-6 text-sm leading-7 text-muted-foreground">
-              Stated plainly, so nothing needs to be asked twice. This is the current rate for memberships commencing in{" "}
-              {membershipPricing.pricingYear}; renewal is at the rate set out in your renewal invitation and Membership Schedule.
+              There are no tiers at Montvelle. Membership is held either by an individual or by a household, and the
+              difference is service capacity rather than a better or lesser Montvelle. These are the rates for memberships
+              commencing in {membershipPricing.pricingYear}; renewal is at the rate set out in your renewal invitation and
+              Membership Schedule.
             </p>
           </div>
 
-          <div className="mt-16 grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24">
-            <div>
-              <div className="border-t border-foreground/15 pt-8">
-                <p className="font-display text-6xl leading-none md:text-7xl">{membershipPricing.annualDisplay}</p>
-                <p className="mt-4 text-sm text-muted-foreground">per 12-month membership · paid annually in advance</p>
+          <div className="mt-14 grid gap-px border border-foreground/12 bg-foreground/12 lg:grid-cols-2">
+            <div className="bg-[#f4ede1] p-8 md:p-11">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-oxblood">Individual membership</p>
+              <p className="mt-6 font-display text-5xl leading-none md:text-6xl">{membershipPricing.annualDisplay}</p>
+              <p className="mt-4 text-sm text-muted-foreground">per 12-month membership · paid annually in advance</p>
+              <div className="mt-8 border-t border-foreground/15 pt-6">
+                <p className="font-display text-2xl">{membershipPricing.joiningDisplay}</p>
+                <p className="mt-2 text-sm text-muted-foreground">one-time admission &amp; onboarding fee</p>
               </div>
-              <div className="mt-10 border-t border-foreground/15 pt-8">
-                <p className="font-display text-3xl">{membershipPricing.joiningDisplay}</p>
-                <p className="mt-3 text-sm text-muted-foreground">one-time admission &amp; onboarding fee</p>
-              </div>
-              <div className="mt-10 border-t border-foreground/15 pt-8">
+              <div className="mt-8 border-t border-foreground/15 pt-6">
                 <p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">First-year total</p>
                 <p className="mt-3 font-display text-4xl">{membershipPricing.firstYearDisplay}</p>
-                <p className="mt-4 max-w-sm text-[11px] leading-6 text-muted-foreground">
-                  Before applicable taxes and any third-party goods or services purchased separately.
-                </p>
               </div>
+              <p className="mt-6 max-w-sm text-[11px] leading-6 text-muted-foreground">
+                One approved principal member. Before applicable taxes and any third-party goods or services purchased
+                separately.
+              </p>
+              <a href="#enrol" className="mt-8 inline-flex items-center gap-2 border-b border-oxblood pb-1 text-sm font-medium text-oxblood transition-opacity hover:opacity-70">
+                Continue to secure checkout <ArrowRight className="h-4 w-4" />
+              </a>
             </div>
 
-            <div>
+            <div className="bg-[#efe6d7] p-8 md:p-11">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-oxblood">Family membership</p>
+              <p className="mt-6 font-display text-5xl leading-none md:text-6xl">{familyMembershipPricing.fromAnnualDisplay}</p>
+              <p className="mt-4 text-sm text-muted-foreground">per 12-month household membership</p>
+              <div className="mt-8 space-y-4 border-t border-foreground/15 pt-6 text-sm leading-7 text-muted-foreground">
+                <p>
+                  A household relationship, because more than one approved adult may use Montvelle independently — each
+                  with their own login, their own matters and their own privacy. It is not account sharing.
+                </p>
+                <p>
+                  The final annual fee, the approved household composition and any admission or onboarding amount are
+                  confirmed after review and recorded in your Membership Schedule.
+                </p>
+              </div>
+              <Button asChild className="mt-8 h-12 rounded-none bg-oxblood px-7 text-sm">
+                <Link to="/apply" search={{ membership: "Family" }}>
+                  Discuss family membership <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
+          </div>
+
+          <p className="mt-8 max-w-2xl font-display text-2xl leading-snug text-foreground/80 md:text-[1.75rem]">
+            The standard is the same. The relationship is wider.
+          </p>
+
+          <div className="mt-16 grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24">
+            <div className="lg:pt-4">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-oxblood">Household access</p>
+              <h3 className="mt-5 font-display text-3xl leading-tight md:text-4xl">Who is included is agreed, not assumed.</h3>
+              <p className="mt-6 text-sm leading-7 text-muted-foreground">
+                Approved adult family members, age-appropriate next-generation participation and any authorised household
+                delegate are agreed with us and recorded in the Membership Schedule. There is no seat menu and no
+                automatic inclusion — an authorised delegate is not a Montvelle member.
+              </p>
+            </div>
+
+            <div id="enrol">
               <div className="border border-foreground/12 bg-[#171716] p-8 text-white md:p-12">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#d8b36c]">Private enrolment</p>
                 <h3 className="mt-5 font-display text-4xl leading-[1.04] md:text-5xl">Take your seat.</h3>
