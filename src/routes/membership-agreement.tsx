@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { LegalTemplate } from "@/components/marketing/LegalTemplate";
-import { membershipPricing } from "@/config/membershipPricing";
+import { familyMembershipPricing, membershipPricing } from "@/config/membershipPricing";
 import { site } from "@/config/site";
 
 export const Route = createFileRoute("/membership-agreement")({
