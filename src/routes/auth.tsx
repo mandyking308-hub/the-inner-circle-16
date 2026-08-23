@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { type FormEvent, useEffect, useState } from "react";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { ArrowRight, LockKeyhole, ShieldCheck } from "lucide-react";
+import { z } from "zod";
 
 import { Container } from "@/components/layout/Container";
 import { enableInternalPreview } from "@/components/security/PrivatePreviewGate";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { isInternalPreviewHost, setPreviewIdentity } from "@/lib/previewAccess";
 import { luxuryImages } from "@/data/luxuryImages";
 import { site } from "@/config/site";
 
@@ -21,19 +23,40 @@ export const Route = createFileRoute("/auth")({
   component: AuthPage,
 });
 
+const emailSchema = z.string().trim().email().max(255);
+
 function AuthPage() {
+  const navigate = useNavigate();
   const [preview, setPreview] = useState(false);
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
+
   useEffect(() => {
     if (typeof window === "undefined") return;
-    // Internal Lovable preview host only (id-preview--<uuid>.lovable.app) or explicit ?preview=1.
-    const host = window.location.hostname;
-    const onInternalPreviewHost =
-      host === "localhost" || (host.startsWith("id-preview--") && host.endsWith(".lovable.app"));
-    const internal =
-      onInternalPreviewHost || new URLSearchParams(window.location.search).get("preview") === "1";
+    const internalHost = isInternalPreviewHost();
+    const params = new URLSearchParams(window.location.search);
+    const flag = params.get("preview");
+    const internal = internalHost || flag === "1" || flag === "member";
     setPreview(internal);
-    if (internal) enableInternalPreview();
-  }, []);
+    if (!internal) return;
+    enableInternalPreview();
+    // One-click internal preview entry: /auth?preview=member
+    if (internalHost && flag === "member") void navigate({ to: "/member" });
+  }, [navigate]);
+
+  const signInPreview = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!preview) return;
+    const parsed = emailSchema.safeParse(email);
+    if (!parsed.success) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+    setError("");
+    setPreviewIdentity(parsed.data);
+    enableInternalPreview();
+    void navigate({ to: "/member" });
+  };
 
   return (
     <section className="relative min-h-[760px] overflow-hidden bg-foreground text-background">
@@ -45,11 +68,32 @@ function AuthPage() {
             <div className="flex items-center gap-3"><LockKeyhole className="h-5 w-5 text-bronze" /><p className="eyebrow text-background/55">Private members</p></div>
             <h1 className="mt-6 font-display text-6xl leading-[0.96]">Member access</h1>
             <p className="mt-5 max-w-xl text-sm leading-7 text-background/68">Montvelle member spaces contain private family, relationship and decision context. Access is issued individually and should never be shared.</p>
-            <form className="mt-8 space-y-5" onSubmit={(event) => event.preventDefault()}>
-              <div className="space-y-2"><Label htmlFor="signin-email" className="text-background/75">Email</Label><Input id="signin-email" type="email" className="rounded-none border-background/25 bg-background/10 text-background placeholder:text-background/35" placeholder="Your membership email" /></div>
-              <Button type="submit" className="w-full rounded-none bg-oxblood text-oxblood-foreground" disabled>Continue securely</Button>
+            <form className="mt-8 space-y-5" onSubmit={signInPreview}>
+              <div className="space-y-2">
+                <Label htmlFor="signin-email" className="text-background/75">Email</Label>
+                <Input
+                  id="signin-email"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  maxLength={255}
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
+                  disabled={!preview}
+                  className="rounded-none border-background/25 bg-background/10 text-background placeholder:text-background/35"
+                  placeholder="Your membership email"
+                />
+              </div>
+              {error ? <p className="text-xs text-bronze" role="alert">{error}</p> : null}
+              <Button type="submit" className="w-full rounded-none bg-oxblood text-oxblood-foreground" disabled={!preview}>
+                {preview ? "Continue securely" : "Continue securely"}
+              </Button>
             </form>
-            <p className="mt-5 text-xs leading-6 text-background/48">If you have been invited to the founding cohort, the membership team will issue your secure access when your account is activated.</p>
+            <p className="mt-5 text-xs leading-6 text-background/48">
+              {preview
+                ? "Internal preview sign-in. No credential is checked here and nothing is sent — this exists only so the private environment can be reviewed before real authentication is wired."
+                : "If you have been invited to the founding cohort, the membership team will issue your secure access when your account is activated."}
+            </p>
 
             {preview ? (
               <div className="mt-8 border-t border-background/18 pt-6">
