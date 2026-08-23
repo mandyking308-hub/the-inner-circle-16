@@ -201,6 +201,15 @@ function MontvelleWorldPage() {
                 <Link to="/membership">Membership</Link>
               </Button>
             </div>
+            <p className="mt-8 text-sm text-background/60">
+              Already a member?{" "}
+              <Link
+                to="/auth"
+                className="border-b border-bronze/60 pb-0.5 font-semibold text-bronze transition-colors hover:text-background"
+              >
+                Enter Montvelle World
+              </Link>
+            </p>
           </div>
         </Container>
       </section>
