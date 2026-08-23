@@ -54,8 +54,12 @@ function SupplierPortalPage() {
             A separate door, for the people we work with.
           </h1>
           <p className="mt-8 max-w-2xl text-base leading-8 text-background/70">
-            Suppliers and partners have their own private entrance to Montvelle. It holds your profile, your services
-            and the work assigned to you — and nothing else about the members we serve.
+            This entrance is for invited and approved providers only. It holds your own profile, your own services and
+            the work assigned to you — and nothing else about the members we serve, or about anyone else who works with us.
+          </p>
+          <p className="mt-6 max-w-2xl text-sm leading-7 text-background/55">
+            Montvelle is deliberately demand-led. We do not build a supplier list in advance; providers are approached
+            because a member asked for something specific, and are invited here only after they have done that work well.
           </p>
         </Container>
       </section>
