@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, Globe2, HeartHandshake, LockKeyhole, Sparkles } from "lucide-react";
+import { ArrowRight, Globe2, HeartHandshake, LockKeyhole } from "lucide-react";
 
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/button";
