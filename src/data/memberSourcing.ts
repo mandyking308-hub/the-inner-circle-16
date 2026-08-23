@@ -188,7 +188,7 @@ export const seedMemberRequests: MemberSourcingRequest[] = [
     ],
     options: [],
     internalStage: "Contacting",
-    owner: "Maya",
+    owner: "Montvelle desk",
     neutralBrief:
       "A private client office seeks a discreet central-London room for small working lunches over September. Six occasions, four to six people, weekday lunchtimes. Privacy matters more than menu.",
   },

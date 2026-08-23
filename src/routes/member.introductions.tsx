@@ -18,13 +18,13 @@ const statuses = [
     reason: "Founder-to-chair transition",
     status: "Consent received",
     detail:
-      "Marcus is happy to connect. Concierge will send a short contextual introduction today.",
+      "DEMO Member F is happy to connect. Concierge will send a short contextual introduction today.",
   },
   {
     person: "DEMO Member K",
     reason: "Modernising family-office systems",
     status: "Reviewing",
-    detail: "Concierge is checking relevance and whether Elena has capacity for this conversation.",
+    detail: "Concierge is checking relevance and whether DEMO Member K has capacity for this conversation.",
   },
   {
     person: "Healthcare operator · UAE",

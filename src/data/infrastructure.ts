@@ -159,7 +159,7 @@ export const conciergeRequests = [
     title: "Coordinate residence, tax and schooling questions for a two-country shortlist",
     status: "Awaiting member",
     urgency: "14 days",
-    owner: "Daniel",
+    owner: "Montvelle desk",
     nextStep: "Awaiting consent before any external approach",
   },
   {
@@ -169,7 +169,7 @@ export const conciergeRequests = [
     title: "Find a quiet London base for six working lunches in September",
     status: "Options prepared",
     urgency: "Normal",
-    owner: "Maya",
+    owner: "Montvelle desk",
     nextStep: "Member deciding between the checked options",
   },
 ] as const;

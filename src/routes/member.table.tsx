@@ -112,7 +112,7 @@ function TablePage() {
           <div className="mt-6 space-y-4">
             {[
               "Document the three decisions only you can currently make in the business.",
-              "Introduce Daniel to the healthcare operator you mentioned.",
+              "Introduce DEMO Member B to the healthcare operator you mentioned.",
               "Speak with your finance lead about the first family-office reporting pack.",
             ].map((item, index) => (
               <label key={item} className="flex gap-3 border-t border-border pt-4 text-sm leading-6 first:border-0 first:pt-0">

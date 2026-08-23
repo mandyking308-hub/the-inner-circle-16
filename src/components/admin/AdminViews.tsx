@@ -31,7 +31,7 @@ import {
 
 const applications = [
   {
-    name: "Eleanor James",
+    name: "DEMO Applicant B",
     role: "Founder · Consumer health",
     city: "London",
     stage: "Screening",
