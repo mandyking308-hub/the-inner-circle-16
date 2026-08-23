@@ -16,6 +16,7 @@ import { PageIntro, StatCard } from "@/components/private/PrivateShell";
 import { asksOffers, knowledge } from "@/data/community";
 import { luxuryImages } from "@/data/luxuryImages";
 import { readPrivateOfficeSummary, type PrivateOfficeSummary } from "@/data/privateOfficeSummary";
+import { openMemberRequests, readMemberRequests, type MemberSourcingRequest } from "@/data/memberSourcing";
 import {
   bookingStatusLabel,
   needsReplyCount,
@@ -52,6 +53,7 @@ function MemberHome() {
   const [dateLabel, setDateLabel] = useState("Private office");
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [threads, setThreads] = useState<Thread[]>([]);
+  const [requests, setRequests] = useState<MemberSourcingRequest[]>([]);
   const firstAsk = asksOffers[0]!;
   const recommendation = knowledge[1]!;
   const firstName = summary.memberName.split(" ")[0] || "there";
@@ -65,12 +67,14 @@ function MemberHome() {
     setSummary(readPrivateOfficeSummary());
     setBookings(readBookings());
     setThreads(readThreads());
+    setRequests(readMemberRequests());
     setDateLabel(new Intl.DateTimeFormat("en-GB", { weekday: "long", day: "numeric", month: "long" }).format(new Date()));
 
     const refresh = () => {
       setSummary(readPrivateOfficeSummary());
       setBookings(readBookings());
       setThreads(readThreads());
+      setRequests(readMemberRequests());
     };
     window.addEventListener("focus", refresh);
     window.addEventListener("storage", refresh);
@@ -117,6 +121,37 @@ function MemberHome() {
         <StatCard label="Family learning" value={summary.learningProgress.split(" ")[0] ?? "—"} note={summary.learningGoal} />
         <StatCard label="Next gathering" value={summary.nextGatheringDate.split(" ").slice(0, 2).join(" ")} note={`${summary.nextGatheringTitle} · ${summary.nextGatheringResponse}`} />
       </div>
+
+      <section className="border border-border bg-card p-6 md:p-7">
+        <div className="flex flex-wrap items-start justify-between gap-5">
+          <div>
+            <div className="flex items-center gap-3"><Sparkles className="h-5 w-5 text-oxblood" /><p className="eyebrow text-oxblood">Your requests</p></div>
+            <h2 className="mt-5 font-display text-3xl leading-tight">Tell us what you need. We'll take it from here.</h2>
+            <p className="mt-3 max-w-2xl text-sm leading-7 text-muted-foreground">
+              Anything you ask for is acknowledged straight away, and we come back to you within 24 hours with an answer, a progress update or
+              checked options.
+            </p>
+          </div>
+          <Link to="/member/services" className="inline-flex items-center gap-2 border border-border px-5 py-3 text-sm font-semibold transition-colors hover:bg-accent">
+            Make a request <ArrowRight className="h-4 w-4 text-oxblood" />
+          </Link>
+        </div>
+        <ul className="mt-6 divide-y divide-border border-y border-border text-sm">
+          {openMemberRequests(requests).length === 0 ? (
+            <li className="py-3 text-muted-foreground">Nothing open at the moment.</li>
+          ) : (
+            openMemberRequests(requests).slice(0, 3).map((request) => (
+              <li key={request.id} className="flex flex-wrap items-start justify-between gap-4 py-3">
+                <span className="max-w-2xl">
+                  <span className="block">{request.title}</span>
+                  <span className="mt-1 block text-xs text-muted-foreground">{request.nextUpdate}</span>
+                </span>
+                <span className="shrink-0 text-[9px] uppercase tracking-[0.14em] text-oxblood">{request.status}</span>
+              </li>
+            ))
+          )}
+        </ul>
+      </section>
 
       <section className="grid gap-px bg-border lg:grid-cols-2">
         <div className="bg-card p-6 md:p-7">
