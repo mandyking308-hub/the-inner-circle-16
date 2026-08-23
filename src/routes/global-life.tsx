@@ -63,7 +63,7 @@ function GlobalLifePage() {
           className="absolute inset-0 h-full w-full object-cover object-center"
         />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(12,12,11,0.68)_0%,rgba(12,12,11,0.34)_46%,rgba(12,12,11,0.04)_82%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,12,11,0.18)_0%,rgba(12,12,11,0.30)_38%,rgba(12,12,11,0.82)_100%)] md:hidden" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,12,11,0.25)_0%,rgba(12,12,11,0.58)_45%,rgba(12,12,11,0.82)_100%)] md:hidden" />
         <Container className="relative flex min-h-[620px] items-end py-20 md:min-h-[760px] md:py-28">
           <div className="max-w-3xl">
             <p className="eyebrow text-bronze">Global Life</p>
