@@ -195,6 +195,10 @@ function MemberServicesPage() {
               We approach people on your behalf with only what they need in order to answer — the shape of the request, the place and the
               timing. Your name, your household and the reason behind the request stay with us unless you tell us otherwise.
             </p>
+            <p className="mt-3 max-w-4xl text-xs leading-6 text-muted-foreground">
+              A request you make is private to you by default. Sharing one with another approved member of your household is a deliberate
+              choice, matter by matter — you can ask us to open it up at any point.
+            </p>
           </div>
         </div>
       </section>
