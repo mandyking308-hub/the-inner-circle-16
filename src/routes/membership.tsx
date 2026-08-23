@@ -111,7 +111,7 @@ function MembershipPage() {
 
                   <label className="flex gap-3 border-t border-white/15 pt-5 text-xs leading-6 text-white/65">
                     <input type="checkbox" required className="mt-1 h-4 w-4 shrink-0 accent-[#d8b36c]" />
-                    <span>I have read and agree to the <Link to="/terms" className="underline underline-offset-2">Terms</Link>, <Link to="/privacy" className="underline underline-offset-2">Privacy Notice</Link> and <Link to="/confidentiality" className="underline underline-offset-2">Confidentiality & No Solicitation standard</Link>. I understand that the final Membership Agreement and Membership Schedule govern the paid relationship.</span>
+                    <span>I have read and agree to the <Link to="/membership-agreement" className="underline underline-offset-2">Membership Agreement</Link>, <Link to="/terms" className="underline underline-offset-2">Website Terms</Link>, <Link to="/privacy" className="underline underline-offset-2">Privacy Notice</Link> and <Link to="/confidentiality" className="underline underline-offset-2">Confidentiality & No Solicitation standard</Link>. I understand that my Membership Schedule records the specific approved member, term and commercial details.</span>
                   </label>
                   <label className="flex gap-3 text-xs leading-6 text-white/65">
                     <input type="checkbox" required className="mt-1 h-4 w-4 shrink-0 accent-[#d8b36c]" />
@@ -129,7 +129,7 @@ function MembershipPage() {
                   </Button>
                 </form>
 
-                <div className="mt-7 flex gap-3 border-t border-white/15 pt-6"><ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-[#d8b36c]" /><p className="text-[10px] leading-5 text-white/48">Montvelle is operated by {site.operator}, a Delaware limited liability company. Membership activates only after acceptance, required checks, applicable contractual acceptance and cleared funds.</p></div>
+                <div className="mt-7 flex gap-3 border-t border-white/15 pt-6"><ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-[#d8b36c]" /><p className="text-[10px] leading-5 text-white/48">Montvelle is operated by {site.operator}, a Delaware limited liability company. Membership activates only after acceptance, required checks, contractual acceptance and cleared funds.</p></div>
               </div>
 
               <div className="mt-5 border border-foreground/15 bg-white/55 p-6">
