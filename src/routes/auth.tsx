@@ -9,6 +9,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { isInternalPreviewHost, setPreviewIdentity } from "@/lib/previewAccess";
+import { memberLegalVersionBundle } from "@/config/legal";
+import { recordMemberSignInAcceptance } from "@/lib/legalAcceptance";
 import { luxuryImages } from "@/data/luxuryImages";
 import { site } from "@/config/site";
 
