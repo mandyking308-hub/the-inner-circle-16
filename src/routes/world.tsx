@@ -90,18 +90,29 @@ function WorldPage() {
             </p>
           </div>
 
-          <div className="mt-14 grid gap-x-10 gap-y-12 sm:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-14 grid gap-x-8 gap-y-12 sm:grid-cols-2 xl:grid-cols-4">
             {worldNodes.map((place) => (
-              <article key={place.city} className="border-t border-foreground/20 pt-6">
-                <h3 className="font-display text-4xl leading-none">{place.city}</h3>
+              <article key={place.city} className="group">
+                <div className="relative overflow-hidden bg-foreground/5">
+                  <img
+                    src={place.image}
+                    alt={`${place.city}, ${place.country}`}
+                    width={1200}
+                    height={1500}
+                    loading="lazy"
+                    className="aspect-[4/5] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                  />
+                </div>
+                <h3 className="mt-6 font-display text-4xl leading-none">{place.city}</h3>
                 <p className="mt-3 text-sm font-medium tracking-[0.02em] text-foreground/70">
                   {place.country}
                 </p>
-                <p className="mt-6 text-[10px] uppercase tracking-[0.2em] text-bronze">{place.theme}</p>
+                <p className="mt-5 text-[10px] uppercase tracking-[0.2em] text-bronze">{place.theme}</p>
                 <p className="mt-3 text-sm leading-7 text-muted-foreground">{place.line}</p>
               </article>
             ))}
           </div>
+
         </Container>
       </section>
 
