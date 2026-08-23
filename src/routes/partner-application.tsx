@@ -17,7 +17,7 @@ import { TwoReferences } from "@/components/apply/TwoReferences";
 import { site } from "@/config/site";
 
 export const Route = createFileRoute("/partner-application")({
-  head: () => ({ meta: [{ title: `Trusted Partner application — ${site.name}` }, { name: "description", content: "Apply to be considered for the Montvelle Trusted Partner network." }] }),
+  head: () => ({ meta: [{ title: `Partner & supplier application — ${site.name}` }, { name: "description", content: "Apply to be considered by Montvelle when we source specialists for a member request. Membership does not include browsing providers." }] }),
   component: PartnerApplicationPage,
 });
 
@@ -92,7 +92,7 @@ function PartnerApplicationPage() {
         <img src={luxuryImages.table} alt="Trusted advisers in a private London setting" className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-foreground/96 via-foreground/80 to-foreground/18" />
         <Container className="relative flex min-h-[620px] items-center py-20">
-          <div className="max-w-3xl"><p className="eyebrow text-bronze">Trusted Partner application</p><h1 className="mt-6 max-w-[10ch] font-display text-6xl leading-[0.93] md:text-8xl">Earn the recommendation, not access to the list.</h1><p className="mt-7 max-w-2xl text-base leading-8 text-background/72">The partner network is for firms that understand complex families, collaborate well with other advisers and are comfortable being judged on the usefulness of their work.</p></div>
+          <div className="max-w-3xl"><p className="eyebrow text-bronze">Partner &amp; supplier application</p><h1 className="mt-6 max-w-[10ch] font-display text-6xl leading-[0.93] md:text-8xl">Earn the recommendation, not access to the list.</h1><p className="mt-7 max-w-2xl text-base leading-8 text-background/72">Montvelle sources specialists in response to individual member needs. We are building the standard against which firms are considered: an understanding of complex families, genuine collaboration with other advisers, and a willingness to be judged on the usefulness of the work. Applying does not imply approval, and there is no list for members to browse.</p></div>
         </Container>
       </section>
 

@@ -27,7 +27,7 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-5 xl:flex 2xl:gap-7" aria-label="Primary navigation">
+        <nav className="hidden items-center gap-5 min-[1360px]:flex 2xl:gap-7" aria-label="Primary navigation">
           {navItems.map((item) => (
             <Link
               key={item.to}
@@ -40,7 +40,7 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-3 xl:flex 2xl:gap-4">
+        <div className="hidden items-center gap-3 min-[1360px]:flex 2xl:gap-4">
           <Link
             to="/auth"
             className="whitespace-nowrap border border-gold/35 px-3.5 py-2 text-[10px] font-medium uppercase tracking-[0.16em] text-gold/85 transition-colors hover:border-gold/70 hover:text-gold"
@@ -60,7 +60,7 @@ export function SiteHeader() {
         </div>
 
         <Sheet open={open} onOpenChange={setOpen}>
-          <SheetTrigger asChild className="xl:hidden">
+          <SheetTrigger asChild className="min-[1360px]:hidden">
             <Button variant="ghost" size="icon" aria-label="Open menu" className="text-background hover:bg-background/10 hover:text-background">
               <Menu className="size-5" />
             </Button>

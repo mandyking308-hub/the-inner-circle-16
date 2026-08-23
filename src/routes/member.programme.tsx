@@ -7,7 +7,7 @@ export const Route = createFileRoute("/member/programme")({ component: Programme
 function ProgrammeHubPage() {
   return (
     <div className="space-y-8">
-      <PageIntro eyebrow="Programme" title="The things worth leaving the dashboard for" description="Gatherings, knowledge and impact should make the institution more useful without turning membership into an endless content feed or event calendar." />
+      <PageIntro eyebrow="Programme" title="The things worth leaving the house for" description="Gatherings, knowledge and impact should make the institution more useful without turning membership into an endless content feed or event calendar." />
       <div className="grid gap-px bg-border md:grid-cols-3">
         {[
           ["Gatherings", "Private dinners, working breakfasts, salons, masterclasses, retreats and impact visits.", "/member/events"],
