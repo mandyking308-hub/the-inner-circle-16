@@ -106,21 +106,60 @@ function AuthPage() {
                   placeholder="Your membership email"
                 />
               </div>
+              <label className="flex gap-3 border-t border-background/18 pt-5 text-[11px] leading-6 text-background/62">
+                <input
+                  type="checkbox"
+                  checked={accepted}
+                  onChange={(event) => setAccepted(event.target.checked)}
+                  className="mt-1 h-3.5 w-3.5 shrink-0 accent-[#c8a25c]"
+                />
+                <span>
+                  I have read and agree to the current{" "}
+                  <Link to="/membership-agreement" className="text-background/85 underline underline-offset-2">Membership Agreement</Link>,{" "}
+                  <Link to="/terms" className="text-background/85 underline underline-offset-2">Website Terms</Link>,{" "}
+                  <Link to="/privacy" className="text-background/85 underline underline-offset-2">Privacy Notice</Link> and{" "}
+                  <Link to="/confidentiality" className="text-background/85 underline underline-offset-2">Confidentiality &amp; No Solicitation</Link> standard.
+                </span>
+              </label>
+              <p className="text-[10px] leading-5 text-background/38">{memberLegalVersionBundle}</p>
               {error ? <p className="text-xs text-bronze" role="alert">{error}</p> : null}
-              <Button type="submit" className="w-full rounded-none bg-oxblood text-oxblood-foreground" disabled={!preview}>
-                {preview ? "Continue securely" : "Continue securely"}
+              <Button type="submit" className="w-full rounded-none bg-oxblood text-oxblood-foreground" disabled={!preview || !accepted}>
+                Continue securely
               </Button>
             </form>
             <p className="mt-5 text-xs leading-6 text-background/48">
               {preview
-                ? "Internal preview sign-in. No credential is checked here and nothing is sent — this exists only so the private environment can be reviewed before real authentication is wired."
+                ? "Internal preview sign-in. No credential is checked here and nothing is sent — this exists only so the private environment can be reviewed before real authentication is wired. Acceptance is recorded in this browser as preview evidence only, not in a production audit store."
                 : "If you have been invited to the founding cohort, the membership team will issue your secure access when your account is activated."}
             </p>
 
             {preview ? (
               <div className="mt-8 border-t border-background/18 pt-6">
                 <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-bronze">Internal preview controls</p>
-                <div className="mt-4 flex flex-col gap-3 sm:flex-row"><Button asChild className="rounded-none bg-background text-foreground hover:bg-bronze"><Link to="/member">Enter member workspace <ArrowRight className="ml-2 h-4 w-4" /></Link></Button><Button asChild variant="outline" className="rounded-none border-background/30 bg-transparent text-background hover:bg-background hover:text-foreground"><Link to="/admin">Open operations workspace</Link></Button></div>
+                <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+                  <Button
+                    type="button"
+                    disabled={!accepted}
+                    onClick={() => enterWorkspace("/member")}
+                    className="rounded-none bg-background text-foreground hover:bg-bronze"
+                  >
+                    Enter member workspace <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    disabled={!accepted}
+                    onClick={() => enterWorkspace("/admin")}
+                    className="rounded-none border-background/30 bg-transparent text-background hover:bg-background hover:text-foreground"
+                  >
+                    Open operations workspace
+                  </Button>
+                </div>
+                {!accepted ? (
+                  <p className="mt-3 text-[10px] leading-5 text-background/45">
+                    Tick the acceptance box above to continue.
+                  </p>
+                ) : null}
               </div>
             ) : null}
           </div>
