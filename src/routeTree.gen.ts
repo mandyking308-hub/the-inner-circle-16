@@ -39,6 +39,7 @@ import { Route as PartnersRouteImport } from './routes/partners'
 import { Route as PrinciplesRouteImport } from './routes/principles'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as SupplierRouteImport } from './routes/supplier'
+import { Route as SupplierAgreementRouteImport } from './routes/supplier-agreement'
 import { Route as SupplierPortalRouteImport } from './routes/supplier-portal'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as TheTableRouteImport } from './routes/the-table'
@@ -251,6 +252,11 @@ const PrivacyRoute = PrivacyRouteImport.update({
 const SupplierRoute = SupplierRouteImport.update({
   id: '/supplier',
   path: '/supplier',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SupplierAgreementRoute = SupplierAgreementRouteImport.update({
+  id: '/supplier-agreement',
+  path: '/supplier-agreement',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SupplierPortalRoute = SupplierPortalRouteImport.update({
@@ -602,6 +608,7 @@ export interface FileRoutesByFullPath {
   '/principles': typeof PrinciplesRoute
   '/privacy': typeof PrivacyRoute
   '/supplier': typeof SupplierRouteWithChildren
+  '/supplier-agreement': typeof SupplierAgreementRoute
   '/supplier-portal': typeof SupplierPortalRoute
   '/terms': typeof TermsRoute
   '/the-table': typeof TheTableRoute
@@ -694,6 +701,7 @@ export interface FileRoutesByTo {
   '/partners': typeof PartnersRoute
   '/principles': typeof PrinciplesRoute
   '/privacy': typeof PrivacyRoute
+  '/supplier-agreement': typeof SupplierAgreementRoute
   '/supplier-portal': typeof SupplierPortalRoute
   '/terms': typeof TermsRoute
   '/the-table': typeof TheTableRoute
@@ -790,6 +798,7 @@ export interface FileRoutesById {
   '/principles': typeof PrinciplesRoute
   '/privacy': typeof PrivacyRoute
   '/supplier': typeof SupplierRouteWithChildren
+  '/supplier-agreement': typeof SupplierAgreementRoute
   '/supplier-portal': typeof SupplierPortalRoute
   '/terms': typeof TermsRoute
   '/the-table': typeof TheTableRoute
@@ -887,6 +896,7 @@ export interface FileRouteTypes {
     | '/principles'
     | '/privacy'
     | '/supplier'
+    | '/supplier-agreement'
     | '/supplier-portal'
     | '/terms'
     | '/the-table'
@@ -979,6 +989,7 @@ export interface FileRouteTypes {
     | '/partners'
     | '/principles'
     | '/privacy'
+    | '/supplier-agreement'
     | '/supplier-portal'
     | '/terms'
     | '/the-table'
@@ -1074,6 +1085,7 @@ export interface FileRouteTypes {
     | '/principles'
     | '/privacy'
     | '/supplier'
+    | '/supplier-agreement'
     | '/supplier-portal'
     | '/terms'
     | '/the-table'
@@ -1170,6 +1182,7 @@ export interface RootRouteChildren {
   PrinciplesRoute: typeof PrinciplesRoute
   PrivacyRoute: typeof PrivacyRoute
   SupplierRoute: typeof SupplierRouteWithChildren
+  SupplierAgreementRoute: typeof SupplierAgreementRoute
   SupplierPortalRoute: typeof SupplierPortalRoute
   TermsRoute: typeof TermsRoute
   TheTableRoute: typeof TheTableRoute
@@ -1391,6 +1404,13 @@ declare module '@tanstack/react-router' {
       path: '/supplier'
       fullPath: '/supplier'
       preLoaderRoute: typeof SupplierRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/supplier-agreement': {
+      id: '/supplier-agreement'
+      path: '/supplier-agreement'
+      fullPath: '/supplier-agreement'
+      preLoaderRoute: typeof SupplierAgreementRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/supplier-portal': {
@@ -2013,6 +2033,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrinciplesRoute: PrinciplesRoute,
   PrivacyRoute: PrivacyRoute,
   SupplierRoute: SupplierRouteWithChildren,
+  SupplierAgreementRoute: SupplierAgreementRoute,
   SupplierPortalRoute: SupplierPortalRoute,
   TermsRoute: TermsRoute,
   TheTableRoute: TheTableRoute,
