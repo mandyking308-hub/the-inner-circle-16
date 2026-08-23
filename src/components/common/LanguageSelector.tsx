@@ -1,4 +1,4 @@
-import { useId, type ChangeEvent } from "react";
+import { useEffect, useId, useState, type ChangeEvent } from "react";
 import { Globe2 } from "lucide-react";
 
 const languages = [
@@ -33,17 +33,69 @@ const languages = [
   { code: "sw", label: "Kiswahili" },
 ] as const;
 
+const WIDGET_ID = "google_translate_element";
+const SCRIPT_ID = "google-translate-script";
+
+function readCurrentLanguage(): string {
+  if (typeof document === "undefined") return "en";
+  const match = document.cookie.match(/(?:^|;\s*)googtrans=([^;]+)/);
+  if (!match) return "en";
+  const parts = decodeURIComponent(match[1]).split("/");
+  return parts[2] || "en";
+}
+
+function writeCookie(value: string | null) {
+  const host = window.location.hostname;
+  // Clearing requires expiring on every scope the cookie may have been set on.
+  const domains = ["", `; domain=${host}`, `; domain=.${host}`];
+  for (const domain of domains) {
+    if (value === null) {
+      document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/${domain}`;
+    } else {
+      document.cookie = `googtrans=${value}; path=/${domain}`;
+    }
+  }
+}
+
 export function LanguageSelector({ inverse = false }: { inverse?: boolean; compact?: boolean }) {
   const selectId = useId();
-  const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    const targetLanguage = event.target.value;
-    if (targetLanguage === "en") {
-      window.location.href = `${window.location.origin}${window.location.pathname}${window.location.search}`;
-      return;
+  const [value, setValue] = useState("en");
+
+  useEffect(() => {
+    setValue(readCurrentLanguage());
+
+    if (document.getElementById(SCRIPT_ID)) return;
+
+    if (!document.getElementById(WIDGET_ID)) {
+      const host = document.createElement("div");
+      host.id = WIDGET_ID;
+      host.style.display = "none";
+      document.body.appendChild(host);
     }
 
-    const translateUrl = `https://translate.google.com/translate?sl=en&tl=${encodeURIComponent(targetLanguage)}&u=${encodeURIComponent(window.location.href)}`;
-    window.location.href = translateUrl;
+    (window as unknown as Record<string, unknown>)["googleTranslateElementInit"] = () => {
+      const g = (window as unknown as { google?: { translate?: { TranslateElement?: new (o: unknown, el: string) => void } } }).google;
+      if (g?.translate?.TranslateElement) {
+        new g.translate.TranslateElement({ pageLanguage: "en", autoDisplay: false }, WIDGET_ID);
+      }
+    };
+
+    const script = document.createElement("script");
+    script.id = SCRIPT_ID;
+    script.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+    script.async = true;
+    document.body.appendChild(script);
+  }, []);
+
+  const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    const target = event.target.value;
+    setValue(target);
+    if (target === "en") {
+      writeCookie(null);
+    } else {
+      writeCookie(`/en/${target}`);
+    }
+    window.location.reload();
   };
 
   return (
@@ -52,10 +104,10 @@ export function LanguageSelector({ inverse = false }: { inverse?: boolean; compa
       <label htmlFor={selectId} className="sr-only">Choose language</label>
       <select
         id={selectId}
-        defaultValue="en"
+        value={value}
         onChange={handleChange}
         aria-label="Translate Montvelle"
-        className={`appearance-none rounded-full border bg-transparent py-2 pl-8 pr-7 text-[10px] font-medium tracking-[0.03em] outline-none transition-colors ${
+        className={`notranslate appearance-none rounded-full border bg-transparent py-2 pl-8 pr-7 text-[10px] font-medium tracking-[0.03em] outline-none transition-colors ${
           inverse
             ? "border-white/18 text-white/78 hover:border-white/32 focus:border-white/48"
             : "border-foreground/12 text-foreground/68 hover:border-foreground/25 focus:border-foreground/35"
