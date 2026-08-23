@@ -245,6 +245,77 @@ function SourcingDesk() {
         <StatCard label="In the network" value={String(laneCount.network)} note="Through assurance and the partner path." />
       </div>
 
+      <section className="border border-border bg-card">
+        <div className="border-b border-border p-5">
+          <div className="flex items-center gap-3">
+            <Compass className="h-4 w-4 text-bronze" />
+            <h3 className="font-display text-2xl">Member requests · demand first</h3>
+          </div>
+          <p className="mt-2 max-w-3xl text-xs leading-6 text-muted-foreground">
+            Every supplier relationship starts here, with something a member actually asked for. Set the status the member sees, and release
+            an option only once the desk has spoken to the provider and checked what they said.
+          </p>
+        </div>
+        <div className="divide-y divide-border">
+          {memberRequests.map((request) => (
+            <article key={request.id} className="space-y-4 p-5">
+              <div className="flex flex-wrap items-start justify-between gap-4">
+                <div className="max-w-3xl">
+                  <p className="text-[9px] uppercase tracking-[0.14em] text-oxblood">
+                    {request.id} · {request.city} · {request.timeframe}
+                    {request.fullHandling ? " · handle end to end" : ""}
+                  </p>
+                  <h4 className="mt-1 font-display text-2xl leading-tight">{request.title}</h4>
+                  <p className="mt-2 text-xs leading-6 text-muted-foreground">{request.need}</p>
+                  <p className="mt-1 text-[11px] leading-5 text-muted-foreground">
+                    Logistics: {request.logistics} · Preferences: {request.preferences} · Budget: {request.budget}
+                  </p>
+                </div>
+                <select
+                  value={request.status}
+                  onChange={(event) => setMemberStatus(request.id, event.target.value as MemberRequestStatus)}
+                  className="h-9 border border-border bg-background px-2 text-xs"
+                >
+                  {memberRequestStatuses.map((value) => (
+                    <option key={value} value={value}>
+                      {value}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {request.options.length ? (
+                <ul className="grid gap-2 sm:grid-cols-2">
+                  {request.options.map((option) => (
+                    <li key={option.id} className="border border-border bg-background p-3 text-[11px] leading-5">
+                      <p className="text-[9px] uppercase tracking-[0.13em] text-oxblood">
+                        {option.label} · {option.status}
+                      </p>
+                      <p className="mt-1">{option.note}</p>
+                      <p className="mt-1 text-muted-foreground">
+                        {option.indicative} · {option.availability}
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+
+              <form onSubmit={(event) => publishOption(request.id, event)} className="grid gap-3 border-t border-border pt-4 md:grid-cols-4">
+                <Textarea name="note" rows={2} className="rounded-none text-xs md:col-span-2" placeholder="What the member should know about this option" />
+                <Input name="indicative" className="rounded-none text-xs" placeholder="Indicative price or terms" />
+                <div className="flex gap-2">
+                  <Input name="availability" className="rounded-none text-xs" placeholder="Availability" />
+                  <Button type="submit" size="sm" className="rounded-none bg-oxblood">
+                    Release
+                  </Button>
+                </div>
+              </form>
+            </article>
+          ))}
+          {memberRequests.length === 0 ? <p className="p-5 text-sm text-muted-foreground">No member sourcing requests open.</p> : null}
+        </div>
+      </section>
+
       <div className="flex flex-wrap gap-2 border-b border-border pb-4">
         {lanes.map((item) => (
           <button
