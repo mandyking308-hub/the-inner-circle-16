@@ -91,8 +91,14 @@ function MontvelleWorldPage() {
                 </Link>
               </Button>
               <Link
-                to="/auth"
+                to="/demo"
                 className="border-b border-bronze/60 pb-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-bronze transition-colors hover:text-background"
+              >
+                Explore the demo
+              </Link>
+              <Link
+                to="/auth"
+                className="border-b border-background/30 pb-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-background/70 transition-colors hover:text-background"
               >
                 Member access
               </Link>
@@ -100,6 +106,79 @@ function MontvelleWorldPage() {
           </div>
         </Container>
       </section>
+
+      <section className="border-b border-border bg-linen py-20 md:py-28">
+        <Container>
+          <div className="max-w-3xl">
+            <p className="eyebrow text-oxblood">Inside the environment</p>
+            <h2 className="mt-6 font-display text-4xl leading-[1.02] md:text-6xl">
+              What is actually there when you sign in.
+            </h2>
+            <p className="mt-7 text-base leading-8 text-muted-foreground">
+              Every request receives an immediate acknowledgement and a meaningful response within twenty-four hours —
+              a real answer or a clear account of what is being done and when it will land. There is no supplier
+              directory to browse. You describe what you need; Montvelle sources and coordinates the right expertise
+              around it.
+            </p>
+          </div>
+          <div className="mt-12 grid gap-px bg-border md:grid-cols-2 lg:grid-cols-3">
+            {[
+              {
+                name: "Today",
+                body: "Three sections, in order: what needs you, what Montvelle is already handling, and what is coming up. Nothing competing for attention.",
+              },
+              {
+                name: "Requests",
+                body: "One intake for anything — a move, a school place, a difficult arrangement. Acknowledged at once, answered meaningfully within 24 hours.",
+              },
+              {
+                name: "Decision Room",
+                body: "For decisions that outlast a phone call: the central question, the options being weighed, the sequence, and who holds each next step.",
+              },
+              {
+                name: "Invitations",
+                body: "Gatherings and private moments held for your household in one diary, with the context attached to each.",
+              },
+              {
+                name: "Community",
+                body: "Consent-led introductions between members. Nothing is browsable and nothing is broadcast; both sides agree before a name is shared.",
+              },
+              {
+                name: "Family & household access",
+                body: "Approved adults hold their own login, their own requests and their own privacy. The Principal does not see another adult's private matters by default; sharing is deliberate, area by area. Next-generation access is age-appropriate, and an authorised delegate is not a Montvelle member.",
+              },
+              {
+                name: "Messages",
+                body: "A continuous private line to people who already hold your context, so nothing has to be explained twice.",
+              },
+              {
+                name: "Knowledge",
+                body: "Briefings, playbooks and essays written around the decisions families actually face — each opening to real material, not a summary of one.",
+              },
+              {
+                name: "Preferences",
+                body: "How your household likes things done, recorded once and applied quietly from then on.",
+              },
+            ].map((item) => (
+              <article key={item.name} className="bg-linen p-6 md:p-7">
+                <h3 className="font-display text-2xl leading-tight md:text-3xl">{item.name}</h3>
+                <p className="mt-4 text-sm leading-7 text-muted-foreground">{item.body}</p>
+              </article>
+            ))}
+          </div>
+          <div className="mt-12 flex flex-wrap items-center gap-5">
+            <Button asChild className="rounded-none bg-foreground px-7 py-6 text-background hover:bg-oxblood">
+              <Link to="/demo">
+                Explore the demo <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+            <p className="max-w-md text-xs leading-6 text-muted-foreground">
+              The demo is an illustrative walkthrough using fictional data. No real member information appears in it.
+            </p>
+          </div>
+        </Container>
+      </section>
+
 
       <section className="border-b border-border bg-background py-20 md:py-28">
         <Container>
