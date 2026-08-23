@@ -11,7 +11,7 @@ import residenceDetail from "@/assets/gl2-residence-detail.jpg";
 const principles = [
   {
     title: "Familiarity",
-    body: "The people and preferences that matter should not disappear each time the postcode changes.",
+    body: "The people and preferences that matter should not disappear each time you move between homes.",
   },
   {
     title: "Family",
