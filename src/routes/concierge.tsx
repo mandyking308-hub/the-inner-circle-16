@@ -2,8 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import { LuxuryStoryPage } from "@/components/marketing/LuxuryStoryPage";
 import { site } from "@/config/site";
-import poHeroStudy from "@/assets/po-hero-study.jpg";
-import poFamilyMorning from "@/assets/po-family-morning.jpg";
+import poHeroStudy from "@/assets/po-hero-library-adults.jpg";
+import poMorningTable from "@/assets/po-morning-table.jpg";
 import poPrivateStudyDusk from "@/assets/po-private-study-dusk.jpg";
 
 export const Route = createFileRoute("/concierge")({
