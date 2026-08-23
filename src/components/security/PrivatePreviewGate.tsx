@@ -6,15 +6,24 @@ import { BrandMark } from "@/components/brand/BrandMark";
 import { site } from "@/config/site";
 import { isDemoMode } from "@/lib/demoMode";
 
+/** Operations / admin preview. Never set by a member preview sign-in. */
 export const INTERNAL_PREVIEW_KEY = "project-table:internal-preview";
+/** Member-side preview. Grants the member environment only. */
+export const MEMBER_PREVIEW_KEY = "montvelle:member-preview";
 
 export function enableInternalPreview() {
   if (typeof window !== "undefined") window.sessionStorage.setItem(INTERNAL_PREVIEW_KEY, "1");
 }
 
+export function enableMemberPreview() {
+  if (typeof window !== "undefined") window.sessionStorage.setItem(MEMBER_PREVIEW_KEY, "1");
+}
+
 /**
- * `scope="member"` also admits the public Montvelle World demo session.
- * `scope="internal"` (the default, used by operations) never does.
+ * `scope="member"` admits a member preview session, the public Montvelle World
+ * demo session, and (for staff QA) an operations preview session.
+ * `scope="internal"` admits ONLY an explicit operations preview session — a
+ * member preview session never satisfies it.
  */
 export function PrivatePreviewGate({
   children,
@@ -27,7 +36,12 @@ export function PrivatePreviewGate({
 
   useEffect(() => {
     const internal = window.sessionStorage.getItem(INTERNAL_PREVIEW_KEY) === "1";
-    setAllowed(internal || (scope === "member" && isDemoMode()));
+    if (scope === "internal") {
+      setAllowed(internal);
+      return;
+    }
+    const member = window.sessionStorage.getItem(MEMBER_PREVIEW_KEY) === "1";
+    setAllowed(internal || member || isDemoMode());
   }, [scope]);
 
   if (allowed === null) return <div className="min-h-screen bg-foreground" />;
