@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, LockKeyhole, ShieldCheck } from "lucide-react";
 
+import { BrandMark } from "@/components/brand/BrandMark";
 import { Container } from "@/components/layout/Container";
 import { enableInternalPreview } from "@/components/security/PrivatePreviewGate";
 import { Button } from "@/components/ui/button";
