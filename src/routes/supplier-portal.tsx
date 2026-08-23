@@ -127,7 +127,7 @@ function SupplierPortalPage() {
               <Button
                 asChild
                 variant="outline"
-                className="mt-6 rounded-none border-background/35 bg-transparent text-background hover:bg-background hover:text-foreground"
+                className="mt-6 h-auto whitespace-normal rounded-none border-background/35 bg-transparent py-3 text-left text-background hover:bg-background hover:text-foreground"
               >
                 <Link to="/partner-application">Apply to become a Montvelle supplier or partner</Link>
               </Button>
