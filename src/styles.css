@@ -8,6 +8,8 @@
   --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Newsreader", ui-serif, Georgia, serif;
 
+  --color-gold: var(--gold);
+  --color-ink: var(--ink);
   --color-bronze: var(--bronze);
   --color-bronze-foreground: var(--bronze-foreground);
   --color-oxblood: var(--oxblood);
