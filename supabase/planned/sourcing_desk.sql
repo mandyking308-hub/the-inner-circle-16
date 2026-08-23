@@ -1,100 +1,125 @@
 -- Sourcing Desk — prepared, NOT applied.
 -- Preview currently runs on localStorage. Apply this only when the desk moves to live data.
+--
+-- Demand-led model: a member request is the sourcing job. There is no supplier
+-- bench, no directory and no internal-first search. External research begins
+-- from the request itself, and a provider only becomes a supplier after being
+-- used successfully, invited, and cleared through the partner application
+-- (two references) and assurance.
+
+create type public.member_request_status as enum (
+  'Received', 'In hand', 'Checking options', 'Ready for you', 'Arranged', 'Closed'
+);
 
 create type public.sourcing_stage as enum (
-  'Open', 'Bench review', 'External research', 'Awaiting replies', 'Assurance', 'Added to network', 'Closed'
+  'New request', 'Researching', 'Contacting', 'Responses received', 'Options prepared', 'Member decision', 'Arranged', 'Closed'
 );
 
-create type public.prospect_relationship as enum (
-  'Prospect', 'In conversation', 'Invited to apply', 'Application received', 'Approved bench', 'Not suitable', 'Declined'
+create type public.prospect_status as enum (
+  'Found', 'Contacted', 'Responded', 'Shortlisted', 'Used', 'Invite considered', 'Invited', 'Assurance', 'Approved', 'Declined'
 );
 
-create table public.sourcing_cases (
+create table public.member_requests (
   id uuid primary key default gen_random_uuid(),
-  concierge_case_id text not null,
   member_id uuid,
-  owner text not null,
+  owner text not null default 'Unassigned',
+  -- Neutral, member-safe title. Never a provider name.
+  title text not null,
   need text not null,
-  category text not null,
-  cities text[] not null default '{}',
-  preferred_mode text not null default 'request',
-  stage public.sourcing_stage not null default 'Open',
-  research_state text not null default 'Research required',
-  bench_reviewed boolean not null default false,
-  consent text not null default 'neutral',
-  member_context text not null default '',
+  city text not null default '',
+  timeframe text not null default '',
+  logistics text not null default '',
+  preferences text not null default '',
+  budget text not null default '',
+  full_handling boolean not null default true,
+  status public.member_request_status not null default 'Received',
+  internal_stage public.sourcing_stage not null default 'New request',
+  -- 24-hour clock for the first meaningful member response starts here.
+  received_at timestamptz not null default now(),
+  responded_at timestamptz,
+  next_update text not null default 'Within 24 hours of receipt',
+  -- The only text an external provider may be given without explicit consent.
   neutral_brief text not null default '',
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
 
-grant select, insert, update, delete on public.sourcing_cases to authenticated;
-grant all on public.sourcing_cases to service_role;
-alter table public.sourcing_cases enable row level security;
-create policy "Staff manage sourcing cases" on public.sourcing_cases
+grant select, insert, update, delete on public.member_requests to authenticated;
+grant all on public.member_requests to service_role;
+alter table public.member_requests enable row level security;
+create policy "Members read own requests" on public.member_requests
+  for select to authenticated using (member_id = auth.uid() or public.has_role(auth.uid(), 'admin'));
+create policy "Members create own requests" on public.member_requests
+  for insert to authenticated with check (member_id = auth.uid());
+create policy "Staff manage requests" on public.member_requests
   for all to authenticated using (public.has_role(auth.uid(), 'admin')) with check (public.has_role(auth.uid(), 'admin'));
 
-create table public.supplier_prospects (
+-- Member-visible updates and options. Nothing else about the sourcing job is shared.
+create table public.member_request_updates (
   id uuid primary key default gen_random_uuid(),
-  sourcing_case_id uuid references public.sourcing_cases(id) on delete set null,
+  request_id uuid not null references public.member_requests(id) on delete cascade,
+  note text not null,
+  created_at timestamptz not null default now()
+);
+
+grant select, insert on public.member_request_updates to authenticated;
+grant all on public.member_request_updates to service_role;
+alter table public.member_request_updates enable row level security;
+create policy "Members read own request updates" on public.member_request_updates
+  for select to authenticated using (
+    exists (select 1 from public.member_requests r where r.id = request_id and (r.member_id = auth.uid() or public.has_role(auth.uid(), 'admin')))
+  );
+create policy "Staff write request updates" on public.member_request_updates
+  for all to authenticated using (public.has_role(auth.uid(), 'admin')) with check (public.has_role(auth.uid(), 'admin'));
+
+create table public.member_request_options (
+  id uuid primary key default gen_random_uuid(),
+  request_id uuid not null references public.member_requests(id) on delete cascade,
+  -- Neutral label only: 'Option A', 'Option from Montvelle'.
+  label text not null,
+  note text not null default '',
+  indicative_terms text not null default '',
+  availability text not null default '',
+  status text not null default 'Proposed' check (status in ('Proposed', 'Chosen', 'Set aside')),
+  created_at timestamptz not null default now()
+);
+
+grant select, update on public.member_request_options to authenticated;
+grant all on public.member_request_options to service_role;
+alter table public.member_request_options enable row level security;
+create policy "Members read own request options" on public.member_request_options
+  for select to authenticated using (
+    exists (select 1 from public.member_requests r where r.id = request_id and (r.member_id = auth.uid() or public.has_role(auth.uid(), 'admin')))
+  );
+create policy "Staff manage request options" on public.member_request_options
+  for all to authenticated using (public.has_role(auth.uid(), 'admin')) with check (public.has_role(auth.uid(), 'admin'));
+
+-- Internal only. Never exposed to members.
+create table public.external_prospects (
+  id uuid primary key default gen_random_uuid(),
+  request_id uuid references public.member_requests(id) on delete set null,
   name text not null,
-  category text not null,
-  locations text[] not null default '{}',
-  website text,
-  contact_route text,
-  source_notes text,
-  why_relevant text,
-  response text not null default 'Not contacted',
-  last_contacted date,
-  indicative_terms text,
-  availability text,
-  due_diligence text not null default 'Not started',
-  references_status text not null default 'Not started',
-  relationship public.prospect_relationship not null default 'Prospect',
-  invited_to_apply boolean not null default false,
+  contact_route text not null default '',
+  website text not null default '',
+  category text not null default '',
+  location text not null default '',
+  why_suitable text not null default '',
+  contacted_at date,
+  response text not null default '',
+  availability text not null default '',
+  indicative_terms text not null default '',
+  shortlisted boolean not null default false,
+  used boolean not null default false,
+  outcome text not null default '',
+  consider_for_network boolean not null default false,
+  status public.prospect_status not null default 'Found',
   partner_application_ref text,
-  created_at timestamptz not null default now()
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
 );
 
-grant select, insert, update, delete on public.supplier_prospects to authenticated;
-grant all on public.supplier_prospects to service_role;
-alter table public.supplier_prospects enable row level security;
-create policy "Staff manage prospects" on public.supplier_prospects
-  for all to authenticated using (public.has_role(auth.uid(), 'admin')) with check (public.has_role(auth.uid(), 'admin'));
-
-create table public.sourcing_search_runs (
-  id uuid primary key default gen_random_uuid(),
-  sourcing_case_id uuid not null references public.sourcing_cases(id) on delete cascade,
-  ran_at date not null default current_date,
-  ran_by text not null,
-  method text not null,
-  query text not null,
-  outcome text
-);
-
-grant select, insert, update, delete on public.sourcing_search_runs to authenticated;
-grant all on public.sourcing_search_runs to service_role;
-alter table public.sourcing_search_runs enable row level security;
-create policy "Staff manage search runs" on public.sourcing_search_runs
-  for all to authenticated using (public.has_role(auth.uid(), 'admin')) with check (public.has_role(auth.uid(), 'admin'));
-
--- Members read only the curated, explicitly shared shortlist.
-create table public.sourcing_shortlist (
-  id uuid primary key default gen_random_uuid(),
-  sourcing_case_id uuid not null references public.sourcing_cases(id) on delete cascade,
-  member_id uuid,
-  kind text not null check (kind in ('bench', 'prospect')),
-  ref_id text not null,
-  title text not null,
-  note text,
-  shared_with_member boolean not null default false,
-  created_at timestamptz not null default now()
-);
-
-grant select, insert, update, delete on public.sourcing_shortlist to authenticated;
-grant all on public.sourcing_shortlist to service_role;
-alter table public.sourcing_shortlist enable row level security;
-create policy "Members read their shared shortlist" on public.sourcing_shortlist
-  for select to authenticated using (shared_with_member and member_id = auth.uid());
-create policy "Staff manage shortlist" on public.sourcing_shortlist
+grant select, insert, update, delete on public.external_prospects to authenticated;
+grant all on public.external_prospects to service_role;
+alter table public.external_prospects enable row level security;
+create policy "Staff only prospects" on public.external_prospects
   for all to authenticated using (public.has_role(auth.uid(), 'admin')) with check (public.has_role(auth.uid(), 'admin'));
