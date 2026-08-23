@@ -1,10 +1,7 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, Instagram, Linkedin, Youtube } from "lucide-react";
 
 import { BrandMark } from "@/components/brand/BrandMark";
 import { translationNotice } from "@/components/common/LanguageSelector";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { site } from "@/config/site";
 
 const columnOne = [
@@ -28,16 +25,19 @@ const legalLinks = [
   { to: "/terms", label: "Terms" },
   { to: "/privacy", label: "Privacy" },
   { to: "/confidentiality", label: "Confidentiality" },
+  { to: "/supplier-agreement", label: "Supplier & Partner Agreement" },
+  { to: "/cancellation", label: "Cancellation Rights" },
   { to: "/legal", label: "Legal" },
   { to: "/cookies", label: "Cookies" },
   { to: "/accessibility", label: "Accessibility" },
+  { to: "/contact", label: "Contact" },
 ] as const;
 
 export function SiteFooter() {
   return (
     <footer className="bg-ink text-background">
       <div className="mx-auto w-full max-w-[110rem] px-6 py-16 sm:px-10 lg:px-14">
-        <div className="grid gap-12 lg:grid-cols-[0.9fr_0.5fr_0.5fr_1fr_0.6fr]">
+        <div className="grid gap-12 lg:grid-cols-[1fr_0.6fr_0.6fr_1fr]">
           <div>
             <div className="flex items-center gap-3">
               <BrandMark compact />
@@ -68,41 +68,18 @@ export function SiteFooter() {
           </nav>
 
           <div>
-            <p className="text-[9px] font-semibold uppercase tracking-[0.26em] text-gold">Stay connected</p>
-            <p className="mt-3 text-sm text-background/62">Discreet updates and invitations.</p>
-            <form className="mt-4 flex max-w-sm gap-0" onSubmit={(event) => event.preventDefault()}>
-              <label className="sr-only" htmlFor="footer-email">
-                Your email
-              </label>
-              <Input
-                id="footer-email"
-                type="email"
-                placeholder="Your email"
-                className="rounded-none border-background/25 bg-transparent text-background placeholder:text-background/40"
-              />
-              <Button
-                type="submit"
-                aria-label="Subscribe"
-                className="rounded-none bg-gold px-4 text-ink hover:bg-gold/90"
-              >
-                <ArrowRight className="h-4 w-4" />
-              </Button>
-            </form>
-            <p className="mt-3 max-w-sm text-[9px] leading-4 text-background/34">{translationNotice}</p>
-          </div>
-
-          <div className="flex items-start gap-4 lg:justify-end">
-            <div className="flex items-center gap-3 text-background/60">
-              <a href="https://www.linkedin.com" aria-label="LinkedIn" className="hover:text-gold">
-                <Linkedin className="h-4 w-4" />
-              </a>
-              <a href="https://www.instagram.com" aria-label="Instagram" className="hover:text-gold">
-                <Instagram className="h-4 w-4" />
-              </a>
-              <a href="https://www.youtube.com" aria-label="YouTube" className="hover:text-gold">
-                <Youtube className="h-4 w-4" />
-              </a>
-            </div>
+            <p className="text-[9px] font-semibold uppercase tracking-[0.26em] text-gold">Speak to Montvelle</p>
+            <p className="mt-3 max-w-sm text-sm leading-6 text-background/62">
+              We do not publish an email address. Membership questions, privacy requests, formal
+              notices and cancellations come through one secure route.
+            </p>
+            <Link
+              to="/contact"
+              className="mt-5 inline-flex border border-gold px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-gold hover:bg-gold hover:text-ink"
+            >
+              Contact Montvelle
+            </Link>
+            <p className="mt-5 max-w-sm text-[9px] leading-4 text-background/34">{translationNotice}</p>
           </div>
         </div>
 
@@ -110,7 +87,7 @@ export function SiteFooter() {
           <p>
             © {new Date().getFullYear()} {site.name}. All rights reserved.
           </p>
-          <nav className="flex flex-wrap gap-6" aria-label="Legal">
+          <nav className="flex flex-wrap gap-x-6 gap-y-2" aria-label="Legal">
             {legalLinks.map((item) => (
               <Link key={item.to} to={item.to} className="hover:text-background">
                 {item.label}
