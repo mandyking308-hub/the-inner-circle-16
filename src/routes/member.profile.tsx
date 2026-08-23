@@ -16,7 +16,7 @@ type ProfileState = {
   showEnterpriseStage: boolean; showEvents: boolean; showOtherCities: boolean; showLanguages: boolean;
   conciergeUpdates: boolean; eventUpdates: boolean; introUpdates: boolean;
 };
-const starter: ProfileState = { name: "Amelia Hart", city: "London", role: "Founder & CEO", organisation: "Hartwell Systems", bio: "Founder of an enterprise technology company working across the UK and Europe. Interested in building management independence, family governance and responsible AI adoption.", help: "Scaling technology teams, enterprise sales, AI implementation and founder-led international growth.", learn: "Governance before a liquidity event, ownership structures, next-generation education and long-term philanthropy.", showEnterpriseStage: false, showEvents: true, showOtherCities: true, showLanguages: true, conciergeUpdates: true, eventUpdates: true, introUpdates: true };
+const starter: ProfileState = { name: "DEMO Member", city: "London", role: "Founder", organisation: "DEMO Enterprise", bio: "Preview profile. Replace with your own words: what you build, where life happens and what you are responsible for.", help: "Preview placeholder — the experience, sectors or judgement you can genuinely offer other members.", learn: "Preview placeholder — what you would find useful to learn from the room this year.", showEnterpriseStage: false, showEvents: true, showOtherCities: true, showLanguages: true, conciergeUpdates: true, eventUpdates: true, introUpdates: true };
 
 function ProfilePage() {
   const [profile, setProfile] = useState<ProfileState>(starter);
