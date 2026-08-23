@@ -19,7 +19,7 @@ export const luxuryImages = {
 
 export const destinationImages = {
   paris: unsplash("1502602898657-3e91760cbb34", 900),
-  courchevel: unsplash("1551632811-561732d1e306", 900),
+  courchevel: unsplash("1517299321609-52687d1bc55a", 900),
   london: unsplash("1513635269975-59663e0ac1ad", 700),
   dubai: unsplash("1512453979798-5ea266f8880c", 700),
   geneva: unsplash("1531366936337-7c912a4589a7", 700),
