@@ -44,13 +44,38 @@ export const sourcingStages: SourcingStage[] = [
 export type ResponseStatus = "Not contacted" | "Brief sent" | "Replied" | "Awaiting reply" | "No reply" | "Declined";
 export type DueDiligenceStatus = "Not started" | "In progress" | "Complete" | "Concern raised";
 export type ProspectReferenceStatus = "Not started" | "Requested" | "Complete" | "Concern raised";
+/**
+ * Internal prospect lifecycle. Demand comes first: a provider only travels
+ * along this path because a real member request went looking for them.
+ * Never surfaced to members.
+ */
 export type RelationshipStatus =
   | "Prospect"
+  | "Contacted"
   | "In conversation"
+  | "Responded"
+  | "Shortlisted"
+  | "Used"
+  | "Invite considered"
   | "Invited to apply"
   | "Application received"
+  | "Assurance"
   | "Approved bench"
   | "Not suitable";
+
+export const relationshipLifecycle: RelationshipStatus[] = [
+  "Prospect",
+  "Contacted",
+  "In conversation",
+  "Responded",
+  "Shortlisted",
+  "Used",
+  "Invite considered",
+  "Invited to apply",
+  "Application received",
+  "Assurance",
+  "Approved bench",
+];
 
 /** Consent governs how much of the member's own context may leave the house. */
 export type BriefConsent = "neutral" | "extended";
