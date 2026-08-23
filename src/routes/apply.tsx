@@ -296,6 +296,20 @@ function ApplyPage() {
                     relationshipPlaceholder="A sentence is plenty — how long you have known one another and in what context."
                     consentLabel="I have their permission to share these details, and Montvelle may contact them as part of my application review."
                   />
+                  <label className="mt-7 flex gap-3 border-t border-foreground/12 pt-7 text-[11px] leading-6 text-muted-foreground">
+                    <input
+                      type="checkbox"
+                      name="privacyAck"
+                      required
+                      className="mt-1 h-3.5 w-3.5 shrink-0 accent-[#7b2230]"
+                    />
+                    <span>
+                      I understand that the information in this application, including my referees&rsquo;
+                      details, is handled in accordance with the{" "}
+                      <Link to="/privacy" className="underline underline-offset-2">Privacy Notice</Link>, and that
+                      submitting an application does not create a membership or any entitlement to one.
+                    </span>
+                  </label>
                   <div className="mt-7 space-y-6 border-t border-foreground/12 pt-7">
                     <div
                       className="absolute -left-[10000px] top-auto h-px w-px overflow-hidden"

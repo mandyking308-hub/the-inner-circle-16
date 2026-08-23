@@ -131,6 +131,23 @@ function PartnerApplicationPage() {
                     relationshipPlaceholder="Briefly — the nature of the work and roughly how long you have worked together. Please do not include confidential client detail."
                     consentLabel="I have their permission to share these details, and Montvelle may contact them for assurance and screening purposes."
                   />
+                  <div className="mt-7 space-y-5 border-t border-foreground/12 pt-7">
+                    <label className="flex gap-3 text-[11px] leading-6 text-muted-foreground">
+                      <input type="checkbox" name="referenceAuthority" required className="mt-1 h-3.5 w-3.5 shrink-0 accent-[#7b2230]" />
+                      <span>I have the authority and permission of both referees to provide their details, and I understand Montvelle may contact them discreetly for assurance in connection with this application.</span>
+                    </label>
+                    <label className="flex gap-3 text-[11px] leading-6 text-muted-foreground">
+                      <input type="checkbox" name="privacyAck" required className="mt-1 h-3.5 w-3.5 shrink-0 accent-[#7b2230]" />
+                      <span>
+                        I understand that personal data in this application, including the referees&rsquo;
+                        details, is handled in accordance with the{" "}
+                        <Link to="/privacy" className="underline underline-offset-2">Privacy Notice</Link>, and that the{" "}
+                        <Link to="/supplier-agreement" className="underline underline-offset-2">Supplier &amp; Partner Agreement</Link>{" "}
+                        is the set of terms that would apply if this firm is approved and activated. Submitting this
+                        application does not create a contract, an assignment or any right of access to members.
+                      </span>
+                    </label>
+                  </div>
                   <div className="mt-7 space-y-6 border-t border-foreground/12 pt-7">
                     <div className="absolute -left-[10000px] top-auto h-px w-px overflow-hidden" aria-hidden="true"><Label htmlFor="website">Leave blank</Label><Input id="website" name="website" tabIndex={-1} autoComplete="off" /></div>
                     <TurnstileGate action="partner_apply" onToken={setTurnstileToken} />

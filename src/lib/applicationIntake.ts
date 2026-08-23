@@ -128,3 +128,72 @@ export async function submitPartnerIntake(
 }
 
 export function applicationIntakeEnabled() { return Boolean(intakeUrl); }
+
+export const CONTACT_PREVIEW_KEY = "montvelle:contact-messages-preview";
+
+export type ContactCategory =
+  | "Membership"
+  | "Privacy / data request"
+  | "Legal / formal notice"
+  | "Cancellation"
+  | "Supplier / partner"
+  | "Accessibility"
+  | "Other";
+
+export type ContactMessage = {
+  id: string;
+  submittedAt: string;
+  category: ContactCategory;
+  name: string;
+  contact: string;
+  country: string;
+  message: string;
+  acknowledgedPrivacy: boolean;
+};
+
+type ContactInput = Omit<ContactMessage, "id" | "submittedAt"> & { website?: string };
+
+/**
+ * Preview mode stores the message in browser storage only. Nothing is delivered
+ * until the production intake endpoint (VITE_APPLICATION_INTAKE_URL) is set.
+ */
+export async function submitContactIntake(
+  input: ContactInput,
+  turnstileToken: string,
+): Promise<IntakeResult> {
+  if (intakeUrl) {
+    const reference = await postIntake({
+      kind: "contact",
+      category: input.category,
+      name: input.name,
+      contact: input.contact,
+      country: input.country,
+      message: input.message,
+      acknowledgedPrivacy: input.acknowledgedPrivacy,
+      website: input.website,
+    }, turnstileToken);
+    return { reference, mode: "production" };
+  }
+
+  const reference = `MC-${Date.now().toString().slice(-8)}`;
+  if (typeof window !== "undefined") {
+    try {
+      const raw = window.localStorage.getItem(CONTACT_PREVIEW_KEY);
+      const existing = raw ? (JSON.parse(raw) as ContactMessage[]) : [];
+      const record: ContactMessage = {
+        id: reference,
+        submittedAt: new Date().toISOString(),
+        category: input.category,
+        name: input.name,
+        contact: input.contact,
+        country: input.country,
+        message: input.message,
+        acknowledgedPrivacy: input.acknowledgedPrivacy,
+      };
+      window.localStorage.setItem(CONTACT_PREVIEW_KEY, JSON.stringify([record, ...existing].slice(0, 50)));
+    } catch {
+      // Storage unavailable — do not block the submission acknowledgement.
+    }
+  }
+  return { reference, mode: "preview" };
+}

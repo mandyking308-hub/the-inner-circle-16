@@ -16,8 +16,10 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AlumniRouteImport } from './routes/alumni'
 import { Route as ApplyRouteImport } from './routes/apply'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as CancellationRouteImport } from './routes/cancellation'
 import { Route as ConciergeRouteImport } from './routes/concierge'
 import { Route as ConfidentialityRouteImport } from './routes/confidentiality'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as DecisionRoomRouteImport } from './routes/decision-room'
 import { Route as DemoRouteImport } from './routes/demo'
@@ -38,6 +40,7 @@ import { Route as PartnersRouteImport } from './routes/partners'
 import { Route as PrinciplesRouteImport } from './routes/principles'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as SupplierRouteImport } from './routes/supplier'
+import { Route as SupplierAgreementRouteImport } from './routes/supplier-agreement'
 import { Route as SupplierPortalRouteImport } from './routes/supplier-portal'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as TheTableRouteImport } from './routes/the-table'
@@ -137,6 +140,11 @@ const AuthRoute = AuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CancellationRoute = CancellationRouteImport.update({
+  id: '/cancellation',
+  path: '/cancellation',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ConciergeRoute = ConciergeRouteImport.update({
   id: '/concierge',
   path: '/concierge',
@@ -145,6 +153,11 @@ const ConciergeRoute = ConciergeRouteImport.update({
 const ConfidentialityRoute = ConfidentialityRouteImport.update({
   id: '/confidentiality',
   path: '/confidentiality',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CookiesRoute = CookiesRouteImport.update({
@@ -245,6 +258,11 @@ const PrivacyRoute = PrivacyRouteImport.update({
 const SupplierRoute = SupplierRouteImport.update({
   id: '/supplier',
   path: '/supplier',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SupplierAgreementRoute = SupplierAgreementRouteImport.update({
+  id: '/supplier-agreement',
+  path: '/supplier-agreement',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SupplierPortalRoute = SupplierPortalRouteImport.update({
@@ -573,8 +591,10 @@ export interface FileRoutesByFullPath {
   '/alumni': typeof AlumniRoute
   '/apply': typeof ApplyRoute
   '/auth': typeof AuthRoute
+  '/cancellation': typeof CancellationRoute
   '/concierge': typeof ConciergeRoute
   '/confidentiality': typeof ConfidentialityRoute
+  '/contact': typeof ContactRoute
   '/cookies': typeof CookiesRoute
   '/decision-room': typeof DecisionRoomRoute
   '/demo': typeof DemoRoute
@@ -595,6 +615,7 @@ export interface FileRoutesByFullPath {
   '/principles': typeof PrinciplesRoute
   '/privacy': typeof PrivacyRoute
   '/supplier': typeof SupplierRouteWithChildren
+  '/supplier-agreement': typeof SupplierAgreementRoute
   '/supplier-portal': typeof SupplierPortalRoute
   '/terms': typeof TermsRoute
   '/the-table': typeof TheTableRoute
@@ -666,8 +687,10 @@ export interface FileRoutesByTo {
   '/alumni': typeof AlumniRoute
   '/apply': typeof ApplyRoute
   '/auth': typeof AuthRoute
+  '/cancellation': typeof CancellationRoute
   '/concierge': typeof ConciergeRoute
   '/confidentiality': typeof ConfidentialityRoute
+  '/contact': typeof ContactRoute
   '/cookies': typeof CookiesRoute
   '/decision-room': typeof DecisionRoomRoute
   '/demo': typeof DemoRoute
@@ -686,6 +709,7 @@ export interface FileRoutesByTo {
   '/partners': typeof PartnersRoute
   '/principles': typeof PrinciplesRoute
   '/privacy': typeof PrivacyRoute
+  '/supplier-agreement': typeof SupplierAgreementRoute
   '/supplier-portal': typeof SupplierPortalRoute
   '/terms': typeof TermsRoute
   '/the-table': typeof TheTableRoute
@@ -759,8 +783,10 @@ export interface FileRoutesById {
   '/alumni': typeof AlumniRoute
   '/apply': typeof ApplyRoute
   '/auth': typeof AuthRoute
+  '/cancellation': typeof CancellationRoute
   '/concierge': typeof ConciergeRoute
   '/confidentiality': typeof ConfidentialityRoute
+  '/contact': typeof ContactRoute
   '/cookies': typeof CookiesRoute
   '/decision-room': typeof DecisionRoomRoute
   '/demo': typeof DemoRoute
@@ -781,6 +807,7 @@ export interface FileRoutesById {
   '/principles': typeof PrinciplesRoute
   '/privacy': typeof PrivacyRoute
   '/supplier': typeof SupplierRouteWithChildren
+  '/supplier-agreement': typeof SupplierAgreementRoute
   '/supplier-portal': typeof SupplierPortalRoute
   '/terms': typeof TermsRoute
   '/the-table': typeof TheTableRoute
@@ -855,8 +882,10 @@ export interface FileRouteTypes {
     | '/alumni'
     | '/apply'
     | '/auth'
+    | '/cancellation'
     | '/concierge'
     | '/confidentiality'
+    | '/contact'
     | '/cookies'
     | '/decision-room'
     | '/demo'
@@ -877,6 +906,7 @@ export interface FileRouteTypes {
     | '/principles'
     | '/privacy'
     | '/supplier'
+    | '/supplier-agreement'
     | '/supplier-portal'
     | '/terms'
     | '/the-table'
@@ -948,8 +978,10 @@ export interface FileRouteTypes {
     | '/alumni'
     | '/apply'
     | '/auth'
+    | '/cancellation'
     | '/concierge'
     | '/confidentiality'
+    | '/contact'
     | '/cookies'
     | '/decision-room'
     | '/demo'
@@ -968,6 +1000,7 @@ export interface FileRouteTypes {
     | '/partners'
     | '/principles'
     | '/privacy'
+    | '/supplier-agreement'
     | '/supplier-portal'
     | '/terms'
     | '/the-table'
@@ -1040,8 +1073,10 @@ export interface FileRouteTypes {
     | '/alumni'
     | '/apply'
     | '/auth'
+    | '/cancellation'
     | '/concierge'
     | '/confidentiality'
+    | '/contact'
     | '/cookies'
     | '/decision-room'
     | '/demo'
@@ -1062,6 +1097,7 @@ export interface FileRouteTypes {
     | '/principles'
     | '/privacy'
     | '/supplier'
+    | '/supplier-agreement'
     | '/supplier-portal'
     | '/terms'
     | '/the-table'
@@ -1135,8 +1171,10 @@ export interface RootRouteChildren {
   AlumniRoute: typeof AlumniRoute
   ApplyRoute: typeof ApplyRoute
   AuthRoute: typeof AuthRoute
+  CancellationRoute: typeof CancellationRoute
   ConciergeRoute: typeof ConciergeRoute
   ConfidentialityRoute: typeof ConfidentialityRoute
+  ContactRoute: typeof ContactRoute
   CookiesRoute: typeof CookiesRoute
   DecisionRoomRoute: typeof DecisionRoomRoute
   DemoRoute: typeof DemoRoute
@@ -1157,6 +1195,7 @@ export interface RootRouteChildren {
   PrinciplesRoute: typeof PrinciplesRoute
   PrivacyRoute: typeof PrivacyRoute
   SupplierRoute: typeof SupplierRouteWithChildren
+  SupplierAgreementRoute: typeof SupplierAgreementRoute
   SupplierPortalRoute: typeof SupplierPortalRoute
   TermsRoute: typeof TermsRoute
   TheTableRoute: typeof TheTableRoute
@@ -1219,6 +1258,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cancellation': {
+      id: '/cancellation'
+      path: '/cancellation'
+      fullPath: '/cancellation'
+      preLoaderRoute: typeof CancellationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/concierge': {
       id: '/concierge'
       path: '/concierge'
@@ -1231,6 +1277,13 @@ declare module '@tanstack/react-router' {
       path: '/confidentiality'
       fullPath: '/confidentiality'
       preLoaderRoute: typeof ConfidentialityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cookies': {
@@ -1371,6 +1424,13 @@ declare module '@tanstack/react-router' {
       path: '/supplier'
       fullPath: '/supplier'
       preLoaderRoute: typeof SupplierRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/supplier-agreement': {
+      id: '/supplier-agreement'
+      path: '/supplier-agreement'
+      fullPath: '/supplier-agreement'
+      preLoaderRoute: typeof SupplierAgreementRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/supplier-portal': {
@@ -1970,8 +2030,10 @@ const rootRouteChildren: RootRouteChildren = {
   AlumniRoute: AlumniRoute,
   ApplyRoute: ApplyRoute,
   AuthRoute: AuthRoute,
+  CancellationRoute: CancellationRoute,
   ConciergeRoute: ConciergeRoute,
   ConfidentialityRoute: ConfidentialityRoute,
+  ContactRoute: ContactRoute,
   CookiesRoute: CookiesRoute,
   DecisionRoomRoute: DecisionRoomRoute,
   DemoRoute: DemoRoute,
@@ -1992,6 +2054,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrinciplesRoute: PrinciplesRoute,
   PrivacyRoute: PrivacyRoute,
   SupplierRoute: SupplierRouteWithChildren,
+  SupplierAgreementRoute: SupplierAgreementRoute,
   SupplierPortalRoute: SupplierPortalRoute,
   TermsRoute: TermsRoute,
   TheTableRoute: TheTableRoute,

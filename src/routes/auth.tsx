@@ -9,6 +9,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { isInternalPreviewHost, setPreviewIdentity } from "@/lib/previewAccess";
+import { memberLegalVersionBundle } from "@/config/legal";
+import { recordMemberSignInAcceptance } from "@/lib/legalAcceptance";
 import { luxuryImages } from "@/data/luxuryImages";
 import { site } from "@/config/site";
 
@@ -30,6 +32,11 @@ function AuthPage() {
   const [preview, setPreview] = useState(false);
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
+  /**
+   * Deliberately re-set to false on every mount: acceptance is required at
+   * EVERY sign-in attempt and is never remembered across sessions.
+   */
+  const [accepted, setAccepted] = useState(false);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -40,9 +47,20 @@ function AuthPage() {
     setPreview(internal);
     if (!internal) return;
     enableInternalPreview();
-    // One-click internal preview entry: /auth?preview=member
-    if (internalHost && flag === "member") void navigate({ to: "/member" });
+    // `?preview=member` lands here and must still pass the acceptance gate —
+    // it no longer redirects straight into the member workspace.
   }, [navigate]);
+
+  const enterWorkspace = (to: "/member" | "/admin") => {
+    if (!accepted) {
+      setError("Please confirm you accept the current membership documents to continue.");
+      return;
+    }
+    // PREVIEW EVIDENCE ONLY — must be persisted server-side once real auth is live.
+    recordMemberSignInAcceptance(email.trim() || null);
+    enableInternalPreview();
+    void navigate({ to });
+  };
 
   const signInPreview = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -52,8 +70,14 @@ function AuthPage() {
       setError("Please enter a valid email address.");
       return;
     }
+    if (!accepted) {
+      setError("Please confirm you accept the current membership documents to continue.");
+      return;
+    }
     setError("");
     setPreviewIdentity(parsed.data);
+    // PREVIEW EVIDENCE ONLY — see src/lib/legalAcceptance.ts.
+    recordMemberSignInAcceptance(parsed.data);
     enableInternalPreview();
     void navigate({ to: "/member" });
   };
@@ -84,21 +108,60 @@ function AuthPage() {
                   placeholder="Your membership email"
                 />
               </div>
+              <label className="flex gap-3 border-t border-background/18 pt-5 text-[11px] leading-6 text-background/62">
+                <input
+                  type="checkbox"
+                  checked={accepted}
+                  onChange={(event) => setAccepted(event.target.checked)}
+                  className="mt-1 h-3.5 w-3.5 shrink-0 accent-[#c8a25c]"
+                />
+                <span>
+                  I have read and agree to the current{" "}
+                  <Link to="/membership-agreement" className="text-background/85 underline underline-offset-2">Membership Agreement</Link>,{" "}
+                  <Link to="/terms" className="text-background/85 underline underline-offset-2">Website Terms</Link>,{" "}
+                  <Link to="/privacy" className="text-background/85 underline underline-offset-2">Privacy Notice</Link> and{" "}
+                  <Link to="/confidentiality" className="text-background/85 underline underline-offset-2">Confidentiality &amp; No Solicitation</Link> standard.
+                </span>
+              </label>
+              <p className="text-[10px] leading-5 text-background/38">{memberLegalVersionBundle}</p>
               {error ? <p className="text-xs text-bronze" role="alert">{error}</p> : null}
-              <Button type="submit" className="w-full rounded-none bg-oxblood text-oxblood-foreground" disabled={!preview}>
-                {preview ? "Continue securely" : "Continue securely"}
+              <Button type="submit" className="w-full rounded-none bg-oxblood text-oxblood-foreground" disabled={!preview || !accepted}>
+                Continue securely
               </Button>
             </form>
             <p className="mt-5 text-xs leading-6 text-background/48">
               {preview
-                ? "Internal preview sign-in. No credential is checked here and nothing is sent — this exists only so the private environment can be reviewed before real authentication is wired."
+                ? "Internal preview sign-in. No credential is checked here and nothing is sent — this exists only so the private environment can be reviewed before real authentication is wired. Acceptance is recorded in this browser as preview evidence only, not in a production audit store."
                 : "If you have been invited to the founding cohort, the membership team will issue your secure access when your account is activated."}
             </p>
 
             {preview ? (
               <div className="mt-8 border-t border-background/18 pt-6">
                 <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-bronze">Internal preview controls</p>
-                <div className="mt-4 flex flex-col gap-3 sm:flex-row"><Button asChild className="rounded-none bg-background text-foreground hover:bg-bronze"><Link to="/member">Enter member workspace <ArrowRight className="ml-2 h-4 w-4" /></Link></Button><Button asChild variant="outline" className="rounded-none border-background/30 bg-transparent text-background hover:bg-background hover:text-foreground"><Link to="/admin">Open operations workspace</Link></Button></div>
+                <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+                  <Button
+                    type="button"
+                    disabled={!accepted}
+                    onClick={() => enterWorkspace("/member")}
+                    className="rounded-none bg-background text-foreground hover:bg-bronze"
+                  >
+                    Enter member workspace <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    disabled={!accepted}
+                    onClick={() => enterWorkspace("/admin")}
+                    className="rounded-none border-background/30 bg-transparent text-background hover:bg-background hover:text-foreground"
+                  >
+                    Open operations workspace
+                  </Button>
+                </div>
+                {!accepted ? (
+                  <p className="mt-3 text-[10px] leading-5 text-background/45">
+                    Tick the acceptance box above to continue.
+                  </p>
+                ) : null}
               </div>
             ) : null}
           </div>

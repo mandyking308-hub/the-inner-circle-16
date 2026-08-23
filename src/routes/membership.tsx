@@ -8,6 +8,8 @@ import { Label } from "@/components/ui/label";
 import { familyMembershipPricing, membershipPricing } from "@/config/membershipPricing";
 import { site } from "@/config/site";
 import { createMembershipCheckoutFn } from "@/functions/membershipCheckout";
+import { recordCheckoutAcceptance } from "@/lib/legalAcceptance";
+import { memberLegalVersionBundle } from "@/config/legal";
 import membershipHero from "@/assets/membership-hero-dinner.jpg";
 import membershipRoom from "@/assets/membership-standard-room.jpg";
 
@@ -79,6 +81,19 @@ function MembershipPage() {
     setSubmitting(true);
     const form = new FormData(event.currentTarget);
 
+    const acceptedTerms = form.get("acceptedTerms") === "on";
+    const acknowledgedAdmissionChecks = form.get("acknowledgedAdmissionChecks") === "on";
+    const requestedImmediateService = form.get("requestedImmediateService") === "on";
+
+    if (!acceptedTerms || !acknowledgedAdmissionChecks) {
+      setError("Please confirm both acceptance statements before continuing to checkout.");
+      setSubmitting(false);
+      return;
+    }
+
+    // PREVIEW EVIDENCE ONLY — mirrored server-side once production auth is live.
+    const acceptance = recordCheckoutAcceptance(String(form.get("email") ?? "").trim() || null);
+
     try {
       const result = await createMembershipCheckoutFn({
         data: {
@@ -87,8 +102,11 @@ function MembershipPage() {
           ...(String(form.get("country") ?? "").trim()
             ? { country: String(form.get("country") ?? "").trim() }
             : {}),
-          acceptedTerms: true,
-          requestedImmediateService: true,
+          acceptedTerms: true as const,
+          acknowledgedAdmissionChecks: true as const,
+          requestedImmediateService,
+          legalVersionBundle: acceptance.legalVersionBundle,
+          acceptedAt: acceptance.timestamp,
         },
       });
       window.location.assign(result.checkoutUrl);
@@ -406,9 +424,20 @@ function MembershipPage() {
                   </div>
 
                   <div className="space-y-5 border-t border-white/12 pt-8">
+                    <p className="text-[11px] leading-6 text-white/45">
+                      Before you continue: you will receive and may retain the current contractual
+                      documents shown below, and your Membership Schedule records the approved
+                      member, the term and the agreed commercial details. Your cancellation rights
+                      are set out in{" "}
+                      <Link to="/cancellation" className="text-white/80 underline underline-offset-2">
+                        Cancellation Rights
+                      </Link>
+                      . Document set {memberLegalVersionBundle}.
+                    </p>
                     <label className="flex gap-4 text-[11px] leading-6 text-white/55">
                       <input
                         type="checkbox"
+                        name="acceptedTerms"
                         required
                         className="mt-1 h-3.5 w-3.5 shrink-0 accent-[#d8b36c]"
                       />
@@ -442,27 +471,31 @@ function MembershipPage() {
                     <label className="flex gap-4 text-[11px] leading-6 text-white/55">
                       <input
                         type="checkbox"
+                        name="acknowledgedAdmissionChecks"
                         required
                         className="mt-1 h-3.5 w-3.5 shrink-0 accent-[#d8b36c]"
                       />
                       <span>
-                        I ask that onboarding and service preparation begin as soon as GSM accepts
-                        my membership. Where a statutory cancellation right applies, services
-                        already supplied may be deducted from any refund to the extent permitted by
-                        applicable law.
+                        I understand that payment does not override GSM&rsquo;s admission,
+                        sanctions, fraud, safety or compliance checks. If a membership is not
+                        accepted, the membership and admission fees paid for it are returned,
+                        subject to mandatory law and payment-provider processing.
                       </span>
                     </label>
-                    <label className="flex gap-4 text-[11px] leading-6 text-white/55">
+                    <label className="flex gap-4 border-t border-white/12 pt-5 text-[11px] leading-6 text-white/55">
                       <input
                         type="checkbox"
-                        required
+                        name="requestedImmediateService"
                         className="mt-1 h-3.5 w-3.5 shrink-0 accent-[#d8b36c]"
                       />
                       <span>
-                        I understand that payment does not override GSM's admission, sanctions,
-                        fraud, safety or compliance checks. If a membership is not accepted, the
-                        membership and admission fees paid for it are returned, subject to mandatory
-                        law and payment-provider processing.
+                        Optional, and separate from the acceptances above: I ask that onboarding and
+                        service preparation begin as soon as GSM accepts my membership, including
+                        during any statutory cancellation period. Where such a right applies and I
+                        then cancel, a proportionate amount for services already supplied may be
+                        deducted from any refund to the extent permitted by applicable law. If I
+                        leave this unticked, service preparation begins after the cancellation
+                        period ends.
                       </span>
                     </label>
                   </div>
@@ -490,9 +523,12 @@ function MembershipPage() {
 
                 <div className="mt-10 flex gap-4 border-t border-white/12 pt-7">
                   <p className="text-[10px] leading-5 text-white/45">
-                    Montvelle is operated by {site.operator}, a Delaware limited liability company.
-                    Membership activates only after acceptance, required checks, contractual
-                    acceptance and cleared funds.
+                    Montvelle is operated by {site.operator}, a Delaware limited liability company,
+                    which performs the membership and services. Where configured, Dodo Payments acts
+                    as the payment and transaction merchant of record for checkout, payment, tax and
+                    refund processing, and its checkout and receipt may identify it as the payment
+                    seller under its own payment terms. Membership activates only after acceptance,
+                    required checks, contractual acceptance and cleared funds.
                   </p>
                 </div>
               </div>
