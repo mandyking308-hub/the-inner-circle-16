@@ -12,6 +12,8 @@ import { luxuryImages } from "@/data/luxuryImages";
 import { loadPartnerApplications, savePartnerApplications, type PartnerApplication } from "@/data/partnerApplicationStore";
 import { partnerQualification } from "@/data/qualification";
 import { submitPartnerIntake } from "@/lib/applicationIntake";
+import { parseReferences } from "@/lib/applicationReferences";
+import { TwoReferences } from "@/components/apply/TwoReferences";
 import { site } from "@/config/site";
 
 export const Route = createFileRoute("/partner-application")({
@@ -31,6 +33,12 @@ function PartnerApplicationPage() {
     setSubmitting(true);
     const formElement = event.currentTarget;
     const form = new FormData(formElement);
+    const parsedReferences = parseReferences(form);
+    if (!parsedReferences.ok) {
+      setError(parsedReferences.message);
+      setSubmitting(false);
+      return;
+    }
     const input = {
       contactName: String(form.get("contactName") ?? "").trim(),
       email: String(form.get("email") ?? "").trim(),
@@ -42,7 +50,8 @@ function PartnerApplicationPage() {
       familyExperience: String(form.get("familyExperience") ?? "").trim(),
       whyRelevant: String(form.get("whyRelevant") ?? "").trim(),
       memberBenefit: String(form.get("memberBenefit") ?? "").trim(),
-      references: String(form.get("references") ?? "").trim(),
+      references: parsedReferences.references,
+      referenceConsent: true as const,
       conflicts: String(form.get("conflicts") ?? "").trim(),
       website: String(form.get("website") ?? "").trim(),
     };
@@ -63,6 +72,7 @@ function PartnerApplicationPage() {
         whyRelevant: input.whyRelevant,
         memberBenefit: input.memberBenefit,
         references: input.references,
+        referenceConsent: input.referenceConsent,
         conflicts: input.conflicts,
       };
       setSubmitted(application);
@@ -70,7 +80,7 @@ function PartnerApplicationPage() {
       formElement.reset();
     } catch (cause) {
       const code = cause instanceof Error ? cause.message : "SUBMISSION_FAILED";
-      setError(code === "SECURITY_CHECK_REQUIRED" ? "Please complete the partner application security check and try again." : "We could not send the application just now. Please try again shortly.");
+      setError(code === "SECURITY_CHECK_REQUIRED" ? "Please complete the partner application security check and try again." : code.startsWith("REFERENCE") ? "Please complete both references and confirm you have permission to share their details." : "We could not send the application just now. Please try again shortly.");
     } finally {
       setSubmitting(false);
     }
@@ -96,7 +106,7 @@ function PartnerApplicationPage() {
 
             <div>
               {submitted ? (
-                <div className="border border-foreground/15 bg-card p-7 md:p-10"><CheckCircle2 className="h-6 w-6 text-oxblood" /><p className="mt-7 text-[10px] font-semibold uppercase tracking-[0.2em] text-oxblood">Application received</p><h2 className="mt-3 font-display text-5xl">Thank you, {submitted.contactName.split(" ")[0] || "there"}.</h2><p className="mt-5 max-w-2xl text-sm leading-7 text-muted-foreground">Your reference is <strong>{submitted.id}</strong>. The next step is screening for relevance, references, collaboration and fit with current member needs. Partner approval never creates automatic access to member identities or confidential Tables.</p><Button asChild variant="outline" className="mt-7 rounded-none"><Link to="/partners">Return to Trusted Partners <ArrowRight className="ml-2 h-4 w-4" /></Link></Button></div>
+                <div className="border border-foreground/15 bg-card p-7 md:p-10"><CheckCircle2 className="h-6 w-6 text-oxblood" /><p className="mt-7 text-[10px] font-semibold uppercase tracking-[0.2em] text-oxblood">Application received</p><h2 className="mt-3 font-display text-5xl">Thank you, {submitted.contactName.split(" ")[0] || "there"}.</h2><p className="mt-5 max-w-2xl text-sm leading-7 text-muted-foreground">Your reference is <strong>{submitted.id}</strong>. The next step is screening for relevance, collaboration and fit with current member needs, including a discreet word with both references you provided. Partner approval never creates automatic access to member identities or confidential Tables.</p><Button asChild variant="outline" className="mt-7 rounded-none"><Link to="/partners">Return to Trusted Partners <ArrowRight className="ml-2 h-4 w-4" /></Link></Button></div>
               ) : (
                 <form onSubmit={submit} className="border border-foreground/15 bg-card p-6 md:p-9">
                   <div className="grid gap-5 md:grid-cols-2">
@@ -112,8 +122,16 @@ function PartnerApplicationPage() {
                     <div className="space-y-2"><Label htmlFor="familyExperience">Relevant family / founder experience</Label><Textarea id="familyExperience" name="familyExperience" required rows={4} className="rounded-none" /></div>
                     <div className="space-y-2"><Label htmlFor="whyRelevant">Why would members genuinely need you?</Label><Textarea id="whyRelevant" name="whyRelevant" required rows={4} className="rounded-none" /></div>
                     <div className="space-y-2"><Label htmlFor="memberBenefit">What useful member benefit could you offer?</Label><Textarea id="memberBenefit" name="memberBenefit" rows={3} className="rounded-none" placeholder="Priority triage, clinic, preferred service level or another genuine benefit" /></div>
-                    <div className="space-y-2"><Label htmlFor="references">References available</Label><Textarea id="references" name="references" required rows={3} className="rounded-none" placeholder="Please describe relevant client or professional references; do not submit sensitive client data here." /></div>
                     <div className="space-y-2"><Label htmlFor="conflicts">Conflicts, referral fees or commercial arrangements</Label><Textarea id="conflicts" name="conflicts" rows={3} className="rounded-none" placeholder="Disclose any model that could influence recommendations or introductions." /></div>
+                  </div>
+                  <TwoReferences
+                    showOrganisation
+                    intro="Two references are part of how a firm becomes trusted here. Please give us two people who have worked with you closely enough to speak candidly — ideally one client-side and one professional peer. We approach them discreetly, once, and only in connection with this application."
+                    relationshipLabel="How do they know your work?"
+                    relationshipPlaceholder="Briefly — the nature of the work and roughly how long you have worked together. Please do not include confidential client detail."
+                    consentLabel="I have their permission to share these details, and Montvelle may contact them for assurance and screening purposes."
+                  />
+                  <div className="mt-7 space-y-6 border-t border-foreground/12 pt-7">
                     <div className="absolute -left-[10000px] top-auto h-px w-px overflow-hidden" aria-hidden="true"><Label htmlFor="website">Leave blank</Label><Input id="website" name="website" tabIndex={-1} autoComplete="off" /></div>
                     <TurnstileGate action="partner_apply" onToken={setTurnstileToken} />
                   </div>
