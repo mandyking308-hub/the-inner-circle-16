@@ -252,17 +252,6 @@ function MontvelleWorldPage() {
               includes financial or private adult matters. An authorised household delegate is not a
               member and sees only the requests and messages they have been given.
             </p>
-            <div className="mt-10 flex flex-wrap items-center gap-5">
-              <Button asChild className="rounded-none bg-foreground px-7 py-6 text-background hover:bg-oxblood">
-                <Link to="/demo">
-                  Explore the demo <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-              <p className="max-w-md text-xs leading-6 text-muted-foreground">
-                The demo is an illustrative walkthrough using fictional data. No real member
-                information appears in it.
-              </p>
-            </div>
           </div>
 
         </Container>
@@ -314,6 +303,44 @@ function MontvelleWorldPage() {
           </div>
         </Container>
       </section>
+
+      <section className="bg-background py-20 md:py-28">
+        <Container>
+          <div className="border border-border bg-card p-8 md:p-14">
+            <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+              <div>
+                <p className="eyebrow text-oxblood">Look inside</p>
+                <h2 className="mt-6 max-w-[18ch] font-display text-4xl leading-[1.02] md:text-5xl">
+                  Step inside Montvelle World for a moment.
+                </h2>
+                <p className="mt-7 max-w-xl text-base leading-8 text-muted-foreground">
+                  An unhurried walkthrough of the member environment as a household actually uses it —
+                  Today, a request in motion, a decision being worked through, an invitation waiting.
+                </p>
+                <p className="mt-5 max-w-xl text-sm leading-7 text-muted-foreground">
+                  Illustrative only. Everything shown is fictional DEMO data; no real member
+                  information appears anywhere in it.
+                </p>
+              </div>
+              <div className="flex flex-wrap items-center gap-5 lg:justify-end">
+                <Button asChild className="rounded-none bg-foreground px-7 py-6 text-background hover:bg-oxblood">
+                  <Link to="/demo">
+                    Enter the demo <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+                <Link
+                  to="/auth"
+                  className="border-b border-bronze pb-1 text-sm font-medium text-foreground"
+                >
+                  Member access
+                </Link>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+
 
       <section className="relative overflow-hidden bg-foreground text-background">
         <img
