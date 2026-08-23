@@ -3,7 +3,6 @@ import { Link } from "@tanstack/react-router";
 import { ArrowRight, Menu } from "lucide-react";
 
 import { BrandMark } from "@/components/brand/BrandMark";
-import { LanguageSelector } from "@/components/common/LanguageSelector";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { navItems, site } from "@/config/site";
@@ -17,7 +16,7 @@ export function SiteHeader() {
         Welcome to {site.name}. {site.positioning}
       </div>
 
-      <div className="mx-auto flex w-full max-w-[110rem] items-center justify-between gap-6 px-6 py-4 sm:px-10 lg:px-14">
+      <div className="mx-auto flex w-full max-w-[110rem] items-center justify-between gap-4 px-6 py-4 sm:px-10 lg:px-10 2xl:gap-6 2xl:px-14">
         <Link to="/" className="flex items-center gap-3" aria-label={`${site.name} home`}>
           <BrandMark compact />
           <span className="leading-none">
@@ -28,7 +27,7 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-7 xl:flex" aria-label="Primary navigation">
+        <nav className="hidden items-center gap-5 xl:flex 2xl:gap-7" aria-label="Primary navigation">
           {navItems.map((item) => (
             <Link
               key={item.to}
@@ -41,12 +40,18 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-4 xl:flex">
-          <LanguageSelector inverse />
+        <div className="hidden items-center gap-3 xl:flex 2xl:gap-4">
+          <Link
+            to="/auth"
+            className="whitespace-nowrap border border-gold/35 px-3.5 py-2 text-[10px] font-medium uppercase tracking-[0.16em] text-gold/85 transition-colors hover:border-gold/70 hover:text-gold"
+            activeProps={{ className: "border-gold/70 text-gold" }}
+          >
+            Member Access
+          </Link>
           <Button
             asChild
             size="sm"
-            className="rounded-none bg-gold px-5 text-[10px] font-semibold uppercase tracking-[0.18em] text-ink hover:bg-gold/90"
+            className="rounded-none bg-gold px-4 text-[10px] font-semibold uppercase tracking-[0.18em] text-ink hover:bg-gold/90 2xl:px-5"
           >
             <Link to="/apply">
               Membership inquiry <ArrowRight className="ml-2 h-3.5 w-3.5" />
@@ -80,15 +85,16 @@ export function SiteHeader() {
                   {item.label}
                 </Link>
               ))}
-              <div className="mt-6">
-                <LanguageSelector compact inverse />
-              </div>
-              <Link to="/auth" onClick={() => setOpen(false)} className="mt-6 text-sm text-background/65">
-                Member sign in
+              <Link
+                to="/auth"
+                onClick={() => setOpen(false)}
+                className="mt-7 border border-gold/35 px-4 py-3 text-center text-[11px] font-medium uppercase tracking-[0.16em] text-gold/85 transition-colors hover:border-gold/70 hover:text-gold"
+              >
+                Member Access
               </Link>
               <Button
                 asChild
-                className="mt-6 rounded-none bg-gold text-[11px] font-semibold uppercase tracking-[0.18em] text-ink hover:bg-gold/90"
+                className="mt-3 rounded-none bg-gold text-[11px] font-semibold uppercase tracking-[0.18em] text-ink hover:bg-gold/90"
               >
                 <Link to="/apply" onClick={() => setOpen(false)}>
                   Membership inquiry
