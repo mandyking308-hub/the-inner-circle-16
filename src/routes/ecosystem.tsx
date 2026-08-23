@@ -35,10 +35,10 @@ const layers = [
   },
   {
     icon: Handshake,
-    title: "Trusted Partners",
+    title: "Sourcing & Expertise",
     line: "Expertise",
-    body: "A recommendation-led specialist network with consent-based introductions and a strict firewall from confidential peer spaces.",
-    to: "/partners",
+    body: "You tell us what you need. Montvelle searches outside, makes the enquiries, checks what comes back and coordinates the right specialists around the actual matter. There is no list for members to work through.",
+    to: "/concierge",
   },
   {
     icon: Compass,
@@ -60,7 +60,7 @@ export const Route = createFileRoute("/ecosystem")({
   head: () => ({
     meta: [
       { title: `The Ecosystem — ${site.name}` },
-      { name: "description", content: "How Montvelle connects trusted peers, a Life Decision Room, global life coordination, family learning, specialist partners, concierge execution and a rising-generation network." },
+      { name: "description", content: "How Montvelle connects trusted peers, a Life Decision Room, global life coordination, family learning, sourced outside expertise, concierge execution and a rising-generation network." },
     ],
   }),
   component: EcosystemPage,

@@ -51,7 +51,7 @@ function CommunityPage() {
         ))}
       </div>
 
-      {!filtered.length ? <div className="border border-border bg-card p-8 text-center"><Sparkles className="mx-auto h-5 w-5 text-oxblood" /><h2 className="mt-4 font-display text-3xl">No obvious match in the directory.</h2><p className="mt-3 text-sm text-muted-foreground">That is a Concierge problem, not a reason to cold-search the membership list.</p><Link to="/member/concierge" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold">Ask Concierge to source the right person <ArrowRight className="h-4 w-4" /></Link></div> : null}
+      {!filtered.length ? <div className="border border-border bg-card p-8 text-center"><Sparkles className="mx-auto h-5 w-5 text-oxblood" /><h2 className="mt-4 font-display text-3xl">No obvious match in the community.</h2><p className="mt-3 text-sm text-muted-foreground">If the right expertise sits outside the community, tell us and we will go and find it.</p><Link to="/member/services" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold">Ask Montvelle to find the right person <ArrowRight className="h-4 w-4" /></Link></div> : null}
 
       <div className="flex items-start gap-3 border border-border bg-accent/30 p-4 text-xs leading-6 text-muted-foreground"><ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-bronze" />Member profiles and relationship context are for trusted relationship-building inside the community. Exporting, scraping or using them for unsolicited sales is a membership breach.</div>
     </div>

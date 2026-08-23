@@ -97,7 +97,7 @@ function MemberServicesPage() {
   return (
     <div className="space-y-8">
       <PageIntro
-        eyebrow="Private Services"
+        eyebrow="Requests"
         title="Tell us what you need. We'll take it from here."
         description="There is nothing to browse. You describe what you are trying to arrange, in your own words. We acknowledge it straight away and come back to you within 24 hours — with an answer, a real progress update, or carefully checked options."
         action={
