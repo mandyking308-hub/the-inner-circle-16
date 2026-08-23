@@ -69,7 +69,7 @@ function MemberHome() {
     };
   }, []);
 
-  const firstName = summary.memberName.split(" ")[0] || "there";
+  const firstName = summary.memberName.startsWith("DEMO") ? "there" : summary.memberName.split(" ")[0] || "there";
   const open = openMemberRequests(requests);
   const replies = needsReplyCount(threads);
   const readyForYou = open.filter((request) => request.status === "Ready for you");
