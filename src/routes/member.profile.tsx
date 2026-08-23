@@ -29,6 +29,28 @@ function ProfilePage() {
   return (
     <div className="space-y-8">
       <PageIntro eyebrow="Account & privacy" title="Give the room enough context — no more than it needs" description="Your profile exists to make useful relationships easier. Sensitive family, ownership and financial information stays outside the social profile by default." />
+
+      <section className="grid gap-4 lg:grid-cols-[1.4fr_1fr]">
+        <div className="border border-border bg-card p-5 md:p-6">
+          <div className="flex items-center gap-3"><Lock className="h-4 w-4 text-oxblood" /><p className="eyebrow text-oxblood">Personal privacy and household sharing</p></div>
+          <div className="mt-5 grid gap-5 md:grid-cols-2">
+            <div className="border-t-2 border-oxblood pt-4">
+              <p className="font-display text-2xl leading-tight">Private to me</p>
+              <p className="mt-3 text-xs leading-6 text-muted-foreground">The default for your requests, messages, decisions and personal matters. Nobody else in your household sees them — including the Household Principal.</p>
+            </div>
+            <div className="border-t-2 border-border pt-4">
+              <p className="font-display text-2xl leading-tight">Shared with my household</p>
+              <p className="mt-3 text-xs leading-6 text-muted-foreground">A deliberate choice, matter by matter or area by area. Sharing one thing never opens the rest, and it can be withdrawn.</p>
+            </div>
+          </div>
+        </div>
+        <div className="border border-border bg-foreground p-5 text-background md:p-6">
+          <ShieldCheck className="h-4 w-4 text-bronze" />
+          <p className="mt-5 font-display text-2xl leading-tight">Who has access to your household world</p>
+          <p className="mt-3 text-xs leading-6 text-background/60">Roles, agreed areas and any authorised delegate live in one place. An authorised delegate is not a Montvelle member.</p>
+          <Link to="/member/household-access" className="mt-5 inline-block border-b border-bronze pb-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-bronze">Household &amp; access →</Link>
+        </div>
+      </section>
       <form onSubmit={submit} className="grid gap-5 xl:grid-cols-[1fr_360px]">
         <section className="border border-border bg-card p-5 md:p-6"><div className="grid gap-5 md:grid-cols-2"><div className="space-y-2"><Label htmlFor="name">Name</Label><Input id="name" value={profile.name} onChange={(e) => patch("name", e.target.value)} className="rounded-none" /></div><div className="space-y-2"><Label htmlFor="city">Primary city</Label><Input id="city" value={profile.city} onChange={(e) => patch("city", e.target.value)} className="rounded-none" /></div><div className="space-y-2"><Label htmlFor="role">Role</Label><Input id="role" value={profile.role} onChange={(e) => patch("role", e.target.value)} className="rounded-none" /></div><div className="space-y-2"><Label htmlFor="organisation">Organisation</Label><Input id="organisation" value={profile.organisation} onChange={(e) => patch("organisation", e.target.value)} className="rounded-none" /></div></div><div className="mt-5 space-y-2"><Label htmlFor="bio">Short biography</Label><Textarea id="bio" rows={4} value={profile.bio} onChange={(e) => patch("bio", e.target.value)} className="rounded-none" /></div><div className="mt-5 space-y-2"><Label htmlFor="help">I can help with</Label><Textarea id="help" rows={3} value={profile.help} onChange={(e) => patch("help", e.target.value)} className="rounded-none" /></div><div className="mt-5 space-y-2"><Label htmlFor="learn">I want to learn about</Label><Textarea id="learn" rows={3} value={profile.learn} onChange={(e) => patch("learn", e.target.value)} className="rounded-none" /></div><div className="mt-6 flex items-center gap-3"><Button type="submit" className="rounded-none">Save account</Button>{saved ? <span className="text-xs text-oxblood">Saved</span> : null}</div></section>
 
