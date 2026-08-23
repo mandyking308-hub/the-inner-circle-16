@@ -20,6 +20,7 @@ export function LuxuryStoryPage({
   introduction,
   heroImage,
   heroAlt,
+  statementEyebrow = "The idea",
   statement,
   statementBody,
   feature,
@@ -36,6 +37,7 @@ export function LuxuryStoryPage({
   introduction: string;
   heroImage: string;
   heroAlt: string;
+  statementEyebrow?: string;
   statement: string;
   statementBody: string;
   feature: StoryFeature;
@@ -65,7 +67,7 @@ export function LuxuryStoryPage({
       <section className="py-32 md:py-48">
         <Container>
           <div className="grid gap-12 lg:grid-cols-[0.68fr_1.32fr] lg:gap-24">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-oxblood">The idea</p>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-oxblood">{statementEyebrow}</p>
             <div><h2 className="max-w-5xl text-balance font-display text-5xl leading-[1.02] md:text-7xl">{statement}</h2><p className="mt-8 max-w-3xl text-base leading-8 text-muted-foreground md:text-lg">{statementBody}</p></div>
           </div>
         </Container>
