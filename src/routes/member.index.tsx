@@ -14,7 +14,7 @@ import {
 
 import { PageIntro, StatCard } from "@/components/private/PrivateShell";
 import { asksOffers, knowledge } from "@/data/community";
-import { luxuryImages } from "@/data/luxuryImages";
+import { pageImages } from "@/data/pageImages";
 import { readPrivateOfficeSummary, type PrivateOfficeSummary } from "@/data/privateOfficeSummary";
 
 export const Route = createFileRoute("/member/")({ component: MemberHome });
@@ -68,7 +68,7 @@ function MemberHome() {
       />
 
       <section className="relative min-h-[410px] overflow-hidden border border-border bg-foreground text-background">
-        <img src={luxuryImages.command} alt="A private family office command room" className="absolute inset-0 h-full w-full object-cover opacity-55" />
+        <img src={pageImages.memberHome} alt="A private family office command room" className="absolute inset-0 h-full w-full object-cover opacity-55" />
         <div className="absolute inset-0 bg-gradient-to-r from-foreground via-foreground/86 to-foreground/25" />
         <div className="relative grid min-h-[410px] gap-10 p-7 md:p-9 lg:grid-cols-[1fr_340px] lg:items-end">
           <div>

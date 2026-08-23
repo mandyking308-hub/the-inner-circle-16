@@ -3,11 +3,12 @@ import { ArrowRight, Landmark, Network, ShieldCheck, UsersRound } from "lucide-r
 
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/button";
-import { luxuryImages } from "@/data/luxuryImages";
+import { pageImages } from "@/data/pageImages";
 import { site } from "@/config/site";
 
 export const Route = createFileRoute("/legacy")({
-  head: () => ({ meta: [{ title: `Legacy — ${site.name}` }, { name: "description", content: "Family continuity, stewardship, purpose and the relationships that help what has been built travel well across generations." }] }),
+  head: () => ({ meta: [{ title: `Legacy — ${site.name}` }, { name: "description", content: "Family continuity, stewardship, purpose and the relationships that help what has been built travel well across generations." }],
+    links: [{ rel: "canonical", href: `${site.url}/legacy` }], }),
   component: LegacyPage,
 });
 
@@ -23,7 +24,7 @@ function LegacyPage() {
   return (
     <>
       <section className="relative min-h-[720px] overflow-hidden bg-foreground text-background">
-        <img src={luxuryImages.learning} alt="A family thinking together about the future" className="absolute inset-0 h-full w-full object-cover brightness-[1.08]" />
+        <img src={pageImages.legacyHero} alt="A family thinking together about the future" className="absolute inset-0 h-full w-full object-cover brightness-[1.08]" />
         <div className="absolute inset-0 bg-gradient-to-r from-foreground/82 via-foreground/58 to-foreground/10" />
         <Container className="relative flex min-h-[720px] items-center py-20">
           <div className="max-w-3xl"><p className="eyebrow text-bronze">Pass it on</p><h1 className="mt-6 max-w-[11ch] font-display text-6xl leading-[0.93] md:text-8xl">Leave them more than what you built.</h1><p className="mt-7 max-w-2xl text-base leading-8 text-background/78">A family can pass on assets. The harder and more interesting work is passing on judgement, confidence, relationships, stories, values and a sense of what all of this is for.</p><Button asChild size="lg" className="mt-9 rounded-none bg-oxblood px-8"><Link to="/membership">Family membership <ArrowRight className="ml-2 h-4 w-4" /></Link></Button></div>

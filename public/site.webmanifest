@@ -4,10 +4,11 @@
   "description": "A private world around the life you've built.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#f6f1e8",
-  "theme_color": "#651f24",
+  "background_color": "#17150f",
+  "theme_color": "#17150f",
   "icons": [
     { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
-    { "src": "/favicon.ico", "sizes": "48x48", "type": "image/x-icon" }
+    { "src": "/favicon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/favicon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ]
 }

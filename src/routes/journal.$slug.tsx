@@ -4,7 +4,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/button";
 import { findJournalArticle, journalArticles } from "@/data/journal";
-import { luxuryImages } from "@/data/luxuryImages";
+import { pageImages } from "@/data/pageImages";
 import { site } from "@/config/site";
 
 export const Route = createFileRoute("/journal/$slug")({
@@ -13,11 +13,17 @@ export const Route = createFileRoute("/journal/$slug")({
     if (!article) throw notFound();
     return article;
   },
-  head: ({ loaderData }) => ({
+  head: ({ params, loaderData }) => ({
     meta: [
-      { title: `${loaderData?.title ?? "Journal"} — ${site.name}` },
+      { title: `${loaderData?.title ?? "Unavailable"} — ${site.name}` },
       { name: "description", content: loaderData?.deck ?? site.description },
+      { property: "og:title", content: `${loaderData?.title ?? "Journal"} — ${site.name}` },
+      { property: "og:description", content: loaderData?.deck ?? site.description },
+      { property: "og:type", content: "article" },
+      { property: "og:url", content: `${site.url}/journal/${params.slug}` },
+      ...(loaderData ? [] : [{ name: "robots", content: "noindex" }]),
     ],
+    links: [{ rel: "canonical", href: `${site.url}/journal/${params.slug}` }],
   }),
   component: JournalArticlePage,
 });
@@ -33,7 +39,7 @@ function JournalArticlePage() {
           <Link to="/journal" className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground"><ArrowLeft className="h-3.5 w-3.5" />Journal</Link>
           <div className="mt-10 grid gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:items-end">
             <div><p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-oxblood">{article.category} · {article.date} · {article.readTime}</p><h1 className="mt-5 font-display text-5xl leading-[0.98] md:text-7xl">{article.title}</h1><p className="mt-7 max-w-2xl text-lg leading-8 text-muted-foreground">{article.deck}</p></div>
-            <div className="overflow-hidden border border-foreground/15"><img src={luxuryImages[article.image]} alt="Editorial image for this Montvelle journal essay" className="aspect-[4/3] w-full object-cover" /></div>
+            <div className="overflow-hidden border border-foreground/15"><img src={pageImages[article.image]} alt="Editorial image for this Montvelle journal essay" className="aspect-[4/3] w-full object-cover" /></div>
           </div>
         </Container>
       </section>

@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { decisionRooms, type DecisionIcon, type DecisionLane, type DecisionRoomTemplate, type DecisionWorkItem } from "@/data/decisionRooms";
-import { luxuryImages } from "@/data/luxuryImages";
+import { pageImages } from "@/data/pageImages";
 
 export const Route = createFileRoute("/member/control-room")({ component: ControlRoomPage });
 
@@ -143,7 +143,7 @@ function ControlRoomPage() {
       {showCreate ? <form onSubmit={createRoom} className="grid gap-5 border border-border bg-card p-6 md:grid-cols-2"><div className="space-y-2"><Label htmlFor="room-label">Short name</Label><Input id="room-label" name="label" required className="rounded-none" placeholder="e.g. Sell the business" /></div><div className="space-y-2"><Label htmlFor="room-headline">Outcome headline</Label><Input id="room-headline" name="headline" required className="rounded-none" placeholder="What are we trying to make happen?" /></div><div className="space-y-2 md:col-span-2"><Label htmlFor="room-question">The central decision</Label><Textarea id="room-question" name="question" required rows={3} className="rounded-none" /></div><div className="space-y-2 md:col-span-2"><Label htmlFor="room-outcome">Definition of done</Label><Textarea id="room-outcome" name="outcome" required rows={3} className="rounded-none" /></div><div className="md:col-span-2"><Button type="submit" className="rounded-none bg-oxblood">Create Decision Room</Button></div></form> : null}
 
       <section className="relative min-h-[320px] overflow-hidden border border-border bg-foreground text-background">
-        <img src={luxuryImages.command} alt="Private family office command room" className="absolute inset-0 h-full w-full object-cover opacity-60" />
+        <img src={pageImages.memberControl} alt="Private family office command room" className="absolute inset-0 h-full w-full object-cover opacity-60" />
         <div className="absolute inset-0 bg-gradient-to-r from-foreground via-foreground/78 to-transparent" />
         <div className="relative max-w-2xl p-7 md:p-9"><p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-bronze">Your private command room</p><h2 className="mt-4 font-display text-4xl leading-tight md:text-5xl">{active.headline}</h2><p className="mt-5 text-sm leading-7 text-background/68">{active.question}</p></div>
       </section>

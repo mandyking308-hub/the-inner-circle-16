@@ -3,7 +3,7 @@ import { ArrowRight, Globe2, MapPinned, ShieldCheck } from "lucide-react";
 
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/button";
-import { luxuryImages } from "@/data/luxuryImages";
+import { pageImages } from "@/data/pageImages";
 import { worldNodes, worldPrinciples } from "@/data/world";
 import { site } from "@/config/site";
 
@@ -13,6 +13,7 @@ export const Route = createFileRoute("/world")({
       { title: `The World — ${site.name}` },
       { name: "description", content: "A growing global intelligence layer for families whose lives, businesses and advisers cross borders." },
     ],
+    links: [{ rel: "canonical", href: `${site.url}/world` }],
   }),
   component: WorldPage,
 });
@@ -21,7 +22,7 @@ function WorldPage() {
   return (
     <>
       <section className="relative min-h-[720px] overflow-hidden bg-foreground text-background">
-        <img src={luxuryImages.jet} alt="A globally mobile family arriving by private aviation" className="absolute inset-0 h-full w-full object-cover" />
+        <img src={pageImages.worldHero} alt="A globally mobile family arriving by private aviation" className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-foreground/96 via-foreground/74 to-foreground/18" />
         <Container className="relative flex min-h-[720px] items-center py-20">
           <div className="max-w-3xl">

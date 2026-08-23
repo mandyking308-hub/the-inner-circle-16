@@ -1,3 +1,10 @@
+/**
+ * Homepage-only photography.
+ *
+ * RULE: these assets belong to the approved homepage composition and must not
+ * be reused on any other route. Every other placement lives in
+ * `src/data/pageImages.ts` with its own unique asset. No aliases.
+ */
 import heroJet from "@/assets/hero-jet.jpg";
 import globalLife from "@/assets/global-life.jpg";
 import ourPeople from "@/assets/our-people.jpg";
@@ -17,13 +24,7 @@ export const luxuryImages = {
   table: ourPeople,
   service: bespokeService,
   family: familyLegacy,
-  culture: ourPeople,
   office: privateOffice,
-
-  // Backwards-compatible aliases used by the existing public pages.
-  jet: heroJet,
-  command: privateOffice,
-  learning: familyLegacy,
 } as const;
 
 export const destinationImages = {

@@ -7,7 +7,7 @@ import { enableInternalPreview } from "@/components/security/PrivatePreviewGate"
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { luxuryImages } from "@/data/luxuryImages";
+import { pageImages } from "@/data/pageImages";
 import { site } from "@/config/site";
 
 export const Route = createFileRoute("/auth")({
@@ -32,7 +32,7 @@ function AuthPage() {
 
   return (
     <section className="relative min-h-[760px] overflow-hidden bg-foreground text-background">
-      <img src={luxuryImages.command} alt="A private family office workspace" className="absolute inset-0 h-full w-full object-cover" />
+      <img src={pageImages.authEntry} alt="A private family office workspace" className="absolute inset-0 h-full w-full object-cover" />
       <div className="absolute inset-0 bg-gradient-to-r from-foreground/96 via-foreground/86 to-foreground/48" />
       <Container className="relative flex min-h-[760px] items-center py-16 md:py-24">
         <div className="grid w-full gap-5 lg:grid-cols-[1fr_0.82fr]">

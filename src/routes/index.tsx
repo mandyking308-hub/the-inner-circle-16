@@ -11,6 +11,7 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: `${site.name} — ${site.positioning}` },
       { property: "og:description", content: site.description },
     ],
+    links: [{ rel: "canonical", href: site.url }],
   }),
   component: Index,
 });

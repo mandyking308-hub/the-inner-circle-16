@@ -3,7 +3,8 @@ import { LegalTemplate } from "@/components/marketing/LegalTemplate";
 import { site } from "@/config/site";
 
 export const Route = createFileRoute("/accessibility")({
-  head: () => ({ meta: [{ title: `Accessibility — ${site.name}` }, { name: "description", content: "Montvelle's approach to accessible digital experiences and member service." }] }),
+  head: () => ({ meta: [{ title: `Accessibility — ${site.name}` }, { name: "description", content: "Montvelle's approach to accessible digital experiences and member service." }],
+    links: [{ rel: "canonical", href: `${site.url}/accessibility` }], }),
   component: AccessibilityPage,
 });
 

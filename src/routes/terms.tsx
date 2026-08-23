@@ -3,7 +3,8 @@ import { LegalTemplate } from "@/components/marketing/LegalTemplate";
 import { site } from "@/config/site";
 
 export const Route = createFileRoute("/terms")({
-  head: () => ({ meta: [{ title: `Terms — ${site.name}` }, { name: "description", content: "Terms governing Montvelle website access, membership, community spaces and private services operated by Global Solutions Management LLC." }] }),
+  head: () => ({ meta: [{ title: `Terms — ${site.name}` }, { name: "description", content: "Terms governing Montvelle website access, membership, community spaces and private services operated by Global Solutions Management LLC." }],
+    links: [{ rel: "canonical", href: `${site.url}/terms` }], }),
   component: TermsPage,
 });
 

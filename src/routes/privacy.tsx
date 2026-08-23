@@ -3,7 +3,8 @@ import { LegalTemplate } from "@/components/marketing/LegalTemplate";
 import { site } from "@/config/site";
 
 export const Route = createFileRoute("/privacy")({
-  head: () => ({ meta: [{ title: `Privacy — ${site.name}` }, { name: "description", content: "How Montvelle and Global Solutions Management LLC handle personal information across applications, membership, concierge, gatherings and private services." }] }),
+  head: () => ({ meta: [{ title: `Privacy — ${site.name}` }, { name: "description", content: "How Montvelle and Global Solutions Management LLC handle personal information across applications, membership, concierge, gatherings and private services." }],
+    links: [{ rel: "canonical", href: `${site.url}/privacy` }], }),
   component: PrivacyPage,
 });
 

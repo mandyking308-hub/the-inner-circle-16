@@ -8,14 +8,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { luxuryImages } from "@/data/luxuryImages";
+import { pageImages } from "@/data/pageImages";
 import { loadPartnerApplications, savePartnerApplications, type PartnerApplication } from "@/data/partnerApplicationStore";
 import { partnerQualification } from "@/data/qualification";
 import { submitPartnerIntake } from "@/lib/applicationIntake";
 import { site } from "@/config/site";
 
 export const Route = createFileRoute("/partner-application")({
-  head: () => ({ meta: [{ title: `Trusted Partner application — ${site.name}` }, { name: "description", content: "Apply to be considered for the Montvelle Trusted Partner network." }] }),
+  head: () => ({ meta: [{ title: `Trusted Partner application — ${site.name}` }, { name: "description", content: "Apply to be considered for the Montvelle Trusted Partner network." }],
+    links: [{ rel: "canonical", href: `${site.url}/partner-application` }], }),
   component: PartnerApplicationPage,
 });
 
@@ -79,7 +80,7 @@ function PartnerApplicationPage() {
   return (
     <>
       <section className="relative min-h-[620px] overflow-hidden bg-foreground text-background">
-        <img src={luxuryImages.table} alt="Trusted advisers in a private London setting" className="absolute inset-0 h-full w-full object-cover" />
+        <img src={pageImages.partnerApplication} alt="Trusted advisers in a private London setting" className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-foreground/96 via-foreground/80 to-foreground/18" />
         <Container className="relative flex min-h-[620px] items-center py-20">
           <div className="max-w-3xl"><p className="eyebrow text-bronze">Trusted Partner application</p><h1 className="mt-6 max-w-[10ch] font-display text-6xl leading-[0.93] md:text-8xl">Earn the recommendation, not access to the list.</h1><p className="mt-7 max-w-2xl text-base leading-8 text-background/72">The partner network is for firms that understand complex families, collaborate well with other advisers and are comfortable being judged on the usefulness of their work.</p></div>

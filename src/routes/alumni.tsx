@@ -6,7 +6,8 @@ import { EditorialDetailPage } from "@/components/marketing/EditorialDetailPage"
 import { site } from "@/config/site";
 
 export const Route = createFileRoute("/alumni")({
-  head: () => ({ meta: [{ title: `The Continuum — ${site.name}` }, { name: "description", content: "A protected rising-generation and alumni community connecting young people with peers, mentors, projects, work experience and a network that can grow with them." }] }),
+  head: () => ({ meta: [{ title: `The Continuum — ${site.name}` }, { name: "description", content: "A protected rising-generation and alumni community connecting young people with peers, mentors, projects, work experience and a network that can grow with them." }],
+    links: [{ rel: "canonical", href: `${site.url}/alumni` }], }),
   component: AlumniPage,
 });
 

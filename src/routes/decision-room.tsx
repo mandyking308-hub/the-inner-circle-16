@@ -4,10 +4,11 @@ import { ArrowRight, BadgeCheck, CheckCircle2, Compass, MessageSquareText, Table
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/button";
 import { site } from "@/config/site";
-import { luxuryImages } from "@/data/luxuryImages";
+import { pageImages } from "@/data/pageImages";
 
 export const Route = createFileRoute("/decision-room")({
-  head: () => ({ meta: [{ title: `Life Decision Room — ${site.name}` }, { name: "description", content: "A private room that turns complex family decisions into clear choices, qualified advice, owned execution and evidence of completion." }] }),
+  head: () => ({ meta: [{ title: `Life Decision Room — ${site.name}` }, { name: "description", content: "A private room that turns complex family decisions into clear choices, qualified advice, owned execution and evidence of completion." }],
+    links: [{ rel: "canonical", href: `${site.url}/decision-room` }], }),
   component: DecisionRoomPage,
 });
 
@@ -22,7 +23,7 @@ export function DecisionRoomPage() {
   return (
     <>
       <section className="relative min-h-[720px] overflow-hidden bg-foreground text-background">
-        <img src={luxuryImages.command} alt="A private family office command room overlooking London" className="absolute inset-0 h-full w-full object-cover" />
+        <img src={pageImages.decisionHero} alt="A private family office command room overlooking London" className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-foreground/96 via-foreground/78 to-foreground/20" />
         <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-foreground to-transparent" />
         <Container className="relative flex min-h-[720px] items-center py-20">

@@ -3,11 +3,12 @@ import { ArrowRight, Compass, ShieldCheck } from "lucide-react";
 
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/button";
-import { luxuryImages } from "@/data/luxuryImages";
+import { pageImages } from "@/data/pageImages";
 import { site } from "@/config/site";
 
 export const Route = createFileRoute("/about")({
-  head: () => ({ meta: [{ title: `Why this exists — ${site.name}` }, { name: "description", content: "Why Montvelle exists: one private world around people, places, family, trusted help and serious private-office infrastructure." }] }),
+  head: () => ({ meta: [{ title: `Why this exists — ${site.name}` }, { name: "description", content: "Why Montvelle exists: one private world around people, places, family, trusted help and serious private-office infrastructure." }],
+    links: [{ rel: "canonical", href: `${site.url}/about` }], }),
   component: AboutPage,
 });
 
@@ -15,7 +16,7 @@ function AboutPage() {
   return (
     <>
       <section className="relative min-h-[78vh] overflow-hidden bg-[#171716] text-white">
-        <img src={luxuryImages.world} alt="A beautiful coastal home and landscape" className="absolute inset-0 h-full w-full object-cover" />
+        <img src={pageImages.aboutHero} alt="A beautiful coastal home and landscape" className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(12,12,11,0.72)_0%,rgba(12,12,11,0.42)_42%,rgba(12,12,11,0.08)_78%)]" />
         <Container className="relative flex min-h-[78vh] items-end py-20 md:py-28">
           <div className="max-w-4xl">
@@ -44,7 +45,7 @@ function AboutPage() {
       <section className="bg-[#efe8dd] py-32 md:py-48">
         <Container>
           <div className="grid gap-16 lg:grid-cols-[1.18fr_0.82fr] lg:items-center lg:gap-24">
-            <figure className="overflow-hidden"><img src={luxuryImages.table} alt="A private gathering among trusted people" className="aspect-[16/11] w-full object-cover" loading="lazy" /></figure>
+            <figure className="overflow-hidden"><img src={pageImages.aboutMid} alt="A private gathering among trusted people" className="aspect-[16/11] w-full object-cover" loading="lazy" /></figure>
             <div>
               <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-oxblood">The human layer</p>
               <h2 className="mt-5 font-display text-5xl leading-[1.02] md:text-6xl">The right people change what becomes possible.</h2>
@@ -67,7 +68,7 @@ function AboutPage() {
               <p className="mt-5 max-w-lg text-sm leading-7 text-muted-foreground">The technology is there to remember, prepare and coordinate. It should never become the personality of the membership.</p>
               <Link to="/ecosystem" className="mt-8 inline-flex items-center gap-2 text-sm font-semibold">Inside the private office <ArrowRight className="h-4 w-4" /></Link>
             </div>
-            <figure className="overflow-hidden"><img src={luxuryImages.office} alt="A quiet private office and study" className="aspect-[4/3] w-full object-cover" loading="lazy" /></figure>
+            <figure className="overflow-hidden"><img src={pageImages.aboutEnd} alt="A quiet private office and study" className="aspect-[4/3] w-full object-cover" loading="lazy" /></figure>
           </div>
         </Container>
       </section>

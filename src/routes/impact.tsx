@@ -3,11 +3,12 @@ import { ArrowRight, HandHeart, Scale, ShieldCheck, UsersRound } from "lucide-re
 
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/button";
-import { luxuryImages } from "@/data/luxuryImages";
+import { pageImages } from "@/data/pageImages";
 import { site } from "@/config/site";
 
 export const Route = createFileRoute("/impact")({
-  head: () => ({ meta: [{ title: `Impact — ${site.name}` }, { name: "description", content: "A private contribution strand for families who want to use time, experience, relationships and resources in ways that matter." }] }),
+  head: () => ({ meta: [{ title: `Impact — ${site.name}` }, { name: "description", content: "A private contribution strand for families who want to use time, experience, relationships and resources in ways that matter." }],
+    links: [{ rel: "canonical", href: `${site.url}/impact` }], }),
   component: ImpactPublicPage,
 });
 
@@ -15,7 +16,7 @@ function ImpactPublicPage() {
   return (
     <>
       <section className="relative min-h-[700px] overflow-hidden bg-foreground text-background">
-        <img src={luxuryImages.table} alt="A private group talking about purpose and contribution" className="absolute inset-0 h-full w-full object-cover brightness-[1.08]" />
+        <img src={pageImages.impactHero} alt="A private group talking about purpose and contribution" className="absolute inset-0 h-full w-full object-cover brightness-[1.08]" />
         <div className="absolute inset-0 bg-gradient-to-r from-foreground/82 via-foreground/58 to-foreground/10" />
         <Container className="relative flex min-h-[700px] items-center py-20">
           <div className="max-w-3xl"><p className="eyebrow text-bronze">Give</p><h1 className="mt-6 max-w-[11ch] font-display text-6xl leading-[0.93] md:text-8xl">Use what life has taught you to open something for somebody else.</h1><p className="mt-7 max-w-2xl text-base leading-8 text-background/78">Sometimes the most useful contribution is money. Sometimes it is judgement, a thoughtful introduction, a day of somebody’s time, a mentor, a board conversation or knowing exactly who might unlock the next step.</p><Button asChild size="lg" className="mt-9 rounded-none bg-oxblood px-8"><Link to="/membership">Explore membership <ArrowRight className="ml-2 h-4 w-4" /></Link></Button></div>
