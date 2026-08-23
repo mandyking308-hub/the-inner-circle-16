@@ -16,6 +16,8 @@ import { TwoReferences } from "@/components/apply/TwoReferences";
 import { site } from "@/config/site";
 
 export const Route = createFileRoute("/apply")({
+  validateSearch: (search: Record<string, unknown>): { membership?: "Individual" | "Family" } =>
+    search["membership"] === "Family" ? { membership: "Family" } : search["membership"] === "Individual" ? { membership: "Individual" } : {},
   head: () => ({ meta: [{ title: `${site.ctaLabel} — ${site.name}` }, { name: "description", content: `Request membership of ${site.name}.` }] }),
   component: ApplyPage,
 });
