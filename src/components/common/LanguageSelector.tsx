@@ -40,7 +40,7 @@ function readCurrentLanguage(): string {
   if (typeof document === "undefined") return "en";
   const match = document.cookie.match(/(?:^|;\s*)googtrans=([^;]+)/);
   if (!match) return "en";
-  const parts = decodeURIComponent(match[1]).split("/");
+  const parts = decodeURIComponent(match[1] ?? "").split("/");
   return parts[2] || "en";
 }
 
