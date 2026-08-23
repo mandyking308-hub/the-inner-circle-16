@@ -1,6 +1,5 @@
 import { type FormEvent, useEffect, useMemo, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Send } from "lucide-react";
 
 import { PageIntro } from "@/components/private/PrivateShell";
 import { Button } from "@/components/ui/button";
@@ -159,7 +158,6 @@ function MemberMessagesPage() {
               </label>
               <Textarea id="thread-message" name="body" rows={3} className="mt-3 rounded-none" placeholder="Write a short note." />
               <Button type="submit" className="mt-4 rounded-none">
-                <Send className="mr-2 h-4 w-4" />
                 Send
               </Button>
             </form>

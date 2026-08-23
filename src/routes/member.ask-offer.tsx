@@ -1,6 +1,5 @@
 import { FormEvent, useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowUpRight, Plus, Search } from "lucide-react";
 
 import { PageIntro } from "@/components/private/PrivateShell";
 import { Button } from "@/components/ui/button";
@@ -41,7 +40,7 @@ function AskOfferPage() {
         description="Ask for something specific, offer something genuinely useful, or request a particular introduction. This is a needs-and-capability board, not an advertising feed."
         action={
           <Button className="rounded-none" onClick={() => { setComposerOpen(true); setPosted(false); }}>
-            <Plus className="mr-2 h-4 w-4" /> Post something useful
+            Post something useful
           </Button>
         }
       />
@@ -91,7 +90,6 @@ function AskOfferPage() {
       <section className="border border-border bg-card p-4 md:p-5">
         <div className="grid gap-3 lg:grid-cols-[1fr_auto]">
           <label className="relative block">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <Input value={query} onChange={(event) => setQuery(event.target.value)} className="rounded-none pl-9" placeholder="Search asks and offers" />
           </label>
           <div className="flex gap-2">
@@ -112,7 +110,7 @@ function AskOfferPage() {
             <h2 className="mt-5 font-display text-3xl leading-tight">{item.title}</h2>
             <p className="mt-2 text-xs text-muted-foreground">{item.author} · {item.category}</p>
             <p className="mt-4 text-sm leading-7 text-muted-foreground">{item.body}</p>
-            <button className="mt-5 inline-flex items-center gap-2 text-sm font-medium">I may be able to help <ArrowUpRight className="h-3.5 w-3.5" /></button>
+            <button className="mt-5 inline-flex items-center gap-2 text-sm font-medium">I may be able to help </button>
           </article>
         ))}
       </div>

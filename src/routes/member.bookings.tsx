@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { CalendarPlus, MessageSquareText, ShieldCheck } from "lucide-react";
 
 import { PageIntro } from "@/components/private/PrivateShell";
 import { Button } from "@/components/ui/button";
@@ -142,7 +141,7 @@ function MemberBookingsPage() {
 
             <div className="border-t border-border bg-accent/30 p-6">
               <p className="flex items-center gap-2 text-[9px] uppercase tracking-[0.14em] text-muted-foreground">
-                <ShieldCheck className="h-3.5 w-3.5 text-oxblood" /> Shared with the provider
+                Shared with the provider
               </p>
               <p className="mt-2 text-xs leading-6 text-muted-foreground">
                 {booking.sharedContext.join(" · ")}. Nothing else from your preferences has been passed on.
@@ -172,13 +171,11 @@ function MemberBookingsPage() {
               ) : null}
               <Button asChild variant="outline" className="rounded-none">
                 <Link to="/member/messages">
-                  <MessageSquareText className="mr-2 h-4 w-4" />
                   Message
                 </Link>
               </Button>
               {booking.status === "upcoming" ? (
                 <Button variant="ghost" className="rounded-none">
-                  <CalendarPlus className="mr-2 h-4 w-4" />
                   Add to calendar
                 </Button>
               ) : null}

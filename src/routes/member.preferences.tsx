@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { Lock } from "lucide-react";
 
 import { PageIntro } from "@/components/private/PrivateShell";
 import { Button } from "@/components/ui/button";
@@ -50,7 +49,6 @@ function MemberPreferencesPage() {
 
       <section className="border border-border bg-card p-5">
         <div className="flex items-start gap-3">
-          <Lock className="mt-0.5 h-5 w-5 text-oxblood" />
           <div>
             <p className="text-sm font-semibold">Private by default.</p>
             <p className="mt-1 max-w-4xl text-xs leading-6 text-muted-foreground">

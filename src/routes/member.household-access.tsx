@@ -1,6 +1,5 @@
 import { type FormEvent, useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Landmark, Lock, ShieldCheck, Trash2, UserPlus } from "lucide-react";
 
 import { PageIntro } from "@/components/private/PrivateShell";
 import { Button } from "@/components/ui/button";
@@ -217,7 +216,6 @@ function HouseholdAccessPage() {
           const card = roleCards[role];
           return (
             <article key={role} className="flex flex-col bg-card p-5">
-              <ShieldCheck className="h-4 w-4 text-oxblood" />
               <h2 className="mt-5 font-display text-2xl leading-tight">{role}</h2>
               <p className="mt-3 text-xs leading-6 text-muted-foreground">{card.line}</p>
               <ul className="mt-5 space-y-2 border-t border-border pt-4 text-xs leading-6">
@@ -230,7 +228,6 @@ function HouseholdAccessPage() {
               <ul className="mt-4 space-y-2 border-t border-border pt-4 text-xs leading-6 text-muted-foreground">
                 {card.never.map((item) => (
                   <li key={item} className="flex gap-2">
-                    <Lock className="mt-1 h-3 w-3 shrink-0 text-oxblood" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -289,7 +286,6 @@ function HouseholdAccessPage() {
             </select>
           </div>
           <Button type="submit" className="rounded-none">
-            <UserPlus className="mr-2 h-4 w-4" />
             Request household access
           </Button>
         </form>
@@ -334,7 +330,6 @@ function HouseholdAccessPage() {
                       className="rounded-none"
                       onClick={() => withdraw(person.id)}
                     >
-                      <Trash2 className="mr-2 h-3.5 w-3.5" />
                       {pending ? "Withdraw request" : "Remove access"}
                     </Button>
                   )}
@@ -401,7 +396,6 @@ function HouseholdAccessPage() {
 
       <section className="grid gap-4 lg:grid-cols-[1.4fr_1fr]">
         <div className="border border-border bg-foreground p-6 text-background md:p-8">
-          <Landmark className="h-5 w-5 text-bronze" />
           <p className="mt-6 eyebrow text-background/50">The household rule</p>
           <h2 className="mt-4 max-w-4xl font-display text-4xl leading-tight">
             Not everyone in a family should see everything.
@@ -417,7 +411,6 @@ function HouseholdAccessPage() {
           </p>
         </div>
         <div className="border border-border bg-card p-6">
-          <ShieldCheck className="h-5 w-5 text-oxblood" />
           <p className="mt-6 font-display text-2xl leading-tight">
             Your own privacy sits with you.
           </p>

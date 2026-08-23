@@ -1,6 +1,5 @@
 import { type FormEvent, useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Bell, Eye, EyeOff, Lock, ShieldCheck } from "lucide-react";
 
 import { PageIntro } from "@/components/private/PrivateShell";
 import { Button } from "@/components/ui/button";
@@ -76,7 +75,6 @@ function ProfilePage() {
       <section className="grid gap-4 lg:grid-cols-[1.4fr_1fr]">
         <div className="border border-border bg-card p-5 md:p-6">
           <div className="flex items-center gap-3">
-            <Lock className="h-4 w-4 text-oxblood" />
             <p className="eyebrow text-oxblood">Personal privacy and household sharing</p>
           </div>
           <div className="mt-5 grid gap-5 md:grid-cols-2">
@@ -97,7 +95,6 @@ function ProfilePage() {
           </div>
         </div>
         <div className="border border-border bg-foreground p-5 text-background md:p-6">
-          <ShieldCheck className="h-4 w-4 text-bronze" />
           <p className="mt-5 font-display text-2xl leading-tight">
             Who has access to your household world
           </p>
@@ -194,7 +191,6 @@ function ProfilePage() {
         <aside className="space-y-5">
           <section className="border border-border bg-card p-5">
             <div className="flex items-center gap-3">
-              <ShieldCheck className="h-4 w-4 text-oxblood" />
               <p className="eyebrow">Visibility</p>
             </div>
             <div className="mt-5 space-y-5">
@@ -241,7 +237,6 @@ function ProfilePage() {
 
           <section className="border border-border bg-card p-5">
             <div className="flex items-center gap-3">
-              <Bell className="h-4 w-4 text-oxblood" />
               <p className="eyebrow">Notifications</p>
             </div>
             <div className="mt-5 space-y-4">
@@ -267,11 +262,7 @@ function ProfilePage() {
 
           <section className="border border-border bg-foreground p-5 text-background">
             <div className="flex items-center gap-3">
-              {profile.showEnterpriseStage ? (
-                <Eye className="h-4 w-4 text-bronze" />
-              ) : (
-                <EyeOff className="h-4 w-4 text-bronze" />
-              )}
+              
               <p className="eyebrow text-background/60">Never social profile data</p>
             </div>
             <ul className="mt-5 space-y-3 text-sm leading-6 text-background/75">

@@ -1,6 +1,5 @@
 import { type FormEvent, useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, CheckCircle2, Clock3, Lock, MessageSquareText, Send } from "lucide-react";
 
 import { PageIntro } from "@/components/private/PrivateShell";
 import { Button } from "@/components/ui/button";
@@ -127,7 +126,6 @@ function MemberServicesPage() {
       {confirmation ? (
         <div className="border border-border bg-foreground p-6 text-background md:p-7">
           <div className="flex items-start gap-3">
-            <CheckCircle2 className="mt-0.5 h-5 w-5 text-bronze" />
             <div>
               <p className="text-[9px] uppercase tracking-[0.16em] text-bronze">
                 {confirmation.id} · received {formatReceived(confirmation.receivedAt)}
@@ -243,7 +241,6 @@ function MemberServicesPage() {
 
         <div className="md:col-span-2">
           <Button type="submit" className="rounded-none bg-oxblood">
-            <Send className="mr-2 h-4 w-4" />
             Send this to Montvelle
           </Button>
         </div>
@@ -251,7 +248,6 @@ function MemberServicesPage() {
 
       <section className="border border-border bg-card p-6">
         <div className="flex items-start gap-3">
-          <Lock className="mt-0.5 h-5 w-5 text-oxblood" />
           <div>
             <p className="text-sm font-semibold">How we make enquiries</p>
             <p className="mt-2 max-w-4xl text-xs leading-6 text-muted-foreground">
@@ -334,12 +330,10 @@ function MemberServicesPage() {
             <article className="border border-border bg-card p-6">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div className="flex items-center gap-3">
-                  <Clock3 className="h-5 w-5 text-oxblood" />
                   <h3 className="font-display text-3xl">Where this has got to</h3>
                 </div>
                 <Button asChild variant="ghost" className="rounded-none">
                   <Link to="/member/messages">
-                    <MessageSquareText className="mr-2 h-4 w-4" />
                     Open the thread
                   </Link>
                 </Button>
@@ -400,7 +394,6 @@ function MemberServicesPage() {
                         </div>
                         {option.status === "Chosen" ? (
                           <span className="flex items-center gap-2 text-[10px] uppercase tracking-[0.14em] text-oxblood">
-                            <CheckCircle2 className="h-4 w-4" />
                             Chosen
                           </span>
                         ) : option.status === "Set aside" ? (
@@ -447,8 +440,7 @@ function MemberServicesPage() {
             className="rounded-none border-background/30 bg-transparent text-background hover:bg-background hover:text-foreground"
           >
             <Link to="/member/concierge">
-              Open a case <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
+              Open a case </Link>
           </Button>
         </div>
       </section>

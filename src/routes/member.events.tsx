@@ -1,13 +1,5 @@
 import { useEffect, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import {
-  CalendarCheck2,
-  CalendarPlus,
-  Clock3,
-  LockKeyhole,
-  MapPin,
-  UsersRound,
-} from "lucide-react";
 
 import { PageIntro } from "@/components/private/PrivateShell";
 import { Button } from "@/components/ui/button";
@@ -111,15 +103,12 @@ function EventsPage() {
               </p>
               <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-xs text-background/65">
                 <span className="inline-flex items-center gap-2">
-                  <Clock3 className="h-3.5 w-3.5 text-bronze" />
                   {selected.date} · {selected.time}
                 </span>
                 <span className="inline-flex items-center gap-2">
-                  <UsersRound className="h-3.5 w-3.5 text-bronze" />
                   {selected.seats}
                 </span>
                 <span className="inline-flex items-center gap-2">
-                  <LockKeyhole className="h-3.5 w-3.5 text-bronze" />
                   Private venue on confirmation
                 </span>
               </div>
@@ -161,7 +150,7 @@ function EventsPage() {
                     </p>
                     <h3 className="mt-2 font-display text-2xl">{event.title}</h3>
                   </div>
-                  {response?.response ? <CalendarCheck2 className="h-4 w-4 text-bronze" /> : null}
+                  
                 </div>
                 <p className="mt-3 text-xs opacity-60">
                   {event.date} · {event.time}
@@ -203,7 +192,6 @@ function EventsPage() {
                     download={`${selected.id}.ics`}
                     className="inline-flex h-10 items-center justify-center border border-border px-4 text-sm font-medium"
                   >
-                    <CalendarPlus className="mr-2 h-4 w-4" />
                     Add calendar hold
                   </a>
                 </div>
@@ -250,7 +238,6 @@ function EventsPage() {
                   />
                 </div>
                 <p className="text-[10px] leading-5 text-muted-foreground">
-                  <MapPin className="mr-1 inline h-3 w-3" />
                   Private venue details and attendee context are shared only after approval and on
                   the minimum-necessary basis.
                 </p>

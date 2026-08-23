@@ -1,30 +1,5 @@
 import { type ReactNode, useEffect, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
-import {
-  BadgeCheck,
-  BookOpen,
-  BriefcaseBusiness,
-  CalendarDays,
-  ChevronRight,
-  CircleUserRound,
-  Compass,
-  Globe2,
-  GraduationCap,
-  HandHeart,
-  Home,
-  Inbox,
-  Landmark,
-  LayoutDashboard,
-  Menu,
-  Network,
-  Settings,
-  ShieldCheck,
-  Sparkles,
-  TableProperties,
-  Users,
-  X,
-  FileSearch,
-} from "lucide-react";
 
 import { BrandMark } from "@/components/brand/BrandMark";
 import { site } from "@/config/site";
@@ -34,22 +9,22 @@ const memberGroups = [
   {
     label: "Montvelle World",
     items: [
-      { to: "/member", label: "Today", icon: Home, exact: true },
-      { to: "/member/services", label: "Requests", icon: Sparkles },
-      { to: "/member/control-room", label: "Decision Room", icon: LayoutDashboard },
-      { to: "/member/events", label: "Invitations", icon: CalendarDays },
-      { to: "/member/network", label: "Community", icon: Users },
-      { to: "/member/family", label: "Family", icon: Landmark },
-      { to: "/member/messages", label: "Messages", icon: Inbox },
-      { to: "/member/knowledge", label: "Knowledge", icon: BookOpen },
+      { to: "/member", label: "Today", exact: true },
+      { to: "/member/services", label: "Requests" },
+      { to: "/member/control-room", label: "Decision Room" },
+      { to: "/member/events", label: "Invitations" },
+      { to: "/member/network", label: "Community" },
+      { to: "/member/family", label: "Family" },
+      { to: "/member/messages", label: "Messages" },
+      { to: "/member/knowledge", label: "Knowledge" },
     ],
   },
   {
     label: "Your household",
     items: [
-      { to: "/member/preferences", label: "My Preferences", icon: BookOpen },
-      { to: "/member/household-access", label: "Household & Access", icon: ShieldCheck },
-      { to: "/member/profile", label: "Account & privacy", icon: CircleUserRound },
+      { to: "/member/preferences", label: "My Preferences" },
+      { to: "/member/household-access", label: "Household & Access" },
+      { to: "/member/profile", label: "Account & privacy" },
     ],
   },
 ] as const;
@@ -58,41 +33,41 @@ const adminGroups = [
   {
     label: "Operations",
     items: [
-      { to: "/admin", label: "Overview", icon: LayoutDashboard, exact: true },
-      { to: "/admin/launch-readiness", label: "Launch control", icon: ShieldCheck },
-      { to: "/admin/concierge", label: "Concierge", icon: Compass },
-      { to: "/admin/sourcing", label: "Sourcing Desk", icon: FileSearch },
-      { to: "/admin/services", label: "Private Services", icon: Sparkles },
-      { to: "/admin/bookings", label: "Bookings", icon: CalendarDays },
-      { to: "/admin/messages", label: "Messages", icon: Inbox },
-      { to: "/admin/global-life", label: "Global Life", icon: Globe2 },
+      { to: "/admin", label: "Overview", exact: true },
+      { to: "/admin/launch-readiness", label: "Launch control" },
+      { to: "/admin/concierge", label: "Concierge" },
+      { to: "/admin/sourcing", label: "Sourcing Desk" },
+      { to: "/admin/services", label: "Private Services" },
+      { to: "/admin/bookings", label: "Bookings" },
+      { to: "/admin/messages", label: "Messages" },
+      { to: "/admin/global-life", label: "Global Life" },
     ],
   },
   {
     label: "Community",
     items: [
-      { to: "/admin/applications", label: "Applications", icon: Inbox },
-      { to: "/admin/members", label: "Members", icon: Users },
-      { to: "/admin/tables", label: "Tables", icon: TableProperties },
-      { to: "/admin/introductions", label: "Introductions", icon: Network },
-      { to: "/admin/partners", label: "Partners", icon: BadgeCheck },
+      { to: "/admin/applications", label: "Applications" },
+      { to: "/admin/members", label: "Members" },
+      { to: "/admin/tables", label: "Tables" },
+      { to: "/admin/introductions", label: "Introductions" },
+      { to: "/admin/partners", label: "Partners" },
     ],
   },
   {
     label: "Family programme",
     items: [
-      { to: "/admin/learning", label: "Learning", icon: GraduationCap },
-      { to: "/admin/next-gen", label: "Next Gen", icon: Sparkles },
-      { to: "/admin/alumni", label: "Alumni", icon: BriefcaseBusiness },
+      { to: "/admin/learning", label: "Learning" },
+      { to: "/admin/next-gen", label: "Next Gen" },
+      { to: "/admin/alumni", label: "Alumni" },
     ],
   },
   {
     label: "Institution",
     items: [
-      { to: "/admin/events", label: "Events", icon: CalendarDays },
-      { to: "/admin/content", label: "Knowledge", icon: BookOpen },
-      { to: "/admin/impact", label: "Impact", icon: HandHeart },
-      { to: "/admin/settings", label: "Settings", icon: Settings },
+      { to: "/admin/events", label: "Events" },
+      { to: "/admin/content", label: "Knowledge" },
+      { to: "/admin/impact", label: "Impact" },
+      { to: "/admin/settings", label: "Settings" },
     ],
   },
 ] as const;
@@ -166,7 +141,7 @@ export function PrivateShell({ mode, children }: PrivateShellProps) {
               onClick={() => setMobileOpen((value) => !value)}
               aria-label="Toggle private navigation"
             >
-              {mobileOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+              {mobileOpen ? "Close" : "Menu"}
             </button>
             <div>
               <p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-oxblood">
@@ -213,7 +188,6 @@ export function PrivateShell({ mode, children }: PrivateShellProps) {
                 </p>
                 <div className="space-y-0.5">
                   {group.items.map((item) => {
-                    const Icon = item.icon;
                     const active = isActive(item.to, "exact" in item ? item.exact : false);
                     return (
                       <Link
@@ -222,14 +196,9 @@ export function PrivateShell({ mode, children }: PrivateShellProps) {
                         onClick={() => setMobileOpen(false)}
                         className={`group flex items-center justify-between border-l-2 px-3 py-3 text-[12px] transition-colors ${active ? "border-oxblood bg-background/8 text-background" : "border-transparent text-background/55 hover:bg-background/5 hover:text-background"}`}
                       >
-                        <span className="flex items-center gap-3">
-                          <Icon
-                            className={`h-3.5 w-3.5 ${active ? "text-bronze" : "text-background/35"}`}
-                          />
-                          {item.label}
-                        </span>
-                        {active ? <ChevronRight className="h-3 w-3 text-bronze" /> : null}
+                        <span className="tracking-[0.02em]">{item.label}</span>
                       </Link>
+
                     );
                   })}
                 </div>
@@ -238,7 +207,6 @@ export function PrivateShell({ mode, children }: PrivateShellProps) {
           </nav>
           <div className="border-t border-background/12 p-5">
             <div className="flex items-start gap-3">
-              <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-bronze" />
               <div>
                 <p className="text-[9px] font-semibold uppercase tracking-[0.17em] text-background/60">
                   Confidential by default
