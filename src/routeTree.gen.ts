@@ -85,7 +85,10 @@ import { Route as MemberServicesRouteImport } from './routes/member.services'
 import { Route as MemberTableRouteImport } from './routes/member.table'
 import { Route as MembershipCompleteRouteImport } from './routes/membership.complete'
 import { Route as SupplierIndexRouteImport } from './routes/supplier.index'
+import { Route as SupplierAvailabilityRouteImport } from './routes/supplier.availability'
 import { Route as SupplierBookingsRouteImport } from './routes/supplier.bookings'
+import { Route as SupplierMessagesRouteImport } from './routes/supplier.messages'
+import { Route as SupplierProfileRouteImport } from './routes/supplier.profile'
 import { Route as SupplierRequestsRouteImport } from './routes/supplier.requests'
 import { Route as SupplierServicesRouteImport } from './routes/supplier.services'
 import { Route as LovableEmailAuthPreviewRouteImport } from './routes/lovable/email/auth/preview'
@@ -473,9 +476,24 @@ const SupplierIndexRoute = SupplierIndexRouteImport.update({
   path: '/',
   getParentRoute: () => SupplierRoute,
 } as any)
+const SupplierAvailabilityRoute = SupplierAvailabilityRouteImport.update({
+  id: '/availability',
+  path: '/availability',
+  getParentRoute: () => SupplierRoute,
+} as any)
 const SupplierBookingsRoute = SupplierBookingsRouteImport.update({
   id: '/bookings',
   path: '/bookings',
+  getParentRoute: () => SupplierRoute,
+} as any)
+const SupplierMessagesRoute = SupplierMessagesRouteImport.update({
+  id: '/messages',
+  path: '/messages',
+  getParentRoute: () => SupplierRoute,
+} as any)
+const SupplierProfileRoute = SupplierProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
   getParentRoute: () => SupplierRoute,
 } as any)
 const SupplierRequestsRoute = SupplierRequestsRouteImport.update({
@@ -578,7 +596,10 @@ export interface FileRoutesByFullPath {
   '/member/services': typeof MemberServicesRoute
   '/member/table': typeof MemberTableRoute
   '/membership/complete': typeof MembershipCompleteRoute
+  '/supplier/availability': typeof SupplierAvailabilityRoute
   '/supplier/bookings': typeof SupplierBookingsRoute
+  '/supplier/messages': typeof SupplierMessagesRoute
+  '/supplier/profile': typeof SupplierProfileRoute
   '/supplier/requests': typeof SupplierRequestsRoute
   '/supplier/services': typeof SupplierServicesRoute
   '/admin/': typeof AdminIndexRoute
@@ -659,7 +680,10 @@ export interface FileRoutesByTo {
   '/member/services': typeof MemberServicesRoute
   '/member/table': typeof MemberTableRoute
   '/membership/complete': typeof MembershipCompleteRoute
+  '/supplier/availability': typeof SupplierAvailabilityRoute
   '/supplier/bookings': typeof SupplierBookingsRoute
+  '/supplier/messages': typeof SupplierMessagesRoute
+  '/supplier/profile': typeof SupplierProfileRoute
   '/supplier/requests': typeof SupplierRequestsRoute
   '/supplier/services': typeof SupplierServicesRoute
   '/admin': typeof AdminIndexRoute
@@ -744,7 +768,10 @@ export interface FileRoutesById {
   '/member/services': typeof MemberServicesRoute
   '/member/table': typeof MemberTableRoute
   '/membership/complete': typeof MembershipCompleteRoute
+  '/supplier/availability': typeof SupplierAvailabilityRoute
   '/supplier/bookings': typeof SupplierBookingsRoute
+  '/supplier/messages': typeof SupplierMessagesRoute
+  '/supplier/profile': typeof SupplierProfileRoute
   '/supplier/requests': typeof SupplierRequestsRoute
   '/supplier/services': typeof SupplierServicesRoute
   '/admin/': typeof AdminIndexRoute
@@ -830,7 +857,10 @@ export interface FileRouteTypes {
     | '/member/services'
     | '/member/table'
     | '/membership/complete'
+    | '/supplier/availability'
     | '/supplier/bookings'
+    | '/supplier/messages'
+    | '/supplier/profile'
     | '/supplier/requests'
     | '/supplier/services'
     | '/admin/'
@@ -911,7 +941,10 @@ export interface FileRouteTypes {
     | '/member/services'
     | '/member/table'
     | '/membership/complete'
+    | '/supplier/availability'
     | '/supplier/bookings'
+    | '/supplier/messages'
+    | '/supplier/profile'
     | '/supplier/requests'
     | '/supplier/services'
     | '/admin'
@@ -995,7 +1028,10 @@ export interface FileRouteTypes {
     | '/member/services'
     | '/member/table'
     | '/membership/complete'
+    | '/supplier/availability'
     | '/supplier/bookings'
+    | '/supplier/messages'
+    | '/supplier/profile'
     | '/supplier/requests'
     | '/supplier/services'
     | '/admin/'
@@ -1581,11 +1617,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SupplierIndexRouteImport
       parentRoute: typeof SupplierRoute
     }
+    '/supplier/availability': {
+      id: '/supplier/availability'
+      path: '/availability'
+      fullPath: '/supplier/availability'
+      preLoaderRoute: typeof SupplierAvailabilityRouteImport
+      parentRoute: typeof SupplierRoute
+    }
     '/supplier/bookings': {
       id: '/supplier/bookings'
       path: '/bookings'
       fullPath: '/supplier/bookings'
       preLoaderRoute: typeof SupplierBookingsRouteImport
+      parentRoute: typeof SupplierRoute
+    }
+    '/supplier/messages': {
+      id: '/supplier/messages'
+      path: '/messages'
+      fullPath: '/supplier/messages'
+      preLoaderRoute: typeof SupplierMessagesRouteImport
+      parentRoute: typeof SupplierRoute
+    }
+    '/supplier/profile': {
+      id: '/supplier/profile'
+      path: '/profile'
+      fullPath: '/supplier/profile'
+      preLoaderRoute: typeof SupplierProfileRouteImport
       parentRoute: typeof SupplierRoute
     }
     '/supplier/requests': {
@@ -1736,14 +1793,20 @@ const MembershipRouteWithChildren = MembershipRoute._addFileChildren(
 )
 
 interface SupplierRouteChildren {
+  SupplierAvailabilityRoute: typeof SupplierAvailabilityRoute
   SupplierBookingsRoute: typeof SupplierBookingsRoute
+  SupplierMessagesRoute: typeof SupplierMessagesRoute
+  SupplierProfileRoute: typeof SupplierProfileRoute
   SupplierRequestsRoute: typeof SupplierRequestsRoute
   SupplierServicesRoute: typeof SupplierServicesRoute
   SupplierIndexRoute: typeof SupplierIndexRoute
 }
 
 const SupplierRouteChildren: SupplierRouteChildren = {
+  SupplierAvailabilityRoute: SupplierAvailabilityRoute,
   SupplierBookingsRoute: SupplierBookingsRoute,
+  SupplierMessagesRoute: SupplierMessagesRoute,
+  SupplierProfileRoute: SupplierProfileRoute,
   SupplierRequestsRoute: SupplierRequestsRoute,
   SupplierServicesRoute: SupplierServicesRoute,
   SupplierIndexRoute: SupplierIndexRoute,
