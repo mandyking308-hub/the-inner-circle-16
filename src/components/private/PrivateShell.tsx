@@ -41,6 +41,7 @@ const memberGroups = [
       { to: "/member/network", label: "Community", icon: Users },
       { to: "/member/family", label: "Family", icon: Landmark },
       { to: "/member/messages", label: "Messages", icon: Inbox },
+      { to: "/member/knowledge", label: "Knowledge", icon: BookOpen },
     ],
   },
   {
