@@ -279,7 +279,7 @@ function MembershipPage() {
 
             <div id="enrol">
               <div className="border border-foreground/12 bg-[#171716] p-8 text-white md:p-12">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#d8b36c]">Private enrolment</p>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#d8b36c]">Individual membership · private enrolment</p>
                 <h3 className="mt-5 font-display text-4xl leading-[1.04] md:text-5xl">Take your seat.</h3>
                 <p className="mt-6 max-w-md text-sm leading-7 text-white/60">
                   Three details, then a secure hosted checkout handled entirely by our payment partner. Montvelle never
