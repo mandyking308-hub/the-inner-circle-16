@@ -79,6 +79,19 @@ function MembershipPage() {
     setSubmitting(true);
     const form = new FormData(event.currentTarget);
 
+    const acceptedTerms = form.get("acceptedTerms") === "on";
+    const acknowledgedAdmissionChecks = form.get("acknowledgedAdmissionChecks") === "on";
+    const requestedImmediateService = form.get("requestedImmediateService") === "on";
+
+    if (!acceptedTerms || !acknowledgedAdmissionChecks) {
+      setError("Please confirm both acceptance statements before continuing to checkout.");
+      setSubmitting(false);
+      return;
+    }
+
+    // PREVIEW EVIDENCE ONLY — mirrored server-side once production auth is live.
+    const acceptance = recordCheckoutAcceptance(String(form.get("email") ?? "").trim() || null);
+
     try {
       const result = await createMembershipCheckoutFn({
         data: {
@@ -87,8 +100,11 @@ function MembershipPage() {
           ...(String(form.get("country") ?? "").trim()
             ? { country: String(form.get("country") ?? "").trim() }
             : {}),
-          acceptedTerms: true,
-          requestedImmediateService: true,
+          acceptedTerms: true as const,
+          acknowledgedAdmissionChecks: true as const,
+          requestedImmediateService,
+          legalVersionBundle: acceptance.legalVersionBundle,
+          acceptedAt: acceptance.timestamp,
         },
       });
       window.location.assign(result.checkoutUrl);
