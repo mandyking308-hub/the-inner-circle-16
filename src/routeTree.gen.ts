@@ -30,11 +30,14 @@ import { Route as LegalRouteImport } from './routes/legal'
 import { Route as MemberRouteImport } from './routes/member'
 import { Route as MembershipRouteImport } from './routes/membership'
 import { Route as MembershipAgreementRouteImport } from './routes/membership-agreement'
+import { Route as MontvelleWorldRouteImport } from './routes/montvelle-world'
 import { Route as NextGenRouteImport } from './routes/next-gen'
 import { Route as PartnerApplicationRouteImport } from './routes/partner-application'
 import { Route as PartnersRouteImport } from './routes/partners'
 import { Route as PrinciplesRouteImport } from './routes/principles'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as SupplierRouteImport } from './routes/supplier'
+import { Route as SupplierPortalRouteImport } from './routes/supplier-portal'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as TheTableRouteImport } from './routes/the-table'
 import { Route as WorldRouteImport } from './routes/world'
@@ -59,6 +62,7 @@ import { Route as JournalSlugRouteImport } from './routes/journal.$slug'
 import { Route as MemberIndexRouteImport } from './routes/member.index'
 import { Route as MemberAlumniRouteImport } from './routes/member.alumni'
 import { Route as MemberAskOfferRouteImport } from './routes/member.ask-offer'
+import { Route as MemberBookingsRouteImport } from './routes/member.bookings'
 import { Route as MemberCommunityRouteImport } from './routes/member.community'
 import { Route as MemberConciergeRouteImport } from './routes/member.concierge'
 import { Route as MemberControlRoomRouteImport } from './routes/member.control-room'
@@ -70,13 +74,20 @@ import { Route as MemberImpactRouteImport } from './routes/member.impact'
 import { Route as MemberIntroductionsRouteImport } from './routes/member.introductions'
 import { Route as MemberKnowledgeRouteImport } from './routes/member.knowledge'
 import { Route as MemberLearningRouteImport } from './routes/member.learning'
+import { Route as MemberMessagesRouteImport } from './routes/member.messages'
 import { Route as MemberNetworkRouteImport } from './routes/member.network'
 import { Route as MemberNextGenRouteImport } from './routes/member.next-gen'
 import { Route as MemberPartnersRouteImport } from './routes/member.partners'
+import { Route as MemberPreferencesRouteImport } from './routes/member.preferences'
 import { Route as MemberProfileRouteImport } from './routes/member.profile'
 import { Route as MemberProgrammeRouteImport } from './routes/member.programme'
+import { Route as MemberServicesRouteImport } from './routes/member.services'
 import { Route as MemberTableRouteImport } from './routes/member.table'
 import { Route as MembershipCompleteRouteImport } from './routes/membership.complete'
+import { Route as SupplierIndexRouteImport } from './routes/supplier.index'
+import { Route as SupplierBookingsRouteImport } from './routes/supplier.bookings'
+import { Route as SupplierRequestsRouteImport } from './routes/supplier.requests'
+import { Route as SupplierServicesRouteImport } from './routes/supplier.services'
 import { Route as LovableEmailAuthPreviewRouteImport } from './routes/lovable/email/auth/preview'
 import { Route as LovableEmailAuthWebhookRouteImport } from './routes/lovable/email/auth/webhook'
 import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
@@ -186,6 +197,11 @@ const MembershipAgreementRoute = MembershipAgreementRouteImport.update({
   path: '/membership-agreement',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MontvelleWorldRoute = MontvelleWorldRouteImport.update({
+  id: '/montvelle-world',
+  path: '/montvelle-world',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const NextGenRoute = NextGenRouteImport.update({
   id: '/next-gen',
   path: '/next-gen',
@@ -209,6 +225,16 @@ const PrinciplesRoute = PrinciplesRouteImport.update({
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SupplierRoute = SupplierRouteImport.update({
+  id: '/supplier',
+  path: '/supplier',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SupplierPortalRoute = SupplierPortalRouteImport.update({
+  id: '/supplier-portal',
+  path: '/supplier-portal',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TermsRoute = TermsRouteImport.update({
@@ -331,6 +357,11 @@ const MemberAskOfferRoute = MemberAskOfferRouteImport.update({
   path: '/ask-offer',
   getParentRoute: () => MemberRoute,
 } as any)
+const MemberBookingsRoute = MemberBookingsRouteImport.update({
+  id: '/bookings',
+  path: '/bookings',
+  getParentRoute: () => MemberRoute,
+} as any)
 const MemberCommunityRoute = MemberCommunityRouteImport.update({
   id: '/community',
   path: '/community',
@@ -387,6 +418,11 @@ const MemberLearningRoute = MemberLearningRouteImport.update({
   path: '/learning',
   getParentRoute: () => MemberRoute,
 } as any)
+const MemberMessagesRoute = MemberMessagesRouteImport.update({
+  id: '/messages',
+  path: '/messages',
+  getParentRoute: () => MemberRoute,
+} as any)
 const MemberNetworkRoute = MemberNetworkRouteImport.update({
   id: '/network',
   path: '/network',
@@ -402,6 +438,11 @@ const MemberPartnersRoute = MemberPartnersRouteImport.update({
   path: '/partners',
   getParentRoute: () => MemberRoute,
 } as any)
+const MemberPreferencesRoute = MemberPreferencesRouteImport.update({
+  id: '/preferences',
+  path: '/preferences',
+  getParentRoute: () => MemberRoute,
+} as any)
 const MemberProfileRoute = MemberProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
@@ -410,6 +451,11 @@ const MemberProfileRoute = MemberProfileRouteImport.update({
 const MemberProgrammeRoute = MemberProgrammeRouteImport.update({
   id: '/programme',
   path: '/programme',
+  getParentRoute: () => MemberRoute,
+} as any)
+const MemberServicesRoute = MemberServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
   getParentRoute: () => MemberRoute,
 } as any)
 const MemberTableRoute = MemberTableRouteImport.update({
@@ -421,6 +467,26 @@ const MembershipCompleteRoute = MembershipCompleteRouteImport.update({
   id: '/complete',
   path: '/complete',
   getParentRoute: () => MembershipRoute,
+} as any)
+const SupplierIndexRoute = SupplierIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => SupplierRoute,
+} as any)
+const SupplierBookingsRoute = SupplierBookingsRouteImport.update({
+  id: '/bookings',
+  path: '/bookings',
+  getParentRoute: () => SupplierRoute,
+} as any)
+const SupplierRequestsRoute = SupplierRequestsRouteImport.update({
+  id: '/requests',
+  path: '/requests',
+  getParentRoute: () => SupplierRoute,
+} as any)
+const SupplierServicesRoute = SupplierServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => SupplierRoute,
 } as any)
 const LovableEmailAuthPreviewRoute = LovableEmailAuthPreviewRouteImport.update({
   id: '/lovable/email/auth/preview',
@@ -461,11 +527,14 @@ export interface FileRoutesByFullPath {
   '/member': typeof MemberRouteWithChildren
   '/membership': typeof MembershipRouteWithChildren
   '/membership-agreement': typeof MembershipAgreementRoute
+  '/montvelle-world': typeof MontvelleWorldRoute
   '/next-gen': typeof NextGenRoute
   '/partner-application': typeof PartnerApplicationRoute
   '/partners': typeof PartnersRoute
   '/principles': typeof PrinciplesRoute
   '/privacy': typeof PrivacyRoute
+  '/supplier': typeof SupplierRouteWithChildren
+  '/supplier-portal': typeof SupplierPortalRoute
   '/terms': typeof TermsRoute
   '/the-table': typeof TheTableRoute
   '/world': typeof WorldRoute
@@ -487,6 +556,7 @@ export interface FileRoutesByFullPath {
   '/journal/$slug': typeof JournalSlugRoute
   '/member/alumni': typeof MemberAlumniRoute
   '/member/ask-offer': typeof MemberAskOfferRoute
+  '/member/bookings': typeof MemberBookingsRoute
   '/member/community': typeof MemberCommunityRoute
   '/member/concierge': typeof MemberConciergeRoute
   '/member/control-room': typeof MemberControlRoomRoute
@@ -498,16 +568,23 @@ export interface FileRoutesByFullPath {
   '/member/introductions': typeof MemberIntroductionsRoute
   '/member/knowledge': typeof MemberKnowledgeRoute
   '/member/learning': typeof MemberLearningRoute
+  '/member/messages': typeof MemberMessagesRoute
   '/member/network': typeof MemberNetworkRoute
   '/member/next-gen': typeof MemberNextGenRoute
   '/member/partners': typeof MemberPartnersRoute
+  '/member/preferences': typeof MemberPreferencesRoute
   '/member/profile': typeof MemberProfileRoute
   '/member/programme': typeof MemberProgrammeRoute
+  '/member/services': typeof MemberServicesRoute
   '/member/table': typeof MemberTableRoute
   '/membership/complete': typeof MembershipCompleteRoute
+  '/supplier/bookings': typeof SupplierBookingsRoute
+  '/supplier/requests': typeof SupplierRequestsRoute
+  '/supplier/services': typeof SupplierServicesRoute
   '/admin/': typeof AdminIndexRoute
   '/journal/': typeof JournalIndexRoute
   '/member/': typeof MemberIndexRoute
+  '/supplier/': typeof SupplierIndexRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -532,11 +609,13 @@ export interface FileRoutesByTo {
   '/legal': typeof LegalRoute
   '/membership': typeof MembershipRouteWithChildren
   '/membership-agreement': typeof MembershipAgreementRoute
+  '/montvelle-world': typeof MontvelleWorldRoute
   '/next-gen': typeof NextGenRoute
   '/partner-application': typeof PartnerApplicationRoute
   '/partners': typeof PartnersRoute
   '/principles': typeof PrinciplesRoute
   '/privacy': typeof PrivacyRoute
+  '/supplier-portal': typeof SupplierPortalRoute
   '/terms': typeof TermsRoute
   '/the-table': typeof TheTableRoute
   '/world': typeof WorldRoute
@@ -558,6 +637,7 @@ export interface FileRoutesByTo {
   '/journal/$slug': typeof JournalSlugRoute
   '/member/alumni': typeof MemberAlumniRoute
   '/member/ask-offer': typeof MemberAskOfferRoute
+  '/member/bookings': typeof MemberBookingsRoute
   '/member/community': typeof MemberCommunityRoute
   '/member/concierge': typeof MemberConciergeRoute
   '/member/control-room': typeof MemberControlRoomRoute
@@ -569,16 +649,23 @@ export interface FileRoutesByTo {
   '/member/introductions': typeof MemberIntroductionsRoute
   '/member/knowledge': typeof MemberKnowledgeRoute
   '/member/learning': typeof MemberLearningRoute
+  '/member/messages': typeof MemberMessagesRoute
   '/member/network': typeof MemberNetworkRoute
   '/member/next-gen': typeof MemberNextGenRoute
   '/member/partners': typeof MemberPartnersRoute
+  '/member/preferences': typeof MemberPreferencesRoute
   '/member/profile': typeof MemberProfileRoute
   '/member/programme': typeof MemberProgrammeRoute
+  '/member/services': typeof MemberServicesRoute
   '/member/table': typeof MemberTableRoute
   '/membership/complete': typeof MembershipCompleteRoute
+  '/supplier/bookings': typeof SupplierBookingsRoute
+  '/supplier/requests': typeof SupplierRequestsRoute
+  '/supplier/services': typeof SupplierServicesRoute
   '/admin': typeof AdminIndexRoute
   '/journal': typeof JournalIndexRoute
   '/member': typeof MemberIndexRoute
+  '/supplier': typeof SupplierIndexRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -606,11 +693,14 @@ export interface FileRoutesById {
   '/member': typeof MemberRouteWithChildren
   '/membership': typeof MembershipRouteWithChildren
   '/membership-agreement': typeof MembershipAgreementRoute
+  '/montvelle-world': typeof MontvelleWorldRoute
   '/next-gen': typeof NextGenRoute
   '/partner-application': typeof PartnerApplicationRoute
   '/partners': typeof PartnersRoute
   '/principles': typeof PrinciplesRoute
   '/privacy': typeof PrivacyRoute
+  '/supplier': typeof SupplierRouteWithChildren
+  '/supplier-portal': typeof SupplierPortalRoute
   '/terms': typeof TermsRoute
   '/the-table': typeof TheTableRoute
   '/world': typeof WorldRoute
@@ -632,6 +722,7 @@ export interface FileRoutesById {
   '/journal/$slug': typeof JournalSlugRoute
   '/member/alumni': typeof MemberAlumniRoute
   '/member/ask-offer': typeof MemberAskOfferRoute
+  '/member/bookings': typeof MemberBookingsRoute
   '/member/community': typeof MemberCommunityRoute
   '/member/concierge': typeof MemberConciergeRoute
   '/member/control-room': typeof MemberControlRoomRoute
@@ -643,16 +734,23 @@ export interface FileRoutesById {
   '/member/introductions': typeof MemberIntroductionsRoute
   '/member/knowledge': typeof MemberKnowledgeRoute
   '/member/learning': typeof MemberLearningRoute
+  '/member/messages': typeof MemberMessagesRoute
   '/member/network': typeof MemberNetworkRoute
   '/member/next-gen': typeof MemberNextGenRoute
   '/member/partners': typeof MemberPartnersRoute
+  '/member/preferences': typeof MemberPreferencesRoute
   '/member/profile': typeof MemberProfileRoute
   '/member/programme': typeof MemberProgrammeRoute
+  '/member/services': typeof MemberServicesRoute
   '/member/table': typeof MemberTableRoute
   '/membership/complete': typeof MembershipCompleteRoute
+  '/supplier/bookings': typeof SupplierBookingsRoute
+  '/supplier/requests': typeof SupplierRequestsRoute
+  '/supplier/services': typeof SupplierServicesRoute
   '/admin/': typeof AdminIndexRoute
   '/journal/': typeof JournalIndexRoute
   '/member/': typeof MemberIndexRoute
+  '/supplier/': typeof SupplierIndexRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -681,11 +779,14 @@ export interface FileRouteTypes {
     | '/member'
     | '/membership'
     | '/membership-agreement'
+    | '/montvelle-world'
     | '/next-gen'
     | '/partner-application'
     | '/partners'
     | '/principles'
     | '/privacy'
+    | '/supplier'
+    | '/supplier-portal'
     | '/terms'
     | '/the-table'
     | '/world'
@@ -707,6 +808,7 @@ export interface FileRouteTypes {
     | '/journal/$slug'
     | '/member/alumni'
     | '/member/ask-offer'
+    | '/member/bookings'
     | '/member/community'
     | '/member/concierge'
     | '/member/control-room'
@@ -718,16 +820,23 @@ export interface FileRouteTypes {
     | '/member/introductions'
     | '/member/knowledge'
     | '/member/learning'
+    | '/member/messages'
     | '/member/network'
     | '/member/next-gen'
     | '/member/partners'
+    | '/member/preferences'
     | '/member/profile'
     | '/member/programme'
+    | '/member/services'
     | '/member/table'
     | '/membership/complete'
+    | '/supplier/bookings'
+    | '/supplier/requests'
+    | '/supplier/services'
     | '/admin/'
     | '/journal/'
     | '/member/'
+    | '/supplier/'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/transactional/preview'
@@ -752,11 +861,13 @@ export interface FileRouteTypes {
     | '/legal'
     | '/membership'
     | '/membership-agreement'
+    | '/montvelle-world'
     | '/next-gen'
     | '/partner-application'
     | '/partners'
     | '/principles'
     | '/privacy'
+    | '/supplier-portal'
     | '/terms'
     | '/the-table'
     | '/world'
@@ -778,6 +889,7 @@ export interface FileRouteTypes {
     | '/journal/$slug'
     | '/member/alumni'
     | '/member/ask-offer'
+    | '/member/bookings'
     | '/member/community'
     | '/member/concierge'
     | '/member/control-room'
@@ -789,16 +901,23 @@ export interface FileRouteTypes {
     | '/member/introductions'
     | '/member/knowledge'
     | '/member/learning'
+    | '/member/messages'
     | '/member/network'
     | '/member/next-gen'
     | '/member/partners'
+    | '/member/preferences'
     | '/member/profile'
     | '/member/programme'
+    | '/member/services'
     | '/member/table'
     | '/membership/complete'
+    | '/supplier/bookings'
+    | '/supplier/requests'
+    | '/supplier/services'
     | '/admin'
     | '/journal'
     | '/member'
+    | '/supplier'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/transactional/preview'
@@ -825,11 +944,14 @@ export interface FileRouteTypes {
     | '/member'
     | '/membership'
     | '/membership-agreement'
+    | '/montvelle-world'
     | '/next-gen'
     | '/partner-application'
     | '/partners'
     | '/principles'
     | '/privacy'
+    | '/supplier'
+    | '/supplier-portal'
     | '/terms'
     | '/the-table'
     | '/world'
@@ -851,6 +973,7 @@ export interface FileRouteTypes {
     | '/journal/$slug'
     | '/member/alumni'
     | '/member/ask-offer'
+    | '/member/bookings'
     | '/member/community'
     | '/member/concierge'
     | '/member/control-room'
@@ -862,16 +985,23 @@ export interface FileRouteTypes {
     | '/member/introductions'
     | '/member/knowledge'
     | '/member/learning'
+    | '/member/messages'
     | '/member/network'
     | '/member/next-gen'
     | '/member/partners'
+    | '/member/preferences'
     | '/member/profile'
     | '/member/programme'
+    | '/member/services'
     | '/member/table'
     | '/membership/complete'
+    | '/supplier/bookings'
+    | '/supplier/requests'
+    | '/supplier/services'
     | '/admin/'
     | '/journal/'
     | '/member/'
+    | '/supplier/'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/transactional/preview'
@@ -899,11 +1029,14 @@ export interface RootRouteChildren {
   MemberRoute: typeof MemberRouteWithChildren
   MembershipRoute: typeof MembershipRouteWithChildren
   MembershipAgreementRoute: typeof MembershipAgreementRoute
+  MontvelleWorldRoute: typeof MontvelleWorldRoute
   NextGenRoute: typeof NextGenRoute
   PartnerApplicationRoute: typeof PartnerApplicationRoute
   PartnersRoute: typeof PartnersRoute
   PrinciplesRoute: typeof PrinciplesRoute
   PrivacyRoute: typeof PrivacyRoute
+  SupplierRoute: typeof SupplierRouteWithChildren
+  SupplierPortalRoute: typeof SupplierPortalRoute
   TermsRoute: typeof TermsRoute
   TheTableRoute: typeof TheTableRoute
   WorldRoute: typeof WorldRoute
@@ -1063,6 +1196,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MembershipAgreementRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/montvelle-world': {
+      id: '/montvelle-world'
+      path: '/montvelle-world'
+      fullPath: '/montvelle-world'
+      preLoaderRoute: typeof MontvelleWorldRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/next-gen': {
       id: '/next-gen'
       path: '/next-gen'
@@ -1096,6 +1236,20 @@ declare module '@tanstack/react-router' {
       path: '/privacy'
       fullPath: '/privacy'
       preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/supplier': {
+      id: '/supplier'
+      path: '/supplier'
+      fullPath: '/supplier'
+      preLoaderRoute: typeof SupplierRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/supplier-portal': {
+      id: '/supplier-portal'
+      path: '/supplier-portal'
+      fullPath: '/supplier-portal'
+      preLoaderRoute: typeof SupplierPortalRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/terms': {
@@ -1266,6 +1420,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MemberAskOfferRouteImport
       parentRoute: typeof MemberRoute
     }
+    '/member/bookings': {
+      id: '/member/bookings'
+      path: '/bookings'
+      fullPath: '/member/bookings'
+      preLoaderRoute: typeof MemberBookingsRouteImport
+      parentRoute: typeof MemberRoute
+    }
     '/member/community': {
       id: '/member/community'
       path: '/community'
@@ -1343,6 +1504,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MemberLearningRouteImport
       parentRoute: typeof MemberRoute
     }
+    '/member/messages': {
+      id: '/member/messages'
+      path: '/messages'
+      fullPath: '/member/messages'
+      preLoaderRoute: typeof MemberMessagesRouteImport
+      parentRoute: typeof MemberRoute
+    }
     '/member/network': {
       id: '/member/network'
       path: '/network'
@@ -1364,6 +1532,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MemberPartnersRouteImport
       parentRoute: typeof MemberRoute
     }
+    '/member/preferences': {
+      id: '/member/preferences'
+      path: '/preferences'
+      fullPath: '/member/preferences'
+      preLoaderRoute: typeof MemberPreferencesRouteImport
+      parentRoute: typeof MemberRoute
+    }
     '/member/profile': {
       id: '/member/profile'
       path: '/profile'
@@ -1376,6 +1551,13 @@ declare module '@tanstack/react-router' {
       path: '/programme'
       fullPath: '/member/programme'
       preLoaderRoute: typeof MemberProgrammeRouteImport
+      parentRoute: typeof MemberRoute
+    }
+    '/member/services': {
+      id: '/member/services'
+      path: '/services'
+      fullPath: '/member/services'
+      preLoaderRoute: typeof MemberServicesRouteImport
       parentRoute: typeof MemberRoute
     }
     '/member/table': {
@@ -1391,6 +1573,34 @@ declare module '@tanstack/react-router' {
       fullPath: '/membership/complete'
       preLoaderRoute: typeof MembershipCompleteRouteImport
       parentRoute: typeof MembershipRoute
+    }
+    '/supplier/': {
+      id: '/supplier/'
+      path: '/'
+      fullPath: '/supplier/'
+      preLoaderRoute: typeof SupplierIndexRouteImport
+      parentRoute: typeof SupplierRoute
+    }
+    '/supplier/bookings': {
+      id: '/supplier/bookings'
+      path: '/bookings'
+      fullPath: '/supplier/bookings'
+      preLoaderRoute: typeof SupplierBookingsRouteImport
+      parentRoute: typeof SupplierRoute
+    }
+    '/supplier/requests': {
+      id: '/supplier/requests'
+      path: '/requests'
+      fullPath: '/supplier/requests'
+      preLoaderRoute: typeof SupplierRequestsRouteImport
+      parentRoute: typeof SupplierRoute
+    }
+    '/supplier/services': {
+      id: '/supplier/services'
+      path: '/services'
+      fullPath: '/supplier/services'
+      preLoaderRoute: typeof SupplierServicesRouteImport
+      parentRoute: typeof SupplierRoute
     }
     '/lovable/email/auth/preview': {
       id: '/lovable/email/auth/preview'
@@ -1459,6 +1669,7 @@ const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 interface MemberRouteChildren {
   MemberAlumniRoute: typeof MemberAlumniRoute
   MemberAskOfferRoute: typeof MemberAskOfferRoute
+  MemberBookingsRoute: typeof MemberBookingsRoute
   MemberCommunityRoute: typeof MemberCommunityRoute
   MemberConciergeRoute: typeof MemberConciergeRoute
   MemberControlRoomRoute: typeof MemberControlRoomRoute
@@ -1470,11 +1681,14 @@ interface MemberRouteChildren {
   MemberIntroductionsRoute: typeof MemberIntroductionsRoute
   MemberKnowledgeRoute: typeof MemberKnowledgeRoute
   MemberLearningRoute: typeof MemberLearningRoute
+  MemberMessagesRoute: typeof MemberMessagesRoute
   MemberNetworkRoute: typeof MemberNetworkRoute
   MemberNextGenRoute: typeof MemberNextGenRoute
   MemberPartnersRoute: typeof MemberPartnersRoute
+  MemberPreferencesRoute: typeof MemberPreferencesRoute
   MemberProfileRoute: typeof MemberProfileRoute
   MemberProgrammeRoute: typeof MemberProgrammeRoute
+  MemberServicesRoute: typeof MemberServicesRoute
   MemberTableRoute: typeof MemberTableRoute
   MemberIndexRoute: typeof MemberIndexRoute
 }
@@ -1482,6 +1696,7 @@ interface MemberRouteChildren {
 const MemberRouteChildren: MemberRouteChildren = {
   MemberAlumniRoute: MemberAlumniRoute,
   MemberAskOfferRoute: MemberAskOfferRoute,
+  MemberBookingsRoute: MemberBookingsRoute,
   MemberCommunityRoute: MemberCommunityRoute,
   MemberConciergeRoute: MemberConciergeRoute,
   MemberControlRoomRoute: MemberControlRoomRoute,
@@ -1493,11 +1708,14 @@ const MemberRouteChildren: MemberRouteChildren = {
   MemberIntroductionsRoute: MemberIntroductionsRoute,
   MemberKnowledgeRoute: MemberKnowledgeRoute,
   MemberLearningRoute: MemberLearningRoute,
+  MemberMessagesRoute: MemberMessagesRoute,
   MemberNetworkRoute: MemberNetworkRoute,
   MemberNextGenRoute: MemberNextGenRoute,
   MemberPartnersRoute: MemberPartnersRoute,
+  MemberPreferencesRoute: MemberPreferencesRoute,
   MemberProfileRoute: MemberProfileRoute,
   MemberProgrammeRoute: MemberProgrammeRoute,
+  MemberServicesRoute: MemberServicesRoute,
   MemberTableRoute: MemberTableRoute,
   MemberIndexRoute: MemberIndexRoute,
 }
@@ -1515,6 +1733,24 @@ const MembershipRouteChildren: MembershipRouteChildren = {
 
 const MembershipRouteWithChildren = MembershipRoute._addFileChildren(
   MembershipRouteChildren,
+)
+
+interface SupplierRouteChildren {
+  SupplierBookingsRoute: typeof SupplierBookingsRoute
+  SupplierRequestsRoute: typeof SupplierRequestsRoute
+  SupplierServicesRoute: typeof SupplierServicesRoute
+  SupplierIndexRoute: typeof SupplierIndexRoute
+}
+
+const SupplierRouteChildren: SupplierRouteChildren = {
+  SupplierBookingsRoute: SupplierBookingsRoute,
+  SupplierRequestsRoute: SupplierRequestsRoute,
+  SupplierServicesRoute: SupplierServicesRoute,
+  SupplierIndexRoute: SupplierIndexRoute,
+}
+
+const SupplierRouteWithChildren = SupplierRoute._addFileChildren(
+  SupplierRouteChildren,
 )
 
 const rootRouteChildren: RootRouteChildren = {
@@ -1539,11 +1775,14 @@ const rootRouteChildren: RootRouteChildren = {
   MemberRoute: MemberRouteWithChildren,
   MembershipRoute: MembershipRouteWithChildren,
   MembershipAgreementRoute: MembershipAgreementRoute,
+  MontvelleWorldRoute: MontvelleWorldRoute,
   NextGenRoute: NextGenRoute,
   PartnerApplicationRoute: PartnerApplicationRoute,
   PartnersRoute: PartnersRoute,
   PrinciplesRoute: PrinciplesRoute,
   PrivacyRoute: PrivacyRoute,
+  SupplierRoute: SupplierRouteWithChildren,
+  SupplierPortalRoute: SupplierPortalRoute,
   TermsRoute: TermsRoute,
   TheTableRoute: TheTableRoute,
   WorldRoute: WorldRoute,
