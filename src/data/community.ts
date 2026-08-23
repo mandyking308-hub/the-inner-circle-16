@@ -23,6 +23,8 @@ export type Gathering = {
   status: "Open" | "Approval required" | "Waitlist";
   description: string;
   seats: string;
+  /** Illustrative preview fixture — not confirmed Montvelle inventory. */
+  demo: boolean;
 };
 
 export type AskOffer = {
@@ -47,10 +49,10 @@ export type KnowledgeItem = {
 export const members: Member[] = [
   {
     id: "amelia-hart",
-    name: "Amelia Hart",
-    initials: "AH",
+    name: "DEMO Member A",
+    initials: "A",
     role: "Founder & CEO",
-    organisation: "Hartwell Systems",
+    organisation: "DEMO Technology Enterprise",
     city: "London",
     sector: "Technology",
     expertise: ["AI", "Scaling", "Enterprise sales"],
@@ -61,10 +63,10 @@ export const members: Member[] = [
   },
   {
     id: "daniel-okafor",
-    name: "Daniel Okafor",
-    initials: "DO",
+    name: "DEMO Member B",
+    initials: "B",
     role: "Principal",
-    organisation: "Okafor Family Holdings",
+    organisation: "DEMO Family Enterprise",
     city: "London",
     sector: "Family enterprise",
     expertise: ["Governance", "Property", "Family business"],
@@ -75,10 +77,10 @@ export const members: Member[] = [
   },
   {
     id: "sophia-chen",
-    name: "Sophia Chen",
-    initials: "SC",
+    name: "DEMO Member C",
+    initials: "C",
     role: "Investment Director",
-    organisation: "Northbridge Capital",
+    organisation: "DEMO Investment Firm",
     city: "London",
     sector: "Investment",
     expertise: ["Private markets", "Capital allocation", "Risk"],
@@ -89,10 +91,10 @@ export const members: Member[] = [
   },
   {
     id: "james-whitmore",
-    name: "James Whitmore",
-    initials: "JW",
+    name: "DEMO Member D",
+    initials: "D",
     role: "Managing Partner",
-    organisation: "Whitmore Legal",
+    organisation: "DEMO Legal Practice",
     city: "London",
     sector: "Professional services",
     expertise: ["Succession", "Trusts", "Governance"],
@@ -103,10 +105,10 @@ export const members: Member[] = [
   },
   {
     id: "layla-rahman",
-    name: "Layla Rahman",
-    initials: "LR",
+    name: "DEMO Member E",
+    initials: "E",
     role: "Founder",
-    organisation: "Morrow Health",
+    organisation: "DEMO Health Enterprise",
     city: "London",
     sector: "Health",
     expertise: ["Healthcare", "Operations", "Regulation"],
@@ -117,10 +119,10 @@ export const members: Member[] = [
   },
   {
     id: "marcus-vella",
-    name: "Marcus Vella",
-    initials: "MV",
+    name: "DEMO Member F",
+    initials: "F",
     role: "Chair",
-    organisation: "Vella Group",
+    organisation: "DEMO Consumer Group",
     city: "London",
     sector: "Consumer",
     expertise: ["Boards", "Brand", "M&A"],
@@ -131,10 +133,10 @@ export const members: Member[] = [
   },
   {
     id: "maya-patel",
-    name: "Maya Patel",
-    initials: "MP",
+    name: "DEMO Member G",
+    initials: "G",
     role: "Founder",
-    organisation: "Aster Education",
+    organisation: "DEMO Education Enterprise",
     city: "London",
     sector: "Education",
     expertise: ["Education", "Community", "Product"],
@@ -145,10 +147,10 @@ export const members: Member[] = [
   },
   {
     id: "oliver-reed",
-    name: "Oliver Reed",
-    initials: "OR",
+    name: "DEMO Member H",
+    initials: "H",
     role: "Partner",
-    organisation: "Hawthorn Advisory",
+    organisation: "DEMO Advisory Practice",
     city: "London",
     sector: "Advisory",
     expertise: ["Tax", "Structuring", "International mobility"],
@@ -159,10 +161,10 @@ export const members: Member[] = [
   },
   {
     id: "nina-brooks",
-    name: "Nina Brooks",
-    initials: "NB",
+    name: "DEMO Member I",
+    initials: "I",
     role: "Executive Director",
-    organisation: "Brooks Foundation",
+    organisation: "DEMO Foundation",
     city: "London",
     sector: "Philanthropy",
     expertise: ["Grantmaking", "Impact", "Partnerships"],
@@ -173,10 +175,10 @@ export const members: Member[] = [
   },
   {
     id: "theo-morgan",
-    name: "Theo Morgan",
-    initials: "TM",
+    name: "DEMO Member J",
+    initials: "J",
     role: "Founder",
-    organisation: "Morgan Works",
+    organisation: "DEMO Manufacturing Enterprise",
     city: "Cambridge",
     sector: "Advanced manufacturing",
     expertise: ["Manufacturing", "Export", "Hiring"],
@@ -187,10 +189,10 @@ export const members: Member[] = [
   },
   {
     id: "elena-rossi",
-    name: "Elena Rossi",
-    initials: "ER",
+    name: "DEMO Member K",
+    initials: "K",
     role: "Principal",
-    organisation: "Rossi Family Office",
+    organisation: "DEMO Family Office",
     city: "Milan",
     sector: "Family office",
     expertise: ["Family office", "Hospitality", "Investment"],
@@ -201,10 +203,10 @@ export const members: Member[] = [
   },
   {
     id: "idris-khan",
-    name: "Idris Khan",
-    initials: "IK",
+    name: "DEMO Member L",
+    initials: "L",
     role: "Co-Founder",
-    organisation: "Signal Forge",
+    organisation: "DEMO Security Enterprise",
     city: "London",
     sector: "Technology",
     expertise: ["Cybersecurity", "Data", "Product"],
@@ -226,8 +228,10 @@ export const gatherings: Gathering[] = [
     time: "18:30–21:30",
     location: "Mayfair · venue released on approval",
     status: "Approval required",
-    description: "A confidential working session on succession, management independence and identity after operating leadership.",
+    description:
+      "A confidential working session on succession, management independence and identity after operating leadership.",
     seats: "10 seats · Table members",
+    demo: true,
   },
   {
     id: "ai-salon",
@@ -237,8 +241,10 @@ export const gatherings: Gathering[] = [
     time: "18:00–20:00",
     location: "St James's · venue released on approval",
     status: "Open",
-    description: "Practical discussion on private AI infrastructure, governance, security and where automation genuinely helps.",
+    description:
+      "Practical discussion on private AI infrastructure, governance, security and where automation genuinely helps.",
     seats: "24 seats",
+    demo: true,
   },
   {
     id: "breakfast-governance",
@@ -248,8 +254,10 @@ export const gatherings: Gathering[] = [
     time: "08:00–09:45",
     location: "Green Park · venue released on approval",
     status: "Open",
-    description: "A small breakfast for founders moving from personal decision-making to boards, family councils and documented principles.",
+    description:
+      "A small breakfast for founders moving from personal decision-making to boards, family councils and documented principles.",
     seats: "12 seats",
+    demo: true,
   },
   {
     id: "impact-visit",
@@ -259,8 +267,10 @@ export const gatherings: Gathering[] = [
     time: "16:00–19:00",
     location: "Central London · details after confirmation",
     status: "Waitlist",
-    description: "Meet an operating charity team and examine where expertise, introductions and unrestricted capital can change delivery.",
+    description:
+      "Meet an operating charity team and examine where expertise, introductions and unrestricted capital can change delivery.",
     seats: "16 seats",
+    demo: true,
   },
 ];
 
@@ -269,7 +279,7 @@ export const asksOffers: AskOffer[] = [
     id: "ao-1",
     type: "Need",
     title: "Independent chair with regulated-services experience",
-    author: "Layla Rahman",
+    author: "DEMO Member E",
     category: "Governance",
     urgency: "This month",
     body: "Looking for someone who has chaired a founder-led regulated business through the £20m–£50m revenue stage. Warm experience only, please.",
@@ -278,7 +288,7 @@ export const asksOffers: AskOffer[] = [
     id: "ao-2",
     type: "Offer",
     title: "Happy to review a first family constitution",
-    author: "James Whitmore",
+    author: "DEMO Member D",
     category: "Succession",
     urgency: "Whenever useful",
     body: "I can spend an hour with one member this month pressure-testing the questions a first family constitution should answer before lawyers draft it.",
@@ -287,7 +297,7 @@ export const asksOffers: AskOffer[] = [
     id: "ao-3",
     type: "Introduction",
     title: "Operator who has opened healthcare services in the Gulf",
-    author: "Amelia Hart",
+    author: "DEMO Member A",
     category: "International expansion",
     urgency: "This month",
     body: "Seeking a founder or operator who has personally navigated licensing, hiring and launch in UAE healthcare — not a sales intermediary.",
@@ -296,7 +306,7 @@ export const asksOffers: AskOffer[] = [
     id: "ao-4",
     type: "Offer",
     title: "Cybersecurity tabletop for a family office",
-    author: "Idris Khan",
+    author: "DEMO Member L",
     category: "Security",
     urgency: "This week",
     body: "I have one spare workshop slot and can run a 60-minute simulated incident for a member family office to expose weak handoffs and permissions.",
@@ -308,7 +318,8 @@ export const knowledge: KnowledgeItem[] = [
     id: "k-1",
     category: "Governance",
     title: "The minimum viable family governance system",
-    summary: "The decisions worth documenting before complexity, liquidity or conflict makes them urgent.",
+    summary:
+      "The decisions worth documenting before complexity, liquidity or conflict makes them urgent.",
     format: "Briefing",
     readTime: "8 min",
   },
@@ -316,7 +327,8 @@ export const knowledge: KnowledgeItem[] = [
     id: "k-2",
     category: "Next Generation",
     title: "Education by exposure, not inheritance by surprise",
-    summary: "A staged framework for teaching ownership, responsibility and judgement without making money the centre of childhood.",
+    summary:
+      "A staged framework for teaching ownership, responsibility and judgement without making money the centre of childhood.",
     format: "Guide",
     readTime: "12 min",
   },
@@ -324,7 +336,8 @@ export const knowledge: KnowledgeItem[] = [
     id: "k-3",
     category: "AI & Technology",
     title: "Private AI: what family enterprises should keep inside the walls",
-    summary: "A practical map of data, model and workflow decisions for families adopting AI without spraying sensitive information across tools.",
+    summary:
+      "A practical map of data, model and workflow decisions for families adopting AI without spraying sensitive information across tools.",
     format: "Research note",
     readTime: "10 min",
   },
@@ -332,7 +345,8 @@ export const knowledge: KnowledgeItem[] = [
     id: "k-4",
     category: "Philanthropy",
     title: "When philanthropy becomes family infrastructure",
-    summary: "How shared purpose can create useful work across generations while improving charitable decision-making.",
+    summary:
+      "How shared purpose can create useful work across generations while improving charitable decision-making.",
     format: "Case discussion",
     readTime: "7 min",
   },
@@ -340,7 +354,8 @@ export const knowledge: KnowledgeItem[] = [
     id: "k-5",
     category: "Risk",
     title: "The family risk register nobody wants to write",
-    summary: "Key-person dependency, cyber exposure, incapacity, reputation, adviser concentration and undocumented control.",
+    summary:
+      "Key-person dependency, cyber exposure, incapacity, reputation, adviser concentration and undocumented control.",
     format: "Checklist",
     readTime: "6 min",
   },
@@ -348,7 +363,8 @@ export const knowledge: KnowledgeItem[] = [
     id: "k-6",
     category: "Succession",
     title: "Founder, owner, chair: three jobs that should eventually separate",
-    summary: "A transition map for leaders who need the enterprise to work when they are no longer in every decision.",
+    summary:
+      "A transition map for leaders who need the enterprise to work when they are no longer in every decision.",
     format: "Masterclass notes",
     readTime: "9 min",
   },
@@ -370,19 +386,22 @@ export const impactProjects = [
     title: "Health navigation pilot",
     theme: "Health inequalities",
     need: "Operations expertise, introductions and unrestricted pilot support",
-    description: "A community health-access pilot testing practical navigation support for people struggling to move through fragmented services.",
+    description:
+      "A community health-access pilot testing practical navigation support for people struggling to move through fragmented services.",
   },
   {
     title: "Young builders studio",
     theme: "Education",
     need: "Mentors, workspace and technology partners",
-    description: "A small programme giving young people structured exposure to entrepreneurship, technology, money and social impact.",
+    description:
+      "A small programme giving young people structured exposure to entrepreneurship, technology, money and social impact.",
   },
   {
     title: "Founder skills bank",
     theme: "Philanthropy",
     need: "Volunteer expertise",
-    description: "Match experienced operators with charities that need short, high-value interventions rather than another committee.",
+    description:
+      "Match experienced operators with charities that need short, high-value interventions rather than another committee.",
   },
 ];
 

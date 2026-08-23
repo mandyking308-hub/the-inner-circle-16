@@ -69,7 +69,9 @@ function MemberHome() {
     };
   }, []);
 
-  const firstName = summary.memberName.startsWith("DEMO") ? "there" : summary.memberName.split(" ")[0] || "there";
+  const firstName = summary.memberName.startsWith("DEMO")
+    ? "there"
+    : summary.memberName.split(" ")[0] || "there";
   const open = openMemberRequests(requests);
   const replies = needsReplyCount(threads);
   const readyForYou = open.filter((request) => request.status === "Ready for you");
@@ -238,6 +240,9 @@ function MemberHome() {
               ))
             )}
           </ul>
+          <p className="mt-3 text-[10px] uppercase tracking-[0.14em] text-muted-foreground/70">
+            Preview · diary and invitations shown here are illustrative
+          </p>
           <Link
             to="/member/events"
             className="mt-6 inline-flex items-center gap-2 text-sm font-semibold"

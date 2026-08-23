@@ -1,4 +1,8 @@
-import { decisionRooms, type DecisionRoomTemplate, type DecisionWorkItem } from "@/data/decisionRooms";
+import {
+  decisionRooms,
+  type DecisionRoomTemplate,
+  type DecisionWorkItem,
+} from "@/data/decisionRooms";
 import { gatherings } from "@/data/community";
 
 export type PrivateOfficeSummary = {
@@ -15,7 +19,12 @@ export type PrivateOfficeSummary = {
   nextGatheringTitle: string;
   nextGatheringDate: string;
   nextGatheringResponse: string;
-  attention: Array<{ label: string; detail: string; to: string; urgency: "Now" | "Soon" | "Keep moving" }>;
+  attention: Array<{
+    label: string;
+    detail: string;
+    to: string;
+    urgency: "Now" | "Soon" | "Keep moving";
+  }>;
 };
 
 type MemberProfile = { name?: string; city?: string };
@@ -27,21 +36,44 @@ type DecisionState = {
   deadlines?: Record<string, string>;
 };
 type ConciergeCase = { status?: string; nextStep?: string };
-type LearningState = { questStatus?: Record<string, string>; mentorRequest?: string; termGoal?: string };
+type LearningState = {
+  questStatus?: Record<string, string>;
+  mentorRequest?: string;
+  termGoal?: string;
+};
 
-const safeParse = <T,>(value: string | null, fallback: T): T => {
+const safeParse = <T>(value: string | null, fallback: T): T => {
   if (!value) return fallback;
-  try { return JSON.parse(value) as T; } catch { return fallback; }
+  try {
+    return JSON.parse(value) as T;
+  } catch {
+    return fallback;
+  }
 };
 
 const todayIso = () => new Date().toISOString().slice(0, 10);
 
 export function readPrivateOfficeSummary(): PrivateOfficeSummary {
-  const profile = safeParse<MemberProfile>(window.localStorage.getItem("project-table:member-profile:v2"), {});
-  const decision = safeParse<DecisionState>(window.localStorage.getItem("project-table:decision-room:v2"), {});
-  const concierge = safeParse<ConciergeCase[]>(window.localStorage.getItem("project-table:concierge-cases:v2"), []);
-  const learning = safeParse<LearningState>(window.localStorage.getItem("project-table:learning-studio:v2"), {});
-  const eventResponses = safeParse<Record<string, { response?: string }>>(window.localStorage.getItem("project-table:event-responses:v2"), {});
+  const profile = safeParse<MemberProfile>(
+    window.localStorage.getItem("project-table:member-profile:v2"),
+    {},
+  );
+  const decision = safeParse<DecisionState>(
+    window.localStorage.getItem("project-table:decision-room:v2"),
+    {},
+  );
+  const concierge = safeParse<ConciergeCase[]>(
+    window.localStorage.getItem("project-table:concierge-cases:v2"),
+    [],
+  );
+  const learning = safeParse<LearningState>(
+    window.localStorage.getItem("project-table:learning-studio:v2"),
+    {},
+  );
+  const eventResponses = safeParse<Record<string, { response?: string }>>(
+    window.localStorage.getItem("project-table:event-responses:v2"),
+    {},
+  );
 
   const allRooms = [...decisionRooms, ...(decision.customRooms ?? [])];
   const activeRoom = allRooms.find((room) => room.id === decision.activeId) ?? allRooms[0]!;
@@ -49,7 +81,9 @@ export function readPrivateOfficeSummary(): PrivateOfficeSummary {
   const activeItems = [...activeRoom.items, ...extraItems];
   const complete = decision.complete ?? { "move-brief": true };
   const completed = activeItems.filter((item) => complete[item.id]).length;
-  const decisionProgress = activeItems.length ? Math.round((completed / activeItems.length) * 100) : 0;
+  const decisionProgress = activeItems.length
+    ? Math.round((completed / activeItems.length) * 100)
+    : 0;
   const nextDecision = activeItems.find((item) => !complete[item.id]);
   const deadlines = decision.deadlines ?? {};
   const overdueDecisionActions = activeItems.filter((item) => {
@@ -58,35 +92,79 @@ export function readPrivateOfficeSummary(): PrivateOfficeSummary {
     return Boolean(due) && due! < todayIso();
   }).length;
 
-  const cases = concierge.length ? concierge : [{ status: "Sourcing", nextStep: "Review the checked options and decide whether you want Montvelle to arrange an introduction." }];
+  const cases = concierge.length
+    ? concierge
+    : [
+        {
+          status: "Sourcing",
+          nextStep:
+            "Review the checked options and decide whether you want Montvelle to arrange an introduction.",
+        },
+      ];
   const openCases = cases.filter((item) => item.status !== "Complete");
   const nextCase = openCases[0];
 
   const questStatus = learning.questStatus ?? {};
   const questEntries = Object.values(questStatus);
   const completedQuests = questEntries.filter((status) => status === "Complete").length;
-  const learningProgress = questEntries.length ? `${completedQuests}/${questEntries.length} quests complete` : "Learning plan ready";
+  const learningProgress = questEntries.length
+    ? `${completedQuests}/${questEntries.length} quests complete`
+    : "Learning plan ready";
 
   const nextGathering = gatherings[0]!;
   const nextGatheringResponse = eventResponses[nextGathering.id]?.response || "Response needed";
 
   const attention: PrivateOfficeSummary["attention"] = [];
-  if (overdueDecisionActions > 0) attention.push({ label: `${overdueDecisionActions} overdue decision action${overdueDecisionActions > 1 ? "s" : ""}`, detail: nextDecision?.title ?? "Open the Decision Room and reset the sequence.", to: "/member/control-room", urgency: "Now" });
-  if (nextCase) attention.push({ label: "Concierge has a live next action", detail: String(nextCase.nextStep ?? "Open the case and keep it moving."), to: "/member/concierge", urgency: "Soon" });
-  if (!eventResponses[nextGathering.id]?.response) attention.push({ label: "Private invitation awaiting response", detail: `${nextGathering.title} · ${nextGathering.date}`, to: "/member/events", urgency: "Soon" });
-  if (learning.mentorRequest?.trim()) attention.push({ label: "Learning exposure request is ready", detail: String(learning.mentorRequest), to: "/member/programme", urgency: "Keep moving" });
-  if (!attention.length) attention.push({ label: "Nothing urgent", detail: "Your private office is quiet. Keep the active Decision Room moving.", to: "/member/control-room", urgency: "Keep moving" });
+  if (overdueDecisionActions > 0)
+    attention.push({
+      label: `${overdueDecisionActions} overdue decision action${overdueDecisionActions > 1 ? "s" : ""}`,
+      detail: nextDecision?.title ?? "Open the Decision Room and reset the sequence.",
+      to: "/member/control-room",
+      urgency: "Now",
+    });
+  if (nextCase)
+    attention.push({
+      label: "Concierge has a live next action",
+      detail: String(nextCase.nextStep ?? "Open the case and keep it moving."),
+      to: "/member/concierge",
+      urgency: "Soon",
+    });
+  if (!eventResponses[nextGathering.id]?.response)
+    attention.push({
+      label: "Private invitation awaiting response",
+      detail: `${nextGathering.title} · ${nextGathering.date}`,
+      to: "/member/events",
+      urgency: "Soon",
+    });
+  if (learning.mentorRequest?.trim())
+    attention.push({
+      label: "Learning exposure request is ready",
+      detail: String(learning.mentorRequest),
+      to: "/member/programme",
+      urgency: "Keep moving",
+    });
+  if (!attention.length)
+    attention.push({
+      label: "Nothing urgent",
+      detail: "Your private office is quiet. Keep the active Decision Room moving.",
+      to: "/member/control-room",
+      urgency: "Keep moving",
+    });
 
   return {
     memberName: String(profile.name ?? "DEMO Member"),
     memberCity: String(profile.city ?? "London"),
     activeDecisionLabel: activeRoom.label,
     decisionProgress,
-    nextDecisionAction: nextDecision?.title ?? (activeItems.length ? "Review the completed room" : "Add the first action"),
+    nextDecisionAction:
+      nextDecision?.title ??
+      (activeItems.length ? "Review the completed room" : "Add the first action"),
     overdueDecisionActions,
     openConciergeCases: openCases.length,
     conciergeNextAction: String(nextCase?.nextStep ?? "No live concierge action"),
-    learningGoal: String(learning.termGoal ?? "Complete one independent project for a real audience."),
+    learningGoal: String(
+      learning.termGoal ?? "Complete one independent project for a real audience.",
+    ),
     learningProgress,
     nextGatheringTitle: nextGathering.title,
     nextGatheringDate: nextGathering.date,

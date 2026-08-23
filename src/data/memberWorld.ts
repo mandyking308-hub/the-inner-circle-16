@@ -20,7 +20,13 @@ export const bookingStatusLabel: Record<BookingStatus, string> = {
   cancelled: "Cancelled",
 };
 
-export const bookingStatusOrder: BookingStatus[] = ["upcoming", "awaiting", "in_progress", "past", "cancelled"];
+export const bookingStatusOrder: BookingStatus[] = [
+  "upcoming",
+  "awaiting",
+  "in_progress",
+  "past",
+  "cancelled",
+];
 
 export type Booking = {
   id: string;
@@ -102,7 +108,7 @@ export const seedBookings: Booking[] = [
     city: "Paris",
     when: "14 September 2026 · 18:40",
     party: "2 adults, 3 cases",
-    household: "Hart household",
+    household: "DEMO Household",
     sharedContext: ["Arrival time and terminal", "Residence address", "Quiet car preferred"],
     quote: "€290",
     payment: "recorded",
@@ -121,7 +127,7 @@ export const seedBookings: Booking[] = [
     mode: "request",
     city: "Lisbon",
     when: "Requested for 2 October 2026",
-    household: "Hart household",
+    household: "DEMO Household",
     sharedContext: ["Arrival date", "Kitchen list", "Heating and airing preferences"],
     quote: "Quote pending",
     payment: "quote_pending",
@@ -142,7 +148,7 @@ export const seedBookings: Booking[] = [
     city: "London",
     when: "3 September 2026 · 20:00",
     party: "8 guests",
-    household: "Hart household",
+    household: "DEMO Household",
     sharedContext: ["Guest number", "Two dietary requirements", "No photography"],
     quote: "£1,860 estimated",
     payment: "recorded",
@@ -163,7 +169,7 @@ export const seedBookings: Booking[] = [
     city: "London",
     when: "12 July 2026 · 09:30",
     party: "3 guests",
-    household: "Hart household",
+    household: "DEMO Household",
     sharedContext: ["Guest number", "Interest in early modernism"],
     quote: "£1,200",
     payment: "settled",
@@ -182,7 +188,7 @@ export const seedBookings: Booking[] = [
     mode: "request",
     city: "London",
     when: "22 June 2026 · 07:00",
-    household: "Hart household",
+    household: "DEMO Household",
     sharedContext: ["Residence address", "Preferred practitioner"],
     quote: "£260",
     payment: "not_required",
@@ -199,53 +205,90 @@ export const seedThreads: Thread[] = [
     id: "THR-01",
     kind: "booking",
     subject: "Paris · Driver · 14 September · Airport → residence",
-    context: "Ashford Private Drive holds the arrival. Flight monitored; quiet car noted.",
-    participants: ["You", "Ashford Private Drive"],
+    context: "DEMO Arrangement · Option A holds the arrival. Flight monitored; quiet car noted.",
+    participants: ["You", "DEMO Arrangement · Option A"],
     supplierId: "sup-drive",
     bookingId: "BKG-4021",
     state: "active",
     messages: [
-      { id: "m1", author: "Ashford Private Drive", role: "supplier", body: "Confirmed for the 18:40 arrival. We will follow the flight and message when the car is in position.", at: "2026-08-19" },
-      { id: "m2", author: "You", role: "member", body: "Thank you. No name card at arrivals, please.", at: "2026-08-19" },
+      {
+        id: "m1",
+        author: "DEMO Arrangement · Option A",
+        role: "supplier",
+        body: "Confirmed for the 18:40 arrival. We will follow the flight and message when the car is in position.",
+        at: "2026-08-19",
+      },
+      {
+        id: "m2",
+        author: "You",
+        role: "member",
+        body: "Thank you. No name card at arrivals, please.",
+        at: "2026-08-19",
+      },
     ],
   },
   {
     id: "THR-02",
     kind: "booking",
     subject: "Lisbon · House opening · Requested for 2 October",
-    context: "Awaiting a quote and confirmation from Lindow House Management.",
-    participants: ["You", "Sofia (Concierge)", "Lindow House Management"],
+    context: "Awaiting a quote and confirmation from DEMO Arrangement · Option B.",
+    participants: ["You", "Montvelle", "DEMO Arrangement · Option B"],
     supplierId: "sup-house",
     bookingId: "BKG-4022",
     state: "waiting",
     messages: [
-      { id: "m1", author: "Sofia (Concierge)", role: "concierge", body: "Request placed with the kitchen list as you left it in May. I will come back with a quote by Tuesday.", at: "2026-08-21" },
+      {
+        id: "m1",
+        author: "Montvelle",
+        role: "concierge",
+        body: "Request placed with the kitchen list as you left it in May. I will come back with a quote by Tuesday.",
+        at: "2026-08-21",
+      },
     ],
   },
   {
     id: "THR-03",
     kind: "booking",
     subject: "London · Private dinner · 3 September · Eight guests",
-    context: "Maison Verrier has proposed two rooms and a draft menu.",
-    participants: ["You", "Sofia (Concierge)", "Maison Verrier"],
+    context: "DEMO Arrangement · Option C has proposed two rooms and a draft menu.",
+    participants: ["You", "Montvelle", "DEMO Arrangement · Option C"],
     supplierId: "sup-table",
     bookingId: "BKG-4023",
     state: "needs_reply",
     messages: [
-      { id: "m1", author: "Maison Verrier", role: "supplier", body: "Two rooms are free that evening. The smaller one is quieter but seats eight only. Menu draft attached in the folio.", at: "2026-08-20" },
-      { id: "m2", author: "Sofia (Concierge)", role: "concierge", body: "I would take the smaller room. Shall I confirm?", at: "2026-08-21" },
+      {
+        id: "m1",
+        author: "DEMO Arrangement · Option C",
+        role: "supplier",
+        body: "Two rooms are free that evening. The smaller one is quieter but seats eight only. Menu draft attached in the folio.",
+        at: "2026-08-20",
+      },
+      {
+        id: "m2",
+        author: "Montvelle",
+        role: "concierge",
+        body: "I would take the smaller room. Shall I confirm?",
+        at: "2026-08-21",
+      },
     ],
   },
   {
     id: "THR-06",
     kind: "concierge",
     subject: "Education adviser · London school transition",
-    context: "Concierge case REQ-2048. Two advisers shortlisted; an introduction awaits your consent.",
-    participants: ["You", "Sofia (Concierge)"],
+    context:
+      "Concierge case REQ-2048. Two advisers shortlisted; an introduction awaits your consent.",
+    participants: ["You", "Montvelle"],
     caseId: "REQ-2048",
     state: "needs_reply",
     messages: [
-      { id: "m1", author: "Sofia (Concierge)", role: "concierge", body: "Both advisers can hold curriculum continuity and the move timing together. Would you like me to introduce the first?", at: "2026-08-21" },
+      {
+        id: "m1",
+        author: "Montvelle",
+        role: "concierge",
+        body: "Both advisers can hold curriculum continuity and the move timing together. Would you like me to introduce the first?",
+        at: "2026-08-21",
+      },
     ],
   },
   {
@@ -256,7 +299,13 @@ export const seedThreads: Thread[] = [
     participants: ["You", "Montvelle"],
     state: "needs_reply",
     messages: [
-      { id: "m1", author: "Montvelle", role: "concierge", body: "We have kept a place for you. Dietary notes will carry across from your preferences if you accept.", at: "2026-08-15" },
+      {
+        id: "m1",
+        author: "Montvelle",
+        role: "concierge",
+        body: "We have kept a place for you. Dietary notes will carry across from your preferences if you accept.",
+        at: "2026-08-15",
+      },
     ],
   },
   {
@@ -264,12 +313,18 @@ export const seedThreads: Thread[] = [
     kind: "booking",
     subject: "London · Private view · 12 July · Completed",
     context: "Closed after the visit. Feedback recorded privately.",
-    participants: ["You", "Aperture Cultural"],
+    participants: ["You", "DEMO Arrangement · Option D"],
     supplierId: "sup-culture",
     bookingId: "BKG-4009",
     state: "closed",
     messages: [
-      { id: "m1", author: "Aperture Cultural", role: "supplier", body: "Delighted it was worthwhile. We can hold something similar in Venice in the autumn.", at: "2026-07-13" },
+      {
+        id: "m1",
+        author: "DEMO Arrangement · Option D",
+        role: "supplier",
+        body: "Delighted it was worthwhile. We can hold something similar in Venice in the autumn.",
+        at: "2026-07-13",
+      },
     ],
   },
   {
@@ -277,7 +332,7 @@ export const seedThreads: Thread[] = [
     kind: "booking",
     subject: "London · Recovery session · Cancelled",
     context: "Cancelled by the household. No charge recorded.",
-    participants: ["You", "Cadogan Wellbeing"],
+    participants: ["You", "DEMO Arrangement · Option E"],
     supplierId: "sup-wellbeing",
     bookingId: "BKG-3994",
     state: "closed",
@@ -287,7 +342,7 @@ export const seedThreads: Thread[] = [
 
 export const defaultPreferences: Preferences = {
   travel:
-    "British Airways or Swiss where possible. Aisle seat, row 1–4. Prefer a residence over a hotel for stays longer than three nights. Same driver where the city allows it.",
+    "A consistent primary carrier where possible. Aisle seat, row 1–4. Prefer a residence over a hotel for stays longer than three nights. Same driver where the city allows it.",
   dining:
     "One shellfish allergy in the household. No tasting menus longer than five courses. A corner table, away from the room, is always preferred.",
   household:
@@ -298,12 +353,14 @@ export const defaultPreferences: Preferences = {
     "Route wellbeing requests through Cadogan first. Keep clinical detail out of Montvelle — share only what a booking requires.",
   communications:
     "Message rather than call between 07:00 and 20:00 London time. Anything urgent, call. Nothing to the household line before 09:00.",
-  favourites: "Ashford Private Drive · Lindow House Management · Maison Verrier (Paris room)",
+  favourites:
+    "DEMO Arrangement · Option A · DEMO Arrangement · Option B · DEMO Arrangement · Option C (Paris room)",
   avoid: "No open-plan hotel lobbies for meetings. Do not suggest venues with press relationships.",
-  defaultBooking: "Ask before confirming anything above £2,000. Private introduction preferred for advisers.",
+  defaultBooking:
+    "Ask before confirming anything above £2,000. Private introduction preferred for advisers.",
 };
 
-const read = <T,>(key: string, fallback: T): T => {
+const read = <T>(key: string, fallback: T): T => {
   if (typeof window === "undefined") return fallback;
   try {
     const raw = window.localStorage.getItem(key);
@@ -329,4 +386,5 @@ export const writeThreads = (threads: Thread[]) => write(THREADS_KEY, threads);
 export const readPreferences = () => read<Preferences>(PREFERENCES_KEY, defaultPreferences);
 export const writePreferences = (preferences: Preferences) => write(PREFERENCES_KEY, preferences);
 
-export const needsReplyCount = (threads: Thread[]) => threads.filter((thread) => thread.state === "needs_reply").length;
+export const needsReplyCount = (threads: Thread[]) =>
+  threads.filter((thread) => thread.state === "needs_reply").length;
