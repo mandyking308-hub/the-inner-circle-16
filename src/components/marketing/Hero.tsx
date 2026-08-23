@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, Globe2, HeartHandshake, LockKeyhole, Sparkles } from "lucide-react";
+import { ArrowRight, Globe2, HeartHandshake, LockKeyhole } from "lucide-react";
 
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/button";
@@ -59,12 +59,6 @@ export function Hero() {
           ))}
         </div>
       </Container>
-
-      <div className="absolute right-6 top-28 hidden w-72 border border-background/24 bg-foreground/58 p-5 backdrop-blur-xl xl:block">
-        <p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-bronze">A life lived well</p>
-        <p className="mt-3 font-display text-3xl leading-tight">London today. Somewhere else tomorrow. One circle around it all.</p>
-        <Sparkles className="mt-5 h-4 w-4 text-bronze" />
-      </div>
     </section>
   );
 }
