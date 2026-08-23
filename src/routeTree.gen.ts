@@ -59,6 +59,7 @@ import { Route as AdminNextGenRouteImport } from './routes/admin.next-gen'
 import { Route as AdminPartnersRouteImport } from './routes/admin.partners'
 import { Route as AdminServicesRouteImport } from './routes/admin.services'
 import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
+import { Route as AdminSourcingRouteImport } from './routes/admin.sourcing'
 import { Route as AdminTablesRouteImport } from './routes/admin.tables'
 import { Route as JournalIndexRouteImport } from './routes/journal.index'
 import { Route as JournalSlugRouteImport } from './routes/journal.$slug'
@@ -348,6 +349,11 @@ const AdminSettingsRoute = AdminSettingsRouteImport.update({
   path: '/settings',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminSourcingRoute = AdminSourcingRouteImport.update({
+  id: '/sourcing',
+  path: '/sourcing',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminTablesRoute = AdminTablesRouteImport.update({
   id: '/tables',
   path: '/tables',
@@ -591,6 +597,7 @@ export interface FileRoutesByFullPath {
   '/admin/partners': typeof AdminPartnersRoute
   '/admin/services': typeof AdminServicesRoute
   '/admin/settings': typeof AdminSettingsRoute
+  '/admin/sourcing': typeof AdminSourcingRoute
   '/admin/tables': typeof AdminTablesRoute
   '/journal/$slug': typeof JournalSlugRoute
   '/member/alumni': typeof MemberAlumniRoute
@@ -678,6 +685,7 @@ export interface FileRoutesByTo {
   '/admin/partners': typeof AdminPartnersRoute
   '/admin/services': typeof AdminServicesRoute
   '/admin/settings': typeof AdminSettingsRoute
+  '/admin/sourcing': typeof AdminSourcingRoute
   '/admin/tables': typeof AdminTablesRoute
   '/journal/$slug': typeof JournalSlugRoute
   '/member/alumni': typeof MemberAlumniRoute
@@ -769,6 +777,7 @@ export interface FileRoutesById {
   '/admin/partners': typeof AdminPartnersRoute
   '/admin/services': typeof AdminServicesRoute
   '/admin/settings': typeof AdminSettingsRoute
+  '/admin/sourcing': typeof AdminSourcingRoute
   '/admin/tables': typeof AdminTablesRoute
   '/journal/$slug': typeof JournalSlugRoute
   '/member/alumni': typeof MemberAlumniRoute
@@ -861,6 +870,7 @@ export interface FileRouteTypes {
     | '/admin/partners'
     | '/admin/services'
     | '/admin/settings'
+    | '/admin/sourcing'
     | '/admin/tables'
     | '/journal/$slug'
     | '/member/alumni'
@@ -948,6 +958,7 @@ export interface FileRouteTypes {
     | '/admin/partners'
     | '/admin/services'
     | '/admin/settings'
+    | '/admin/sourcing'
     | '/admin/tables'
     | '/journal/$slug'
     | '/member/alumni'
@@ -1038,6 +1049,7 @@ export interface FileRouteTypes {
     | '/admin/partners'
     | '/admin/services'
     | '/admin/settings'
+    | '/admin/sourcing'
     | '/admin/tables'
     | '/journal/$slug'
     | '/member/alumni'
@@ -1471,6 +1483,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminSettingsRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/sourcing': {
+      id: '/admin/sourcing'
+      path: '/sourcing'
+      fullPath: '/admin/sourcing'
+      preLoaderRoute: typeof AdminSourcingRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/tables': {
       id: '/admin/tables'
       path: '/tables'
@@ -1758,6 +1777,7 @@ interface AdminRouteChildren {
   AdminPartnersRoute: typeof AdminPartnersRoute
   AdminServicesRoute: typeof AdminServicesRoute
   AdminSettingsRoute: typeof AdminSettingsRoute
+  AdminSourcingRoute: typeof AdminSourcingRoute
   AdminTablesRoute: typeof AdminTablesRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
@@ -1780,6 +1800,7 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminPartnersRoute: AdminPartnersRoute,
   AdminServicesRoute: AdminServicesRoute,
   AdminSettingsRoute: AdminSettingsRoute,
+  AdminSourcingRoute: AdminSourcingRoute,
   AdminTablesRoute: AdminTablesRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
