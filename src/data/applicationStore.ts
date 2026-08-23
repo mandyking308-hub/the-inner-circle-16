@@ -1,3 +1,5 @@
+import type { ApplicationReference } from "@/lib/applicationReferences";
+
 export const APPLICATION_STORAGE_KEY = "project-table:applications";
 
 export type ApplicationStatus = "New" | "Review" | "Conversation" | "Accepted" | "Declined";
@@ -15,6 +17,9 @@ export type MembershipApplication = {
   complicated: string;
   contribution: string;
   referral: string;
+  /** Private admission-review data. Never expose in member/supplier/public views. */
+  references: [ApplicationReference, ApplicationReference];
+  referenceConsent: boolean;
 };
 
 export const starterApplications: MembershipApplication[] = [
@@ -31,6 +36,11 @@ export const starterApplications: MembershipApplication[] = [
     complicated: "We are trying to make residence, school decisions, family governance and the business timetable work as one plan.",
     contribution: "Experience scaling a family-owned brand across Europe and a willingness to mentor younger founders.",
     referral: "Introduced by a founding member",
+    references: [
+      { name: "Jonathan Reid", organisation: "Reid & Partners", email: "jonathan@example.com", relationship: "Chaired our family council for six years.", phone: "" },
+      { name: "Sophie Almeida", organisation: "Almeida Capital", email: "sophie@example.com", relationship: "Co-investor and long-standing friend of the family.", phone: "" },
+    ],
+    referenceConsent: true,
   },
 ];
 
