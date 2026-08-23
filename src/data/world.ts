@@ -1,96 +1,76 @@
-export type WorldNodeStatus = "London base" | "Member intelligence" | "Relationship building";
-
-export type WorldNode = {
+export type WorldPlace = {
   city: string;
-  region: string;
-  status: WorldNodeStatus;
+  country: string;
+  theme: string;
   line: string;
-  usefulFor: string[];
-  note: string;
 };
 
-export const worldNodes: WorldNode[] = [
+export const worldNodes: WorldPlace[] = [
   {
     city: "London",
-    region: "United Kingdom",
-    status: "London base",
-    line: "The home table: family enterprise, advisers, education, culture and capital in one city.",
-    usefulFor: ["Family enterprise", "Education", "Private client advisers", "Culture & access"],
-    note: "The founding community is London-first. Named venues and formal benefits are only shown when an actual relationship exists.",
+    country: "United Kingdom",
+    theme: "Home & Family",
+    line: "Home, school, advisers, culture and capital can all sit within one familiar rhythm.",
   },
   {
     city: "Dubai",
-    region: "United Arab Emirates",
-    status: "Relationship building",
-    line: "A major node for founders, family enterprises, residence planning and businesses spanning Europe, Asia and the Gulf.",
-    usefulFor: ["Residence", "Business setup", "Banking", "Schools"],
-    note: "The network records verified specialists and relationships as they are established; it does not imply blanket local coverage.",
+    country: "United Arab Emirates",
+    theme: "Business & Residence",
+    line: "A place for business, family, residence and regional connections — with the right local people around you.",
   },
   {
     city: "Geneva",
-    region: "Switzerland",
-    status: "Member intelligence",
-    line: "Private wealth, philanthropy, international institutions and multigenerational family questions.",
-    usefulFor: ["Private wealth", "Governance", "Philanthropy", "International families"],
-    note: "City intelligence combines member experience with independently instructed professional advice where required.",
+    country: "Switzerland",
+    theme: "Health & Family Office",
+    line: "Private health, philanthropy, family-office relationships and trusted advisers, coordinated with discretion.",
   },
   {
     city: "Lisbon",
-    region: "Portugal",
-    status: "Member intelligence",
-    line: "A recurring consideration for internationally mobile families balancing residence, lifestyle and education.",
-    usefulFor: ["Residence", "Education", "Property", "Family life"],
-    note: "Jurisdiction information is decision support, not immigration or tax advice.",
+    country: "Portugal",
+    theme: "Residence & Lifestyle",
+    line: "A gentler base for residence and family life, with support around property, education and settling in.",
   },
   {
     city: "New York",
-    region: "United States",
-    status: "Relationship building",
-    line: "A natural bridge into US capital, professional networks, philanthropy and family-enterprise opportunity.",
-    usefulFor: ["Capital", "Professional networks", "Philanthropy", "Education"],
-    note: "US legal, tax and regulated matters are always routed to appropriately qualified professionals.",
+    country: "United States",
+    theme: "Business & Culture",
+    line: "For business, education, culture and relationships — with the right introductions when they matter.",
   },
   {
     city: "Singapore",
-    region: "Singapore",
-    status: "Relationship building",
-    line: "A strategic Asian node for family offices, regional business, education and cross-border structuring questions.",
-    usefulFor: ["Asia expansion", "Family office", "Education", "Residence"],
-    note: "The platform distinguishes between community intelligence and formal professional advice.",
+    country: "Singapore",
+    theme: "Asia & Family Office",
+    line: "A thoughtful base for Asia, connecting family office, education, residence and trusted local expertise.",
   },
   {
     city: "Monaco",
-    region: "Monaco",
-    status: "Member intelligence",
-    line: "A compact private-wealth ecosystem where residence, property, family logistics and trusted local relationships matter.",
-    usefulFor: ["Residence", "Property", "Private wealth", "Lifestyle"],
-    note: "Access and benefits are never promised until a relationship is verified and recorded.",
+    country: "Monaco",
+    theme: "Residence & Lifestyle",
+    line: "A compact world of residence, property and private relationships, handled with care and privacy.",
   },
   {
     city: "Paris",
-    region: "France",
-    status: "Member intelligence",
-    line: "Close enough to London to be part of ordinary family and business life, different enough to need local judgement.",
-    usefulFor: ["Business", "Property", "Culture", "Education"],
-    note: "Local nuance is captured through trusted people rather than generic city lists.",
+    country: "France",
+    theme: "Culture & Family",
+    line: "Close enough to feel familiar, different enough to open another world of culture, education and everyday life.",
   },
 ];
 
 export const worldPrinciples = [
   {
-    title: "No pretend footprint",
-    body: "A city appears because members are considering it, living there or the community is deliberately building useful intelligence. We never imply an office, partner or reciprocal benefit that does not exist.",
+    title: "Local knowledge, personally useful",
+    body: "The value is not in knowing everything about a city. It is knowing what matters to you, your family and the decision in front of you.",
   },
   {
-    title: "One family, several jurisdictions",
-    body: "The point is not to collect country guides. It is to see how residence, entities, schools, property, banking, insurance and family routines affect one another across borders.",
+    title: "The right people, at the right moment",
+    body: "A trusted introduction can change how a place feels. We help bring the right relationships closer when they are genuinely useful.",
   },
   {
-    title: "Local expertise stays local",
-    body: "Legal, tax, immigration, fiduciary and other regulated questions are handled by appropriately qualified professionals. The platform coordinates the family question around them.",
+    title: "One life across many places",
+    body: "Homes, schools, advisers, travel, health and family plans all affect one another. We help you keep sight of the whole.",
   },
   {
-    title: "Relationships become infrastructure",
-    body: "When a local provider, venue, club, school adviser or concierge relationship proves genuinely useful, it can be recorded, reviewed and reused by the community with consent.",
+    title: "A world that grows with you",
+    body: "As your life changes, new places and relationships can become part of it — without starting again each time.",
   },
 ] as const;
