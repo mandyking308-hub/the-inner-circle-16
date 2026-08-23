@@ -175,9 +175,9 @@ function MemberHome() {
                 <li key={booking.id} className="flex items-start justify-between gap-4 py-3">
                   <span>
                     <span className="block">{booking.serviceTitle}</span>
-                    <span className="mt-1 block text-xs text-muted-foreground">{booking.window}</span>
+                    <span className="mt-1 block text-xs text-muted-foreground">{booking.when} · {booking.city}</span>
                   </span>
-                  <span className="shrink-0 text-[9px] uppercase tracking-[0.14em] text-muted-foreground">{bookingStatusLabel(booking.status)}</span>
+                  <span className="shrink-0 text-[9px] uppercase tracking-[0.14em] text-muted-foreground">{bookingStatusLabel[booking.status]}</span>
                 </li>
               ))
             )}
