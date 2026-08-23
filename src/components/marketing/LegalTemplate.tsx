@@ -38,7 +38,7 @@ export function LegalTemplate({
               </div>
             ))}
           </div>
-          <LegalContactCta prompt={contactPrompt} />
+          <LegalContactCta {...(contactPrompt ? { prompt: contactPrompt } : {})} />
         </div>
       </Container>
     </section>
