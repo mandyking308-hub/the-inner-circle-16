@@ -38,7 +38,6 @@ function CommunityHubPage() {
       <div className="grid gap-px bg-border md:grid-cols-2">
         {rooms.map(([title, body, to]) => (
           <Link key={title} to={to} className="group bg-card p-6 transition-colors hover:bg-accent">
-            <Icon className="h-5 w-5 text-oxblood" />
             <h2 className="mt-7 font-display text-3xl">{title}</h2>
             <p className="mt-4 text-sm leading-7 text-muted-foreground">{body}</p>
             <span className="mt-7 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em]">
