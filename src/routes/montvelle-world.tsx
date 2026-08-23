@@ -8,36 +8,37 @@ import heroDesk from "@/assets/mw-hero-quiet-desk.jpg";
 import conversationRoom from "@/assets/mw-conversation-room.jpg";
 import hallwayDusk from "@/assets/mw-hallway-dusk.jpg";
 
-const outcomes = [
+const fragmentation = [
   {
-    title: "See what needs you.",
-    body: "A short list each morning: the decision waiting on your judgement, the booking that needs a word, the invitation still open. Everything else stays where it belongs.",
+    title: "The same story, told again and again.",
+    body: "Every new adviser, agent or office starts from zero. You explain the family, the structure, the timing and the constraints once more, and hope nothing important is left out.",
   },
   {
-    title: "Make important decisions with the whole picture visible.",
-    body: "The move, the school, the sale — held in one place with the sequence, the people involved and what has already been settled, so nothing has to be reconstructed from memory.",
+    title: "Cold searching for people who must be excellent.",
+    body: "A counsel in a country you do not live in, a school head, a surveyor, a specialist. The stakes are high and the search begins with a browser and a few borrowed names.",
   },
   {
-    title: "Hand something over without losing sight of it.",
-    body: "Give a complicated thing to your private office and keep watching it quietly. One owner, one next step, and your consent asked for before anyone is introduced.",
+    title: "Advice that does not agree with itself.",
+    body: "Each specialist is right about their own part. Nobody reconciles the tax view with the residence view with the school calendar with the sale timetable.",
   },
   {
-    title: "Stay close to the right people.",
-    body: "The handful of relationships that matter, remembered properly — who you meant to call, who was helpful, who should meet whom, and when the moment is right.",
+    title: "Chasing, remembering, holding.",
+    body: "Who replied, who did not, what was agreed in March, which document went where. It lives in an inbox and in one person's head — usually the principal's or their spouse's.",
   },
   {
-    title: "Keep family life connected as it changes.",
-    body: "Schools, homes, generations and the practical rhythm of the household, kept coherent as the family moves between places and stages.",
+    title: "Relationships rebuilt from scratch.",
+    body: "A move to a new country resets not just the logistics but the circle: the peers, the operators, the people worth knowing. That takes years unless someone helps.",
   },
 ] as const;
 
 const beyond = [
-  { title: "Gatherings", body: "Rooms worth entering, with the invitation and the context in one place." },
-  { title: "Knowledge", body: "What other families learned, written honestly, kept private." },
-  { title: "Giving", body: "Involvement that stays personal, quiet and entirely yours." },
-  { title: "Family", body: "A wider education for the next generation, at their own pace." },
+  { title: "Invitations", body: "Where the wider membership meets — gatherings held for your household, with the context attached." },
+  { title: "Community", body: "Members whose experience is genuinely relevant, introduced only where both sides agree." },
+  { title: "Family", body: "A wider education for the next generation, at their own pace, with age-appropriate access." },
+  { title: "Knowledge", body: "Briefings and playbooks written around the decisions families actually face — useful preparation before a council is needed." },
   { title: "Global Life", body: "More than one home, without losing continuity between them." },
 ] as const;
+
 
 export const Route = createFileRoute("/montvelle-world")({
   head: () => ({
