@@ -20,6 +20,7 @@ import { Route as ConciergeRouteImport } from './routes/concierge'
 import { Route as ConfidentialityRouteImport } from './routes/confidentiality'
 import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as DecisionRoomRouteImport } from './routes/decision-room'
+import { Route as DemoRouteImport } from './routes/demo'
 import { Route as EcosystemRouteImport } from './routes/ecosystem'
 import { Route as FamilyLearningRouteImport } from './routes/family-learning'
 import { Route as GatheringsRouteImport } from './routes/gatherings'
@@ -77,7 +78,6 @@ import { Route as MemberGlobalLifeRouteImport } from './routes/member.global-lif
 import { Route as MemberHouseholdAccessRouteImport } from './routes/member.household-access'
 import { Route as MemberImpactRouteImport } from './routes/member.impact'
 import { Route as MemberIntroductionsRouteImport } from './routes/member.introductions'
-import { Route as MemberKnowledgeRouteImport } from './routes/member.knowledge'
 import { Route as MemberLearningRouteImport } from './routes/member.learning'
 import { Route as MemberMessagesRouteImport } from './routes/member.messages'
 import { Route as MemberNetworkRouteImport } from './routes/member.network'
@@ -96,6 +96,8 @@ import { Route as SupplierMessagesRouteImport } from './routes/supplier.messages
 import { Route as SupplierProfileRouteImport } from './routes/supplier.profile'
 import { Route as SupplierRequestsRouteImport } from './routes/supplier.requests'
 import { Route as SupplierServicesRouteImport } from './routes/supplier.services'
+import { Route as MemberKnowledgeIndexRouteImport } from './routes/member.knowledge.index'
+import { Route as MemberKnowledgeIdRouteImport } from './routes/member.knowledge.$id'
 import { Route as LovableEmailAuthPreviewRouteImport } from './routes/lovable/email/auth/preview'
 import { Route as LovableEmailAuthWebhookRouteImport } from './routes/lovable/email/auth/webhook'
 import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
@@ -153,6 +155,11 @@ const CookiesRoute = CookiesRouteImport.update({
 const DecisionRoomRoute = DecisionRoomRouteImport.update({
   id: '/decision-room',
   path: '/decision-room',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemoRoute = DemoRouteImport.update({
+  id: '/demo',
+  path: '/demo',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EcosystemRoute = EcosystemRouteImport.update({
@@ -441,11 +448,6 @@ const MemberIntroductionsRoute = MemberIntroductionsRouteImport.update({
   path: '/introductions',
   getParentRoute: () => MemberRoute,
 } as any)
-const MemberKnowledgeRoute = MemberKnowledgeRouteImport.update({
-  id: '/knowledge',
-  path: '/knowledge',
-  getParentRoute: () => MemberRoute,
-} as any)
 const MemberLearningRoute = MemberLearningRouteImport.update({
   id: '/learning',
   path: '/learning',
@@ -536,6 +538,16 @@ const SupplierServicesRoute = SupplierServicesRouteImport.update({
   path: '/services',
   getParentRoute: () => SupplierRoute,
 } as any)
+const MemberKnowledgeIndexRoute = MemberKnowledgeIndexRouteImport.update({
+  id: '/knowledge/',
+  path: '/knowledge/',
+  getParentRoute: () => MemberRoute,
+} as any)
+const MemberKnowledgeIdRoute = MemberKnowledgeIdRouteImport.update({
+  id: '/knowledge/$id',
+  path: '/knowledge/$id',
+  getParentRoute: () => MemberRoute,
+} as any)
 const LovableEmailAuthPreviewRoute = LovableEmailAuthPreviewRouteImport.update({
   id: '/lovable/email/auth/preview',
   path: '/lovable/email/auth/preview',
@@ -565,6 +577,7 @@ export interface FileRoutesByFullPath {
   '/confidentiality': typeof ConfidentialityRoute
   '/cookies': typeof CookiesRoute
   '/decision-room': typeof DecisionRoomRoute
+  '/demo': typeof DemoRoute
   '/ecosystem': typeof EcosystemRoute
   '/family-learning': typeof FamilyLearningRoute
   '/gatherings': typeof GatheringsRoute
@@ -619,7 +632,6 @@ export interface FileRoutesByFullPath {
   '/member/household-access': typeof MemberHouseholdAccessRoute
   '/member/impact': typeof MemberImpactRoute
   '/member/introductions': typeof MemberIntroductionsRoute
-  '/member/knowledge': typeof MemberKnowledgeRoute
   '/member/learning': typeof MemberLearningRoute
   '/member/messages': typeof MemberMessagesRoute
   '/member/network': typeof MemberNetworkRoute
@@ -641,6 +653,8 @@ export interface FileRoutesByFullPath {
   '/journal/': typeof JournalIndexRoute
   '/member/': typeof MemberIndexRoute
   '/supplier/': typeof SupplierIndexRoute
+  '/member/knowledge/$id': typeof MemberKnowledgeIdRoute
+  '/member/knowledge/': typeof MemberKnowledgeIndexRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -656,6 +670,7 @@ export interface FileRoutesByTo {
   '/confidentiality': typeof ConfidentialityRoute
   '/cookies': typeof CookiesRoute
   '/decision-room': typeof DecisionRoomRoute
+  '/demo': typeof DemoRoute
   '/ecosystem': typeof EcosystemRoute
   '/family-learning': typeof FamilyLearningRoute
   '/gatherings': typeof GatheringsRoute
@@ -708,7 +723,6 @@ export interface FileRoutesByTo {
   '/member/household-access': typeof MemberHouseholdAccessRoute
   '/member/impact': typeof MemberImpactRoute
   '/member/introductions': typeof MemberIntroductionsRoute
-  '/member/knowledge': typeof MemberKnowledgeRoute
   '/member/learning': typeof MemberLearningRoute
   '/member/messages': typeof MemberMessagesRoute
   '/member/network': typeof MemberNetworkRoute
@@ -730,6 +744,8 @@ export interface FileRoutesByTo {
   '/journal': typeof JournalIndexRoute
   '/member': typeof MemberIndexRoute
   '/supplier': typeof SupplierIndexRoute
+  '/member/knowledge/$id': typeof MemberKnowledgeIdRoute
+  '/member/knowledge': typeof MemberKnowledgeIndexRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -747,6 +763,7 @@ export interface FileRoutesById {
   '/confidentiality': typeof ConfidentialityRoute
   '/cookies': typeof CookiesRoute
   '/decision-room': typeof DecisionRoomRoute
+  '/demo': typeof DemoRoute
   '/ecosystem': typeof EcosystemRoute
   '/family-learning': typeof FamilyLearningRoute
   '/gatherings': typeof GatheringsRoute
@@ -801,7 +818,6 @@ export interface FileRoutesById {
   '/member/household-access': typeof MemberHouseholdAccessRoute
   '/member/impact': typeof MemberImpactRoute
   '/member/introductions': typeof MemberIntroductionsRoute
-  '/member/knowledge': typeof MemberKnowledgeRoute
   '/member/learning': typeof MemberLearningRoute
   '/member/messages': typeof MemberMessagesRoute
   '/member/network': typeof MemberNetworkRoute
@@ -823,6 +839,8 @@ export interface FileRoutesById {
   '/journal/': typeof JournalIndexRoute
   '/member/': typeof MemberIndexRoute
   '/supplier/': typeof SupplierIndexRoute
+  '/member/knowledge/$id': typeof MemberKnowledgeIdRoute
+  '/member/knowledge/': typeof MemberKnowledgeIndexRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -841,6 +859,7 @@ export interface FileRouteTypes {
     | '/confidentiality'
     | '/cookies'
     | '/decision-room'
+    | '/demo'
     | '/ecosystem'
     | '/family-learning'
     | '/gatherings'
@@ -895,7 +914,6 @@ export interface FileRouteTypes {
     | '/member/household-access'
     | '/member/impact'
     | '/member/introductions'
-    | '/member/knowledge'
     | '/member/learning'
     | '/member/messages'
     | '/member/network'
@@ -917,6 +935,8 @@ export interface FileRouteTypes {
     | '/journal/'
     | '/member/'
     | '/supplier/'
+    | '/member/knowledge/$id'
+    | '/member/knowledge/'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/transactional/preview'
@@ -932,6 +952,7 @@ export interface FileRouteTypes {
     | '/confidentiality'
     | '/cookies'
     | '/decision-room'
+    | '/demo'
     | '/ecosystem'
     | '/family-learning'
     | '/gatherings'
@@ -984,7 +1005,6 @@ export interface FileRouteTypes {
     | '/member/household-access'
     | '/member/impact'
     | '/member/introductions'
-    | '/member/knowledge'
     | '/member/learning'
     | '/member/messages'
     | '/member/network'
@@ -1006,6 +1026,8 @@ export interface FileRouteTypes {
     | '/journal'
     | '/member'
     | '/supplier'
+    | '/member/knowledge/$id'
+    | '/member/knowledge'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/transactional/preview'
@@ -1022,6 +1044,7 @@ export interface FileRouteTypes {
     | '/confidentiality'
     | '/cookies'
     | '/decision-room'
+    | '/demo'
     | '/ecosystem'
     | '/family-learning'
     | '/gatherings'
@@ -1076,7 +1099,6 @@ export interface FileRouteTypes {
     | '/member/household-access'
     | '/member/impact'
     | '/member/introductions'
-    | '/member/knowledge'
     | '/member/learning'
     | '/member/messages'
     | '/member/network'
@@ -1098,6 +1120,8 @@ export interface FileRouteTypes {
     | '/journal/'
     | '/member/'
     | '/supplier/'
+    | '/member/knowledge/$id'
+    | '/member/knowledge/'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/transactional/preview'
@@ -1115,6 +1139,7 @@ export interface RootRouteChildren {
   ConfidentialityRoute: typeof ConfidentialityRoute
   CookiesRoute: typeof CookiesRoute
   DecisionRoomRoute: typeof DecisionRoomRoute
+  DemoRoute: typeof DemoRoute
   EcosystemRoute: typeof EcosystemRoute
   FamilyLearningRoute: typeof FamilyLearningRoute
   GatheringsRoute: typeof GatheringsRoute
@@ -1220,6 +1245,13 @@ declare module '@tanstack/react-router' {
       path: '/decision-room'
       fullPath: '/decision-room'
       preLoaderRoute: typeof DecisionRoomRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demo': {
+      id: '/demo'
+      path: '/demo'
+      fullPath: '/demo'
+      preLoaderRoute: typeof DemoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/ecosystem': {
@@ -1621,13 +1653,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MemberIntroductionsRouteImport
       parentRoute: typeof MemberRoute
     }
-    '/member/knowledge': {
-      id: '/member/knowledge'
-      path: '/knowledge'
-      fullPath: '/member/knowledge'
-      preLoaderRoute: typeof MemberKnowledgeRouteImport
-      parentRoute: typeof MemberRoute
-    }
     '/member/learning': {
       id: '/member/learning'
       path: '/learning'
@@ -1754,6 +1779,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SupplierServicesRouteImport
       parentRoute: typeof SupplierRoute
     }
+    '/member/knowledge/': {
+      id: '/member/knowledge/'
+      path: '/knowledge'
+      fullPath: '/member/knowledge/'
+      preLoaderRoute: typeof MemberKnowledgeIndexRouteImport
+      parentRoute: typeof MemberRoute
+    }
+    '/member/knowledge/$id': {
+      id: '/member/knowledge/$id'
+      path: '/knowledge/$id'
+      fullPath: '/member/knowledge/$id'
+      preLoaderRoute: typeof MemberKnowledgeIdRouteImport
+      parentRoute: typeof MemberRoute
+    }
     '/lovable/email/auth/preview': {
       id: '/lovable/email/auth/preview'
       path: '/lovable/email/auth/preview'
@@ -1840,7 +1879,6 @@ interface MemberRouteChildren {
   MemberHouseholdAccessRoute: typeof MemberHouseholdAccessRoute
   MemberImpactRoute: typeof MemberImpactRoute
   MemberIntroductionsRoute: typeof MemberIntroductionsRoute
-  MemberKnowledgeRoute: typeof MemberKnowledgeRoute
   MemberLearningRoute: typeof MemberLearningRoute
   MemberMessagesRoute: typeof MemberMessagesRoute
   MemberNetworkRoute: typeof MemberNetworkRoute
@@ -1852,6 +1890,8 @@ interface MemberRouteChildren {
   MemberServicesRoute: typeof MemberServicesRoute
   MemberTableRoute: typeof MemberTableRoute
   MemberIndexRoute: typeof MemberIndexRoute
+  MemberKnowledgeIdRoute: typeof MemberKnowledgeIdRoute
+  MemberKnowledgeIndexRoute: typeof MemberKnowledgeIndexRoute
 }
 
 const MemberRouteChildren: MemberRouteChildren = {
@@ -1868,7 +1908,6 @@ const MemberRouteChildren: MemberRouteChildren = {
   MemberHouseholdAccessRoute: MemberHouseholdAccessRoute,
   MemberImpactRoute: MemberImpactRoute,
   MemberIntroductionsRoute: MemberIntroductionsRoute,
-  MemberKnowledgeRoute: MemberKnowledgeRoute,
   MemberLearningRoute: MemberLearningRoute,
   MemberMessagesRoute: MemberMessagesRoute,
   MemberNetworkRoute: MemberNetworkRoute,
@@ -1880,6 +1919,8 @@ const MemberRouteChildren: MemberRouteChildren = {
   MemberServicesRoute: MemberServicesRoute,
   MemberTableRoute: MemberTableRoute,
   MemberIndexRoute: MemberIndexRoute,
+  MemberKnowledgeIdRoute: MemberKnowledgeIdRoute,
+  MemberKnowledgeIndexRoute: MemberKnowledgeIndexRoute,
 }
 
 const MemberRouteWithChildren =
@@ -1933,6 +1974,7 @@ const rootRouteChildren: RootRouteChildren = {
   ConfidentialityRoute: ConfidentialityRoute,
   CookiesRoute: CookiesRoute,
   DecisionRoomRoute: DecisionRoomRoute,
+  DemoRoute: DemoRoute,
   EcosystemRoute: EcosystemRoute,
   FamilyLearningRoute: FamilyLearningRoute,
   GatheringsRoute: GatheringsRoute,

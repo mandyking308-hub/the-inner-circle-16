@@ -3,7 +3,8 @@ import { ArrowRight, CheckCircle2, CircleAlert, Clock3, Globe2 } from "lucide-re
 
 import { PageIntro } from "@/components/private/PrivateShell";
 import { Button } from "@/components/ui/button";
-import { globalLifeWorkstreams, playbooks } from "@/data/infrastructure";
+import { globalLifeWorkstreams } from "@/data/infrastructure";
+import { knowledgeLibrary } from "@/data/knowledgeLibrary";
 
 export const Route = createFileRoute("/member/global-life")({
   component: MemberGlobalLife,
@@ -56,7 +57,7 @@ function MemberGlobalLife() {
 
       <section className="border border-border bg-card p-6">
         <p className="eyebrow text-bronze">Relevant playbooks</p>
-        <div className="mt-5 grid gap-3 md:grid-cols-2">{playbooks.slice(0, 6).map((playbook) => <div key={playbook} className="border-t border-border pt-3 text-sm text-muted-foreground">{playbook}</div>)}</div>
+        <div className="mt-5 grid gap-3 md:grid-cols-2">{knowledgeLibrary.filter((doc) => doc.type === "Playbook").slice(0, 6).map((playbook) => <Link key={playbook.id} to="/member/knowledge/$id" params={{ id: playbook.id }} className="border-t border-border pt-3 text-sm text-muted-foreground hover:text-foreground">{playbook.title}</Link>)}</div>
       </section>
     </div>
   );

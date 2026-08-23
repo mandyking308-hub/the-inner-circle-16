@@ -289,6 +289,84 @@ export function QuietLuxuryHome() {
           </Link>
         </div>
       </section>
+
+      {/* Montvelle World */}
+      <section className="border-t border-border bg-linen">
+        <div className="mx-auto grid w-full max-w-[110rem] gap-12 px-6 py-20 sm:px-10 lg:grid-cols-[0.92fr_1.08fr] lg:px-14 lg:py-28">
+          <div>
+            <Eyebrow tone="bronze">Montvelle World</Eyebrow>
+            <h2 className="mt-6 max-w-[16ch] font-display text-5xl leading-[0.98] md:text-7xl">
+              The private world behind the membership.
+            </h2>
+            <p className="mt-7 max-w-xl text-base leading-8 text-muted-foreground">
+              Not another concierge app. Montvelle World is the private environment where the whole picture of a
+              family's life stays in one place — the requests in motion, the decisions being weighed, the people you
+              choose to know, and the household around you.
+            </p>
+            <p className="mt-5 max-w-xl text-base leading-8 text-muted-foreground">
+              A conventional concierge holds a phone number and a memory. A private club holds a room. Montvelle holds
+              continuity: every request acknowledged immediately and answered meaningfully within twenty-four hours, by
+              people who already know the context. The technology exists so the relationship never has to start again.
+            </p>
+            <div className="mt-9 flex flex-wrap items-center gap-5">
+              <Button asChild className="h-12 rounded-none bg-ink px-8 text-background hover:bg-oxblood">
+                <Link to="/montvelle-world">
+                  Explore Montvelle World <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <Link
+                to="/demo"
+                className="inline-flex items-center gap-2 border-b border-bronze pb-1 text-sm font-medium text-foreground"
+              >
+                Explore the demo <ArrowUpRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+
+          <div className="grid gap-px bg-border sm:grid-cols-2">
+            {[
+              {
+                name: "Today",
+                copy: "What needs you, what Montvelle is already handling, and what is coming up — in that order.",
+              },
+              {
+                name: "Requests",
+                copy: "One place to ask for anything. Immediate acknowledgement, a meaningful response within 24 hours.",
+              },
+              {
+                name: "Decision Room",
+                copy: "For the decisions that deserve more than a phone call: options, sequence, and who is doing what.",
+              },
+              {
+                name: "Invitations",
+                copy: "Gatherings and private moments held for you, kept quietly in one diary.",
+              },
+              {
+                name: "Community",
+                copy: "Introductions only where both sides have agreed. Nothing is browsable, nothing is broadcast.",
+              },
+              {
+                name: "Family & household",
+                copy: "Approved adults hold their own login and their own privacy. Sharing is deliberate, area by area.",
+              },
+              {
+                name: "Messages",
+                copy: "A continuous private line to the people who already hold your context.",
+              },
+              {
+                name: "Preferences",
+                copy: "How your household likes things done, recorded once and applied without being asked again.",
+              },
+            ].map((item) => (
+              <article key={item.name} className="bg-linen p-6">
+                <h3 className="font-display text-2xl leading-tight">{item.name}</h3>
+                <p className="mt-3 text-sm leading-7 text-muted-foreground">{item.copy}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
+

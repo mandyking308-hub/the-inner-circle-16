@@ -10,7 +10,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { decisionRooms, type DecisionIcon, type DecisionLane, type DecisionRoomTemplate, type DecisionWorkItem } from "@/data/decisionRooms";
 import { luxuryImages } from "@/data/luxuryImages";
 
-export const Route = createFileRoute("/member/control-room")({ component: ControlRoomPage });
+export const Route = createFileRoute("/member/control-room")({
+  validateSearch: (search: Record<string, unknown>): { topic?: string } =>
+    typeof search["topic"] === "string" ? { topic: (search["topic"] as string).slice(0, 120) } : {},
+  component: ControlRoomPage,
+});
 
 const STORAGE_KEY = "project-table:decision-room:v2";
 const laneOrder: DecisionLane[] = ["DECIDE", "EXPERT", "EXECUTE", "EVIDENCE"];
@@ -44,9 +48,10 @@ const starterState: StoredRoomState = {
 };
 
 function ControlRoomPage() {
+  const { topic } = Route.useSearch();
   const [state, setState] = useState<StoredRoomState>(starterState);
   const [hydrated, setHydrated] = useState(false);
-  const [showCreate, setShowCreate] = useState(false);
+  const [showCreate, setShowCreate] = useState(Boolean(topic));
 
   useEffect(() => {
     try {
@@ -140,7 +145,7 @@ function ControlRoomPage() {
     <div className="space-y-8">
       <PageIntro eyebrow="Life Decision Room" title="Keep the whole decision in one room" description="Separate what the family must decide, what qualified professionals must advise on, what somebody must execute and what evidence proves the work is complete." action={<Button className="rounded-none" onClick={() => setShowCreate((value) => !value)}><Plus className="mr-2 h-4 w-4" />New decision</Button>} />
 
-      {showCreate ? <form onSubmit={createRoom} className="grid gap-5 border border-border bg-card p-6 md:grid-cols-2"><div className="space-y-2"><Label htmlFor="room-label">Short name</Label><Input id="room-label" name="label" required className="rounded-none" placeholder="e.g. Sell the business" /></div><div className="space-y-2"><Label htmlFor="room-headline">Outcome headline</Label><Input id="room-headline" name="headline" required className="rounded-none" placeholder="What are we trying to make happen?" /></div><div className="space-y-2 md:col-span-2"><Label htmlFor="room-question">The central decision</Label><Textarea id="room-question" name="question" required rows={3} className="rounded-none" /></div><div className="space-y-2 md:col-span-2"><Label htmlFor="room-outcome">Definition of done</Label><Textarea id="room-outcome" name="outcome" required rows={3} className="rounded-none" /></div><div className="md:col-span-2"><Button type="submit" className="rounded-none bg-oxblood">Create Decision Room</Button></div></form> : null}
+      {showCreate ? <form onSubmit={createRoom} className="grid gap-5 border border-border bg-card p-6 md:grid-cols-2"><div className="space-y-2"><Label htmlFor="room-label">Short name</Label><Input id="room-label" name="label" required defaultValue={topic ?? ""} className="rounded-none" placeholder="e.g. Sell the business" /></div><div className="space-y-2"><Label htmlFor="room-headline">Outcome headline</Label><Input id="room-headline" name="headline" required className="rounded-none" placeholder="What are we trying to make happen?" /></div><div className="space-y-2 md:col-span-2"><Label htmlFor="room-question">The central decision</Label><Textarea id="room-question" name="question" required rows={3} className="rounded-none" /></div><div className="space-y-2 md:col-span-2"><Label htmlFor="room-outcome">Definition of done</Label><Textarea id="room-outcome" name="outcome" required rows={3} className="rounded-none" /></div><div className="md:col-span-2"><Button type="submit" className="rounded-none bg-oxblood">Create Decision Room</Button></div></form> : null}
 
       <section className="relative min-h-[320px] overflow-hidden border border-border bg-foreground text-background">
         <img src={luxuryImages.command} alt="Private family office command room" className="absolute inset-0 h-full w-full object-cover opacity-60" />
