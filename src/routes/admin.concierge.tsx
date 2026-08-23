@@ -27,7 +27,7 @@ function AdminConciergePage() {
       need: request.title,
       category: "Clubs & access",
       cities: ["London"],
-      preferredMode: "Request",
+      preferredMode: "request",
       opened: new Date().toISOString().slice(0, 10),
       stage: "Open",
       research: "Research required",
