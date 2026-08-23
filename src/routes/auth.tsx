@@ -25,7 +25,12 @@ function AuthPage() {
   const [preview, setPreview] = useState(false);
   useEffect(() => {
     if (typeof window === "undefined") return;
-    const internal = new URLSearchParams(window.location.search).get("preview") === "1";
+    // Internal Lovable preview host only (id-preview--<uuid>.lovable.app) or explicit ?preview=1.
+    const host = window.location.hostname;
+    const onInternalPreviewHost =
+      host === "localhost" || (host.startsWith("id-preview--") && host.endsWith(".lovable.app"));
+    const internal =
+      onInternalPreviewHost || new URLSearchParams(window.location.search).get("preview") === "1";
     setPreview(internal);
     if (internal) enableInternalPreview();
   }, []);
