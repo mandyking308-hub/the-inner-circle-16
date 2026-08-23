@@ -16,6 +16,7 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AlumniRouteImport } from './routes/alumni'
 import { Route as ApplyRouteImport } from './routes/apply'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as CancellationRouteImport } from './routes/cancellation'
 import { Route as ConciergeRouteImport } from './routes/concierge'
 import { Route as ConfidentialityRouteImport } from './routes/confidentiality'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -137,6 +138,11 @@ const ApplyRoute = ApplyRouteImport.update({
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CancellationRoute = CancellationRouteImport.update({
+  id: '/cancellation',
+  path: '/cancellation',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ConciergeRoute = ConciergeRouteImport.update({
@@ -585,6 +591,7 @@ export interface FileRoutesByFullPath {
   '/alumni': typeof AlumniRoute
   '/apply': typeof ApplyRoute
   '/auth': typeof AuthRoute
+  '/cancellation': typeof CancellationRoute
   '/concierge': typeof ConciergeRoute
   '/confidentiality': typeof ConfidentialityRoute
   '/contact': typeof ContactRoute
@@ -680,6 +687,7 @@ export interface FileRoutesByTo {
   '/alumni': typeof AlumniRoute
   '/apply': typeof ApplyRoute
   '/auth': typeof AuthRoute
+  '/cancellation': typeof CancellationRoute
   '/concierge': typeof ConciergeRoute
   '/confidentiality': typeof ConfidentialityRoute
   '/contact': typeof ContactRoute
@@ -775,6 +783,7 @@ export interface FileRoutesById {
   '/alumni': typeof AlumniRoute
   '/apply': typeof ApplyRoute
   '/auth': typeof AuthRoute
+  '/cancellation': typeof CancellationRoute
   '/concierge': typeof ConciergeRoute
   '/confidentiality': typeof ConfidentialityRoute
   '/contact': typeof ContactRoute
@@ -873,6 +882,7 @@ export interface FileRouteTypes {
     | '/alumni'
     | '/apply'
     | '/auth'
+    | '/cancellation'
     | '/concierge'
     | '/confidentiality'
     | '/contact'
@@ -968,6 +978,7 @@ export interface FileRouteTypes {
     | '/alumni'
     | '/apply'
     | '/auth'
+    | '/cancellation'
     | '/concierge'
     | '/confidentiality'
     | '/contact'
@@ -1062,6 +1073,7 @@ export interface FileRouteTypes {
     | '/alumni'
     | '/apply'
     | '/auth'
+    | '/cancellation'
     | '/concierge'
     | '/confidentiality'
     | '/contact'
@@ -1159,6 +1171,7 @@ export interface RootRouteChildren {
   AlumniRoute: typeof AlumniRoute
   ApplyRoute: typeof ApplyRoute
   AuthRoute: typeof AuthRoute
+  CancellationRoute: typeof CancellationRoute
   ConciergeRoute: typeof ConciergeRoute
   ConfidentialityRoute: typeof ConfidentialityRoute
   ContactRoute: typeof ContactRoute
@@ -1243,6 +1256,13 @@ declare module '@tanstack/react-router' {
       path: '/auth'
       fullPath: '/auth'
       preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cancellation': {
+      id: '/cancellation'
+      path: '/cancellation'
+      fullPath: '/cancellation'
+      preLoaderRoute: typeof CancellationRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/concierge': {
@@ -2010,6 +2030,7 @@ const rootRouteChildren: RootRouteChildren = {
   AlumniRoute: AlumniRoute,
   ApplyRoute: ApplyRoute,
   AuthRoute: AuthRoute,
+  CancellationRoute: CancellationRoute,
   ConciergeRoute: ConciergeRoute,
   ConfidentialityRoute: ConfidentialityRoute,
   ContactRoute: ContactRoute,
