@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { journalArticles } from "@/data/journal";
 import { knowledgeLibrary } from "@/data/knowledgeLibrary";
 
-export const Route = createFileRoute("/member/knowledge")({ component: KnowledgePage });
+export const Route = createFileRoute("/member/knowledge/")({ component: KnowledgePage });
 
 const STORAGE_KEY = "project-table:saved-knowledge";
 
