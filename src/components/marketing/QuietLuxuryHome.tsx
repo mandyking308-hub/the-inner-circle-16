@@ -91,16 +91,6 @@ export function QuietLuxuryHome() {
             </div>
           </div>
 
-          <div className="mt-10 flex justify-end">
-            <div className="flex items-center gap-3 bg-background/92 px-4 py-2.5 text-ink shadow-lg">
-              <Plane className="h-4 w-4 text-bronze" />
-              <span className="text-[13px] leading-tight">
-                Nice, France
-                <br />
-                <span className="text-muted-foreground">14:30</span>
-              </span>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -296,7 +286,7 @@ export function QuietLuxuryHome() {
           <div>
             <Eyebrow tone="bronze">Montvelle World</Eyebrow>
             <h2 className="mt-6 max-w-[16ch] font-display text-5xl leading-[0.98] md:text-7xl">
-              You should not have to become the project manager of your own life.
+              The more you build, the more there is to hold together.
             </h2>
             <p className="mt-7 max-w-xl text-base leading-8 text-muted-foreground">
               Success builds complexity: countries, homes, schools, advisers, businesses, travel,
