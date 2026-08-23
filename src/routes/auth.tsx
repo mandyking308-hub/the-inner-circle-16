@@ -30,6 +30,11 @@ function AuthPage() {
   const [preview, setPreview] = useState(false);
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
+  /**
+   * Deliberately re-set to false on every mount: acceptance is required at
+   * EVERY sign-in attempt and is never remembered across sessions.
+   */
+  const [accepted, setAccepted] = useState(false);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -40,9 +45,20 @@ function AuthPage() {
     setPreview(internal);
     if (!internal) return;
     enableInternalPreview();
-    // One-click internal preview entry: /auth?preview=member
-    if (internalHost && flag === "member") void navigate({ to: "/member" });
+    // `?preview=member` lands here and must still pass the acceptance gate —
+    // it no longer redirects straight into the member workspace.
   }, [navigate]);
+
+  const enterWorkspace = (to: "/member" | "/admin") => {
+    if (!accepted) {
+      setError("Please confirm you accept the current membership documents to continue.");
+      return;
+    }
+    // PREVIEW EVIDENCE ONLY — must be persisted server-side once real auth is live.
+    recordMemberSignInAcceptance(email.trim() || null);
+    enableInternalPreview();
+    void navigate({ to });
+  };
 
   const signInPreview = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -52,8 +68,14 @@ function AuthPage() {
       setError("Please enter a valid email address.");
       return;
     }
+    if (!accepted) {
+      setError("Please confirm you accept the current membership documents to continue.");
+      return;
+    }
     setError("");
     setPreviewIdentity(parsed.data);
+    // PREVIEW EVIDENCE ONLY — see src/lib/legalAcceptance.ts.
+    recordMemberSignInAcceptance(parsed.data);
     enableInternalPreview();
     void navigate({ to: "/member" });
   };
