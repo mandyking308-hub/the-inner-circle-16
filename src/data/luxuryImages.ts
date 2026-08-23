@@ -22,6 +22,6 @@ export const destinationImages = {
   courchevel: unsplash("1517299321609-52687d1bc55a", 900),
   london: unsplash("1513635269975-59663e0ac1ad", 700),
   dubai: unsplash("1512453979798-5ea266f8880c", 700),
-  geneva: unsplash("1531366936337-7c912a4589a7", 700),
+  geneva: unsplash("1527668752968-14dc70a27c95", 700),
   newYork: unsplash("1496442226666-8d4d0e62e6e9", 700),
 } as const;
