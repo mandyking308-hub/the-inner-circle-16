@@ -250,7 +250,7 @@ export const seedProspects: Prospect[] = [
   {
     id: "PR-301",
     requestId: "MR-2101",
-    name: "DEMO · Rooms operator, St James's",
+    name: "Demo venue prospect A",
     contactRoute: "General manager, direct line",
     website: "Held by the desk",
     category: "Dining & venues",
@@ -271,7 +271,7 @@ export const seedProspects: Prospect[] = [
   {
     id: "PR-302",
     requestId: "MR-2098",
-    name: "DEMO · Independent driver, Paris",
+    name: "Demo transport prospect B",
     contactRoute: "Direct email",
     website: "Held by the desk",
     category: "Ground transport",
