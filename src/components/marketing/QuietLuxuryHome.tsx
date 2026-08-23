@@ -45,36 +45,35 @@ export function QuietLuxuryHome() {
       {/* Hero */}
       <section className="relative bg-ink text-background">
         <img
-          src={luxuryImages.jet}
+          src={luxuryImages.hero}
           alt="A family boarding a private aircraft at sunset"
-          className="absolute inset-0 h-full w-full object-cover object-[65%_center]"
+          className="absolute inset-0 h-full w-full object-cover object-[62%_center]"
           fetchPriority="high"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(12,11,10,0.94)_0%,rgba(12,11,10,0.74)_34%,rgba(12,11,10,0.28)_62%,rgba(12,11,10,0.12)_100%)]" />
-        <div className="relative mx-auto w-full max-w-[110rem] px-6 pb-14 pt-24 sm:px-10 md:pb-20 md:pt-32 lg:px-14">
-          <div className="max-w-3xl">
-            <h1 className="font-display text-[3.1rem] leading-[0.98] sm:text-6xl md:text-7xl">
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(12,11,10,0.92)_0%,rgba(12,11,10,0.66)_30%,rgba(12,11,10,0.18)_58%,rgba(12,11,10,0.05)_100%)]" />
+        <div className="relative mx-auto flex min-h-[30rem] w-full max-w-[110rem] flex-col justify-between px-6 pb-6 pt-12 sm:px-10 md:min-h-[34rem] md:pt-14 lg:px-14">
+          <div className="max-w-2xl">
+            <h1 className="font-display text-[2.6rem] leading-[1.02] sm:text-5xl md:text-[3.7rem]">
               A private world
               <br className="hidden sm:block" /> around the life
               <br className="hidden sm:block" /> you&rsquo;ve built.
             </h1>
-            <div className="mt-7 flex flex-wrap items-center gap-x-3 gap-y-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-background/72">
+            <div className="mt-5 flex flex-wrap items-center gap-x-2.5 gap-y-2 text-[9px] font-semibold uppercase tracking-[0.2em] text-background/75">
               {heroKeywords.map((word, i) => (
-                <span key={word} className="flex items-center gap-3">
+                <span key={word} className="flex items-center gap-2.5">
                   {word}
                   {i < heroKeywords.length - 1 && <span className="text-gold">&bull;</span>}
                 </span>
               ))}
             </div>
-            <p className="mt-8 font-display text-xl italic leading-8 text-background/88 md:text-2xl">
+            <p className="mt-6 font-display text-lg italic leading-7 text-background/88 md:text-xl">
               Membership. Concierge. Private Office.
               <br />A global community for families of exceptional means.
             </p>
-            <div className="mt-9 flex flex-wrap gap-4">
+            <div className="mt-7 flex flex-wrap gap-3">
               <Button
                 asChild
-                size="lg"
-                className="rounded-none bg-gold px-7 text-[11px] font-semibold uppercase tracking-[0.18em] text-ink hover:bg-gold/90"
+                className="h-11 rounded-none bg-gold px-6 text-[10px] font-semibold uppercase tracking-[0.18em] text-ink hover:bg-gold/90"
               >
                 <Link to="/apply">
                   Membership inquiry <ArrowRight className="ml-3 h-4 w-4" />
@@ -82,9 +81,8 @@ export function QuietLuxuryHome() {
               </Button>
               <Button
                 asChild
-                size="lg"
                 variant="outline"
-                className="rounded-none border-background/45 bg-transparent px-7 text-[11px] font-semibold uppercase tracking-[0.18em] text-background hover:bg-background hover:text-ink"
+                className="h-11 rounded-none border-background/45 bg-transparent px-6 text-[10px] font-semibold uppercase tracking-[0.18em] text-background hover:bg-background hover:text-ink"
               >
                 <Link to="/about">
                   Watch our story <Play className="ml-3 h-3.5 w-3.5" />
@@ -93,10 +91,10 @@ export function QuietLuxuryHome() {
             </div>
           </div>
 
-          <div className="mt-14 flex justify-end lg:mt-24">
-            <div className="flex items-center gap-3 bg-background/92 px-5 py-3 text-ink shadow-lg">
+          <div className="mt-10 flex justify-end">
+            <div className="flex items-center gap-3 bg-background/92 px-4 py-2.5 text-ink shadow-lg">
               <Plane className="h-4 w-4 text-bronze" />
-              <span className="text-sm leading-tight">
+              <span className="text-[13px] leading-tight">
                 Nice, France
                 <br />
                 <span className="text-muted-foreground">14:30</span>
@@ -106,9 +104,10 @@ export function QuietLuxuryHome() {
         </div>
       </section>
 
+
       {/* Global life */}
       <section className="bg-linen">
-        <div className="mx-auto grid w-full max-w-[110rem] gap-8 px-6 py-16 sm:px-10 lg:grid-cols-[0.85fr_1.6fr_0.9fr] lg:items-center lg:gap-6 lg:px-14">
+        <div className="mx-auto grid w-full max-w-[110rem] gap-6 px-6 py-10 sm:px-10 lg:grid-cols-[0.8fr_1.7fr_0.85fr] lg:items-center lg:gap-5 lg:px-14">
           <div>
             <Eyebrow tone="bronze">Global Life</Eyebrow>
             <h2 className="mt-4 font-display text-4xl leading-[1.05] md:text-5xl">
@@ -168,7 +167,7 @@ export function QuietLuxuryHome() {
           loading="lazy"
         />
 
-        <div className="bg-ink px-8 py-14 text-background md:px-10">
+        <div className="bg-ink px-7 py-10 text-background md:px-9">
           <Eyebrow>Our People</Eyebrow>
           <h2 className="mt-5 font-display text-3xl leading-[1.1] md:text-4xl">
             The people make
@@ -187,7 +186,7 @@ export function QuietLuxuryHome() {
           </Link>
         </div>
 
-        <div className="bg-linen px-8 py-14 md:px-10">
+        <div className="bg-linen px-7 py-10 md:px-9">
           <Eyebrow tone="bronze">Bespoke Service</Eyebrow>
           <h2 className="mt-5 font-display text-3xl leading-[1.1] md:text-4xl">More than concierge.</h2>
           <div className="mt-7 grid gap-8 sm:grid-cols-2">
@@ -218,7 +217,7 @@ export function QuietLuxuryHome() {
 
       {/* Mosaic: family, destinations, private office */}
       <section className="grid lg:grid-cols-[0.8fr_1fr_1.3fr_0.9fr]">
-        <div className="bg-background px-8 py-14 md:px-10">
+        <div className="bg-background px-7 py-10 md:px-9">
           <Eyebrow tone="bronze">Family &amp; Legacy</Eyebrow>
           <h2 className="mt-5 font-display text-3xl leading-[1.08] md:text-4xl">
             Build a bigger world for the people it&rsquo;s all for.
@@ -239,7 +238,7 @@ export function QuietLuxuryHome() {
           loading="lazy"
         />
 
-        <div className="bg-ink px-8 py-14 text-background md:px-10">
+        <div className="bg-ink px-7 py-10 text-background md:px-9">
           <Eyebrow>Where life takes you</Eyebrow>
           <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
             {destinations.map((city) => (
@@ -264,7 +263,7 @@ export function QuietLuxuryHome() {
           </Link>
         </div>
 
-        <div className="relative isolate overflow-hidden bg-ink px-8 py-14 text-background md:px-10">
+        <div className="relative isolate overflow-hidden bg-ink px-7 py-10 text-background md:px-9">
           <img
             src={luxuryImages.office}
             alt="A private office library at dusk"
