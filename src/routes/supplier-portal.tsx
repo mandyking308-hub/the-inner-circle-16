@@ -121,9 +121,37 @@ function SupplierPortalPage() {
                   </option>
                 ))}
               </select>
-              <Button className="mt-6 rounded-none" onClick={enter}>
+              <label className="mt-6 flex gap-3 border-t border-border pt-5 text-[11px] leading-6 text-muted-foreground">
+                <input
+                  type="checkbox"
+                  checked={accepted}
+                  onChange={(event) => setAccepted(event.target.checked)}
+                  className="mt-1 h-3.5 w-3.5 shrink-0 accent-[#7b2230]"
+                />
+                <span>
+                  I confirm I am authorised to act for this organisation and accept the current{" "}
+                  <Link to="/supplier-agreement" className="underline underline-offset-2">
+                    Supplier &amp; Partner Agreement
+                  </Link>
+                  ,{" "}
+                  <Link to="/privacy" className="underline underline-offset-2">Privacy Notice</Link>{" "}
+                  and{" "}
+                  <Link to="/confidentiality" className="underline underline-offset-2">
+                    Confidentiality &amp; No Solicitation
+                  </Link>{" "}
+                  standard.
+                </span>
+              </label>
+              <p className="mt-2 text-[10px] leading-5 text-muted-foreground">
+                {supplierLegalVersionBundle}
+              </p>
+              <Button className="mt-5 rounded-none" onClick={enter} disabled={!accepted}>
                 Enter portal <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
+              <p className="mt-3 text-[10px] leading-5 text-muted-foreground">
+                Acceptance is required at every sign-in. In this preview it is recorded in your
+                browser only, not in a production audit store.
+              </p>
             </div>
 
             <div className="border border-border bg-foreground p-7 text-background">
