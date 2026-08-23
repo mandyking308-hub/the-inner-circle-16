@@ -27,11 +27,11 @@ function SupplierProfile() {
   useEffect(() => {
     const base: Profile = {
       name: supplier?.name ?? "",
-      summary: supplier?.summary ?? "",
-      cities: (supplier?.cities ?? []).join(", "),
-      contact: supplier?.contact ?? "",
-      insurance: supplier?.assurance ?? "",
-      vetting: supplier?.vetting ?? "",
+      summary: supplier?.focus ?? "",
+      cities: (supplier?.locations ?? []).join(", "),
+      contact: supplier?.responseTime ?? "",
+      insurance: "",
+      vetting: supplier?.status ?? "",
     };
     try {
       const raw = window.localStorage.getItem(key);
@@ -82,7 +82,7 @@ function SupplierProfile() {
           {field("Business name", "name")}
           {field("Short description", "summary", true)}
           {field("Cities served", "cities")}
-          {field("Primary contact", "contact")}
+          {field("Typical response time", "contact")}
           {field("Insurance & licensing", "insurance", true)}
           {field("Vetting & references", "vetting", true)}
           <Button className="rounded-none" onClick={save}>

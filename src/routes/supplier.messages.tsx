@@ -4,7 +4,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SupplierIntro, useSupplierIdentity } from "@/components/supplier/SupplierShell";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { appendMessage, readThreads, type Thread } from "@/data/memberWorld";
+import { readThreads, writeThreads, type Thread } from "@/data/memberWorld";
 
 export const Route = createFileRoute("/supplier/messages")({ component: SupplierMessages });
 
@@ -23,7 +23,26 @@ function SupplierMessages() {
 
   const send = () => {
     if (!active || !draft.trim()) return;
-    setThreads(appendMessage(active.id, { author: "supplier", body: draft.trim() }));
+    const next = threads.map((thread) =>
+      thread.id === active.id
+        ? {
+            ...thread,
+            state: "waiting" as const,
+            messages: [
+              ...thread.messages,
+              {
+                id: `msg-${Date.now()}`,
+                author: "You",
+                role: "supplier" as const,
+                body: draft.trim(),
+                at: new Date().toISOString(),
+              },
+            ],
+          }
+        : thread,
+    );
+    setThreads(next);
+    writeThreads(next);
     setDraft("");
   };
 
@@ -48,7 +67,7 @@ function SupplierMessages() {
                     onClick={() => setActiveId(thread.id)}
                     className={`w-full px-5 py-4 text-left transition-colors ${active?.id === thread.id ? "bg-accent" : "hover:bg-accent/60"}`}
                   >
-                    <p className="text-[9px] uppercase tracking-[0.14em] text-oxblood">{thread.contextLabel}</p>
+                    <p className="text-[9px] uppercase tracking-[0.14em] text-oxblood">{thread.context}</p>
                     <p className="mt-1.5 font-display text-lg leading-tight">{thread.subject}</p>
                     <p className="mt-1 line-clamp-1 text-xs text-muted-foreground">
                       {thread.messages[thread.messages.length - 1]?.body}
@@ -64,17 +83,17 @@ function SupplierMessages() {
           {active ? (
             <>
               <div className="border-b border-border p-6">
-                <p className="text-[9px] uppercase tracking-[0.14em] text-oxblood">{active.contextLabel}</p>
+                <p className="text-[9px] uppercase tracking-[0.14em] text-oxblood">{active.context}</p>
                 <h2 className="mt-2 font-display text-2xl">{active.subject}</h2>
               </div>
               <div className="space-y-4 p-6">
                 {active.messages.map((message, index) => (
                   <div
                     key={`${active.id}-${index}`}
-                    className={`max-w-[85%] border p-4 text-sm leading-6 ${message.author === "supplier" ? "ml-auto border-oxblood/40 bg-accent" : "border-border bg-background"}`}
+                    className={`max-w-[85%] border p-4 text-sm leading-6 ${message.role === "supplier" ? "ml-auto border-oxblood/40 bg-accent" : "border-border bg-background"}`}
                   >
                     <p className="text-[9px] uppercase tracking-[0.14em] text-muted-foreground">
-                      {message.author === "supplier" ? "You" : message.author === "member" ? "Member" : "Concierge desk"}
+                      {message.role === "supplier" ? "You" : message.author === "member" ? "Member" : "Concierge desk"}
                     </p>
                     <p className="mt-2">{message.body}</p>
                   </div>
