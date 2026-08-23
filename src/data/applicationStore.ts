@@ -33,12 +33,26 @@ export const starterApplications: MembershipApplication[] = [
     profile: "Founder-led family enterprise",
     membership: "Family",
     building: "A consumer business moving into its second generation of ownership.",
-    complicated: "We are trying to make residence, school decisions, family governance and the business timetable work as one plan.",
-    contribution: "Experience scaling a family-owned brand across Europe and a willingness to mentor younger founders.",
+    complicated:
+      "We are trying to make residence, school decisions, family governance and the business timetable work as one plan.",
+    contribution:
+      "Experience scaling a family-owned brand across Europe and a willingness to mentor younger founders.",
     referral: "Introduced by a founding member",
     references: [
-      { name: "Jonathan Reid", organisation: "Reid & Partners", email: "jonathan@example.com", relationship: "Chaired our family council for six years.", phone: "" },
-      { name: "Sophie Almeida", organisation: "Almeida Capital", email: "sophie@example.com", relationship: "Co-investor and long-standing friend of the family.", phone: "" },
+      {
+        name: "Jonathan Reid",
+        organisation: "Reid & Partners",
+        email: "jonathan@example.com",
+        relationship: "Chaired our family council for six years.",
+        phone: "",
+      },
+      {
+        name: "Sophie Almeida",
+        organisation: "Almeida Capital",
+        email: "sophie@example.com",
+        relationship: "Co-investor and long-standing friend of the family.",
+        phone: "",
+      },
     ],
     referenceConsent: true,
   },

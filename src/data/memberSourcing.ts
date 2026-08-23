@@ -16,7 +16,8 @@
 
 /* ------------------------------------------------------------------ member */
 
-export type MemberRequestStatus = "Received" | "In hand" | "Checking options" | "Ready for you" | "Arranged" | "Closed";
+export type MemberRequestStatus =
+  "Received" | "In hand" | "Checking options" | "Ready for you" | "Arranged" | "Closed";
 
 export const memberRequestStatuses: MemberRequestStatus[] = [
   "Received",
@@ -30,7 +31,8 @@ export const memberRequestStatuses: MemberRequestStatus[] = [
 export const memberStatusNote: Record<MemberRequestStatus, string> = {
   Received: "We have this. You will hear from us within 24 hours.",
   "In hand": "Someone at Montvelle is on it and making enquiries for you.",
-  "Checking options": "Replies are coming back. We are checking suitability, terms and availability.",
+  "Checking options":
+    "Replies are coming back. We are checking suitability, terms and availability.",
   "Ready for you": "A small number of checked options are ready for you to consider.",
   Arranged: "Arranged. We stay with it until the day itself.",
   Closed: "Closed.",
@@ -170,10 +172,19 @@ export const seedMemberRequests: MemberSourcingRequest[] = [
     status: "In hand",
     receivedAt: hoursAgo(30),
     respondedAt: hoursAgo(26),
-    nextUpdate: "We will come back to you with rooms we have actually seen or spoken to by Thursday.",
+    nextUpdate:
+      "We will come back to you with rooms we have actually seen or spoken to by Thursday.",
     updates: [
-      { id: "u-1", at: day(hoursAgo(30)), note: "Received. We will come back to you within 24 hours." },
-      { id: "u-2", at: day(hoursAgo(26)), note: "In hand. Enquiries are going out today; nothing about you leaves this desk." },
+      {
+        id: "u-1",
+        at: day(hoursAgo(30)),
+        note: "Received. We will come back to you within 24 hours.",
+      },
+      {
+        id: "u-2",
+        at: day(hoursAgo(26)),
+        note: "In hand. Enquiries are going out today; nothing about you leaves this desk.",
+      },
     ],
     options: [],
     internalStage: "Contacting",
@@ -196,9 +207,17 @@ export const seedMemberRequests: MemberSourcingRequest[] = [
     respondedAt: hoursAgo(88),
     nextUpdate: "Two checked options are with you. Tell us which one and we will arrange it.",
     updates: [
-      { id: "u-3", at: day(hoursAgo(96)), note: "Received. We will come back to you within 24 hours." },
+      {
+        id: "u-3",
+        at: day(hoursAgo(96)),
+        note: "Received. We will come back to you within 24 hours.",
+      },
       { id: "u-4", at: day(hoursAgo(88)), note: "In hand. Enquiries made on your behalf." },
-      { id: "u-5", at: day(hoursAgo(40)), note: "Two options checked for licence, insurance and availability, and ready for you." },
+      {
+        id: "u-5",
+        at: day(hoursAgo(40)),
+        note: "Two options checked for licence, insurance and availability, and ready for you.",
+      },
     ],
     options: [
       {
@@ -236,7 +255,13 @@ export const seedMemberRequests: MemberSourcingRequest[] = [
     status: "Received",
     receivedAt: hoursAgo(6),
     nextUpdate: "We will come back to you within 24 hours.",
-    updates: [{ id: "u-6", at: day(hoursAgo(6)), note: "Received. We will come back to you within 24 hours." }],
+    updates: [
+      {
+        id: "u-6",
+        at: day(hoursAgo(6)),
+        note: "Received. We will come back to you within 24 hours.",
+      },
+    ],
     options: [],
     internalStage: "New request",
     owner: "Unassigned",
@@ -310,8 +335,10 @@ function write<T>(key: string, value: T) {
   }
 }
 
-export const readMemberRequests = () => read<MemberSourcingRequest[]>(REQUEST_KEY, seedMemberRequests);
-export const writeMemberRequests = (requests: MemberSourcingRequest[]) => write(REQUEST_KEY, requests);
+export const readMemberRequests = () =>
+  read<MemberSourcingRequest[]>(REQUEST_KEY, seedMemberRequests);
+export const writeMemberRequests = (requests: MemberSourcingRequest[]) =>
+  write(REQUEST_KEY, requests);
 export const readProspects = () => read<Prospect[]>(PROSPECT_KEY, seedProspects);
 export const writeProspects = (prospects: Prospect[]) => write(PROSPECT_KEY, prospects);
 
@@ -342,7 +369,12 @@ export function responseSla(request: MemberSourcingRequest, now = Date.now()): S
 }
 
 export const formatReceived = (iso: string) =>
-  new Date(iso).toLocaleString("en-GB", { day: "numeric", month: "long", hour: "2-digit", minute: "2-digit" });
+  new Date(iso).toLocaleString("en-GB", {
+    day: "numeric",
+    month: "long",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
 
 /** A neutral, member-safe title derived from the need, never a provider name. */
 export function neutralTitle(need: string, city: string) {
@@ -352,13 +384,17 @@ export function neutralTitle(need: string, city: string) {
 }
 
 /** The only text that may leave the house without the member's explicit consent. */
-export function neutralBriefFor(request: Pick<MemberSourcingRequest, "need" | "city" | "timeframe" | "logistics">) {
+export function neutralBriefFor(
+  request: Pick<MemberSourcingRequest, "need" | "city" | "timeframe" | "logistics">,
+) {
   return [
     "A private client office is making an enquiry on behalf of a client.",
     request.need,
     request.city && request.city !== "Not stated" ? `Location: ${request.city}.` : "",
     request.timeframe && request.timeframe !== "Not stated" ? `Timing: ${request.timeframe}.` : "",
-    request.logistics && request.logistics !== "Not stated" ? `Practicalities: ${request.logistics}.` : "",
+    request.logistics && request.logistics !== "Not stated"
+      ? `Practicalities: ${request.logistics}.`
+      : "",
     "No client details will be shared at this stage.",
   ]
     .filter(Boolean)

@@ -20,7 +20,13 @@ export const bookingStatusLabel: Record<BookingStatus, string> = {
   cancelled: "Cancelled",
 };
 
-export const bookingStatusOrder: BookingStatus[] = ["upcoming", "awaiting", "in_progress", "past", "cancelled"];
+export const bookingStatusOrder: BookingStatus[] = [
+  "upcoming",
+  "awaiting",
+  "in_progress",
+  "past",
+  "cancelled",
+];
 
 export type Booking = {
   id: string;
@@ -205,8 +211,20 @@ export const seedThreads: Thread[] = [
     bookingId: "BKG-4021",
     state: "active",
     messages: [
-      { id: "m1", author: "DEMO Arrangement · Option A", role: "supplier", body: "Confirmed for the 18:40 arrival. We will follow the flight and message when the car is in position.", at: "2026-08-19" },
-      { id: "m2", author: "You", role: "member", body: "Thank you. No name card at arrivals, please.", at: "2026-08-19" },
+      {
+        id: "m1",
+        author: "DEMO Arrangement · Option A",
+        role: "supplier",
+        body: "Confirmed for the 18:40 arrival. We will follow the flight and message when the car is in position.",
+        at: "2026-08-19",
+      },
+      {
+        id: "m2",
+        author: "You",
+        role: "member",
+        body: "Thank you. No name card at arrivals, please.",
+        at: "2026-08-19",
+      },
     ],
   },
   {
@@ -219,7 +237,13 @@ export const seedThreads: Thread[] = [
     bookingId: "BKG-4022",
     state: "waiting",
     messages: [
-      { id: "m1", author: "Montvelle", role: "concierge", body: "Request placed with the kitchen list as you left it in May. I will come back with a quote by Tuesday.", at: "2026-08-21" },
+      {
+        id: "m1",
+        author: "Montvelle",
+        role: "concierge",
+        body: "Request placed with the kitchen list as you left it in May. I will come back with a quote by Tuesday.",
+        at: "2026-08-21",
+      },
     ],
   },
   {
@@ -232,20 +256,39 @@ export const seedThreads: Thread[] = [
     bookingId: "BKG-4023",
     state: "needs_reply",
     messages: [
-      { id: "m1", author: "DEMO Arrangement · Option C", role: "supplier", body: "Two rooms are free that evening. The smaller one is quieter but seats eight only. Menu draft attached in the folio.", at: "2026-08-20" },
-      { id: "m2", author: "Montvelle", role: "concierge", body: "I would take the smaller room. Shall I confirm?", at: "2026-08-21" },
+      {
+        id: "m1",
+        author: "DEMO Arrangement · Option C",
+        role: "supplier",
+        body: "Two rooms are free that evening. The smaller one is quieter but seats eight only. Menu draft attached in the folio.",
+        at: "2026-08-20",
+      },
+      {
+        id: "m2",
+        author: "Montvelle",
+        role: "concierge",
+        body: "I would take the smaller room. Shall I confirm?",
+        at: "2026-08-21",
+      },
     ],
   },
   {
     id: "THR-06",
     kind: "concierge",
     subject: "Education adviser · London school transition",
-    context: "Concierge case REQ-2048. Two advisers shortlisted; an introduction awaits your consent.",
+    context:
+      "Concierge case REQ-2048. Two advisers shortlisted; an introduction awaits your consent.",
     participants: ["You", "Montvelle"],
     caseId: "REQ-2048",
     state: "needs_reply",
     messages: [
-      { id: "m1", author: "Montvelle", role: "concierge", body: "Both advisers can hold curriculum continuity and the move timing together. Would you like me to introduce the first?", at: "2026-08-21" },
+      {
+        id: "m1",
+        author: "Montvelle",
+        role: "concierge",
+        body: "Both advisers can hold curriculum continuity and the move timing together. Would you like me to introduce the first?",
+        at: "2026-08-21",
+      },
     ],
   },
   {
@@ -256,7 +299,13 @@ export const seedThreads: Thread[] = [
     participants: ["You", "Montvelle"],
     state: "needs_reply",
     messages: [
-      { id: "m1", author: "Montvelle", role: "concierge", body: "We have kept a place for you. Dietary notes will carry across from your preferences if you accept.", at: "2026-08-15" },
+      {
+        id: "m1",
+        author: "Montvelle",
+        role: "concierge",
+        body: "We have kept a place for you. Dietary notes will carry across from your preferences if you accept.",
+        at: "2026-08-15",
+      },
     ],
   },
   {
@@ -269,7 +318,13 @@ export const seedThreads: Thread[] = [
     bookingId: "BKG-4009",
     state: "closed",
     messages: [
-      { id: "m1", author: "DEMO Arrangement · Option D", role: "supplier", body: "Delighted it was worthwhile. We can hold something similar in Venice in the autumn.", at: "2026-07-13" },
+      {
+        id: "m1",
+        author: "DEMO Arrangement · Option D",
+        role: "supplier",
+        body: "Delighted it was worthwhile. We can hold something similar in Venice in the autumn.",
+        at: "2026-07-13",
+      },
     ],
   },
   {
@@ -298,12 +353,14 @@ export const defaultPreferences: Preferences = {
     "Route wellbeing requests through Cadogan first. Keep clinical detail out of Montvelle — share only what a booking requires.",
   communications:
     "Message rather than call between 07:00 and 20:00 London time. Anything urgent, call. Nothing to the household line before 09:00.",
-  favourites: "DEMO Arrangement · Option A · DEMO Arrangement · Option B · DEMO Arrangement · Option C (Paris room)",
+  favourites:
+    "DEMO Arrangement · Option A · DEMO Arrangement · Option B · DEMO Arrangement · Option C (Paris room)",
   avoid: "No open-plan hotel lobbies for meetings. Do not suggest venues with press relationships.",
-  defaultBooking: "Ask before confirming anything above £2,000. Private introduction preferred for advisers.",
+  defaultBooking:
+    "Ask before confirming anything above £2,000. Private introduction preferred for advisers.",
 };
 
-const read = <T,>(key: string, fallback: T): T => {
+const read = <T>(key: string, fallback: T): T => {
   if (typeof window === "undefined") return fallback;
   try {
     const raw = window.localStorage.getItem(key);
@@ -329,4 +386,5 @@ export const writeThreads = (threads: Thread[]) => write(THREADS_KEY, threads);
 export const readPreferences = () => read<Preferences>(PREFERENCES_KEY, defaultPreferences);
 export const writePreferences = (preferences: Preferences) => write(PREFERENCES_KEY, preferences);
 
-export const needsReplyCount = (threads: Thread[]) => threads.filter((thread) => thread.state === "needs_reply").length;
+export const needsReplyCount = (threads: Thread[]) =>
+  threads.filter((thread) => thread.state === "needs_reply").length;

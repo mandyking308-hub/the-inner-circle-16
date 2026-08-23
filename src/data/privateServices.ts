@@ -128,7 +128,8 @@ const lifestyleSuppliers: SupplierOrg[] = [
     category: "Property",
     status: "Vetted Partner",
     locations: ["London", "Lisbon", "New York"],
-    focus: "Quiet acquisition, off-market search and long-lease negotiation for private residences.",
+    focus:
+      "Quiet acquisition, off-market search and long-lease negotiation for private residences.",
     responseTime: "Usually within 1 business day",
     benefit: "Search brief prepared before any viewing.",
   },
@@ -209,7 +210,8 @@ export const serviceOfferings: ServiceOffering[] = [
     supplier: "Lindow House Management",
     category: "Household",
     title: "Open the house before arrival",
-    summary: "Residence prepared, kitchen stocked to your preferences, rooms aired and heating set.",
+    summary:
+      "Residence prepared, kitchen stocked to your preferences, rooms aired and heating set.",
     cities: ["London", "Cotswolds", "Lisbon"],
     mode: "request",
     standard: "Preparation completed the day before arrival, with photographs sent.",

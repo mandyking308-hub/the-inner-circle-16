@@ -65,7 +65,8 @@ export const trustedPartners = [
     category: "Technology & Cyber",
     status: "Vetted Partner" as PartnerStatus,
     locations: ["UK", "EU", "Remote"],
-    focus: "Family cyber hygiene, device security, privacy reviews and household digital resilience.",
+    focus:
+      "Family cyber hygiene, device security, privacy reviews and household digital resilience.",
     recommendedBy: 2,
     benefit: "Annual family security baseline review.",
     responseTime: "Usually within 1 business day",
@@ -76,7 +77,8 @@ export const trustedPartners = [
     category: "Recruitment & Household",
     status: "Member Recommended" as PartnerStatus,
     locations: ["London", "Paris", "Dubai"],
-    focus: "Household, family office and executive support recruitment with reference-led screening.",
+    focus:
+      "Household, family office and executive support recruitment with reference-led screening.",
     recommendedBy: 4,
     benefit: "Priority shortlist for urgent member briefs.",
     responseTime: "Usually within 1 business day",
@@ -173,12 +175,30 @@ export const conciergeRequests = [
 ] as const;
 
 export const conciergeCategories = [
-  ["Global moves", "Residence, citizenship, relocation, schools, property, banking and the practical pieces that need to happen in the right order."],
-  ["Education", "School search, tutoring, alternative education, university planning, curriculum design and specialist learning support."],
-  ["Property & household", "Buying, renting, managing homes, staffing, moves, household projects and trusted local specialists."],
-  ["Travel & access", "Complex itineraries, member benefits, cultural access, private events and relationship-led recommendations."],
-  ["Family administration", "The awkward jobs that sit between advisers: documents, renewals, coordination, key dates, research and follow-through."],
-  ["Health, privacy & security", "Navigation to appropriate professionals for health, security, cyber, reputation and family wellbeing needs."],
+  [
+    "Global moves",
+    "Residence, citizenship, relocation, schools, property, banking and the practical pieces that need to happen in the right order.",
+  ],
+  [
+    "Education",
+    "School search, tutoring, alternative education, university planning, curriculum design and specialist learning support.",
+  ],
+  [
+    "Property & household",
+    "Buying, renting, managing homes, staffing, moves, household projects and trusted local specialists.",
+  ],
+  [
+    "Travel & access",
+    "Complex itineraries, member benefits, cultural access, private events and relationship-led recommendations.",
+  ],
+  [
+    "Family administration",
+    "The awkward jobs that sit between advisers: documents, renewals, coordination, key dates, research and follow-through.",
+  ],
+  [
+    "Health, privacy & security",
+    "Navigation to appropriate professionals for health, security, cyber, reputation and family wellbeing needs.",
+  ],
 ] as const;
 
 export const globalLifeWorkstreams = [
@@ -216,52 +236,85 @@ export const globalLifeWorkstreams = [
 
 export const familyArchitecture = [
   { layer: "Family", items: ["Roles", "Guardianship", "Decision rights", "Rising generation"] },
-  { layer: "Ownership", items: ["Operating companies", "Holding structures", "Property", "Investments"] },
+  {
+    layer: "Ownership",
+    items: ["Operating companies", "Holding structures", "Property", "Investments"],
+  },
   { layer: "Protection", items: ["Insurance", "Wills", "Trusts", "Contingency"] },
-  { layer: "Purpose", items: ["Philanthropy", "Foundation / charity", "Family values", "Legacy projects"] },
-  { layer: "Advisers", items: ["Legal", "Tax", "Accounting", "Investment", "Immigration", "Education"] },
+  {
+    layer: "Purpose",
+    items: ["Philanthropy", "Foundation / charity", "Family values", "Legacy projects"],
+  },
+  {
+    layer: "Advisers",
+    items: ["Legal", "Tax", "Accounting", "Investment", "Immigration", "Education"],
+  },
 ] as const;
 
 export const curriculumDomains = [
   {
     title: "Core mastery",
-    description: "Reading, writing, mathematics, science and disciplined research — mastered rather than merely covered.",
+    description:
+      "Reading, writing, mathematics, science and disciplined research — mastered rather than merely covered.",
   },
   {
     title: "Communication",
-    description: "Clear writing, public speaking, listening, negotiation, persuasion and the confidence to ask useful questions.",
+    description:
+      "Clear writing, public speaking, listening, negotiation, persuasion and the confidence to ask useful questions.",
   },
   {
     title: "Money & enterprise",
-    description: "Pricing, budgeting, accounting, sales, customers, ownership, investing and how a real organisation works.",
+    description:
+      "Pricing, budgeting, accounting, sales, customers, ownership, investing and how a real organisation works.",
   },
   {
     title: "AI, data & technology",
-    description: "Use modern tools to research, build, automate and create — with judgement, privacy awareness and verification.",
+    description:
+      "Use modern tools to research, build, automate and create — with judgement, privacy awareness and verification.",
   },
   {
     title: "Practical independence",
-    description: "Planning travel, booking appointments, cooking, documents, deadlines, correspondence, household systems and solving unfamiliar problems.",
+    description:
+      "Planning travel, booking appointments, cooking, documents, deadlines, correspondence, household systems and solving unfamiliar problems.",
   },
   {
     title: "World & citizenship",
-    description: "History, geopolitics, cultures, institutions, law, ethics and understanding how countries and societies actually function.",
+    description:
+      "History, geopolitics, cultures, institutions, law, ethics and understanding how countries and societies actually function.",
   },
   {
     title: "Character & execution",
-    description: "Grit, reliability, judgement, self-management, teamwork, recovery from mistakes and finishing what was started.",
+    description:
+      "Grit, reliability, judgement, self-management, teamwork, recovery from mistakes and finishing what was started.",
   },
   {
     title: "Stewardship & service",
-    description: "Philanthropy, volunteering, responsibility to others and learning how resources can create lasting public value.",
+    description:
+      "Philanthropy, volunteering, responsibility to others and learning how resources can create lasting public value.",
   },
 ] as const;
 
 export const executionFramework = [
-  { step: "KNOW", title: "Learn the thing", body: "Acquire enough knowledge to understand the problem, the vocabulary and the available tools." },
-  { step: "APPLY", title: "Use it in context", body: "Complete a real task where the learner must choose how and when to use the skill." },
-  { step: "DELIVER", title: "Finish for somebody else", body: "Work to a deadline, budget, customer, audience or standard. The output has consequences beyond a worksheet." },
-  { step: "REVIEW", title: "Show evidence and improve", body: "Present the work, collect feedback, identify what failed and document the next version." },
+  {
+    step: "KNOW",
+    title: "Learn the thing",
+    body: "Acquire enough knowledge to understand the problem, the vocabulary and the available tools.",
+  },
+  {
+    step: "APPLY",
+    title: "Use it in context",
+    body: "Complete a real task where the learner must choose how and when to use the skill.",
+  },
+  {
+    step: "DELIVER",
+    title: "Finish for somebody else",
+    body: "Work to a deadline, budget, customer, audience or standard. The output has consequences beyond a worksheet.",
+  },
+  {
+    step: "REVIEW",
+    title: "Show evidence and improve",
+    body: "Present the work, collect feedback, identify what failed and document the next version.",
+  },
 ] as const;
 
 export const sampleQuests = [
@@ -269,25 +322,29 @@ export const sampleQuests = [
     title: "Run a £100 micro-venture",
     ages: "11–15",
     domains: ["Money & enterprise", "Communication", "Execution"],
-    outcome: "Research a need, create an offer, price it, sell to real customers, keep accounts and present the result.",
+    outcome:
+      "Research a need, create an offer, price it, sell to real customers, keep accounts and present the result.",
   },
   {
     title: "Plan a family city weekend",
     ages: "9–13",
     domains: ["Practical independence", "Maths", "World"],
-    outcome: "Build the itinerary, compare transport, manage a budget, book one activity and produce a contingency plan.",
+    outcome:
+      "Build the itinerary, compare transport, manage a budget, book one activity and produce a contingency plan.",
   },
   {
     title: "Automate a boring household task",
     ages: "12–17",
     domains: ["AI & technology", "Problem solving", "Execution"],
-    outcome: "Find a repeated task, map the workflow, build a safe automation, test it and explain what could go wrong.",
+    outcome:
+      "Find a repeated task, map the workflow, build a safe automation, test it and explain what could go wrong.",
   },
   {
     title: "Design a giving project",
     ages: "10–17",
     domains: ["Stewardship", "Research", "Communication"],
-    outcome: "Choose an issue, assess organisations, set a small budget, make a recommendation and report on expected impact.",
+    outcome:
+      "Choose an issue, assess organisations, set a small budget, make a recommendation and report on expected impact.",
   },
 ] as const;
 
@@ -338,8 +395,28 @@ export const playbooks = [
 ] as const;
 
 export const reciprocalPlaces = [
-  { city: "London", name: "Mayfair Working Salon", type: "Private dining / meetings", status: "Member benefit proposed" },
-  { city: "Paris", name: "Rive Droite Partner House", type: "Workspace / hosting", status: "Relationship building" },
-  { city: "Dubai", name: "DIFC Partner Lounge", type: "Meetings / member events", status: "Relationship building" },
-  { city: "Lisbon", name: "Príncipe Real Residence Club", type: "Workspace / local introductions", status: "Researching" },
+  {
+    city: "London",
+    name: "Mayfair Working Salon",
+    type: "Private dining / meetings",
+    status: "Member benefit proposed",
+  },
+  {
+    city: "Paris",
+    name: "Rive Droite Partner House",
+    type: "Workspace / hosting",
+    status: "Relationship building",
+  },
+  {
+    city: "Dubai",
+    name: "DIFC Partner Lounge",
+    type: "Meetings / member events",
+    status: "Relationship building",
+  },
+  {
+    city: "Lisbon",
+    name: "Príncipe Real Residence Club",
+    type: "Workspace / local introductions",
+    status: "Researching",
+  },
 ] as const;

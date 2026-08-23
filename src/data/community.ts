@@ -228,7 +228,8 @@ export const gatherings: Gathering[] = [
     time: "18:30–21:30",
     location: "Mayfair · venue released on approval",
     status: "Approval required",
-    description: "A confidential working session on succession, management independence and identity after operating leadership.",
+    description:
+      "A confidential working session on succession, management independence and identity after operating leadership.",
     seats: "10 seats · Table members",
     demo: true,
   },
@@ -240,7 +241,8 @@ export const gatherings: Gathering[] = [
     time: "18:00–20:00",
     location: "St James's · venue released on approval",
     status: "Open",
-    description: "Practical discussion on private AI infrastructure, governance, security and where automation genuinely helps.",
+    description:
+      "Practical discussion on private AI infrastructure, governance, security and where automation genuinely helps.",
     seats: "24 seats",
     demo: true,
   },
@@ -252,7 +254,8 @@ export const gatherings: Gathering[] = [
     time: "08:00–09:45",
     location: "Green Park · venue released on approval",
     status: "Open",
-    description: "A small breakfast for founders moving from personal decision-making to boards, family councils and documented principles.",
+    description:
+      "A small breakfast for founders moving from personal decision-making to boards, family councils and documented principles.",
     seats: "12 seats",
     demo: true,
   },
@@ -264,7 +267,8 @@ export const gatherings: Gathering[] = [
     time: "16:00–19:00",
     location: "Central London · details after confirmation",
     status: "Waitlist",
-    description: "Meet an operating charity team and examine where expertise, introductions and unrestricted capital can change delivery.",
+    description:
+      "Meet an operating charity team and examine where expertise, introductions and unrestricted capital can change delivery.",
     seats: "16 seats",
     demo: true,
   },
@@ -314,7 +318,8 @@ export const knowledge: KnowledgeItem[] = [
     id: "k-1",
     category: "Governance",
     title: "The minimum viable family governance system",
-    summary: "The decisions worth documenting before complexity, liquidity or conflict makes them urgent.",
+    summary:
+      "The decisions worth documenting before complexity, liquidity or conflict makes them urgent.",
     format: "Briefing",
     readTime: "8 min",
   },
@@ -322,7 +327,8 @@ export const knowledge: KnowledgeItem[] = [
     id: "k-2",
     category: "Next Generation",
     title: "Education by exposure, not inheritance by surprise",
-    summary: "A staged framework for teaching ownership, responsibility and judgement without making money the centre of childhood.",
+    summary:
+      "A staged framework for teaching ownership, responsibility and judgement without making money the centre of childhood.",
     format: "Guide",
     readTime: "12 min",
   },
@@ -330,7 +336,8 @@ export const knowledge: KnowledgeItem[] = [
     id: "k-3",
     category: "AI & Technology",
     title: "Private AI: what family enterprises should keep inside the walls",
-    summary: "A practical map of data, model and workflow decisions for families adopting AI without spraying sensitive information across tools.",
+    summary:
+      "A practical map of data, model and workflow decisions for families adopting AI without spraying sensitive information across tools.",
     format: "Research note",
     readTime: "10 min",
   },
@@ -338,7 +345,8 @@ export const knowledge: KnowledgeItem[] = [
     id: "k-4",
     category: "Philanthropy",
     title: "When philanthropy becomes family infrastructure",
-    summary: "How shared purpose can create useful work across generations while improving charitable decision-making.",
+    summary:
+      "How shared purpose can create useful work across generations while improving charitable decision-making.",
     format: "Case discussion",
     readTime: "7 min",
   },
@@ -346,7 +354,8 @@ export const knowledge: KnowledgeItem[] = [
     id: "k-5",
     category: "Risk",
     title: "The family risk register nobody wants to write",
-    summary: "Key-person dependency, cyber exposure, incapacity, reputation, adviser concentration and undocumented control.",
+    summary:
+      "Key-person dependency, cyber exposure, incapacity, reputation, adviser concentration and undocumented control.",
     format: "Checklist",
     readTime: "6 min",
   },
@@ -354,7 +363,8 @@ export const knowledge: KnowledgeItem[] = [
     id: "k-6",
     category: "Succession",
     title: "Founder, owner, chair: three jobs that should eventually separate",
-    summary: "A transition map for leaders who need the enterprise to work when they are no longer in every decision.",
+    summary:
+      "A transition map for leaders who need the enterprise to work when they are no longer in every decision.",
     format: "Masterclass notes",
     readTime: "9 min",
   },
@@ -376,19 +386,22 @@ export const impactProjects = [
     title: "Health navigation pilot",
     theme: "Health inequalities",
     need: "Operations expertise, introductions and unrestricted pilot support",
-    description: "A community health-access pilot testing practical navigation support for people struggling to move through fragmented services.",
+    description:
+      "A community health-access pilot testing practical navigation support for people struggling to move through fragmented services.",
   },
   {
     title: "Young builders studio",
     theme: "Education",
     need: "Mentors, workspace and technology partners",
-    description: "A small programme giving young people structured exposure to entrepreneurship, technology, money and social impact.",
+    description:
+      "A small programme giving young people structured exposure to entrepreneurship, technology, money and social impact.",
   },
   {
     title: "Founder skills bank",
     theme: "Philanthropy",
     need: "Volunteer expertise",
-    description: "Match experienced operators with charities that need short, high-value interventions rather than another committee.",
+    description:
+      "Match experienced operators with charities that need short, high-value interventions rather than another committee.",
   },
 ];
 
