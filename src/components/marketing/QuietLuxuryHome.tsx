@@ -78,15 +78,6 @@ export function QuietLuxuryHome() {
                   Membership inquiry <ArrowRight className="ml-3 h-4 w-4" />
                 </Link>
               </Button>
-              <Button
-                asChild
-                variant="outline"
-                className="h-11 rounded-none border-background/45 bg-transparent px-6 text-[10px] font-semibold uppercase tracking-[0.18em] text-background hover:bg-background hover:text-ink"
-              >
-                <Link to="/about">
-                  Watch our story <Play className="ml-3 h-3.5 w-3.5" />
-                </Link>
-              </Button>
             </div>
           </div>
 
