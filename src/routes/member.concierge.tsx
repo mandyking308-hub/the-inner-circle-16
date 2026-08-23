@@ -1,6 +1,6 @@
 import { type FormEvent, useEffect, useMemo, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, BadgeCheck, CheckCircle2, Clock3, Compass, FileText, MessageSquareText, Send, Star, UserRoundCheck } from "lucide-react";
+import { ArrowRight, BadgeCheck, CheckCircle2, Clock3, FileText, MessageSquareText, Send, Star, UserRoundCheck } from "lucide-react";
 
 import { PageIntro } from "@/components/private/PrivateShell";
 import { Button } from "@/components/ui/button";
