@@ -1,64 +1,238 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, HandHeart, Scale, ShieldCheck, UsersRound } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/button";
-import { luxuryImages } from "@/data/luxuryImages";
 import { site } from "@/config/site";
+import heroConversation from "@/assets/giv-hero-courtyard-conversation.jpg";
+import workshopDrawings from "@/assets/giv-workshop-drawings.jpg";
+import gardenPath from "@/assets/giv-walled-garden-path.jpg";
+
+const principles = [
+  {
+    title: "Listen first",
+    body: "Begin close enough to understand the people, the work and what would genuinely be useful.",
+  },
+  {
+    title: "Use what is yours",
+    body: "Time, knowledge, relationships, judgement and capital can each matter in different ways.",
+  },
+  {
+    title: "Stay human",
+    body: "Giving should never turn people into projects. Dignity, privacy and mutual respect come first.",
+  },
+  {
+    title: "Leave room",
+    body: "The right involvement can be private, occasional or long-term. It should fit the life you actually want to live.",
+  },
+] as const;
 
 export const Route = createFileRoute("/impact")({
-  head: () => ({ meta: [{ title: `Impact — ${site.name}` }, { name: "description", content: "A private contribution strand for families who want to use time, experience, relationships and resources in ways that matter." }] }),
-  component: ImpactPublicPage,
+  head: () => ({
+    meta: [
+      { title: `Giving — ${site.name}` },
+      {
+        name: "description",
+        content:
+          "What you have built can become part of something larger. Giving at Montvelle is personal, discreet and entirely voluntary — capital, experience, time or a well-timed introduction.",
+      },
+      { property: "og:title", content: `Giving — ${site.name}` },
+      {
+        property: "og:description",
+        content:
+          "Personal enough to matter. Light enough to remain yours. A quieter way to give within a wider private life.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [{ rel: "canonical", href: `${site.url}/impact` }],
+  }),
+  component: GivingPage,
 });
 
-function ImpactPublicPage() {
+function GivingPage() {
   return (
     <>
-      <section className="relative min-h-[700px] overflow-hidden bg-foreground text-background">
-        <img src={luxuryImages.table} alt="A private group talking about purpose and contribution" className="absolute inset-0 h-full w-full object-cover brightness-[1.08]" />
-        <div className="absolute inset-0 bg-gradient-to-r from-foreground/82 via-foreground/58 to-foreground/10" />
-        <Container className="relative flex min-h-[700px] items-center py-20">
-          <div className="max-w-3xl"><p className="eyebrow text-bronze">Give</p><h1 className="mt-6 max-w-[11ch] font-display text-6xl leading-[0.93] md:text-8xl">Use what life has taught you to open something for somebody else.</h1><p className="mt-7 max-w-2xl text-base leading-8 text-background/78">Sometimes the most useful contribution is money. Sometimes it is judgement, a thoughtful introduction, a day of somebody’s time, a mentor, a board conversation or knowing exactly who might unlock the next step.</p><Button asChild size="lg" className="mt-9 rounded-none bg-oxblood px-8"><Link to="/membership">Explore membership <ArrowRight className="ml-2 h-4 w-4" /></Link></Button></div>
-        </Container>
-      </section>
-
-      <section className="border-b border-foreground/15 bg-linen py-20 md:py-28">
-        <Container>
-          <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
-            <div><HandHeart className="h-5 w-5 text-oxblood" /><p className="mt-7 eyebrow text-oxblood">Purpose in practice</p><h2 className="mt-4 font-display text-5xl leading-[1.02]">Giving becomes more meaningful when it is close enough to understand.</h2><p className="mt-6 text-sm leading-7 text-muted-foreground">Members can meet practitioners, understand a problem properly and choose whether their most useful contribution is time, experience, relationships, funding or a combination.</p></div>
-            <div className="grid gap-px bg-foreground/15 sm:grid-cols-2">{[
-              ["Listen", "Start with what the organisation or community says it needs, not with what the member arrives wanting to give."],
-              ["Contribute", "Offer the thing that genuinely helps: expertise, a connection, time, governance, technology, hiring support or funding."],
-              ["Stay human", "People and communities are never scenery for somebody else’s philanthropy. Privacy, dignity and consent remain part of the work."],
-              ["Learn", "Understand what changed, what did not, and what the family learned from being close enough to see the work properly."],
-            ].map(([title, body]) => <article key={title} className="bg-background p-6"><h3 className="font-display text-3xl">{title}</h3><p className="mt-4 text-sm leading-7 text-muted-foreground">{body}</p></article>)}</div>
+      {/* Hero */}
+      <section className="relative min-h-[620px] overflow-hidden bg-foreground text-background md:min-h-[760px]">
+        <img
+          src={heroConversation}
+          alt="Three adults in unhurried conversation in a sunlit foundation courtyard"
+          width={1920}
+          height={1200}
+          className="absolute inset-0 h-full w-full object-cover object-[68%_center]"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(12,12,11,0.86)_0%,rgba(12,12,11,0.55)_48%,rgba(12,12,11,0.10)_88%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,12,11,0.20)_0%,rgba(12,12,11,0.55)_45%,rgba(12,12,11,0.82)_100%)] md:hidden" />
+        <Container className="relative flex min-h-[620px] items-end py-20 md:min-h-[760px] md:py-28">
+          <div className="max-w-3xl">
+            <p className="eyebrow text-bronze">Giving</p>
+            <h1 className="mt-6 max-w-[15ch] font-display text-5xl leading-[0.97] md:text-8xl">
+              What you have built can become part of something larger.
+            </h1>
+            <p className="mt-7 max-w-xl text-base leading-8 text-background/82">
+              Sometimes that means capital. Sometimes experience, time, a relationship or a
+              well-timed introduction. The point is not to give more. It is to understand where
+              something of yours could genuinely matter.
+            </p>
+            <Button asChild size="lg" className="mt-9 rounded-none px-8">
+              <Link to="/apply">
+                Request membership <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
           </div>
         </Container>
       </section>
 
-      <section className="border-b border-background/10 bg-foreground py-20 text-background md:py-28">
+      {/* Closer to what matters */}
+      <section className="border-b border-foreground/12 bg-background py-24 md:py-36">
         <Container>
-          <div className="mb-12 grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-end"><div><p className="eyebrow text-bronze">Many ways to matter</p><h2 className="mt-5 font-display text-5xl leading-[1.02] md:text-6xl">Resources are useful. So is everything it took to build them.</h2></div><p className="max-w-xl text-sm leading-7 text-background/64 lg:justify-self-end">Experience, credibility, relationships and judgement can sometimes change a situation faster than another donation alone.</p></div>
-          <div className="grid gap-px bg-background/15 md:grid-cols-2 lg:grid-cols-4">{[
-            ["Expertise", "Help with a defined question in operations, governance, technology, finance, hiring, law or communications."],
-            ["Relationships", "Make one thoughtful introduction when the connection has a credible reason and both sides want it."],
-            ["Time", "Mentor, listen, review, host, teach or spend time with a team facing a problem you understand."],
-            ["Funding", "Support an organisation or idea when the purpose, governance and intended use of funds are sufficiently clear."],
-          ].map(([title, body]) => <article key={title} className="bg-foreground p-6"><h3 className="font-display text-3xl">{title}</h3><p className="mt-4 text-sm leading-7 text-background/64">{body}</p></article>)}</div>
-        </Container>
-      </section>
-
-      <section className="border-b border-foreground/15 py-20 md:py-28">
-        <Container>
-          <div className="grid gap-5 lg:grid-cols-3">
-            <article className="border border-foreground/15 bg-card p-7"><UsersRound className="h-5 w-5 text-oxblood" /><h2 className="mt-7 font-display text-4xl">Across generations</h2><p className="mt-5 text-sm leading-7 text-muted-foreground">Giving creates a natural place for families to talk about what matters, make decisions together and let younger members experience stewardship outside the family itself.</p></article>
-            <article className="border border-foreground/15 bg-card p-7"><Scale className="h-5 w-5 text-oxblood" /><h2 className="mt-7 font-display text-4xl">No pressure</h2><p className="mt-5 text-sm leading-7 text-muted-foreground">Impact opportunities are opt-in. Attending a gathering never creates an obligation to fund something, and charitable work never becomes a route to commercial access.</p></article>
-            <article className="border border-foreground/15 bg-card p-7"><ShieldCheck className="h-5 w-5 text-oxblood" /><h2 className="mt-7 font-display text-4xl">Meaning over performance</h2><p className="mt-5 text-sm leading-7 text-muted-foreground">The aim is to create useful contribution and real learning for the family, not another public display of generosity.</p></article>
+          <div className="grid gap-12 lg:grid-cols-[0.62fr_1.38fr] lg:gap-24">
+            <p className="eyebrow text-bronze">Closer to what matters</p>
+            <div>
+              <h2 className="max-w-[20ch] font-display text-5xl leading-[1.02] md:text-7xl">
+                The most meaningful giving begins with understanding.
+              </h2>
+              <p className="mt-9 max-w-2xl text-base leading-8 text-muted-foreground">
+                Montvelle creates room to get closer to thoughtful people and serious work without
+                turning generosity into theatre. See the work. Hear the story. Understand the
+                context. Then decide whether there is a place for you in it.
+              </p>
+            </div>
           </div>
         </Container>
       </section>
 
-      <section className="bg-oxblood py-20 text-oxblood-foreground md:py-28"><Container><div className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end"><div><p className="eyebrow text-bronze">The spirit</p><h2 className="mt-5 max-w-4xl font-display text-5xl leading-[1.02] md:text-6xl">A good life becomes richer when some of it flows outward.</h2></div><Button asChild size="lg" className="rounded-none bg-background px-8 text-foreground hover:bg-bronze"><Link to="/apply">Request a seat <ArrowRight className="ml-2 h-4 w-4" /></Link></Button></div></Container></section>
+      {/* More than money */}
+      <section className="border-b border-foreground/12 bg-linen py-20 md:py-32">
+        <Container>
+          <div className="grid gap-14 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:gap-24">
+            <figure className="overflow-hidden">
+              <img
+                src={workshopDrawings}
+                alt="Two adults studying drawings and a model together on a workshop bench"
+                loading="lazy"
+                width={1600}
+                height={1104}
+                className="aspect-[16/11] w-full object-cover"
+              />
+            </figure>
+            <div>
+              <p className="eyebrow text-bronze">More than money</p>
+              <h2 className="mt-5 font-display text-4xl leading-[1.04] md:text-6xl">
+                Sometimes the most useful thing you can offer is not money.
+              </h2>
+              <p className="mt-7 max-w-lg text-base leading-8 text-muted-foreground">
+                A founder may need perspective. A young organisation may need an introduction. A
+                cause may need time, experience or someone prepared to listen carefully. Capital
+                matters, but so do the things it took to build it.
+              </p>
+              <Link
+                to="/membership"
+                className="mt-8 inline-flex items-center gap-2 text-sm font-semibold"
+              >
+                Explore membership <ArrowRight className="h-4 w-4 text-bronze" />
+              </Link>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Principles */}
+      <section className="border-b border-foreground/12 bg-background py-24 md:py-36">
+        <Container>
+          <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-24">
+            <div>
+              <p className="eyebrow text-bronze">A quieter way to give</p>
+              <h2 className="mt-5 max-w-[18ch] font-display text-4xl leading-[1.04] md:text-5xl">
+                Personal enough to matter. Light enough to remain yours.
+              </h2>
+            </div>
+            <div>
+              {principles.map((item, index) => (
+                <div
+                  key={item.title}
+                  className="grid gap-4 border-t border-foreground/15 py-8 last:border-b sm:grid-cols-[auto_0.6fr_1.4fr] sm:items-baseline sm:gap-8 md:py-10"
+                >
+                  <p className="font-display text-xl text-bronze">0{index + 1}</p>
+                  <h3 className="font-display text-3xl leading-none">{item.title}</h3>
+                  <p className="max-w-xl text-sm leading-7 text-muted-foreground">{item.body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Across generations */}
+      <section className="border-b border-foreground/12 bg-linen py-20 md:py-32">
+        <Container>
+          <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-24">
+            <div>
+              <p className="eyebrow text-bronze">Across generations</p>
+              <h2 className="mt-5 max-w-[20ch] font-display text-4xl leading-[1.04] md:text-6xl">
+                Giving can become part of the family story without becoming a performance.
+              </h2>
+              <p className="mt-7 max-w-lg text-base leading-8 text-muted-foreground">
+                It can be a way to talk about what matters, make choices together and let the next
+                generation see generosity as something personal rather than prescribed.
+              </p>
+            </div>
+            <figure className="overflow-hidden">
+              <img
+                src={gardenPath}
+                alt="A quiet walled garden path at golden hour with a weathered stone bench"
+                loading="lazy"
+                width={1600}
+                height={1104}
+                className="aspect-[4/3] w-full object-cover"
+              />
+            </figure>
+          </div>
+        </Container>
+      </section>
+
+      {/* Private by nature */}
+      <section className="bg-foreground text-background">
+        <Container className="py-20 md:py-32">
+          <div className="grid gap-10 lg:grid-cols-[0.62fr_1.38fr] lg:gap-24">
+            <p className="eyebrow text-bronze">Private by nature</p>
+            <div>
+              <h2 className="max-w-[18ch] font-display text-4xl leading-[1.04] md:text-6xl">
+                Not everything meaningful needs an audience.
+              </h2>
+              <p className="mt-8 max-w-2xl text-base leading-8 text-background/72">
+                Some of the most valuable contributions are quiet: a conversation, a connection, a
+                piece of judgement, time given well, or support offered without becoming part of the
+                story. Montvelle is designed to leave room for that.
+              </p>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Closing */}
+      <section className="bg-linen py-24 md:py-36">
+        <Container>
+          <div className="grid gap-10 lg:grid-cols-[1.3fr_auto] lg:items-end">
+            <div>
+              <p className="eyebrow text-bronze">By invitation</p>
+              <h2 className="mt-6 max-w-[22ch] font-display text-4xl leading-[1.03] md:text-6xl">
+                A good life can reach beyond itself without becoming less your own.
+              </h2>
+              <p className="mt-7 max-w-xl text-base leading-8 text-muted-foreground">
+                Giving sits within Montvelle as one part of a wider private life — available when it
+                feels meaningful, never because it is expected.
+              </p>
+            </div>
+            <Button asChild size="lg" className="rounded-none px-8">
+              <Link to="/apply">
+                Request membership <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
+        </Container>
+      </section>
     </>
   );
 }
