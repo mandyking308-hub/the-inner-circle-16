@@ -5,7 +5,6 @@ import {
   BarChart3,
   CalendarDays,
   Globe2,
-  Plane,
   Play,
   Users,
 } from "lucide-react";

@@ -267,7 +267,7 @@ function KnowledgePage() {
         </Button>
       </section>
 
-      <ExpertCouncilCta topic={category === "All" ? undefined : category} />
+      {category === "All" ? <ExpertCouncilCta /> : <ExpertCouncilCta topic={category} />}
     </div>
   );
 }
