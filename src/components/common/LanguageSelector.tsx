@@ -62,8 +62,12 @@ export function LanguageSelector({ inverse = false }: { inverse?: boolean; compa
   const [value, setValue] = useState("en");
 
   useEffect(() => {
-    setValue(readCurrentLanguage());
+    const current = readCurrentLanguage();
+    setValue(current);
 
+    // Only load Google's third-party translation script when a non-English
+    // preference already exists (i.e. after the user has chosen a language).
+    if (current === "en") return;
     if (document.getElementById(SCRIPT_ID)) return;
 
     if (!document.getElementById(WIDGET_ID)) {
