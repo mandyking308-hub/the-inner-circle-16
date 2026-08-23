@@ -11,6 +11,22 @@ export const membershipPricing = {
 } as const;
 
 /**
+ * Family membership is the same Montvelle standard, held as a household
+ * relationship rather than a wider or better tier. The published figure is a
+ * "from" price only: the final annual fee, the approved household composition
+ * and any admission/onboarding amount are recorded in the Membership Schedule
+ * after review. There is no per-seat menu and no published family joining fee.
+ */
+export const familyMembershipPricing = {
+  currency: "GBP",
+  fromAnnualPence: 5_500_000,
+  fromAnnualDisplay: "from £55,000",
+  fromAnnualAmountDisplay: "£55,000",
+  termMonths: 12,
+  pricingYear: 2026,
+} as const;
+
+/**
  * Commercial policy for internal planning (not a promise to members):
  * target new-member annual pricing rises by £10,000 for each new pricing year
  * as Montvelle grows. Existing and renewing memberships are governed by the
