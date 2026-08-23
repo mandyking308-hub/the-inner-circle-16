@@ -31,7 +31,7 @@ const applications = [
 ];
 
 const introQueue = [
-  { from: "Amelia Hart", to: "Marcus Vella", reason: "Founder-to-chair transition", status: "Consent received" },
+  { from: "DEMO Member", to: "Marcus Vella", reason: "Founder-to-chair transition", status: "Consent received" },
   { from: "Daniel Okafor", to: "Nina Brooks", reason: "Family philanthropy structure", status: "Ask recipient" },
   { from: "Maya Patel", to: "Idris Khan", reason: "Child-safe technology review", status: "Reviewing" },
   { from: "Layla Rahman", to: "External operator", reason: "Gulf healthcare launch", status: "Source candidate" },

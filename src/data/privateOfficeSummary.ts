@@ -78,7 +78,7 @@ export function readPrivateOfficeSummary(): PrivateOfficeSummary {
   if (!attention.length) attention.push({ label: "Nothing urgent", detail: "Your private office is quiet. Keep the active Decision Room moving.", to: "/member/control-room", urgency: "Keep moving" });
 
   return {
-    memberName: String(profile.name ?? "Amelia Hart"),
+    memberName: String(profile.name ?? "DEMO Member"),
     memberCity: String(profile.city ?? "London"),
     activeDecisionLabel: activeRoom.label,
     decisionProgress,

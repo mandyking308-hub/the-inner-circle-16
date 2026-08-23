@@ -22,7 +22,7 @@ import {
 export const Route = createFileRoute("/member/")({ component: MemberHome });
 
 const fallback: PrivateOfficeSummary = {
-  memberName: "Amelia Hart",
+  memberName: "DEMO Member",
   memberCity: "London",
   activeDecisionLabel: "Move country",
   decisionProgress: 17,
