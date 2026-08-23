@@ -296,17 +296,19 @@ export function QuietLuxuryHome() {
           <div>
             <Eyebrow tone="bronze">Montvelle World</Eyebrow>
             <h2 className="mt-6 max-w-[16ch] font-display text-5xl leading-[0.98] md:text-7xl">
-              The private world behind the membership.
+              You should not have to become the project manager of your own life.
             </h2>
             <p className="mt-7 max-w-xl text-base leading-8 text-muted-foreground">
-              Not another concierge app. Montvelle World is the private environment where the whole picture of a
-              family's life stays in one place — the requests in motion, the decisions being weighed, the people you
-              choose to know — and the experts we find and assemble around a decision when you need them, and the household around you.
+              Success builds complexity: countries, homes, schools, advisers, businesses, travel,
+              family. Excellent specialists solve their own part, and somebody still has to hold the
+              whole picture — repeating the story, searching cold for the right person, reconciling
+              conflicting advice, chasing replies, remembering who said what. Usually that somebody
+              is you or your spouse.
             </p>
             <p className="mt-5 max-w-xl text-base leading-8 text-muted-foreground">
-              A conventional concierge holds a phone number and a memory. A private club holds a room. Montvelle holds
-              continuity: every request acknowledged immediately and answered meaningfully within twenty-four hours, by
-              people who already know the context. The technology exists so the relationship never has to start again.
+              Montvelle takes that weight. Tell us what you are trying to achieve. We find the right
+              people, assemble the right expertise, build the right circle around you, coordinate
+              the moving parts — and keep the context, so nothing has to start again.
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-5">
               <Button asChild className="h-12 rounded-none bg-ink px-8 text-background hover:bg-oxblood">
@@ -330,36 +332,32 @@ export function QuietLuxuryHome() {
                 copy: "What needs you, what Montvelle is already handling, and what is coming up — in that order.",
               },
               {
-                name: "Requests",
-                copy: "One place to ask for anything. Immediate acknowledgement, a meaningful response within 24 hours.",
+                name: "Ask Montvelle",
+                copy: "One request, anything at all. Acknowledged immediately, answered meaningfully within twenty-four hours.",
               },
               {
                 name: "Decision Room",
-                copy: "For the decisions that deserve more than a phone call: options, sequence, and who is doing what.",
+                copy: "For decisions that deserve more than a phone call: options, sequence, dependencies and who is doing what.",
+              },
+              {
+                name: "Assemble an Expert Council",
+                copy: "A serious decision needs the right outside minds. We search worldwide and build the team around your problem.",
+              },
+              {
+                name: "Build My Circle",
+                copy: "The useful people around a place, a business, a child, a new chapter — found for you, introduced with consent.",
               },
               {
                 name: "Invitations",
-                copy: "Gatherings and private moments held for you, kept quietly in one diary.",
+                copy: "Where the wider membership meets: gatherings and private moments, kept quietly in one diary.",
               },
               {
-                name: "Expert Councils",
-                copy: "A council assembled around your decision, not a standing panel. We search worldwide and return a short, checked list.",
-              },
-              {
-                name: "Community & your circle",
-                copy: "Consent-led introductions, plus help building the wider circle of people useful to a particular goal.",
-              },
-              {
-                name: "Family & household",
+                name: "Family & privacy",
                 copy: "Approved adults hold their own login and their own privacy. Sharing is deliberate, area by area.",
               },
               {
                 name: "Messages",
                 copy: "A continuous private line to the people who already hold your context.",
-              },
-              {
-                name: "Preferences",
-                copy: "How your household likes things done, recorded once and applied without being asked again.",
               },
             ].map((item) => (
               <article key={item.name} className="bg-linen p-6">
@@ -368,6 +366,7 @@ export function QuietLuxuryHome() {
               </article>
             ))}
           </div>
+
         </div>
       </section>
     </main>
