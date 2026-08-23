@@ -44,6 +44,7 @@ import { Route as WorldRouteImport } from './routes/world'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminAlumniRouteImport } from './routes/admin.alumni'
 import { Route as AdminApplicationsRouteImport } from './routes/admin.applications'
+import { Route as AdminBookingsRouteImport } from './routes/admin.bookings'
 import { Route as AdminConciergeRouteImport } from './routes/admin.concierge'
 import { Route as AdminContentRouteImport } from './routes/admin.content'
 import { Route as AdminEventsRouteImport } from './routes/admin.events'
@@ -53,8 +54,10 @@ import { Route as AdminIntroductionsRouteImport } from './routes/admin.introduct
 import { Route as AdminLaunchReadinessRouteImport } from './routes/admin.launch-readiness'
 import { Route as AdminLearningRouteImport } from './routes/admin.learning'
 import { Route as AdminMembersRouteImport } from './routes/admin.members'
+import { Route as AdminMessagesRouteImport } from './routes/admin.messages'
 import { Route as AdminNextGenRouteImport } from './routes/admin.next-gen'
 import { Route as AdminPartnersRouteImport } from './routes/admin.partners'
+import { Route as AdminServicesRouteImport } from './routes/admin.services'
 import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
 import { Route as AdminTablesRouteImport } from './routes/admin.tables'
 import { Route as JournalIndexRouteImport } from './routes/journal.index'
@@ -270,6 +273,11 @@ const AdminApplicationsRoute = AdminApplicationsRouteImport.update({
   path: '/applications',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminBookingsRoute = AdminBookingsRouteImport.update({
+  id: '/bookings',
+  path: '/bookings',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminConciergeRoute = AdminConciergeRouteImport.update({
   id: '/concierge',
   path: '/concierge',
@@ -315,6 +323,11 @@ const AdminMembersRoute = AdminMembersRouteImport.update({
   path: '/members',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminMessagesRoute = AdminMessagesRouteImport.update({
+  id: '/messages',
+  path: '/messages',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminNextGenRoute = AdminNextGenRouteImport.update({
   id: '/next-gen',
   path: '/next-gen',
@@ -323,6 +336,11 @@ const AdminNextGenRoute = AdminNextGenRouteImport.update({
 const AdminPartnersRoute = AdminPartnersRouteImport.update({
   id: '/partners',
   path: '/partners',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminServicesRoute = AdminServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
   getParentRoute: () => AdminRoute,
 } as any)
 const AdminSettingsRoute = AdminSettingsRouteImport.update({
@@ -558,6 +576,7 @@ export interface FileRoutesByFullPath {
   '/world': typeof WorldRoute
   '/admin/alumni': typeof AdminAlumniRoute
   '/admin/applications': typeof AdminApplicationsRoute
+  '/admin/bookings': typeof AdminBookingsRoute
   '/admin/concierge': typeof AdminConciergeRoute
   '/admin/content': typeof AdminContentRoute
   '/admin/events': typeof AdminEventsRoute
@@ -567,8 +586,10 @@ export interface FileRoutesByFullPath {
   '/admin/launch-readiness': typeof AdminLaunchReadinessRoute
   '/admin/learning': typeof AdminLearningRoute
   '/admin/members': typeof AdminMembersRoute
+  '/admin/messages': typeof AdminMessagesRoute
   '/admin/next-gen': typeof AdminNextGenRoute
   '/admin/partners': typeof AdminPartnersRoute
+  '/admin/services': typeof AdminServicesRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/tables': typeof AdminTablesRoute
   '/journal/$slug': typeof JournalSlugRoute
@@ -642,6 +663,7 @@ export interface FileRoutesByTo {
   '/world': typeof WorldRoute
   '/admin/alumni': typeof AdminAlumniRoute
   '/admin/applications': typeof AdminApplicationsRoute
+  '/admin/bookings': typeof AdminBookingsRoute
   '/admin/concierge': typeof AdminConciergeRoute
   '/admin/content': typeof AdminContentRoute
   '/admin/events': typeof AdminEventsRoute
@@ -651,8 +673,10 @@ export interface FileRoutesByTo {
   '/admin/launch-readiness': typeof AdminLaunchReadinessRoute
   '/admin/learning': typeof AdminLearningRoute
   '/admin/members': typeof AdminMembersRoute
+  '/admin/messages': typeof AdminMessagesRoute
   '/admin/next-gen': typeof AdminNextGenRoute
   '/admin/partners': typeof AdminPartnersRoute
+  '/admin/services': typeof AdminServicesRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/tables': typeof AdminTablesRoute
   '/journal/$slug': typeof JournalSlugRoute
@@ -730,6 +754,7 @@ export interface FileRoutesById {
   '/world': typeof WorldRoute
   '/admin/alumni': typeof AdminAlumniRoute
   '/admin/applications': typeof AdminApplicationsRoute
+  '/admin/bookings': typeof AdminBookingsRoute
   '/admin/concierge': typeof AdminConciergeRoute
   '/admin/content': typeof AdminContentRoute
   '/admin/events': typeof AdminEventsRoute
@@ -739,8 +764,10 @@ export interface FileRoutesById {
   '/admin/launch-readiness': typeof AdminLaunchReadinessRoute
   '/admin/learning': typeof AdminLearningRoute
   '/admin/members': typeof AdminMembersRoute
+  '/admin/messages': typeof AdminMessagesRoute
   '/admin/next-gen': typeof AdminNextGenRoute
   '/admin/partners': typeof AdminPartnersRoute
+  '/admin/services': typeof AdminServicesRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/tables': typeof AdminTablesRoute
   '/journal/$slug': typeof JournalSlugRoute
@@ -819,6 +846,7 @@ export interface FileRouteTypes {
     | '/world'
     | '/admin/alumni'
     | '/admin/applications'
+    | '/admin/bookings'
     | '/admin/concierge'
     | '/admin/content'
     | '/admin/events'
@@ -828,8 +856,10 @@ export interface FileRouteTypes {
     | '/admin/launch-readiness'
     | '/admin/learning'
     | '/admin/members'
+    | '/admin/messages'
     | '/admin/next-gen'
     | '/admin/partners'
+    | '/admin/services'
     | '/admin/settings'
     | '/admin/tables'
     | '/journal/$slug'
@@ -903,6 +933,7 @@ export interface FileRouteTypes {
     | '/world'
     | '/admin/alumni'
     | '/admin/applications'
+    | '/admin/bookings'
     | '/admin/concierge'
     | '/admin/content'
     | '/admin/events'
@@ -912,8 +943,10 @@ export interface FileRouteTypes {
     | '/admin/launch-readiness'
     | '/admin/learning'
     | '/admin/members'
+    | '/admin/messages'
     | '/admin/next-gen'
     | '/admin/partners'
+    | '/admin/services'
     | '/admin/settings'
     | '/admin/tables'
     | '/journal/$slug'
@@ -990,6 +1023,7 @@ export interface FileRouteTypes {
     | '/world'
     | '/admin/alumni'
     | '/admin/applications'
+    | '/admin/bookings'
     | '/admin/concierge'
     | '/admin/content'
     | '/admin/events'
@@ -999,8 +1033,10 @@ export interface FileRouteTypes {
     | '/admin/launch-readiness'
     | '/admin/learning'
     | '/admin/members'
+    | '/admin/messages'
     | '/admin/next-gen'
     | '/admin/partners'
+    | '/admin/services'
     | '/admin/settings'
     | '/admin/tables'
     | '/journal/$slug'
@@ -1330,6 +1366,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminApplicationsRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/bookings': {
+      id: '/admin/bookings'
+      path: '/bookings'
+      fullPath: '/admin/bookings'
+      preLoaderRoute: typeof AdminBookingsRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/concierge': {
       id: '/admin/concierge'
       path: '/concierge'
@@ -1393,6 +1436,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminMembersRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/messages': {
+      id: '/admin/messages'
+      path: '/messages'
+      fullPath: '/admin/messages'
+      preLoaderRoute: typeof AdminMessagesRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/next-gen': {
       id: '/admin/next-gen'
       path: '/next-gen'
@@ -1405,6 +1455,13 @@ declare module '@tanstack/react-router' {
       path: '/partners'
       fullPath: '/admin/partners'
       preLoaderRoute: typeof AdminPartnersRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/services': {
+      id: '/admin/services'
+      path: '/services'
+      fullPath: '/admin/services'
+      preLoaderRoute: typeof AdminServicesRouteImport
       parentRoute: typeof AdminRoute
     }
     '/admin/settings': {
@@ -1686,6 +1743,7 @@ declare module '@tanstack/react-router' {
 interface AdminRouteChildren {
   AdminAlumniRoute: typeof AdminAlumniRoute
   AdminApplicationsRoute: typeof AdminApplicationsRoute
+  AdminBookingsRoute: typeof AdminBookingsRoute
   AdminConciergeRoute: typeof AdminConciergeRoute
   AdminContentRoute: typeof AdminContentRoute
   AdminEventsRoute: typeof AdminEventsRoute
@@ -1695,8 +1753,10 @@ interface AdminRouteChildren {
   AdminLaunchReadinessRoute: typeof AdminLaunchReadinessRoute
   AdminLearningRoute: typeof AdminLearningRoute
   AdminMembersRoute: typeof AdminMembersRoute
+  AdminMessagesRoute: typeof AdminMessagesRoute
   AdminNextGenRoute: typeof AdminNextGenRoute
   AdminPartnersRoute: typeof AdminPartnersRoute
+  AdminServicesRoute: typeof AdminServicesRoute
   AdminSettingsRoute: typeof AdminSettingsRoute
   AdminTablesRoute: typeof AdminTablesRoute
   AdminIndexRoute: typeof AdminIndexRoute
@@ -1705,6 +1765,7 @@ interface AdminRouteChildren {
 const AdminRouteChildren: AdminRouteChildren = {
   AdminAlumniRoute: AdminAlumniRoute,
   AdminApplicationsRoute: AdminApplicationsRoute,
+  AdminBookingsRoute: AdminBookingsRoute,
   AdminConciergeRoute: AdminConciergeRoute,
   AdminContentRoute: AdminContentRoute,
   AdminEventsRoute: AdminEventsRoute,
@@ -1714,8 +1775,10 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminLaunchReadinessRoute: AdminLaunchReadinessRoute,
   AdminLearningRoute: AdminLearningRoute,
   AdminMembersRoute: AdminMembersRoute,
+  AdminMessagesRoute: AdminMessagesRoute,
   AdminNextGenRoute: AdminNextGenRoute,
   AdminPartnersRoute: AdminPartnersRoute,
+  AdminServicesRoute: AdminServicesRoute,
   AdminSettingsRoute: AdminSettingsRoute,
   AdminTablesRoute: AdminTablesRoute,
   AdminIndexRoute: AdminIndexRoute,
