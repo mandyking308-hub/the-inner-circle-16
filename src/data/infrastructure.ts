@@ -135,36 +135,40 @@ export const partnerValue = [
   },
 ] as const;
 
+/**
+ * DEMO ONLY — internal queue fixtures for admin QA. No real members, no
+ * existing providers. Never rendered in any member-facing surface.
+ */
 export const conciergeRequests = [
   {
     id: "REQ-2048",
-    member: "Amelia Hart",
+    member: "DEMO household A",
     category: "Education",
     title: "Compare two international-school pathways before an October move",
-    status: "Matching experts",
+    status: "Researching",
     urgency: "This week",
     owner: "Sofia",
-    nextStep: "Education partner shortlist due Monday",
+    nextStep: "External enquiries underway; checked options due Monday",
   },
   {
     id: "REQ-2041",
-    member: "Julian Mercer",
+    member: "DEMO household B",
     category: "Residence & Citizenship",
     title: "Coordinate residence, tax and schooling questions for a two-country shortlist",
-    status: "Consent requested",
+    status: "Awaiting member",
     urgency: "14 days",
     owner: "Daniel",
-    nextStep: "Awaiting consent to introduce tax counsel",
+    nextStep: "Awaiting consent before any external approach",
   },
   {
     id: "REQ-2033",
-    member: "Nina Shah",
+    member: "DEMO household C",
     category: "Clubs & Hospitality",
     title: "Find a quiet London base for six working lunches in September",
-    status: "Options sent",
+    status: "Options prepared",
     urgency: "Normal",
     owner: "Maya",
-    nextStep: "Member choosing between three venues",
+    nextStep: "Member deciding between the checked options",
   },
 ] as const;
 
