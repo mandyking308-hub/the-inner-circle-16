@@ -18,6 +18,13 @@ export const partnerCategories = [
   "Clubs & Hospitality",
 ] as const;
 
+/**
+ * DEMO ONLY — internal admin/supplier QA fixtures.
+ * These organisations are not real Montvelle relationships and must never be
+ * rendered in any member-facing surface. Member-facing partner listings read
+ * `approvedMemberFacingPartners` below, which stays empty until a provider has
+ * genuinely completed references and assurance.
+ */
 export const trustedPartners = [
   {
     id: "partner-01",
@@ -86,6 +93,20 @@ export const trustedPartners = [
     responseTime: "Same day",
   },
 ] as const;
+
+export type MemberFacingPartner = {
+  id: string;
+  name: string;
+  category: string;
+  focus: string;
+};
+
+/**
+ * Real, approved, member-facing advisers and providers.
+ * Intentionally empty: a record is added here only once the provider has been
+ * used on a real matter, given two references and cleared assurance.
+ */
+export const approvedMemberFacingPartners: MemberFacingPartner[] = [];
 
 export const partnerValue = [
   {

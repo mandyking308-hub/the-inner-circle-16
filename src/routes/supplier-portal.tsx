@@ -54,8 +54,12 @@ function SupplierPortalPage() {
             A separate door, for the people we work with.
           </h1>
           <p className="mt-8 max-w-2xl text-base leading-8 text-background/70">
-            Suppliers and partners have their own private entrance to Montvelle. It holds your profile, your services
-            and the work assigned to you — and nothing else about the members we serve.
+            This entrance is for invited and approved providers only. It holds your own profile, your own services and
+            the work assigned to you — and nothing else about the members we serve, or about anyone else who works with us.
+          </p>
+          <p className="mt-6 max-w-2xl text-sm leading-7 text-background/55">
+            Montvelle is deliberately demand-led. We do not build a supplier list in advance; providers are approached
+            because a member asked for something specific, and are invited here only after they have done that work well.
           </p>
         </Container>
       </section>
@@ -94,8 +98,8 @@ function SupplierPortalPage() {
               <p className="eyebrow text-oxblood">Sign in</p>
               <h2 className="mt-4 font-display text-3xl">Enter the supplier portal</h2>
               <p className="mt-4 text-sm leading-7 text-muted-foreground">
-                Accounts are issued individually. While the portal is in private preview, choose the partner account you
-                have been given access to.
+                Accounts are issued individually to invited providers. While the portal is in private preview, the
+                accounts below are test records used to check the portal itself; they are not Montvelle relationships.
               </p>
               <label className="mt-6 block text-[9px] uppercase tracking-[0.16em] text-muted-foreground" htmlFor="supplier-account">
                 Supplier account
@@ -121,8 +125,9 @@ function SupplierPortalPage() {
               <ShieldCheck className="h-5 w-5 text-bronze" />
               <h2 className="mt-6 font-display text-3xl leading-tight">Not yet a Montvelle partner?</h2>
               <p className="mt-4 text-sm leading-7 text-background/65">
-                We work with a small number of providers, chosen slowly and reviewed regularly. If you believe your work
-                belongs here, you are welcome to apply.
+                Most providers reach us the same way: a member needed something, we came looking, and the work was done
+                properly. An invitation follows that. If you would rather introduce yourself, you may apply — two
+                references and assurance are required either way.
               </p>
               <Button
                 asChild

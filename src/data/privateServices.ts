@@ -154,10 +154,22 @@ const lifestyleSuppliers: SupplierOrg[] = [
   },
 ];
 
+/**
+ * DEMO ONLY — internal fixtures for admin and supplier-portal QA.
+ * Montvelle is demand-led and has no standing supplier bench. These records
+ * must never render in any member-facing surface (/member/services and
+ * /member/partners are request-led and read live records only).
+ */
 export const supplierOrgs: SupplierOrg[] = [...lifestyleSuppliers, ...professionalBench];
 
 export const getSupplier = (id: string) => supplierOrgs.find((supplier) => supplier.id === id);
 
+/**
+ * DEMO ONLY — internal fixtures for admin and supplier-portal QA.
+ * Montvelle is demand-led and has no standing supplier bench. These records
+ * must never render in any member-facing surface (/member/services and
+ * /member/partners are request-led and read live records only).
+ */
 export const serviceOfferings: ServiceOffering[] = [
   {
     id: "svc-driver-city",
