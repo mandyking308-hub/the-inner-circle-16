@@ -142,6 +142,10 @@ export type SupplierProspect = {
   invitedToApply: boolean;
   /** Set when the prospect enters the existing partner-application path. */
   partnerApplicationRef?: string | undefined;
+  /** Recorded after the member has actually been served. */
+  postServiceOutcome?: string | undefined;
+  /** Desk judgement: worth inviting into the Montvelle network at all. */
+  worthInviting?: boolean | undefined;
   addedAt: string;
 };
 
