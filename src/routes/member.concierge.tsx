@@ -1,6 +1,6 @@
 import { type FormEvent, useEffect, useMemo, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, BadgeCheck, CheckCircle2, Clock3, Compass, FileText, MessageSquareText, Send, Star, UserRoundCheck } from "lucide-react";
+import { ArrowRight, BadgeCheck, CheckCircle2, Clock3, FileText, MessageSquareText, Send, Star, UserRoundCheck } from "lucide-react";
 
 import { PageIntro } from "@/components/private/PrivateShell";
 import { Button } from "@/components/ui/button";
@@ -32,8 +32,6 @@ type MemberRequest = {
   documents: CaseDocument[];
 };
 
-import { memberShortlist, readSourcingCases, type ShortlistItem } from "@/data/sourcing";
-
 const STORAGE_KEY = "project-table:concierge-cases:v2";
 const starterRequests: MemberRequest[] = [
   {
@@ -62,8 +60,6 @@ const starterRequests: MemberRequest[] = [
 function MemberConciergePage() {
   const [requests, setRequests] = useState<MemberRequest[]>(starterRequests);
   const [selectedId, setSelectedId] = useState(starterRequests[0]!.id);
-  const [sourcingCases, setSourcingCases] = useState(() => [] as ReturnType<typeof readSourcingCases>);
-  useEffect(() => { setSourcingCases(readSourcingCases()); }, []);
   const [hydrated, setHydrated] = useState(false);
   const [showNew, setShowNew] = useState(false);
 
@@ -160,20 +156,9 @@ function MemberConciergePage() {
           <div className="grid gap-5 lg:grid-cols-[1.08fr_0.92fr]">
             <article className="border border-border bg-card p-6"><div className="flex items-center gap-3"><MessageSquareText className="h-5 w-5 text-oxblood" /><h3 className="font-display text-3xl">Conversation</h3></div><div className="mt-5 space-y-3">{selected.messages.map((message) => <div key={message.id} className={`max-w-[88%] border p-4 ${message.author === "Member" ? "ml-auto border-oxblood/25 bg-accent" : "border-border bg-background"}`}><div className="flex items-center justify-between gap-3"><p className="text-[9px] font-semibold uppercase tracking-[0.12em] text-oxblood">{message.author}</p><p className="text-[9px] text-muted-foreground">{message.date}</p></div><p className="mt-2 text-xs leading-6">{message.body}</p></div>)}</div><form onSubmit={addMessage} className="mt-5 flex gap-2"><Input name="message" required className="rounded-none" placeholder="Add context or answer Concierge" /><Button type="submit" className="rounded-none"><Send className="h-4 w-4" /></Button></form></article>
 
-            <article className="border border-border bg-card p-6"><div className="flex items-center gap-3"><BadgeCheck className="h-5 w-5 text-oxblood" /><h3 className="font-display text-3xl">Options & consent</h3></div>{selected.options.length ? <div className="mt-5 space-y-3">{selected.options.map((option) => <div key={option.id} className="border border-border bg-background p-4"><div className="flex items-start justify-between gap-3"><div><p className="text-sm font-semibold">{option.title}</p><p className="mt-2 text-xs leading-6 text-muted-foreground">{option.note}</p></div><select value={option.status} onChange={(event) => updateCase(selected.id, (request) => ({ ...request, options: request.options.map((item) => item.id === option.id ? { ...item, status: event.target.value as CaseOption["status"] } : item) }))} className="h-8 rounded-none border border-input bg-background px-2 text-[10px]"><option>Considering</option><option>Selected</option><option>Declined</option></select></div></div>)}</div> : <p className="mt-5 text-xs leading-6 text-muted-foreground">Concierge has not added options yet.</p>}<label className="mt-5 flex items-start gap-3 border-t border-border pt-4 text-xs leading-6"><input type="checkbox" checked={selected.consentToIntroduce} onChange={(event) => updateCase(selected.id, (request) => ({ ...request, consentToIntroduce: event.target.checked }))} className="mt-1" /><span><strong>Consent to introduction.</strong> Concierge may share the minimum context required with the selected specialist once I approve this.</span></label>{selected.consentToIntroduce ? <p className="mt-3 text-[10px] uppercase tracking-[0.12em] text-oxblood">Consent recorded</p> : null}</article>
+            <article className="border border-border bg-card p-6"><div className="flex items-center gap-3"><BadgeCheck className="h-5 w-5 text-oxblood" /><h3 className="font-display text-3xl">Options from Montvelle</h3></div>{selected.options.length ? <div className="mt-5 space-y-3">{selected.options.map((option) => <div key={option.id} className="border border-border bg-background p-4"><div className="flex items-start justify-between gap-3"><div><p className="text-sm font-semibold">{option.title}</p><p className="mt-2 text-xs leading-6 text-muted-foreground">{option.note}</p></div><select value={option.status} onChange={(event) => updateCase(selected.id, (request) => ({ ...request, options: request.options.map((item) => item.id === option.id ? { ...item, status: event.target.value as CaseOption["status"] } : item) }))} className="h-8 rounded-none border border-input bg-background px-2 text-[10px]"><option>Considering</option><option>Selected</option><option>Declined</option></select></div></div>)}</div> : <p className="mt-5 text-xs leading-6 text-muted-foreground">Nothing to consider yet. Options appear here only once Montvelle has spoken to whoever is behind them.</p>}<label className="mt-5 flex items-start gap-3 border-t border-border pt-4 text-xs leading-6"><input type="checkbox" checked={selected.consentToIntroduce} onChange={(event) => updateCase(selected.id, (request) => ({ ...request, consentToIntroduce: event.target.checked }))} className="mt-1" /><span><strong>Consent to introduction.</strong> Concierge may share the minimum context required with the selected specialist once I approve this.</span></label>{selected.consentToIntroduce ? <p className="mt-3 text-[10px] uppercase tracking-[0.12em] text-oxblood">Consent recorded</p> : null}</article>
           </div>
 
-          {(() => {
-            const shortlist: ShortlistItem[] = memberShortlist(sourcingCases, selected.id);
-            if (!shortlist.length) return null;
-            return (
-              <article className="border border-border bg-card p-6">
-                <div className="flex items-center gap-3"><Compass className="h-5 w-5 text-oxblood" /><h3 className="font-display text-3xl">Shortlist from the desk</h3></div>
-                <p className="mt-3 text-xs leading-6 text-muted-foreground">A short, considered list. Montvelle has already done the searching, the checking and the discounting; you see only what survived it.</p>
-                <div className="mt-5 space-y-3">{shortlist.map((entry) => <div key={entry.id} className="border border-border bg-background p-4"><p className="text-[9px] uppercase tracking-[0.14em] text-oxblood">{entry.kind === "bench" ? "Trusted bench" : "Sourced for you"}</p><p className="mt-1 text-sm font-semibold">{entry.title}</p><p className="mt-2 text-xs leading-6 text-muted-foreground">{entry.note}</p></div>)}</div>
-              </article>
-            );
-          })()}
 
           <div className="grid gap-5 lg:grid-cols-2">
             <article className="border border-border bg-card p-6"><div className="flex items-center gap-3"><FileText className="h-5 w-5 text-oxblood" /><h3 className="font-display text-3xl">Document references</h3></div><p className="mt-3 text-xs leading-6 text-muted-foreground">Record where an authorised document lives. Do not upload passports, bank records or sensitive family files here until encrypted storage is live.</p><form onSubmit={addDocument} className="mt-4 space-y-2"><Input name="document" required className="rounded-none" placeholder="Document / brief name" /><Input name="note" className="rounded-none" placeholder="Secure vault or adviser reference" /><Button type="submit" variant="outline" className="rounded-none">Add reference</Button></form><div className="mt-4 space-y-2">{selected.documents.map((document) => <div key={document.id} className="border-t border-border pt-3"><p className="text-sm font-medium">{document.name}</p><p className="mt-1 text-xs text-muted-foreground">{document.note}</p></div>)}</div></article>
@@ -183,7 +168,7 @@ function MemberConciergePage() {
         </section> : null}
       </div>
 
-      <section className="border border-border bg-foreground p-6 text-background md:p-8"><div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between"><div><p className="eyebrow text-background/50">Need a specialist rather than execution?</p><h2 className="mt-3 font-display text-3xl">Go straight to the trusted bench.</h2></div><Button asChild variant="outline" className="rounded-none border-background/30 bg-transparent text-background hover:bg-background hover:text-foreground"><Link to="/member/partners">Trusted Partners <ArrowRight className="ml-2 h-4 w-4" /></Link></Button></div></section>
+      <section className="border border-border bg-foreground p-6 text-background md:p-8"><div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between"><div><p className="eyebrow text-background/50">Need a specialist rather than execution?</p><h2 className="mt-3 font-display text-3xl">Tell us, and we will go and find the right person.</h2></div><Button asChild variant="outline" className="rounded-none border-background/30 bg-transparent text-background hover:bg-background hover:text-foreground"><Link to="/member/services">Make a request <ArrowRight className="ml-2 h-4 w-4" /></Link></Button></div></section>
     </div>
   );
 }
