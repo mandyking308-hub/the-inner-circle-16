@@ -107,7 +107,7 @@ export function QuietLuxuryHome() {
 
       {/* Global life */}
       <section className="bg-linen">
-        <div className="mx-auto grid w-full max-w-[110rem] gap-8 px-6 py-16 sm:px-10 lg:grid-cols-[0.85fr_1.6fr_0.9fr] lg:items-center lg:gap-6 lg:px-14">
+        <div className="mx-auto grid w-full max-w-[110rem] gap-6 px-6 py-10 sm:px-10 lg:grid-cols-[0.8fr_1.7fr_0.85fr] lg:items-center lg:gap-5 lg:px-14">
           <div>
             <Eyebrow tone="bronze">Global Life</Eyebrow>
             <h2 className="mt-4 font-display text-4xl leading-[1.05] md:text-5xl">
@@ -167,7 +167,7 @@ export function QuietLuxuryHome() {
           loading="lazy"
         />
 
-        <div className="bg-ink px-8 py-14 text-background md:px-10">
+        <div className="bg-ink px-7 py-10 text-background md:px-9">
           <Eyebrow>Our People</Eyebrow>
           <h2 className="mt-5 font-display text-3xl leading-[1.1] md:text-4xl">
             The people make
@@ -186,7 +186,7 @@ export function QuietLuxuryHome() {
           </Link>
         </div>
 
-        <div className="bg-linen px-8 py-14 md:px-10">
+        <div className="bg-linen px-7 py-10 md:px-9">
           <Eyebrow tone="bronze">Bespoke Service</Eyebrow>
           <h2 className="mt-5 font-display text-3xl leading-[1.1] md:text-4xl">More than concierge.</h2>
           <div className="mt-7 grid gap-8 sm:grid-cols-2">
@@ -217,7 +217,7 @@ export function QuietLuxuryHome() {
 
       {/* Mosaic: family, destinations, private office */}
       <section className="grid lg:grid-cols-[0.8fr_1fr_1.3fr_0.9fr]">
-        <div className="bg-background px-8 py-14 md:px-10">
+        <div className="bg-background px-7 py-10 md:px-9">
           <Eyebrow tone="bronze">Family &amp; Legacy</Eyebrow>
           <h2 className="mt-5 font-display text-3xl leading-[1.08] md:text-4xl">
             Build a bigger world for the people it&rsquo;s all for.
@@ -238,7 +238,7 @@ export function QuietLuxuryHome() {
           loading="lazy"
         />
 
-        <div className="bg-ink px-8 py-14 text-background md:px-10">
+        <div className="bg-ink px-7 py-10 text-background md:px-9">
           <Eyebrow>Where life takes you</Eyebrow>
           <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
             {destinations.map((city) => (
@@ -263,7 +263,7 @@ export function QuietLuxuryHome() {
           </Link>
         </div>
 
-        <div className="relative isolate overflow-hidden bg-ink px-8 py-14 text-background md:px-10">
+        <div className="relative isolate overflow-hidden bg-ink px-7 py-10 text-background md:px-9">
           <img
             src={luxuryImages.office}
             alt="A private office library at dusk"
