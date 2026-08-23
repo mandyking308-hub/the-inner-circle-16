@@ -58,7 +58,7 @@ export function readPrivateOfficeSummary(): PrivateOfficeSummary {
     return Boolean(due) && due! < todayIso();
   }).length;
 
-  const cases = concierge.length ? concierge : [{ status: "Matching", nextStep: "Review the two shortlisted education advisers and approve an introduction." }];
+  const cases = concierge.length ? concierge : [{ status: "Sourcing", nextStep: "Review the checked options and decide whether you want Montvelle to arrange an introduction." }];
   const openCases = cases.filter((item) => item.status !== "Complete");
   const nextCase = openCases[0];
 
