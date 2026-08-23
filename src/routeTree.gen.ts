@@ -97,6 +97,7 @@ import { Route as SupplierMessagesRouteImport } from './routes/supplier.messages
 import { Route as SupplierProfileRouteImport } from './routes/supplier.profile'
 import { Route as SupplierRequestsRouteImport } from './routes/supplier.requests'
 import { Route as SupplierServicesRouteImport } from './routes/supplier.services'
+import { Route as MemberKnowledgeIdRouteImport } from './routes/member.knowledge.$id'
 import { Route as LovableEmailAuthPreviewRouteImport } from './routes/lovable/email/auth/preview'
 import { Route as LovableEmailAuthWebhookRouteImport } from './routes/lovable/email/auth/webhook'
 import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
@@ -542,6 +543,11 @@ const SupplierServicesRoute = SupplierServicesRouteImport.update({
   path: '/services',
   getParentRoute: () => SupplierRoute,
 } as any)
+const MemberKnowledgeIdRoute = MemberKnowledgeIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => MemberKnowledgeRoute,
+} as any)
 const LovableEmailAuthPreviewRoute = LovableEmailAuthPreviewRouteImport.update({
   id: '/lovable/email/auth/preview',
   path: '/lovable/email/auth/preview',
@@ -626,7 +632,7 @@ export interface FileRoutesByFullPath {
   '/member/household-access': typeof MemberHouseholdAccessRoute
   '/member/impact': typeof MemberImpactRoute
   '/member/introductions': typeof MemberIntroductionsRoute
-  '/member/knowledge': typeof MemberKnowledgeRoute
+  '/member/knowledge': typeof MemberKnowledgeRouteWithChildren
   '/member/learning': typeof MemberLearningRoute
   '/member/messages': typeof MemberMessagesRoute
   '/member/network': typeof MemberNetworkRoute
@@ -648,6 +654,7 @@ export interface FileRoutesByFullPath {
   '/journal/': typeof JournalIndexRoute
   '/member/': typeof MemberIndexRoute
   '/supplier/': typeof SupplierIndexRoute
+  '/member/knowledge/$id': typeof MemberKnowledgeIdRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -716,7 +723,7 @@ export interface FileRoutesByTo {
   '/member/household-access': typeof MemberHouseholdAccessRoute
   '/member/impact': typeof MemberImpactRoute
   '/member/introductions': typeof MemberIntroductionsRoute
-  '/member/knowledge': typeof MemberKnowledgeRoute
+  '/member/knowledge': typeof MemberKnowledgeRouteWithChildren
   '/member/learning': typeof MemberLearningRoute
   '/member/messages': typeof MemberMessagesRoute
   '/member/network': typeof MemberNetworkRoute
@@ -738,6 +745,7 @@ export interface FileRoutesByTo {
   '/journal': typeof JournalIndexRoute
   '/member': typeof MemberIndexRoute
   '/supplier': typeof SupplierIndexRoute
+  '/member/knowledge/$id': typeof MemberKnowledgeIdRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -810,7 +818,7 @@ export interface FileRoutesById {
   '/member/household-access': typeof MemberHouseholdAccessRoute
   '/member/impact': typeof MemberImpactRoute
   '/member/introductions': typeof MemberIntroductionsRoute
-  '/member/knowledge': typeof MemberKnowledgeRoute
+  '/member/knowledge': typeof MemberKnowledgeRouteWithChildren
   '/member/learning': typeof MemberLearningRoute
   '/member/messages': typeof MemberMessagesRoute
   '/member/network': typeof MemberNetworkRoute
@@ -832,6 +840,7 @@ export interface FileRoutesById {
   '/journal/': typeof JournalIndexRoute
   '/member/': typeof MemberIndexRoute
   '/supplier/': typeof SupplierIndexRoute
+  '/member/knowledge/$id': typeof MemberKnowledgeIdRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -927,6 +936,7 @@ export interface FileRouteTypes {
     | '/journal/'
     | '/member/'
     | '/supplier/'
+    | '/member/knowledge/$id'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/transactional/preview'
@@ -1017,6 +1027,7 @@ export interface FileRouteTypes {
     | '/journal'
     | '/member'
     | '/supplier'
+    | '/member/knowledge/$id'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/transactional/preview'
@@ -1110,6 +1121,7 @@ export interface FileRouteTypes {
     | '/journal/'
     | '/member/'
     | '/supplier/'
+    | '/member/knowledge/$id'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/transactional/preview'
@@ -1774,6 +1786,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SupplierServicesRouteImport
       parentRoute: typeof SupplierRoute
     }
+    '/member/knowledge/$id': {
+      id: '/member/knowledge/$id'
+      path: '/$id'
+      fullPath: '/member/knowledge/$id'
+      preLoaderRoute: typeof MemberKnowledgeIdRouteImport
+      parentRoute: typeof MemberKnowledgeRoute
+    }
     '/lovable/email/auth/preview': {
       id: '/lovable/email/auth/preview'
       path: '/lovable/email/auth/preview'
@@ -1846,6 +1865,18 @@ const AdminRouteChildren: AdminRouteChildren = {
 
 const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
+interface MemberKnowledgeRouteChildren {
+  MemberKnowledgeIdRoute: typeof MemberKnowledgeIdRoute
+}
+
+const MemberKnowledgeRouteChildren: MemberKnowledgeRouteChildren = {
+  MemberKnowledgeIdRoute: MemberKnowledgeIdRoute,
+}
+
+const MemberKnowledgeRouteWithChildren = MemberKnowledgeRoute._addFileChildren(
+  MemberKnowledgeRouteChildren,
+)
+
 interface MemberRouteChildren {
   MemberAlumniRoute: typeof MemberAlumniRoute
   MemberAskOfferRoute: typeof MemberAskOfferRoute
@@ -1860,7 +1891,7 @@ interface MemberRouteChildren {
   MemberHouseholdAccessRoute: typeof MemberHouseholdAccessRoute
   MemberImpactRoute: typeof MemberImpactRoute
   MemberIntroductionsRoute: typeof MemberIntroductionsRoute
-  MemberKnowledgeRoute: typeof MemberKnowledgeRoute
+  MemberKnowledgeRoute: typeof MemberKnowledgeRouteWithChildren
   MemberLearningRoute: typeof MemberLearningRoute
   MemberMessagesRoute: typeof MemberMessagesRoute
   MemberNetworkRoute: typeof MemberNetworkRoute
@@ -1888,7 +1919,7 @@ const MemberRouteChildren: MemberRouteChildren = {
   MemberHouseholdAccessRoute: MemberHouseholdAccessRoute,
   MemberImpactRoute: MemberImpactRoute,
   MemberIntroductionsRoute: MemberIntroductionsRoute,
-  MemberKnowledgeRoute: MemberKnowledgeRoute,
+  MemberKnowledgeRoute: MemberKnowledgeRouteWithChildren,
   MemberLearningRoute: MemberLearningRoute,
   MemberMessagesRoute: MemberMessagesRoute,
   MemberNetworkRoute: MemberNetworkRoute,
