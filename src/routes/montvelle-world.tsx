@@ -252,17 +252,6 @@ function MontvelleWorldPage() {
               includes financial or private adult matters. An authorised household delegate is not a
               member and sees only the requests and messages they have been given.
             </p>
-            <div className="mt-10 flex flex-wrap items-center gap-5">
-              <Button asChild className="rounded-none bg-foreground px-7 py-6 text-background hover:bg-oxblood">
-                <Link to="/demo">
-                  Explore the demo <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-              <p className="max-w-md text-xs leading-6 text-muted-foreground">
-                The demo is an illustrative walkthrough using fictional data. No real member
-                information appears in it.
-              </p>
-            </div>
           </div>
 
         </Container>
