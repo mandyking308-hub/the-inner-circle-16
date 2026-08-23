@@ -151,17 +151,19 @@ function AuthPage() {
                     onClick={() => enterWorkspace("/member")}
                     className="rounded-none bg-background text-foreground hover:bg-bronze"
                   >
-                    Enter member workspace <ArrowRight className="ml-2 h-4 w-4" />
+                    Enter the member environment <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
-                  <Button
-                    type="button"
-                    variant="outline"
-                    disabled={!accepted}
-                    onClick={() => enterWorkspace("/admin")}
-                    className="rounded-none border-background/30 bg-transparent text-background hover:bg-background hover:text-foreground"
-                  >
-                    Open operations workspace
-                  </Button>
+                  {adminPreview ? (
+                    <Button
+                      type="button"
+                      variant="outline"
+                      disabled={!accepted}
+                      onClick={() => enterWorkspace("/admin")}
+                      className="rounded-none border-background/30 bg-transparent text-background hover:bg-background hover:text-foreground"
+                    >
+                      Open operations preview
+                    </Button>
+                  ) : null}
                 </div>
                 {!accepted ? (
                   <p className="mt-3 text-[10px] leading-5 text-background/45">

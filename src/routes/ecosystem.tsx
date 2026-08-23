@@ -32,7 +32,7 @@ const layers = [
     icon: Plane,
     title: "Global Life",
     line: "Coordination",
-    body: "A cross-border workspace covering residence, tax questions, structures, schools, banking, property, health and family logistics.",
+    body: "A joined-up view across residence, tax questions, structures, schools, banking, property, health and family logistics.",
     to: "/global-life",
   },
   {
