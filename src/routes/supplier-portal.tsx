@@ -98,8 +98,8 @@ function SupplierPortalPage() {
               <p className="eyebrow text-oxblood">Sign in</p>
               <h2 className="mt-4 font-display text-3xl">Enter the supplier portal</h2>
               <p className="mt-4 text-sm leading-7 text-muted-foreground">
-                Accounts are issued individually. While the portal is in private preview, choose the partner account you
-                have been given access to.
+                Accounts are issued individually to invited providers. While the portal is in private preview, the
+                accounts below are test records used to check the portal itself; they are not Montvelle relationships.
               </p>
               <label className="mt-6 block text-[9px] uppercase tracking-[0.16em] text-muted-foreground" htmlFor="supplier-account">
                 Supplier account
