@@ -112,10 +112,8 @@ function CancellationPage() {
     <section className="py-16 md:py-24">
       <Container>
         <div className="max-w-3xl">
-          <span className="inline-flex border border-bronze/40 bg-accent/30 px-3 py-1 text-[10px] uppercase tracking-[0.18em] text-bronze">
-            Draft template · legal review required before launch
-          </span>
-          <h1 className="mt-6 font-display text-5xl md:text-6xl">Cancellation Rights</h1>
+          <h1 className="font-display text-5xl md:text-6xl">Cancellation Rights</h1>
+
           <p className="mt-4 text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
             {legalUpdatedLine("cancellationRights")}
           </p>
