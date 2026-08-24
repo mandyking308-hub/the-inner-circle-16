@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { PageIntro } from "@/components/private/PrivateShell";
+import { ProfessionalNetworkSummary } from "@/components/private/ProfessionalNetworkSummary";
 import { knowledge } from "@/data/community";
 import { readPrivateOfficeSummary, type PrivateOfficeSummary } from "@/data/privateOfficeSummary";
 import {
@@ -205,6 +206,8 @@ function MemberHome() {
           </ul>
         ) : null}
       </section>
+
+      <ProfessionalNetworkSummary />
 
       <div className="grid gap-px bg-border lg:grid-cols-2">
         <section className="bg-card p-6 md:p-7">

@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { PageIntro } from "@/components/private/PrivateShell";
 import { BuildCircleCta, ExpertCouncilCta } from "@/components/private/RequestCtas";
+import { advisoryProofBand } from "@/data/networkProof";
 
 export const Route = createFileRoute("/member/network")({ component: CommunityHubPage });
 
@@ -38,6 +39,40 @@ function CommunityHubPage() {
       />
 
       <BuildCircleCta />
+
+      <section className="border border-border bg-card p-6 md:p-8">
+        <p className="eyebrow text-oxblood">Professional network</p>
+        <h2 className="mt-4 max-w-4xl font-display text-3xl leading-tight md:text-4xl">
+          Beyond the member community, we can search the professional world around a specific need.
+        </h2>
+        <p className="mt-5 max-w-3xl text-sm leading-7 text-muted-foreground">
+          This is external institutional sourcing — law, tax, private banking, fiduciary services,
+          transactions, risk and specialist advice — and it is separate from member-to-member
+          introductions, which remain consent-led and never broadcast.
+        </p>
+        <dl className="mt-7 grid grid-cols-2 gap-x-8 border-y border-border py-6 sm:max-w-md">
+          {advisoryProofBand.stats.slice(0, 2).map((stat) => (
+            <div key={stat.label}>
+              <dt className="sr-only">{stat.label}</dt>
+              <dd>
+                <span className="block font-display text-3xl leading-none">{stat.value}</span>
+                <span className="mt-2 block text-[9px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+                  {stat.label}
+                </span>
+              </dd>
+            </div>
+          ))}
+        </dl>
+        <Link
+          to="/member/services"
+          className="mt-6 inline-flex items-center border border-foreground bg-foreground px-5 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-background transition-colors hover:bg-oxblood"
+        >
+          Find the right professional route
+        </Link>
+        <p className="mt-5 max-w-3xl text-[10px] leading-4 text-muted-foreground/70">
+          {advisoryProofBand.qualifier}
+        </p>
+      </section>
 
       <div className="grid gap-px bg-border md:grid-cols-2">
         {rooms.map(([title, body, to]) => (

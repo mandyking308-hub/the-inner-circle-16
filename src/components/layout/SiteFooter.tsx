@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 
 import { BrandMark } from "@/components/brand/BrandMark";
+import { FooterNetworkStrip } from "@/components/marketing/FooterNetworkStrip";
 import { translationNotice } from "@/components/common/LanguageSelector";
 import { site } from "@/config/site";
 
@@ -37,7 +38,9 @@ export function SiteFooter() {
   return (
     <footer className="bg-ink text-background">
       <div className="mx-auto w-full max-w-[110rem] px-6 py-16 sm:px-10 lg:px-14">
-        <div className="grid gap-12 lg:grid-cols-[1fr_0.6fr_0.6fr_1fr]">
+        <FooterNetworkStrip />
+
+        <div className="mt-14 grid gap-12 lg:grid-cols-[1fr_0.6fr_0.6fr_1fr]">
           <div>
             <div className="flex items-center gap-3">
               <BrandMark compact />
