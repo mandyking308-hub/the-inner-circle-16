@@ -442,47 +442,53 @@ export function QuietLuxuryHome() {
             </figure>
           </div>
 
-          <div className="mt-16 grid gap-x-12 gap-y-10 border-t border-border pt-12 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              {
-                name: "Today",
-                copy: "What needs you, what Montvelle is already handling, and what is coming up — in that order.",
-              },
-              {
-                name: "Ask Montvelle",
-                copy: "One request, anything at all. Acknowledged immediately, answered meaningfully within twenty-four hours.",
-              },
-              {
-                name: "Decision Room",
-                copy: "For decisions that deserve more than a phone call: options, sequence, dependencies and who is doing what.",
-              },
-              {
-                name: "Assemble an Expert Council",
-                copy: "A serious decision needs the right outside minds. We search worldwide and build the team around your problem.",
-              },
-              {
-                name: "Build My Circle",
-                copy: "The useful people around a place, a business, a child, a new chapter — found for you, introduced with consent.",
-              },
-              {
-                name: "Invitations",
-                copy: "Where the wider membership meets: gatherings and private moments, kept quietly in one diary.",
-              },
-              {
-                name: "Family & privacy",
-                copy: "Approved adults hold their own login and their own privacy. Sharing is deliberate, area by area.",
-              },
-              {
-                name: "Messages",
-                copy: "A continuous private line to the people who already hold your context.",
-              },
-            ].map((item) => (
-              <article key={item.name}>
-                <h3 className="font-display text-2xl leading-tight">{item.name}</h3>
-                <p className="mt-3 text-sm leading-7 text-muted-foreground">{item.copy}</p>
-              </article>
-            ))}
+          <div className="mt-24 border-t border-border pt-14">
+            <p className="text-[10px] uppercase tracking-[0.2em] text-bronze">
+              Inside Montvelle World
+            </p>
+            <div className="mt-10 grid gap-x-20 gap-y-8 sm:grid-cols-2">
+              {[
+                {
+                  name: "Today",
+                  copy: "What needs you, what Montvelle is already handling, and what is coming up — in that order.",
+                },
+                {
+                  name: "Ask Montvelle",
+                  copy: "One request, anything at all. Acknowledged immediately, answered meaningfully within twenty-four hours.",
+                },
+                {
+                  name: "Decision Room",
+                  copy: "For decisions that deserve more than a phone call: options, sequence, dependencies and who is doing what.",
+                },
+                {
+                  name: "Assemble an Expert Council",
+                  copy: "A serious decision needs the right outside minds. We search worldwide and build the team around your problem.",
+                },
+                {
+                  name: "Build My Circle",
+                  copy: "The useful people around a place, a business, a child, a new chapter — found for you, introduced with consent.",
+                },
+                {
+                  name: "Invitations",
+                  copy: "Where the wider membership meets: gatherings and private moments, kept quietly in one diary.",
+                },
+                {
+                  name: "Family & privacy",
+                  copy: "Approved adults hold their own login and their own privacy. Sharing is deliberate, area by area.",
+                },
+                {
+                  name: "Messages",
+                  copy: "A continuous private line to the people who already hold your context.",
+                },
+              ].map((item) => (
+                <article key={item.name} className="max-w-xl">
+                  <h3 className="font-display text-lg leading-tight text-foreground/90">{item.name}</h3>
+                  <p className="mt-1.5 text-sm leading-7 text-muted-foreground">{item.copy}</p>
+                </article>
+              ))}
+            </div>
           </div>
+
 
         </div>
       </section>
