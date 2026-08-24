@@ -1,0 +1,45 @@
+import type { NetworkProofBandProps } from "@/components/marketing/NetworkProofBand";
+
+export const advisoryProofBand: NetworkProofBandProps = {
+  eyebrow: "The Montvelle Network",
+  headline: "The right expertise, already within reach.",
+  supporting:
+    "A curated global advisory universe spanning leading institutions across law, tax, private banking, fiduciary services, transactions, risk and specialist advice.",
+  names: [
+    "Withers",
+    "DLA Piper",
+    "Baker McKenzie",
+    "Clifford Chance",
+    "Linklaters",
+    "Freshfields",
+    "Deloitte",
+    "PwC",
+    "EY",
+    "KPMG",
+    "UBS Global Wealth Management",
+    "J.P. Morgan Private Bank",
+    "Pictet Wealth Management",
+    "Rothschild & Co Wealth Management",
+    "Vistra",
+    "Fragomen",
+    "Savills",
+    "Marsh",
+    "Lazard",
+    "Evercore",
+    "Egon Zehnder",
+    "Brunswick Group",
+    "Mayo Clinic International Services",
+    "Sotheby's",
+    "Christie's",
+  ],
+  stats: [
+    { value: "150", label: "Global institutions" },
+    { value: "15", label: "Advisory disciplines" },
+    { value: "25", label: "Leading law firms" },
+    { value: "18", label: "Global tax & accountancy networks" },
+    { value: "20", label: "Private banks & wealth managers" },
+  ],
+  promise: "You tell Montvelle the outcome. We identify and coordinate the right route.",
+  qualifier:
+    "Selected organisations represent routes within Montvelle's sourcing and advisory universe. Inclusion does not imply a formal partnership, endorsement or guaranteed access.",
+};
