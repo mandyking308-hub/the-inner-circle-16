@@ -15,8 +15,7 @@ import {
   accessQualifier,
   businessCategories,
   personalCategories,
-  publicOrganisations,
-  displayableBenefit,
+  selectedOrganisations,
 } from "@/data/globalAccess";
 
 
@@ -297,7 +296,7 @@ export function QuietLuxuryHome() {
             {[
               {
                 title: "Personal access",
-                copy: "The life around the household — arranged quietly, through ordinary booking and contact routes and relationships we already hold.",
+                copy: "The life around the household — arranged quietly, through ordinary booking and contact routes, existing relationships where we hold them, and sourcing routes we have identified.",
                 categories: personalCategories,
                 audience: "personal" as const,
               },
@@ -308,7 +307,7 @@ export function QuietLuxuryHome() {
                 audience: "business" as const,
               },
             ].map((column) => {
-              const names = publicOrganisations(column.audience);
+              const names = selectedOrganisations(column.audience, 8);
               return (
                 <article key={column.title} className="bg-background p-8 lg:p-10">
                   <h3 className="font-display text-3xl leading-tight">{column.title}</h3>
@@ -321,24 +320,23 @@ export function QuietLuxuryHome() {
                     ))}
                   </ul>
                   {names.length > 0 ? (
-                    <ul className="mt-7 space-y-2 text-sm">
-                      {names.map((org) => {
-                        const benefit = displayableBenefit(org);
-                        return (
-                          <li key={org.id}>
-                            <span className="font-medium">{org.name}</span>
-                            <span className="text-muted-foreground"> · {org.geography}</span>
-                            {benefit ? (
-                              <span className="mt-1 block text-xs text-bronze">{benefit}</span>
-                            ) : null}
+                    <div className="mt-8 border-t border-border pt-6">
+                      <p className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+                        Selected routes
+                      </p>
+                      <ul className="mt-4 grid gap-x-8 gap-y-1.5 sm:grid-cols-2">
+                        {names.map((org) => (
+                          <li key={org.id} className="text-sm leading-6">
+                            {org.name}
                           </li>
-                        );
-                      })}
-                    </ul>
+                        ))}
+                      </ul>
+                    </div>
                   ) : null}
                 </article>
               );
             })}
+
           </div>
 
           <div className="mt-10 flex flex-wrap items-center gap-6">

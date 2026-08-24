@@ -50,11 +50,16 @@ export type AccessOrganisation = {
   relationshipStatus: RelationshipStatus;
   /** Only meaningful when status is `benefit` or `formal`, and verified. */
   agreedBenefit?: string;
+  /** Internal only. Never rendered. Explicit contract for upstream wiring. */
+  sourceSystem?: "liftor";
+  /** Internal only. Never rendered. Stable upstream record identifier. */
+  sourceRecordId?: string;
   /** Internal only. Never rendered. */
   internalNote?: string;
   /** Internal only. Never rendered. */
   verifiedAt?: string;
 };
+
 
 export const personalCategories: AccessCategory[] = [
   { id: "travel", label: "Travel & hotels", note: "Journeys, stays and the arrangements around them." },
@@ -83,14 +88,44 @@ export const accessCategories = (audience: AccessAudience): AccessCategory[] =>
   audience === "personal" ? personalCategories : businessCategories;
 
 /**
- * Verified publishable organisations. Intentionally empty: names are added
- * only once verified and cleared for public display by the Private Office.
+ * Verified publishable organisations, mirrored from Liftor source-of-truth
+ * datasets. Every record in this pass is `sourced`: a route Montvelle can
+ * arrange or source through. No agreed benefits, no logos, no links.
  */
-export const accessOrganisations: AccessOrganisation[] = [];
+export const accessOrganisations: AccessOrganisation[] = [
+  { id: "virtuoso", audience: "personal", name: "Virtuoso", category: "travel", geography: "Global", publicDisplay: true, relationshipStatus: "sourced", sourceSystem: "liftor", sourceRecordId: "montvelleSupplierSeed:virtuoso" },
+  { id: "iac", audience: "personal", name: "International Associate Clubs (IAC)", category: "clubs", geography: "Global", publicDisplay: true, relationshipStatus: "sourced", sourceSystem: "liftor", sourceRecordId: "montvelleSupplierSeed:international-associate-clubs" },
+  { id: "lhw", audience: "personal", name: "The Leading Hotels of the World", category: "travel", geography: "Global", publicDisplay: true, relationshipStatus: "sourced", sourceSystem: "liftor", sourceRecordId: "montvelleSupplierSeed:leading-hotels-of-the-world" },
+  { id: "preferred", audience: "personal", name: "Preferred Hotels & Resorts", category: "travel", geography: "Global", publicDisplay: true, relationshipStatus: "sourced", sourceSystem: "liftor", sourceRecordId: "montvelleSupplierSeed:preferred-hotels-and-resorts" },
+  { id: "four-seasons", audience: "personal", name: "Four Seasons Hotels and Resorts", category: "travel", geography: "Global", publicDisplay: true, relationshipStatus: "sourced", sourceSystem: "liftor", sourceRecordId: "montvelleSupplierSeed:four-seasons" },
+  { id: "rosewood", audience: "personal", name: "Rosewood Hotel Group", category: "travel", geography: "Global", publicDisplay: true, relationshipStatus: "sourced", sourceSystem: "liftor", sourceRecordId: "montvelleSupplierSeed:rosewood-hotel-group" },
+  { id: "mandarin-oriental", audience: "personal", name: "Mandarin Oriental Hotel Group", category: "travel", geography: "Global", publicDisplay: true, relationshipStatus: "sourced", sourceSystem: "liftor", sourceRecordId: "montvelleSupplierSeed:mandarin-oriental" },
+  { id: "aman", audience: "personal", name: "Aman", category: "travel", geography: "Global", publicDisplay: true, relationshipStatus: "sourced", sourceSystem: "liftor", sourceRecordId: "montvelleSupplierSeed:aman" },
+  { id: "belmond", audience: "personal", name: "Belmond", category: "travel", geography: "Global", publicDisplay: true, relationshipStatus: "sourced", sourceSystem: "liftor", sourceRecordId: "montvelleSupplierSeed:belmond" },
+  { id: "blacklane", audience: "personal", name: "Blacklane", category: "travel", geography: "Global", publicDisplay: true, relationshipStatus: "sourced", sourceSystem: "liftor", sourceRecordId: "montvelleSupplierSeed:blacklane" },
+  { id: "knight-frank", audience: "personal", name: "Knight Frank", category: "property", geography: "Global", publicDisplay: true, relationshipStatus: "sourced", sourceSystem: "liftor", sourceRecordId: "montvelleSupplierSeed:knight-frank" },
+  { id: "crown-relocations", audience: "personal", name: "Crown Relocations", category: "property", geography: "Global", publicDisplay: true, relationshipStatus: "sourced", sourceSystem: "liftor", sourceRecordId: "montvelleSupplierSeed:crown-relocations" },
+  { id: "sothebys", audience: "personal", name: "Sotheby's", category: "culture", geography: "Global", publicDisplay: true, relationshipStatus: "sourced", sourceSystem: "liftor", sourceRecordId: "montvelleSupplierSeed:sothebys" },
+  { id: "international-sos", audience: "personal", name: "International SOS", category: "health", geography: "Global", publicDisplay: true, relationshipStatus: "sourced", sourceSystem: "liftor", sourceRecordId: "montvelleSupplierSeed:international-sos" },
+
+  { id: "withers", audience: "business", name: "Withers", category: "legal", geography: "Global", publicDisplay: true, relationshipStatus: "sourced", sourceSystem: "liftor", sourceRecordId: "montvelleAdvisoryNetwork:withers" },
+  { id: "dla-piper", audience: "business", name: "DLA Piper", category: "legal", geography: "Global", publicDisplay: true, relationshipStatus: "sourced", sourceSystem: "liftor", sourceRecordId: "montvelleAdvisoryNetwork:dla-piper" },
+  { id: "grant-thornton", audience: "business", name: "Grant Thornton", category: "legal", geography: "Global", publicDisplay: true, relationshipStatus: "sourced", sourceSystem: "liftor", sourceRecordId: "montvelleAdvisoryNetwork:grant-thornton" },
+  { id: "ubs-gwm", audience: "business", name: "UBS Global Wealth Management", category: "banking", geography: "Global", publicDisplay: true, relationshipStatus: "sourced", sourceSystem: "liftor", sourceRecordId: "montvelleAdvisoryNetwork:ubs-global-wealth-management" },
+  { id: "jpm-private-bank", audience: "business", name: "J.P. Morgan Private Bank", category: "banking", geography: "Global", publicDisplay: true, relationshipStatus: "sourced", sourceSystem: "liftor", sourceRecordId: "montvelleAdvisoryNetwork:jp-morgan-private-bank" },
+  { id: "vistra", audience: "business", name: "Vistra", category: "corporate", geography: "Global", publicDisplay: true, relationshipStatus: "sourced", sourceSystem: "liftor", sourceRecordId: "montvelleAdvisoryNetwork:vistra" },
+  { id: "fragomen", audience: "business", name: "Fragomen", category: "legal", geography: "Global", publicDisplay: true, relationshipStatus: "sourced", sourceSystem: "liftor", sourceRecordId: "montvelleAdvisoryNetwork:fragomen" },
+  { id: "henley-partners", audience: "business", name: "Henley & Partners", category: "legal", geography: "Global", publicDisplay: true, relationshipStatus: "sourced", sourceSystem: "liftor", sourceRecordId: "montvelleAdvisoryNetwork:henley-and-partners" },
+];
 
 /** The only accessor public surfaces may use. */
 export const publicOrganisations = (audience: AccessAudience): AccessOrganisation[] =>
   accessOrganisations.filter((org) => org.publicDisplay && org.audience === audience);
+
+/** Restrained public selection: names only, hard-capped. */
+export const selectedOrganisations = (audience: AccessAudience, limit = 8): AccessOrganisation[] =>
+  publicOrganisations(audience).slice(0, limit);
+
 
 /** A benefit may only be shown when it is agreed and the relationship supports it. */
 export const displayableBenefit = (org: AccessOrganisation): string | null =>
@@ -99,4 +134,4 @@ export const displayableBenefit = (org: AccessOrganisation): string | null =>
     : null;
 
 export const accessQualifier =
-  "Selected organisations may be shown as examples of routes Montvelle can arrange. Access is arranged through the Private Office, and inclusion does not itself imply a formal partnership or endorsement.";
+  "Selected organisations may be shown as examples of routes Montvelle can arrange or source through. Access is arranged through the Private Office, and inclusion does not by itself imply a formal partnership or endorsement.";
