@@ -15,8 +15,7 @@ import {
   accessQualifier,
   businessCategories,
   personalCategories,
-  publicOrganisations,
-  displayableBenefit,
+  selectedOrganisations,
 } from "@/data/globalAccess";
 
 
