@@ -13,6 +13,8 @@ import cityNewYork from "@/assets/city-newyork.jpg";
 import accessPersonal from "@/assets/access-personal.jpg";
 import accessBusiness from "@/assets/access-business.jpg";
 import worldDesk from "@/assets/montvelle-world-desk.jpg";
+import proofAdvisory from "@/assets/proof-advisory.jpg";
+import proofConcierge from "@/assets/proof-concierge.jpg";
 
 export const luxuryImages = {
   hero: heroJet,
@@ -25,6 +27,8 @@ export const luxuryImages = {
   accessPersonal,
   accessBusiness,
   worldDesk,
+  proofAdvisory,
+  proofConcierge,
 
   // Backwards-compatible aliases used by the existing public pages.
   jet: heroJet,
