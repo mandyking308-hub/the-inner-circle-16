@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/button";
 import { site } from "@/config/site";
-import { accessQualifier, businessCategories, personalCategories } from "@/data/globalAccess";
+import { accessQualifier, businessCategories, personalCategories, selectedOrganisations } from "@/data/globalAccess";
 
 import heroResidence from "@/assets/po2-hero-residence.jpg";
 import quietDetail from "@/assets/po-morning-table.jpg";
