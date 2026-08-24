@@ -289,25 +289,25 @@ export function QuietLuxuryHome() {
       </section>
 
       {/* Montvelle World */}
-      <section className="border-t border-border bg-linen">
+      <section className="bg-linen">
+        {/* Editorial lead-in: headline + manifesto pull-quote */}
         <div className="mx-auto w-full max-w-[110rem] px-6 py-12 sm:px-10 lg:px-14 lg:py-16">
-          {/* Editorial lead-in with integrated CTAs */}
-          <div className="grid gap-8 border-b border-border pb-9 lg:grid-cols-[1.55fr_1fr] lg:items-end lg:gap-12">
+          <div className="grid gap-8 lg:grid-cols-[1.5fr_1fr] lg:items-end lg:gap-16">
             <div>
               <Eyebrow tone="bronze">Montvelle World</Eyebrow>
-              <h2 className="mt-4 max-w-[19ch] font-display text-4xl leading-[1.04] md:text-5xl">
+              <h2 className="mt-4 max-w-[18ch] font-display text-4xl leading-[1.02] md:text-[3.4rem]">
                 One private place to run the complicated parts of your life.
               </h2>
-              <p className="mt-5 max-w-xl text-sm leading-7 text-muted-foreground">
+              <p className="mt-6 max-w-xl text-sm leading-7 text-muted-foreground">
                 Ask for what you need, work through decisions, bring in the right experts and keep everyone
                 coordinated. Montvelle keeps the context so you never start from zero.
               </p>
             </div>
-            <div className="flex flex-col gap-4 lg:items-end lg:text-right">
-              <span className="text-[10px] font-semibold uppercase tracking-[0.24em] text-bronze">
-                Begin
-              </span>
-              <div className="flex flex-wrap items-center gap-5 lg:justify-end">
+            <div className="lg:border-l lg:border-border lg:pl-10">
+              <p className="font-display text-xl italic leading-[1.35] text-foreground/85 md:text-[1.6rem] md:leading-[1.3]">
+                &ldquo;Success creates complexity. Nobody hands you the map.&rdquo;
+              </p>
+              <div className="mt-7 flex flex-wrap items-center gap-5">
                 <Button asChild className="h-11 rounded-none bg-ink px-7 text-background hover:bg-oxblood">
                   <Link to="/montvelle-world">
                     Explore Montvelle World <ArrowRight className="ml-2 h-4 w-4" />
@@ -322,72 +322,76 @@ export function QuietLuxuryHome() {
               </div>
             </div>
           </div>
+        </div>
 
-          {/* Anchor capabilities — prominent, asymmetric pair */}
-          <div className="mt-9 grid gap-x-12 gap-y-8 border-t border-border pt-8 lg:grid-cols-2">
-            {[
-              {
-                num: "01",
-                title: "Ask Montvelle",
-                copy: "Tell us what you need. We source, arrange and stay with it.",
-              },
-              {
-                num: "02",
-                title: "Decision Room",
-                copy: "Keep options, advisers, dependencies and next steps around one decision.",
-              },
-            ].map(({ num, title, copy }) => (
-              <div key={title} className="pt-5">
-                <div className="flex items-baseline gap-4">
-                  <span className="font-display text-sm tabular-nums text-bronze">{num}</span>
-                  <h3 className="font-display text-2xl leading-tight text-foreground md:text-[1.7rem]">
-                    {title}
-                  </h3>
-                </div>
-                <p className="mt-3 max-w-sm pl-8 text-sm leading-7 text-muted-foreground">{copy}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* Secondary capabilities — quieter editorial rhythm */}
-          <div className="mt-9 border-t border-border pt-6">
-            <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-5 lg:gap-x-6">
+        {/* Anchor capabilities — ink band, private-workspace drama */}
+        <div className="bg-ink text-background">
+          <div className="mx-auto w-full max-w-[110rem] px-6 py-12 sm:px-10 lg:px-14 lg:py-14">
+            <div className="grid gap-x-12 gap-y-10 lg:grid-cols-2 lg:gap-x-20">
               {[
                 {
-                  num: "03",
-                  title: "Expert Council",
-                  copy: "We assemble the right outside expertise around a serious question.",
+                  num: "01",
+                  title: "Ask Montvelle",
+                  copy: "Tell us what you need. We source, arrange and stay with it — so you can stop chasing and start closing.",
                 },
                 {
-                  num: "04",
-                  title: "Build My Circle",
-                  copy: "Build the useful people around your family, business, city or next chapter.",
-                },
-                {
-                  num: "05",
-                  title: "Invitations",
-                  copy: "Private gatherings and moments worth showing up for, kept in one place.",
-                },
-                {
-                  num: "06",
-                  title: "Family",
-                  copy: "Approved household access with separate privacy and age-appropriate participation.",
-                },
-                {
-                  num: "07",
-                  title: "Messages",
-                  copy: "One continuous private line to people who already understand the context.",
+                  num: "02",
+                  title: "Decision Room",
+                  copy: "Keep options, advisers, dependencies and next steps around one decision, until it is done.",
                 },
               ].map(({ num, title, copy }) => (
-                <div key={title} className="pt-1">
-                  <div className="flex items-baseline gap-3">
-                    <span className="font-display text-[11px] tabular-nums text-bronze/80">{num}</span>
-                    <p className="font-display text-base leading-snug text-foreground">{title}</p>
-                  </div>
-                  <p className="mt-2 pl-7 text-[13px] leading-6 text-muted-foreground">{copy}</p>
+                <div key={title} className="relative pl-10">
+                  <span className="absolute left-0 top-1 font-display text-2xl leading-none text-[oklch(0.62_0.13_24)]">
+                    {num}
+                  </span>
+                  <h3 className="font-display text-[1.75rem] leading-tight text-background md:text-3xl">
+                    {title}
+                  </h3>
+                  <p className="mt-3 max-w-sm text-sm leading-7 text-background/72">{copy}</p>
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+
+        {/* Secondary capabilities — quieter editorial rhythm on linen */}
+        <div className="mx-auto w-full max-w-[110rem] px-6 py-10 sm:px-10 lg:px-14 lg:py-12">
+          <div className="grid grid-cols-1 gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-12">
+            {[
+              {
+                num: "03",
+                title: "Expert Council",
+                copy: "We assemble the right outside expertise around a serious question.",
+              },
+              {
+                num: "04",
+                title: "Build My Circle",
+                copy: "Build the useful people around your family, business, city or next chapter.",
+              },
+              {
+                num: "05",
+                title: "Invitations",
+                copy: "Private gatherings and moments worth showing up for, kept in one place.",
+              },
+              {
+                num: "06",
+                title: "Family",
+                copy: "Approved household access with separate privacy and age-appropriate participation.",
+              },
+              {
+                num: "07",
+                title: "Messages",
+                copy: "One continuous private line to people who already understand the context.",
+              },
+            ].map(({ num, title, copy }) => (
+              <div key={title} className="border-t border-border pt-5">
+                <div className="flex items-baseline gap-3">
+                  <span className="font-display text-xs tabular-nums text-bronze">{num}</span>
+                  <p className="font-display text-lg leading-snug text-foreground">{title}</p>
+                </div>
+                <p className="mt-2 pl-6 text-[13px] leading-6 text-muted-foreground">{copy}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
