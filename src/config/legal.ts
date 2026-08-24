@@ -1,20 +1,18 @@
 /**
  * Central legal document versioning.
  *
- * INTERNAL NOTE — this pack has NOT been reviewed by external counsel. Before
- * live trading it requires review for UK/EU/US (Delaware), then local addenda
- * as member geographies expand. Acceptance evidence recorded in the browser is preview evidence
- * only; it is not a production audit store.
+ * INTERNAL NOTE — this pack has NOT been reviewed by external counsel. It is a
+ * good-faith internal draft and requires review for UK/EU/US (Delaware)
+ * consumer, distance-selling and privacy law before live trading, then local
+ * addenda as member geographies expand. Acceptance evidence recorded in the
+ * browser is preview evidence only; it is not a production audit store.
  *
  * Every clickwrap surface (member sign-in, supplier sign-in) records
  * the bundle version below alongside a timestamp. When production auth and the
  * database are enabled, the same `legalVersionBundle` string should be written
  * server-side against the authenticated identity.
- *
- * INTERNAL NOTE: this pack is a good-faith internal draft. A final pack
- * requires external counsel review (UK/EU/US/Delaware consumer, distance
- * selling and privacy law), then local addenda as member geographies expand.
  */
+
 
 export type LegalDocumentKey =
   | "membershipAgreement"
@@ -39,24 +37,24 @@ export const legalDocuments: Record<LegalDocumentKey, LegalDocument> = {
     key: "membershipAgreement",
     title: "Membership Agreement",
     shortTitle: "Membership Agreement",
-    version: "MA-2026.1",
-    effectiveDate: "2026-08-23",
+    version: "MA-2026.2",
+    effectiveDate: "2026-08-24",
     path: "/membership-agreement",
   },
   websiteTerms: {
     key: "websiteTerms",
     title: "Terms of membership & use",
     shortTitle: "Website Terms",
-    version: "WT-2026.1",
-    effectiveDate: "2026-08-23",
+    version: "WT-2026.2",
+    effectiveDate: "2026-08-24",
     path: "/terms",
   },
   privacyNotice: {
     key: "privacyNotice",
     title: "Privacy Notice",
     shortTitle: "Privacy Notice",
-    version: "PN-2026.1",
-    effectiveDate: "2026-08-23",
+    version: "PN-2026.2",
+    effectiveDate: "2026-08-24",
     path: "/privacy",
   },
   confidentiality: {
@@ -79,8 +77,8 @@ export const legalDocuments: Record<LegalDocumentKey, LegalDocument> = {
     key: "cancellationRights",
     title: "Cancellation Rights",
     shortTitle: "Cancellation Rights",
-    version: "CR-2026.1",
-    effectiveDate: "2026-08-23",
+    version: "CR-2026.2",
+    effectiveDate: "2026-08-24",
     path: "/cancellation",
   },
   cookies: {

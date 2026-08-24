@@ -32,12 +32,13 @@ const sections: { heading: string; body: string }[] = [
   },
   {
     heading: "Where a 14-day cancellation period applies",
-    body: "For consumers in the United Kingdom and the European Union buying at a distance (online, without meeting us in person), a statutory cancellation period of 14 days generally applies to a services contract. The period runs from the day after the day the contract is concluded — normally the day your membership purchase is confirmed. You do not need to give a reason to cancel within that period.",
+    body: "For consumers in the United Kingdom and the European Union buying at a distance (online, without meeting us in person), a statutory cancellation period of 14 days generally applies to a services contract. The period runs from the day after the legally relevant contract-conclusion date — not from activation, which may be later. That contract-conclusion date is stated or confirmed in your Membership Schedule or in the acceptance/contract confirmation we issue to you, so please check it there. You do not need to give a reason to cancel within that period.",
   },
   {
     heading: "If you ask us to start straight away",
-    body: "Montvelle asks separately, at the point your membership documents are issued for acceptance, whether you want service to begin during the cancellation period. This is a distinct question from accepting the contractual documents and is never assumed. If you ask us to begin immediately and then cancel within the 14 days, you remain entitled to cancel, but we may charge a proportionate amount for the service actually supplied up to the moment you told us you were cancelling, calculated against the total contract price. If you do not ask us to begin immediately, service starts after the cancellation period ends.",
+    body: "Montvelle asks separately, at the point your membership documents are issued for acceptance, whether you want service to begin during the cancellation period. That request is a distinct express request: it is separate from accepting the Membership Agreement and Membership Schedule, separate from making payment, and never assumed. If you ask us to begin immediately and then cancel within the 14 days, you remain entitled to cancel, but we may charge a proportionate amount for the service actually supplied up to the moment you told us you were cancelling, calculated against the total contract price. If you do not make that separate request, the relevant service does not begin until the cancellation period has expired.",
   },
+
   {
     heading: "Fully performed services",
     body: "If you expressly asked for the service to begin during the cancellation period and the service has been fully performed within that period with your acknowledgement that you would lose the right to cancel on full performance, the statutory cancellation right no longer applies to that fully performed service.",

@@ -8,7 +8,7 @@ export const Route = createFileRoute("/confidentiality")({
 });
 
 function ConfidentialityPage() {
-  return <LegalTemplate title="Confidentiality & No Solicitation" intro="People will only bring the real problem into the room if they believe the room will protect it. Confidentiality is therefore a membership behaviour, a product design principle and an operating responsibility." sections={[
+  return <LegalTemplate title="Confidentiality & No Solicitation" documentKey="confidentiality" intro="People will only bring the real problem into the room if they believe the room will protect it. Confidentiality is therefore a membership behaviour, a product design principle and an operating responsibility." sections={[
     { heading: "What is private", body: "Table challenges, private discussion, member-only posts, contact information, family circumstances, ownership information, adviser context, Decision Rooms, private venue details and any material clearly shared in confidence should be treated as confidential." },
     { heading: "Use the learning, not the identity", body: "Members may use ideas and learning from the community in their own decision-making, provided they do not reveal another person's identity, confidential facts, commercially sensitive information or family circumstances without permission." },
     { heading: "No recording or forwarding by default", body: "Private sessions should not be recorded, transcribed, photographed, screenshotted, forwarded or published unless the people involved have clearly agreed to that use." },
