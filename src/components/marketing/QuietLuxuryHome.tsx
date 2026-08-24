@@ -88,12 +88,16 @@ export function QuietLuxuryHome() {
         </div>
       </section>
 
+      {/* Compact moving-name tickers — Business & Expertise / Personal & Access */}
+      <HeroNetworkTickers />
+
       {/* Professional advisory proof band — calm parchment, scholarly image */}
       <NetworkProofBand
         {...advisoryProofBand}
         tone="parchment"
         image={luxuryImages.proofAdvisory}
         imageAlt="A discreet private advisory library at dusk — leather-bound volumes and a brass reading lamp"
+        hideMarquee
       />
 
       {/* Concierge & global sourcing proof band — dramatic ink, atmospheric travel image */}
@@ -102,6 +106,7 @@ export function QuietLuxuryHome() {
         tone="ink"
         image={luxuryImages.proofConcierge}
         imageAlt="An open travel case, passports and a brass compass on a desk by a window at dusk"
+        hideMarquee
       />
 
       {/* Global life */}
