@@ -408,9 +408,22 @@ export function QuietLuxuryHome() {
                 Explore the demo <ArrowUpRight className="h-4 w-4" />
               </Link>
             </div>
+            </div>
+
+            <figure className="overflow-hidden">
+              <img
+                src={luxuryImages.worldDesk}
+                alt="A private desk at night: notebook, correspondence and keys under lamplight"
+                className="aspect-[4/3] w-full object-cover"
+                loading="lazy"
+              />
+              <figcaption className="mt-4 text-xs leading-6 text-muted-foreground">
+                Quietly behind the life — the context, kept in order.
+              </figcaption>
+            </figure>
           </div>
 
-          <div className="grid gap-px bg-border sm:grid-cols-2">
+          <div className="mt-16 grid gap-x-12 gap-y-10 border-t border-border pt-12 sm:grid-cols-2 lg:grid-cols-4">
             {[
               {
                 name: "Today",
