@@ -91,6 +91,8 @@ export function QuietLuxuryHome() {
         </div>
       </section>
 
+      {/* Professional advisory proof band */}
+      <NetworkProofBand {...advisoryProofBand} />
 
       {/* Global life */}
       <section className="bg-linen">
