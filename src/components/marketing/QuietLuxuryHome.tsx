@@ -377,8 +377,8 @@ export function QuietLuxuryHome() {
 
       {/* Montvelle World */}
       <section className="border-t border-border bg-linen">
-        <div className="mx-auto grid w-full max-w-[110rem] gap-12 px-6 py-20 sm:px-10 lg:grid-cols-[0.92fr_1.08fr] lg:px-14 lg:py-28">
-          <div>
+        <div className="mx-auto w-full max-w-[110rem] px-6 py-20 sm:px-10 lg:px-14 lg:py-28">
+          <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-16">
             <Eyebrow tone="bronze">Montvelle World</Eyebrow>
             <h2 className="mt-6 max-w-[16ch] font-display text-5xl leading-[0.98] md:text-7xl">
               The more you build, the more there is to hold together.
