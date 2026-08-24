@@ -290,37 +290,32 @@ export function QuietLuxuryHome() {
 
       {/* Montvelle World */}
       <section className="border-t border-border bg-linen">
-
         <div className="mx-auto w-full max-w-[110rem] px-6 py-12 sm:px-10 lg:px-14 lg:py-16">
-          <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start lg:gap-14">
+          <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-12">
 
             <div>
-            <Eyebrow tone="bronze">Montvelle World</Eyebrow>
-            <h2 className="mt-4 max-w-[18ch] font-display text-4xl leading-[1.02] md:text-5xl">
-              The more you build, the more there is to hold together.
-            </h2>
-            <p className="mt-5 max-w-xl text-sm leading-7 text-muted-foreground">
-              Success builds complexity: countries, homes, schools, advisers, businesses, travel, family.
-              Excellent specialists solve their own part, and somebody still has to hold the whole picture —
-              repeating the story, searching cold for the right person, reconciling advice, chasing replies,
-              remembering who said what. Usually that somebody is you or your spouse. Montvelle takes that weight:
-              tell us what you are trying to achieve. We find the right people, assemble the right expertise,
-              build the right circle around you, coordinate the moving parts — and keep the context, so nothing
-              has to start again.
-            </p>
-            <div className="mt-6 flex flex-wrap items-center gap-5">
-              <Button asChild className="h-11 rounded-none bg-ink px-7 text-background hover:bg-oxblood">
-                <Link to="/montvelle-world">
-                  Explore Montvelle World <ArrowRight className="ml-2 h-4 w-4" />
+              <Eyebrow tone="bronze">Montvelle World</Eyebrow>
+              <h2 className="mt-4 max-w-[20ch] font-display text-4xl leading-[1.05] md:text-5xl">
+                One private place to run the complicated parts of your life.
+              </h2>
+              <p className="mt-5 max-w-xl text-sm leading-7 text-muted-foreground">
+                Ask for what you need, work through important decisions, bring in the right experts and keep
+                everyone coordinated — without starting from zero each time. Montvelle keeps the context so
+                you do not have to.
+              </p>
+              <div className="mt-6 flex flex-wrap items-center gap-5">
+                <Button asChild className="h-11 rounded-none bg-ink px-7 text-background hover:bg-oxblood">
+                  <Link to="/montvelle-world">
+                    Explore Montvelle World <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+                <Link
+                  to="/demo"
+                  className="inline-flex items-center gap-2 border-b border-bronze pb-1 text-sm font-medium text-foreground"
+                >
+                  Explore the demo <ArrowUpRight className="h-4 w-4" />
                 </Link>
-              </Button>
-              <Link
-                to="/demo"
-                className="inline-flex items-center gap-2 border-b border-bronze pb-1 text-sm font-medium text-foreground"
-              >
-                Explore the demo <ArrowUpRight className="h-4 w-4" />
-              </Link>
-            </div>
+              </div>
             </div>
 
             <figure className="overflow-hidden">
@@ -336,54 +331,11 @@ export function QuietLuxuryHome() {
             </figure>
           </div>
 
-          <div className="mt-8 border-t border-border pt-6">
-            <p className="text-[10px] uppercase tracking-[0.2em] text-bronze">
-              Inside Montvelle World
+          <div className="mt-6 border-t border-border pt-4">
+            <p className="text-[11px] uppercase tracking-[0.22em] text-bronze">
+              Ask Montvelle · Decision Room · Expert Council · Build My Circle · Invitations · Family · Messages
             </p>
-            <div className="mt-5 grid gap-x-12 gap-y-3 sm:grid-cols-2 lg:grid-cols-4">
-              {[
-                {
-                  name: "Today",
-                  copy: "What needs you, what Montvelle is handling, what is coming up.",
-                },
-                {
-                  name: "Ask Montvelle",
-                  copy: "One request, anything at all. Answered within twenty-four hours.",
-                },
-                {
-                  name: "Decision Room",
-                  copy: "Options, sequence, dependencies and who is doing what.",
-                },
-                {
-                  name: "Assemble an Expert Council",
-                  copy: "We search worldwide and build the team around your problem.",
-                },
-                {
-                  name: "Build My Circle",
-                  copy: "The useful people around a place, a business, a new chapter.",
-                },
-                {
-                  name: "Invitations",
-                  copy: "Gatherings and private moments, kept in one diary.",
-                },
-                {
-                  name: "Family & privacy",
-                  copy: "Approved adults hold their own login and privacy, area by area.",
-                },
-                {
-                  name: "Messages",
-                  copy: "A continuous private line to the people who hold your context.",
-                },
-              ].map((item) => (
-                <div key={item.name} className="border-t border-border/60 pt-2.5">
-                  <h3 className="font-display text-sm leading-tight text-foreground/90">{item.name}</h3>
-                  <p className="mt-1 text-xs leading-5 text-muted-foreground">{item.copy}</p>
-                </div>
-              ))}
-            </div>
           </div>
-
-
         </div>
       </section>
     </main>
