@@ -89,7 +89,7 @@ export function MontvelleWorldPreview() {
                 <div className="h-full w-[62%] bg-gold" />
               </div>
               <p className="mt-1 text-[8px] leading-3 text-muted-foreground">
-                Next: confirm schooling options
+                Next: confirm residency counsel and lease pack
               </p>
             </div>
             <div>
