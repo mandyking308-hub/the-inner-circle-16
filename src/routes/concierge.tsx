@@ -155,27 +155,47 @@ function ConciergePage() {
             {[
               {
                 title: "Personal access",
-                copy: "Montvelle arranges the life around the household through ordinary booking, contact and concierge routes, and through relationships we already hold — travel and hotels, restaurants and hospitality, private clubs, property and relocation, education, health and wellbeing, household services, culture and experiences.",
+                copy: "Montvelle arranges the life around the household through ordinary booking, contact and concierge routes, through existing relationships where we hold them, and through sourcing routes we have identified — travel and hotels, restaurants and hospitality, private clubs, property and relocation, education, health and wellbeing, household services, culture and experiences.",
                 categories: personalCategories,
+                audience: "personal" as const,
               },
               {
                 title: "Business access",
                 copy: "Montvelle sources professional organisations worldwide around business and family-office needs — legal and tax, banking and finance, insurance, fiduciary and corporate services, transactions, executive search, cyber security and philanthropy. Montvelle coordinates and keeps the context; Montvelle is not itself the regulated adviser.",
                 categories: businessCategories,
+                audience: "business" as const,
               },
-            ].map((column) => (
-              <article key={column.title} className="bg-background p-8 md:p-10">
-                <h3 className="font-display text-3xl leading-tight md:text-4xl">{column.title}</h3>
-                <p className="mt-5 text-base leading-8 text-muted-foreground">{column.copy}</p>
-                <ul className="mt-8 grid gap-x-10 gap-y-2 sm:grid-cols-2">
-                  {column.categories.map((category) => (
-                    <li key={category.id} className="border-b border-foreground/12 py-2 text-sm">
-                      {category.label}
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            ))}
+            ].map((column) => {
+              const names = selectedOrganisations(column.audience, 8);
+              return (
+                <article key={column.title} className="bg-background p-8 md:p-10">
+                  <h3 className="font-display text-3xl leading-tight md:text-4xl">{column.title}</h3>
+                  <p className="mt-5 text-base leading-8 text-muted-foreground">{column.copy}</p>
+                  <ul className="mt-8 grid gap-x-10 gap-y-2 sm:grid-cols-2">
+                    {column.categories.map((category) => (
+                      <li key={category.id} className="border-b border-foreground/12 py-2 text-sm">
+                        {category.label}
+                      </li>
+                    ))}
+                  </ul>
+                  {names.length > 0 ? (
+                    <div className="mt-9 border-t border-foreground/12 pt-6">
+                      <p className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+                        Selected routes
+                      </p>
+                      <ul className="mt-4 grid gap-x-10 gap-y-1.5 sm:grid-cols-2">
+                        {names.map((org) => (
+                          <li key={org.id} className="text-sm leading-6">
+                            {org.name}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : null}
+                </article>
+              );
+            })}
+
           </div>
 
           <p className="mt-10 max-w-3xl text-xs leading-6 text-muted-foreground">{accessQualifier}</p>
