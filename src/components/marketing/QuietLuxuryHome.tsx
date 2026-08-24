@@ -9,8 +9,10 @@ import {
   Users,
 } from "lucide-react";
 
+import { NetworkProofBand } from "@/components/marketing/NetworkProofBand";
 import { Button } from "@/components/ui/button";
 import { destinationImages, luxuryImages } from "@/data/luxuryImages";
+import { advisoryProofBand } from "@/data/networkProof";
 import {
   accessQualifier,
   businessCategories,
@@ -91,6 +93,8 @@ export function QuietLuxuryHome() {
         </div>
       </section>
 
+      {/* Professional advisory proof band */}
+      <NetworkProofBand {...advisoryProofBand} />
 
       {/* Global life */}
       <section className="bg-linen">
