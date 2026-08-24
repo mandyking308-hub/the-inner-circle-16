@@ -22,7 +22,7 @@ const personalColumn: Column = {
   names: conciergeProofBand.names.slice(0, 8),
 };
 
-function NameTicker({ names, reverse }: { names: readonly string[]; reverse?: boolean }) {
+function NameTicker({ names, reverse }: { names: readonly string[]; reverse?: boolean | undefined }) {
   const list = (hidden: boolean) => (
     <ul
       className="proof-marquee-list"
@@ -54,7 +54,7 @@ function NameTicker({ names, reverse }: { names: readonly string[]; reverse?: bo
   );
 }
 
-function ProofColumn({ column, reverse }: { column: Column; reverse?: boolean }) {
+function ProofColumn({ column, reverse }: { column: Column; reverse?: boolean | undefined }) {
   return (
     <div>
       <p className="text-[9px] font-semibold uppercase tracking-[0.26em] text-gold">
