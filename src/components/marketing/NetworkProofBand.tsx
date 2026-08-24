@@ -18,6 +18,8 @@ export type NetworkProofBandProps = {
   /** Optional atmospheric image rendered as a full-bleed editorial header behind the headline. */
   image?: string;
   imageAlt?: string;
+  /** When true, the moving name marquee is omitted (used where the names already appear elsewhere on the page). */
+  hideMarquee?: boolean;
 };
 
 /**
@@ -41,6 +43,7 @@ export function NetworkProofBand({
   tone = "parchment",
   image,
   imageAlt = "",
+  hideMarquee = false,
 }: NetworkProofBandProps) {
   const isInk = tone === "ink";
 
