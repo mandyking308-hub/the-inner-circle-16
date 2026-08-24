@@ -56,7 +56,7 @@ function NameTicker({ names, reverse }: { names: readonly string[]; reverse?: bo
 
 function ProofColumn({ column, reverse }: { column: Column; reverse?: boolean | undefined }) {
   return (
-    <div>
+    <div className="min-w-0">
       <p className="text-[9px] font-semibold uppercase tracking-[0.26em] text-gold">
         {column.eyebrow}
       </p>
@@ -96,7 +96,7 @@ export function FooterNetworkStrip() {
     <div className="border-b border-background/12 pb-10">
       <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
         <ProofColumn column={businessColumn} />
-        <div className="border-t border-background/12 pt-10 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-16">
+        <div className="min-w-0 border-t border-background/12 pt-10 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-16">
           <ProofColumn column={personalColumn} reverse />
         </div>
       </div>
