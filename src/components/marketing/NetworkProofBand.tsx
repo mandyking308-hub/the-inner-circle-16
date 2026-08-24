@@ -138,6 +138,7 @@ export function NetworkProofBand({
           </div>
         ) : null}
 
+        {hideMarquee ? null : (
         <div
           className={`border-y ${borderCls} py-5 ${
             image ? (verticals && verticals.length > 0 ? "mt-14" : "") : "mt-10"
@@ -165,6 +166,7 @@ export function NetworkProofBand({
             </div>
           </div>
         </div>
+        )}
 
         <dl className="mt-12 grid grid-cols-2 gap-x-8 gap-y-8 sm:grid-cols-3 lg:grid-cols-5">
           {stats.map((stat) => (

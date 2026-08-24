@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 
 import { NetworkProofBand } from "@/components/marketing/NetworkProofBand";
+import { HeroNetworkTickers } from "@/components/marketing/HeroNetworkTickers";
 import { Button } from "@/components/ui/button";
 import { destinationImages, luxuryImages } from "@/data/luxuryImages";
 import { advisoryProofBand, conciergeProofBand } from "@/data/networkProof";
