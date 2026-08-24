@@ -324,7 +324,7 @@ export function QuietLuxuryHome() {
           </div>
 
           {/* Anchor capabilities — prominent, asymmetric pair */}
-          <div className="mt-9 grid gap-x-12 gap-y-8 lg:grid-cols-2">
+          <div className="mt-9 grid gap-x-12 gap-y-8 border-t border-border pt-8 lg:grid-cols-2">
             {[
               {
                 num: "01",
