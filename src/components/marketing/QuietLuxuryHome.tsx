@@ -105,7 +105,7 @@ export function QuietLuxuryHome() {
 
       {/* Global life */}
       <section className="bg-linen">
-        <div className="mx-auto grid w-full max-w-[110rem] gap-6 px-6 py-10 sm:px-10 lg:grid-cols-[0.8fr_1.7fr_0.85fr] lg:items-center lg:gap-5 lg:px-14">
+        <div className="mx-auto grid w-full max-w-[110rem] gap-6 px-6 py-14 sm:px-10 md:py-16 lg:grid-cols-[0.8fr_1.7fr_0.85fr] lg:items-center lg:gap-5 lg:px-14">
           <div>
             <Eyebrow tone="bronze">Global Life</Eyebrow>
             <h2 className="mt-4 font-display text-4xl leading-[1.05] md:text-5xl">
@@ -291,8 +291,8 @@ export function QuietLuxuryHome() {
       {/* Montvelle World */}
       <section className="border-t border-border bg-linen">
 
-        <div className="mx-auto w-full max-w-[110rem] px-6 py-24 sm:px-10 lg:px-14 lg:py-36">
-          <div className="grid gap-16 lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-24">
+        <div className="mx-auto w-full max-w-[110rem] px-6 py-16 sm:px-10 lg:px-14 lg:py-24">
+          <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-16">
 
             <div>
             <Eyebrow tone="bronze">Montvelle World</Eyebrow>
@@ -339,7 +339,7 @@ export function QuietLuxuryHome() {
             </figure>
           </div>
 
-          <div className="mt-24 border-t border-border pt-14">
+          <div className="mt-14 border-t border-border pt-12">
             <p className="text-[10px] uppercase tracking-[0.2em] text-bronze">
               Inside Montvelle World
             </p>
