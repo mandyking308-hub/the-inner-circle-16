@@ -122,22 +122,20 @@ export function NetworkProofBand({
             >
               {verticalsLabel}
             </p>
-            <ul
-              className={`mt-5 grid grid-cols-2 gap-x-6 sm:grid-cols-3 lg:grid-cols-6 lg:gap-x-8 ${image ? "pt-6" : ""}`}
-            >
-              {verticals.map((vertical) => (
-                <li
-                  key={vertical}
-                  className={`border-t ${borderCls} py-3 text-xs leading-5 ${verticalCls} md:text-sm`}
-                >
+            <p className={`mt-5 max-w-4xl text-xs leading-7 ${verticalCls} md:text-sm md:leading-8`}>
+              {verticals.map((vertical, i) => (
+                <span key={vertical}>
                   {vertical}
-                </li>
+                  {i < verticals.length - 1 ? (
+                    <span className={`mx-3 ${marqueeDotCls}`}>&bull;</span>
+                  ) : null}
+                </span>
               ))}
-            </ul>
+            </p>
           </div>
         ) : null}
 
-        <div className={`border-y ${borderCls} py-5 ${image ? "" : "mt-10"}`}>
+        <div className={`border-y ${borderCls} py-5 ${image ? "mt-14" : "mt-10"}`}>
           <div className="proof-marquee">
             <div className="proof-marquee-track">
               {[0, 1].map((copy) => (
@@ -149,7 +147,7 @@ export function NetworkProofBand({
                   {names.map((name) => (
                     <li
                       key={`${copy}-${name}`}
-                      className={`font-display text-lg whitespace-nowrap ${marqueeNameCls} md:text-xl`}
+                      className={`font-display text-base whitespace-nowrap ${marqueeNameCls} md:text-lg`}
                     >
                       {name}
                       <span className={`ml-8 ${marqueeDotCls}`}>&bull;</span>
@@ -161,16 +159,16 @@ export function NetworkProofBand({
           </div>
         </div>
 
-        <dl className={`mt-10 grid grid-cols-2 gap-x-8 gap-y-8 sm:grid-cols-3 lg:grid-cols-5`}>
+        <dl className="mt-12 grid grid-cols-2 gap-x-8 gap-y-8 sm:grid-cols-3 lg:grid-cols-5">
           {stats.map((stat) => (
-            <div key={stat.label} className={`border-t ${borderCls} pt-4`}>
+            <div key={stat.label}>
               <dt className="sr-only">{stat.label}</dt>
               <dd>
-                <span className={`block font-display text-3xl leading-none md:text-4xl ${statValueCls}`}>
+                <span className={`block font-display text-2xl leading-none md:text-[1.6rem] ${statValueCls}`}>
                   {stat.value}
                 </span>
                 <span
-                  className={`mt-3 block text-[10px] font-semibold uppercase tracking-[0.18em] ${statLabelCls}`}
+                  className={`mt-3 block text-[10px] leading-4 uppercase tracking-[0.16em] ${statLabelCls}`}
                 >
                   {stat.label}
                 </span>
@@ -178,6 +176,7 @@ export function NetworkProofBand({
             </div>
           ))}
         </dl>
+
 
         <p className={`mt-10 max-w-2xl text-sm leading-7 ${promiseCls}`}>{promise}</p>
         <p className={`mt-4 max-w-3xl text-[11px] leading-5 ${qualifierCls}`}>{qualifier}</p>
