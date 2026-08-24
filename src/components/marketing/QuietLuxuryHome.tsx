@@ -325,7 +325,7 @@ export function QuietLuxuryHome() {
                 categories: businessCategories,
                 audience: "business" as const,
                 image: luxuryImages.accessBusiness,
-                alt: "A discreet advisory conversation in a London townhouse study at dusk",
+                alt: "A fountain pen, brass keys and a tortoiseshell card case on a linen desk surface — a private office still life",
               },
             ].map((column) => {
               const names = selectedOrganisations(column.audience, 8);
