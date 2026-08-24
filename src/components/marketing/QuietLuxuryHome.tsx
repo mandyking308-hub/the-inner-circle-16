@@ -13,12 +13,6 @@ import { NetworkProofBand } from "@/components/marketing/NetworkProofBand";
 import { Button } from "@/components/ui/button";
 import { destinationImages, luxuryImages } from "@/data/luxuryImages";
 import { advisoryProofBand, conciergeProofBand } from "@/data/networkProof";
-import {
-  accessQualifier,
-  businessCategories,
-  personalCategories,
-  selectedOrganisations,
-} from "@/data/globalAccess";
 
 
 const heroKeywords = ["Belong", "Move", "Live", "Raise", "Connect", "Gather", "Give", "Pass it on"];
@@ -294,106 +288,9 @@ export function QuietLuxuryHome() {
         </div>
       </section>
 
-      {/* Access, without the directory */}
-      <section className="border-t border-border bg-background">
-        <div className="mx-auto w-full max-w-[110rem] px-6 py-24 sm:px-10 lg:px-14 lg:py-36">
-          <div className="max-w-3xl">
-            <Eyebrow tone="bronze">Access</Eyebrow>
-            <h2 className="mt-7 font-display text-5xl leading-[0.98] md:text-6xl">
-              Access, without the directory.
-            </h2>
-            <p className="mt-8 text-base leading-8 text-muted-foreground">
-              Members do not work through lists. You tell Montvelle the outcome; we source the right
-              route, make the enquiries, check what comes back and arrange the next step — personally
-              and professionally, in whichever country the question sits.
-            </p>
-          </div>
-
-          <div className="mt-20 grid gap-20 lg:grid-cols-2 lg:gap-16">
-            {[
-              {
-                title: "Personal access",
-                copy: "The life around the household — arranged quietly, through ordinary booking and contact routes, existing relationships where we hold them, and sourcing routes we have identified.",
-                categories: personalCategories,
-                audience: "personal" as const,
-                image: luxuryImages.accessPersonal,
-                alt: "A terrace breakfast at a private coastal residence in morning light",
-              },
-              {
-                title: "Business access",
-                copy: "Professional organisations sourced worldwide around business and family-office needs. Montvelle coordinates; the advice remains theirs.",
-                categories: businessCategories,
-                audience: "business" as const,
-                image: luxuryImages.accessBusiness,
-                alt: "A fountain pen, brass keys and a tortoiseshell card case on a linen desk surface — a private office still life",
-              },
-            ].map((column) => {
-              const names = selectedOrganisations(column.audience, 8);
-              return (
-                <article key={column.title}>
-                  <figure className="overflow-hidden">
-                    <img
-                      src={column.image}
-                      alt={column.alt}
-                      className="aspect-[5/4] w-full object-cover"
-                      loading="lazy"
-                    />
-                  </figure>
-                  <h3 className="mt-10 font-display text-4xl leading-tight">{column.title}</h3>
-                  <p className="mt-5 max-w-xl text-base leading-8 text-muted-foreground">{column.copy}</p>
-
-                  <p className="mt-10 text-[10px] uppercase tracking-[0.2em] text-bronze">
-                    Where it applies
-                  </p>
-                  <p className="mt-4 max-w-xl text-sm leading-8 text-foreground/70">
-                    {column.categories.map((category, i) => (
-                      <span key={category.id}>
-                        {category.label}
-                        {i < column.categories.length - 1 ? (
-                          <span className="mx-2.5 text-bronze/50">&bull;</span>
-                        ) : null}
-                      </span>
-                    ))}
-                  </p>
-
-                  {names.length > 0 ? (
-                    <>
-                      <p className="mt-9 text-[10px] uppercase tracking-[0.2em] text-bronze">
-                        Selected routes
-                      </p>
-                      <p className="mt-4 max-w-xl font-display text-base leading-8 text-foreground/70">
-                        {names.map((org, i) => (
-                          <span key={org.id}>
-                            {org.name}
-                            {i < names.length - 1 ? (
-                              <span className="mx-2.5 text-bronze/50">&bull;</span>
-                            ) : null}
-                          </span>
-                        ))}
-                      </p>
-                    </>
-                  ) : null}
-                </article>
-              );
-            })}
-
-          </div>
-
-          <div className="mt-20 flex flex-wrap items-center gap-8">
-            <Button asChild className="h-12 rounded-none bg-ink px-8 text-background hover:bg-oxblood">
-              <Link to="/concierge">
-                See how Montvelle arranges access <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-            <p className="max-w-xl text-xs leading-6 text-muted-foreground">{accessQualifier}</p>
-          </div>
-        </div>
-      </section>
-
-
-
       {/* Montvelle World */}
       <section className="border-t border-border bg-linen">
+
         <div className="mx-auto w-full max-w-[110rem] px-6 py-24 sm:px-10 lg:px-14 lg:py-36">
           <div className="grid gap-16 lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-24">
 
