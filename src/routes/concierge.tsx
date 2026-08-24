@@ -4,6 +4,8 @@ import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/button";
 import { site } from "@/config/site";
+import { accessQualifier, businessCategories, personalCategories } from "@/data/globalAccess";
+
 import heroResidence from "@/assets/po2-hero-residence.jpg";
 import quietDetail from "@/assets/po-morning-table.jpg";
 import departureHall from "@/assets/po2-departure-hall.jpg";
@@ -133,6 +135,63 @@ function ConciergePage() {
           <div className="hidden md:block md:h-16" />
         </Container>
       </section>
+
+      {/* TWO SIDES OF THE SAME LIFE */}
+      <section className="border-t border-foreground/10 py-28 md:py-40">
+        <Container>
+          <div className="max-w-3xl">
+            <Eyebrow>Personal and business</Eyebrow>
+            <h2 className="mt-6 text-balance font-display text-[2.75rem] leading-[1.03] md:text-6xl">
+              Two sides of the same life, held together.
+            </h2>
+            <p className="mt-8 text-base leading-8 text-muted-foreground md:text-lg">
+              There is no supplier directory to work through. You tell us what you need; we find and
+              coordinate the right route, whether the question belongs to the household or to the
+              business behind it.
+            </p>
+          </div>
+
+          <div className="mt-16 grid gap-px bg-foreground/12 lg:grid-cols-2">
+            {[
+              {
+                title: "Personal access",
+                copy: "Montvelle arranges the life around the household through ordinary booking, contact and concierge routes, and through relationships we already hold — travel and hotels, restaurants and hospitality, private clubs, property and relocation, education, health and wellbeing, household services, culture and experiences.",
+                categories: personalCategories,
+              },
+              {
+                title: "Business access",
+                copy: "Montvelle sources professional organisations worldwide around business and family-office needs — legal and tax, banking and finance, insurance, fiduciary and corporate services, transactions, executive search, cyber security and philanthropy. Montvelle coordinates and keeps the context; Montvelle is not itself the regulated adviser.",
+                categories: businessCategories,
+              },
+            ].map((column) => (
+              <article key={column.title} className="bg-background p-8 md:p-10">
+                <h3 className="font-display text-3xl leading-tight md:text-4xl">{column.title}</h3>
+                <p className="mt-5 text-base leading-8 text-muted-foreground">{column.copy}</p>
+                <ul className="mt-8 grid gap-x-10 gap-y-2 sm:grid-cols-2">
+                  {column.categories.map((category) => (
+                    <li key={category.id} className="border-b border-foreground/12 py-2 text-sm">
+                      {category.label}
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+
+          <p className="mt-10 max-w-3xl text-xs leading-6 text-muted-foreground">{accessQualifier}</p>
+
+          <div className="mt-10 flex flex-wrap items-center gap-6">
+            <Button asChild size="lg" className="rounded-full px-8">
+              <Link to="/apply">Request membership</Link>
+            </Button>
+            <Link to="/auth" className="inline-flex items-center gap-2 text-sm font-semibold">
+              Member access <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </Container>
+      </section>
+
+
 
       {/* THE STANDARD — restrained rules */}
       <section className="py-28 md:py-44">

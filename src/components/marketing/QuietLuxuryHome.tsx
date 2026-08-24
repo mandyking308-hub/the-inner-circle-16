@@ -11,6 +11,14 @@ import {
 
 import { Button } from "@/components/ui/button";
 import { destinationImages, luxuryImages } from "@/data/luxuryImages";
+import {
+  accessQualifier,
+  businessCategories,
+  personalCategories,
+  publicOrganisations,
+  displayableBenefit,
+} from "@/data/globalAccess";
+
 
 const heroKeywords = ["Belong", "Move", "Live", "Raise", "Connect", "Gather", "Give", "Pass it on"];
 
@@ -269,6 +277,81 @@ export function QuietLuxuryHome() {
           </Link>
         </div>
       </section>
+
+      {/* Access, without the directory */}
+      <section className="border-t border-border bg-background">
+        <div className="mx-auto w-full max-w-[110rem] px-6 py-20 sm:px-10 lg:px-14 lg:py-28">
+          <div className="max-w-3xl">
+            <Eyebrow tone="bronze">Access</Eyebrow>
+            <h2 className="mt-6 font-display text-5xl leading-[0.98] md:text-6xl">
+              Access, without the directory.
+            </h2>
+            <p className="mt-7 text-base leading-8 text-muted-foreground">
+              Members do not work through lists. You tell Montvelle the outcome; we source the right
+              route, make the enquiries, check what comes back and arrange the next step — personally
+              and professionally, in whichever country the question sits.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-px bg-border lg:grid-cols-2">
+            {[
+              {
+                title: "Personal access",
+                copy: "The life around the household — arranged quietly, through ordinary booking and contact routes and relationships we already hold.",
+                categories: personalCategories,
+                audience: "personal" as const,
+              },
+              {
+                title: "Business access",
+                copy: "Professional organisations sourced worldwide around business and family-office needs. Montvelle coordinates; the advice remains theirs.",
+                categories: businessCategories,
+                audience: "business" as const,
+              },
+            ].map((column) => {
+              const names = publicOrganisations(column.audience);
+              return (
+                <article key={column.title} className="bg-background p-8 lg:p-10">
+                  <h3 className="font-display text-3xl leading-tight">{column.title}</h3>
+                  <p className="mt-4 max-w-xl text-sm leading-7 text-muted-foreground">{column.copy}</p>
+                  <ul className="mt-7 grid gap-x-8 gap-y-2 sm:grid-cols-2">
+                    {column.categories.map((category) => (
+                      <li key={category.id} className="border-b border-border/70 py-2 text-sm">
+                        {category.label}
+                      </li>
+                    ))}
+                  </ul>
+                  {names.length > 0 ? (
+                    <ul className="mt-7 space-y-2 text-sm">
+                      {names.map((org) => {
+                        const benefit = displayableBenefit(org);
+                        return (
+                          <li key={org.id}>
+                            <span className="font-medium">{org.name}</span>
+                            <span className="text-muted-foreground"> · {org.geography}</span>
+                            {benefit ? (
+                              <span className="mt-1 block text-xs text-bronze">{benefit}</span>
+                            ) : null}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  ) : null}
+                </article>
+              );
+            })}
+          </div>
+
+          <div className="mt-10 flex flex-wrap items-center gap-6">
+            <Button asChild className="h-12 rounded-none bg-ink px-8 text-background hover:bg-oxblood">
+              <Link to="/concierge">
+                See how Montvelle arranges access <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+            <p className="max-w-xl text-xs leading-6 text-muted-foreground">{accessQualifier}</p>
+          </div>
+        </div>
+      </section>
+
 
       {/* Montvelle World */}
       <section className="border-t border-border bg-linen">

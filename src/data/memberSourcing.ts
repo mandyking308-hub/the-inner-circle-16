@@ -135,6 +135,9 @@ export type MemberSourcingRequest = {
   preferences: string;
   budget: string;
   fullHandling: boolean;
+  /** Which side of the member's life this sits on. Optional signal only. */
+  side?: "Personal" | "Business";
+
   status: MemberRequestStatus;
   /** ISO timestamp the request arrived — the 24-hour clock starts here. */
   receivedAt: string;
