@@ -111,7 +111,7 @@ export function QuietLuxuryHome() {
 
       {/* Global life */}
       <section className="bg-linen">
-        <div className="mx-auto grid w-full max-w-[110rem] gap-6 px-6 py-14 sm:px-10 md:py-16 lg:grid-cols-[0.8fr_1.7fr_0.85fr] lg:items-center lg:gap-5 lg:px-14">
+        <div className="mx-auto grid w-full max-w-[110rem] gap-6 px-6 py-12 sm:px-10 md:py-14 lg:grid-cols-[0.8fr_1.7fr_0.85fr] lg:items-center lg:gap-5 lg:px-14">
           <div>
             <Eyebrow tone="bronze">Global Life</Eyebrow>
             <h2 className="mt-4 font-display text-4xl leading-[1.05] md:text-5xl">
@@ -171,7 +171,7 @@ export function QuietLuxuryHome() {
           loading="lazy"
         />
 
-        <div className="bg-ink px-7 py-10 text-background md:px-9">
+        <div className="bg-ink px-7 py-9 text-background md:px-9">
           <Eyebrow>Our People</Eyebrow>
           <h2 className="mt-5 font-display text-3xl leading-[1.1] md:text-4xl">
             The people make
@@ -190,7 +190,7 @@ export function QuietLuxuryHome() {
           </Link>
         </div>
 
-        <div className="bg-linen px-7 py-10 md:px-9">
+        <div className="bg-linen px-7 py-9 md:px-9">
           <Eyebrow tone="bronze">Bespoke Service</Eyebrow>
           <h2 className="mt-5 font-display text-3xl leading-[1.1] md:text-4xl">More than concierge.</h2>
           <div className="mt-7 grid gap-8 sm:grid-cols-2">
@@ -221,7 +221,7 @@ export function QuietLuxuryHome() {
 
       {/* Mosaic: family, destinations, private office */}
       <section className="grid lg:grid-cols-[0.8fr_1fr_1.3fr_0.9fr]">
-        <div className="bg-background px-7 py-10 md:px-9">
+        <div className="bg-background px-7 py-9 md:px-9">
           <Eyebrow tone="bronze">Family &amp; Legacy</Eyebrow>
           <h2 className="mt-5 font-display text-3xl leading-[1.08] md:text-4xl">
             Build a bigger world for the people it&rsquo;s all for.
@@ -297,7 +297,7 @@ export function QuietLuxuryHome() {
       {/* Montvelle World */}
       <section className="bg-linen">
         {/* Editorial lead-in: headline + manifesto pull-quote */}
-        <div className="mx-auto w-full max-w-[110rem] px-6 py-12 sm:px-10 lg:px-14 lg:py-16">
+        <div className="mx-auto w-full max-w-[110rem] px-6 py-11 sm:px-10 lg:px-14 lg:py-14">
           <div className="grid gap-8 lg:grid-cols-[1.5fr_1fr] lg:items-end lg:gap-16">
             <div>
               <Eyebrow tone="bronze">Montvelle World</Eyebrow>
@@ -332,7 +332,7 @@ export function QuietLuxuryHome() {
 
         {/* Anchor capabilities — ink band, private-workspace drama */}
         <div className="bg-ink text-background">
-          <div className="mx-auto w-full max-w-[110rem] px-6 py-12 sm:px-10 lg:px-14 lg:py-14">
+          <div className="mx-auto w-full max-w-[110rem] px-6 py-10 sm:px-10 lg:px-14 lg:py-12">
             <div className="grid gap-x-12 gap-y-10 lg:grid-cols-2 lg:gap-x-20">
               {[
                 {
@@ -361,7 +361,7 @@ export function QuietLuxuryHome() {
         </div>
 
         {/* Secondary capabilities — quieter editorial rhythm on linen */}
-        <div className="mx-auto w-full max-w-[110rem] px-6 py-10 sm:px-10 lg:px-14 lg:py-12">
+        <div className="mx-auto w-full max-w-[110rem] px-6 py-9 sm:px-10 lg:px-14 lg:py-10">
           <div className="grid grid-cols-1 gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-12">
             {[
               {
