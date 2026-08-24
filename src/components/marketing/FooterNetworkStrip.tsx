@@ -22,7 +22,39 @@ const personalColumn: Column = {
   names: conciergeProofBand.names.slice(0, 8),
 };
 
-function ProofColumn({ column }: { column: Column }) {
+function NameTicker({ names, reverse }: { names: readonly string[]; reverse?: boolean }) {
+  const list = (hidden: boolean) => (
+    <ul
+      className="proof-marquee-list"
+      aria-hidden={hidden || undefined}
+      key={hidden ? "clone" : "primary"}
+    >
+      {names.map((name, i) => (
+        <li key={name} className="flex items-center">
+          <span className="font-display text-[13px] leading-6 whitespace-nowrap text-background/58">
+            {name}
+          </span>
+          {i < names.length - 1 ? (
+            <span className="ml-8 text-gold/40" aria-hidden="true">
+              &bull;
+            </span>
+          ) : null}
+        </li>
+      ))}
+    </ul>
+  );
+
+  return (
+    <div className="proof-marquee mt-6 border-t border-background/12 pt-5">
+      <div className={`proof-marquee-track ${reverse ? "proof-marquee-track--reverse" : ""}`}>
+        {list(false)}
+        {list(true)}
+      </div>
+    </div>
+  );
+}
+
+function ProofColumn({ column, reverse }: { column: Column; reverse?: boolean }) {
   return (
     <div>
       <p className="text-[9px] font-semibold uppercase tracking-[0.26em] text-gold">
@@ -48,19 +80,11 @@ function ProofColumn({ column }: { column: Column }) {
         ))}
       </dl>
 
-      <p className="mt-6 border-t border-background/12 pt-5 font-display text-[13px] leading-6 text-background/58">
-        {column.names.map((name, i) => (
-          <span key={name}>
-            {name}
-            {i < column.names.length - 1 ? (
-              <span className="mx-2.5 text-gold/40">&bull;</span>
-            ) : null}
-          </span>
-        ))}
-      </p>
+      <NameTicker names={column.names} reverse={reverse} />
     </div>
   );
 }
+
 
 /**
  * Compact dark proof band shown above the footer links on every public page:
