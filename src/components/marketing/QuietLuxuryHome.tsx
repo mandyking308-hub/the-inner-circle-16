@@ -330,10 +330,11 @@ export function QuietLuxuryHome() {
           </div>
         </div>
 
-        {/* Anchor capabilities — ink band, private-workspace drama */}
-        <div className="bg-ink text-background">
-          <div className="mx-auto w-full max-w-[110rem] px-6 py-10 sm:px-10 lg:px-14 lg:py-12">
-            <div className="grid gap-x-12 gap-y-10 lg:grid-cols-2 lg:gap-x-20">
+        {/* Unified capability spread — linen ground, editorial hierarchy */}
+        <div className="mx-auto w-full max-w-[110rem] px-6 pb-12 sm:px-10 lg:px-14 lg:pb-14">
+          {/* Lead pair — larger, asymmetric, hairline-ruled */}
+          <div className="border-t border-border pt-8 lg:pt-10">
+            <div className="grid gap-x-12 gap-y-9 sm:grid-cols-2 lg:gap-x-20">
               {[
                 {
                   num: "01",
@@ -346,23 +347,21 @@ export function QuietLuxuryHome() {
                   copy: "Keep options, advisers, dependencies and next steps around one decision, until it is done.",
                 },
               ].map(({ num, title, copy }) => (
-                <div key={title} className="relative pl-10">
-                  <span className="absolute left-0 top-1 font-display text-2xl leading-none text-[oklch(0.62_0.13_24)]">
+                <div key={title} className="relative pl-9">
+                  <span className="absolute left-0 top-1.5 font-display text-sm tabular-nums text-oxblood">
                     {num}
                   </span>
-                  <h3 className="font-display text-[1.75rem] leading-tight text-background md:text-3xl">
+                  <h3 className="font-display text-[1.7rem] leading-[1.08] text-foreground md:text-[2.1rem]">
                     {title}
                   </h3>
-                  <p className="mt-3 max-w-sm text-sm leading-7 text-background/72">{copy}</p>
+                  <p className="mt-3 max-w-sm text-sm leading-7 text-muted-foreground">{copy}</p>
                 </div>
               ))}
             </div>
           </div>
-        </div>
 
-        {/* Secondary capabilities — quieter editorial rhythm on linen */}
-        <div className="mx-auto w-full max-w-[110rem] px-6 py-9 sm:px-10 lg:px-14 lg:py-10">
-          <div className="grid grid-cols-1 gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-12">
+          {/* Supporting five — quieter rhythm, same linen ground */}
+          <div className="mt-9 grid grid-cols-1 gap-x-10 gap-y-7 border-t border-border pt-7 sm:grid-cols-2 lg:grid-cols-5 lg:gap-x-8">
             {[
               {
                 num: "03",
@@ -390,12 +389,12 @@ export function QuietLuxuryHome() {
                 copy: "One continuous private line to people who already understand the context.",
               },
             ].map(({ num, title, copy }) => (
-              <div key={title} className="border-t border-border pt-5">
-                <div className="flex items-baseline gap-3">
+              <div key={title}>
+                <div className="flex items-baseline gap-2.5">
                   <span className="font-display text-xs tabular-nums text-bronze">{num}</span>
-                  <p className="font-display text-lg leading-snug text-foreground">{title}</p>
+                  <p className="font-display text-base leading-snug text-foreground">{title}</p>
                 </div>
-                <p className="mt-2 pl-6 text-[13px] leading-6 text-muted-foreground">{copy}</p>
+                <p className="mt-2 pl-5 text-[13px] leading-6 text-muted-foreground">{copy}</p>
               </div>
             ))}
           </div>
