@@ -11,6 +11,7 @@ import {
 
 import { NetworkProofBand } from "@/components/marketing/NetworkProofBand";
 import { HeroNetworkTickers } from "@/components/marketing/HeroNetworkTickers";
+import { MontvelleWorldPreview } from "@/components/marketing/MontvelleWorldPreview";
 import { Button } from "@/components/ui/button";
 import { destinationImages, luxuryImages } from "@/data/luxuryImages";
 import { advisoryProofBand, conciergeProofBand } from "@/data/networkProof";
