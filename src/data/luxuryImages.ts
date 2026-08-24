@@ -15,6 +15,7 @@ import accessBusiness from "@/assets/access-business.jpg";
 import worldDesk from "@/assets/montvelle-world-desk.jpg";
 import proofAdvisory from "@/assets/proof-advisory.jpg";
 import proofConcierge from "@/assets/proof-concierge.jpg";
+import appMockup from "@/assets/mw-app-mockup.jpg";
 
 export const luxuryImages = {
   hero: heroJet,
@@ -29,6 +30,7 @@ export const luxuryImages = {
   worldDesk,
   proofAdvisory,
   proofConcierge,
+  appMockup,
 
   // Backwards-compatible aliases used by the existing public pages.
   jet: heroJet,
