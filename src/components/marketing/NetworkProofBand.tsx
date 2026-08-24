@@ -78,7 +78,7 @@ export function NetworkProofBand({
             loading="lazy"
           />
           <div className={`absolute inset-0 -z-10 ${overlayCls}`} />
-          <div className="mx-auto flex w-full max-w-[110rem] min-h-[22rem] flex-col justify-end px-6 pb-14 pt-24 sm:px-10 md:min-h-[30rem] md:pb-20 md:pt-32 lg:px-14">
+          <div className="mx-auto flex w-full max-w-[110rem] min-h-[19rem] flex-col justify-end px-6 pb-12 pt-20 sm:px-10 md:min-h-[25rem] md:pb-14 md:pt-24 lg:px-14">
             <div className="max-w-3xl">
               <p
                 className={`text-[10px] font-semibold uppercase tracking-[0.24em] ${eyebrowCls}`}
@@ -96,7 +96,7 @@ export function NetworkProofBand({
         </div>
       ) : null}
 
-      <div className="mx-auto w-full max-w-[110rem] px-6 py-16 sm:px-10 md:py-20 lg:px-14">
+      <div className="mx-auto w-full max-w-[110rem] px-6 py-12 sm:px-10 md:py-14 lg:px-14">
 
         {/* When there is no image header, the headline block lives here as before. */}
         {!image ? (
