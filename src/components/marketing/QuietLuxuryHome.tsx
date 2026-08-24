@@ -297,7 +297,7 @@ export function QuietLuxuryHome() {
       {/* Montvelle World */}
       <section className="bg-linen">
         {/* Editorial lead-in: headline + manifesto pull-quote */}
-        <div className="mx-auto w-full max-w-[110rem] px-6 py-11 sm:px-10 lg:px-14 lg:py-14">
+        <div className="mx-auto w-full max-w-[110rem] px-6 pt-11 sm:px-10 lg:px-14 lg:pt-14">
           <div className="grid gap-8 lg:grid-cols-[1.5fr_1fr] lg:items-end lg:gap-16">
             <div>
               <Eyebrow tone="bronze">Montvelle World</Eyebrow>
@@ -330,73 +330,94 @@ export function QuietLuxuryHome() {
           </div>
         </div>
 
-        {/* Unified capability spread — linen ground, editorial hierarchy */}
-        <div className="mx-auto w-full max-w-[110rem] px-6 pb-12 sm:px-10 lg:px-14 lg:pb-14">
-          {/* Lead pair — larger, asymmetric, hairline-ruled */}
-          <div className="border-t border-border pt-8 lg:pt-10">
-            <div className="grid gap-x-12 gap-y-9 sm:grid-cols-2 lg:gap-x-20">
-              {[
-                {
-                  num: "01",
-                  title: "Ask Montvelle",
-                  copy: "Tell us what you need. We source, arrange and stay with it — so you can stop chasing and start closing.",
-                },
-                {
-                  num: "02",
-                  title: "Decision Room",
-                  copy: "Keep options, advisers, dependencies and next steps around one decision, until it is done.",
-                },
-              ].map(({ num, title, copy }) => (
-                <div key={title} className="relative pl-9">
-                  <span className="absolute left-0 top-1.5 font-display text-sm tabular-nums text-oxblood">
-                    {num}
-                  </span>
-                  <h3 className="font-display text-[1.7rem] leading-[1.08] text-foreground md:text-[2.1rem]">
-                    {title}
-                  </h3>
-                  <p className="mt-3 max-w-sm text-sm leading-7 text-muted-foreground">{copy}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Supporting five — quieter rhythm, same linen ground */}
-          <div className="mt-9 grid grid-cols-1 gap-x-10 gap-y-7 border-t border-border pt-7 sm:grid-cols-2 lg:grid-cols-5 lg:gap-x-8">
-            {[
-              {
-                num: "03",
-                title: "Expert Council",
-                copy: "We assemble the right outside expertise around a serious question.",
-              },
-              {
-                num: "04",
-                title: "Build My Circle",
-                copy: "Build the useful people around your family, business, city or next chapter.",
-              },
-              {
-                num: "05",
-                title: "Invitations",
-                copy: "Private gatherings and moments worth showing up for, kept in one place.",
-              },
-              {
-                num: "06",
-                title: "Family",
-                copy: "Approved household access with separate privacy and age-appropriate participation.",
-              },
-              {
-                num: "07",
-                title: "Messages",
-                copy: "One continuous private line to people who already understand the context.",
-              },
-            ].map(({ num, title, copy }) => (
-              <div key={title}>
-                <div className="flex items-baseline gap-2.5">
-                  <span className="font-display text-xs tabular-nums text-bronze">{num}</span>
-                  <p className="font-display text-base leading-snug text-foreground">{title}</p>
-                </div>
-                <p className="mt-2 pl-5 text-[13px] leading-6 text-muted-foreground">{copy}</p>
+        {/* Capabilities beside a restrained interface view */}
+        <div className="mx-auto w-full max-w-[110rem] px-6 py-11 sm:px-10 lg:px-14 lg:py-14">
+          <div className="grid gap-10 border-t border-border pt-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14 lg:pt-10">
+            {/* Capabilities */}
+            <div>
+              <div className="grid gap-x-10 gap-y-8 sm:grid-cols-2">
+                {[
+                  {
+                    num: "01",
+                    title: "Ask Montvelle",
+                    copy: "Tell us what you need. We source, arrange and stay with it until it is closed.",
+                  },
+                  {
+                    num: "02",
+                    title: "Decision Room",
+                    copy: "Options, advisers, dependencies and next steps held around one decision.",
+                  },
+                ].map(({ num, title, copy }) => (
+                  <div key={title} className="relative pl-9">
+                    <span className="absolute left-0 top-1.5 font-display text-sm tabular-nums text-oxblood">
+                      {num}
+                    </span>
+                    <h3 className="font-display text-[1.6rem] leading-[1.08] text-foreground md:text-[1.9rem]">
+                      {title}
+                    </h3>
+                    <p className="mt-3 max-w-xs text-sm leading-7 text-muted-foreground">{copy}</p>
+                  </div>
+                ))}
               </div>
-            ))}
+
+              <div className="mt-8 grid grid-cols-1 gap-x-10 gap-y-6 border-t border-border pt-7 sm:grid-cols-2">
+                {[
+                  {
+                    num: "03",
+                    title: "Expert Council",
+                    copy: "Outside expertise assembled around a serious question.",
+                  },
+                  {
+                    num: "04",
+                    title: "Build My Circle",
+                    copy: "The useful people around your family, business or next chapter.",
+                  },
+                  {
+                    num: "05",
+                    title: "Invitations",
+                    copy: "Private gatherings worth showing up for, kept in one place.",
+                  },
+                  {
+                    num: "06",
+                    title: "Family",
+                    copy: "Approved household access with separate privacy.",
+                  },
+                  {
+                    num: "07",
+                    title: "Messages",
+                    copy: "One private line to people who already have the context.",
+                  },
+                ].map(({ num, title, copy }) => (
+                  <div key={title}>
+                    <div className="flex items-baseline gap-2.5">
+                      <span className="font-display text-xs tabular-nums text-bronze">{num}</span>
+                      <p className="font-display text-base leading-snug text-foreground">{title}</p>
+                    </div>
+                    <p className="mt-1.5 pl-5 text-[13px] leading-6 text-muted-foreground">{copy}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Interface view — supporting, not dominant */}
+            <figure className="lg:pl-6">
+              <div className="overflow-hidden border border-border bg-background shadow-[0_18px_50px_-30px_rgba(12,11,10,0.55)]">
+                <img
+                  src={luxuryImages.appMockup}
+                  alt="Montvelle World interface showing a Monaco relocation decision room with options, advisers, next steps and a household overview"
+                  width={1280}
+                  height={896}
+                  className="block w-full"
+                  loading="lazy"
+                />
+              </div>
+              <figcaption className="mt-3 flex flex-wrap items-baseline gap-x-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-bronze">
+                Montvelle World
+                <span className="font-normal normal-case tracking-normal text-muted-foreground">
+                  Members&rsquo; private view — Decision Room and household overview.
+                </span>
+              </figcaption>
+            </figure>
           </div>
         </div>
       </section>
