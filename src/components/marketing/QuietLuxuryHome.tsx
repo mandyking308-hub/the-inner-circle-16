@@ -11,6 +11,14 @@ import {
 
 import { Button } from "@/components/ui/button";
 import { destinationImages, luxuryImages } from "@/data/luxuryImages";
+import {
+  accessQualifier,
+  businessCategories,
+  personalCategories,
+  publicOrganisations,
+  displayableBenefit,
+} from "@/data/globalAccess";
+
 
 const heroKeywords = ["Belong", "Move", "Live", "Raise", "Connect", "Gather", "Give", "Pass it on"];
 
