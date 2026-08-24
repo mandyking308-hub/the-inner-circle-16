@@ -43,3 +43,48 @@ export const advisoryProofBand: NetworkProofBandProps = {
   qualifier:
     "Selected organisations represent routes within Montvelle's sourcing and advisory universe. Inclusion does not imply a formal partnership, endorsement or guaranteed access.",
 };
+
+export const conciergeProofBand: NetworkProofBandProps = {
+  eyebrow: "Global Concierge & Sourcing",
+  headline: "A world of access, already mapped.",
+  supporting:
+    "A 1,000-organisation global sourcing universe spanning luxury hospitality, private aviation, yachts, private clubs, travel, dining, property, family services, wellness, security and the details around a life lived internationally.",
+  names: [
+    "Four Seasons Hotels and Resorts",
+    "Aman",
+    "Mandarin Oriental Hotel Group",
+    "Rosewood Hotel Group",
+    "Belmond",
+    "The Leading Hotels of the World",
+    "Preferred Hotels & Resorts",
+    "Virtuoso",
+    "67 Pall Mall",
+    "International Associate Clubs (IAC)",
+    "VistaJet",
+    "NetJets",
+    "Blacklane",
+    "Burgess",
+    "Fraser Yachts",
+    "Abercrombie & Kent",
+    "onefinestay",
+    "Sotheby's",
+    "Christie's",
+    "Harrods",
+    "Knight Frank",
+    "International SOS",
+    "F1 Experiences",
+    "Relais & Châteaux",
+    "Small Luxury Hotels of the World",
+  ],
+  stats: [
+    { value: "1,000", label: "Supplier organisations" },
+    { value: "20", label: "Core supplier verticals" },
+    { value: "100+", label: "Private-club routes" },
+    { value: "100+", label: "Flagship stays" },
+    { value: "Global", label: "Sourcing reach" },
+  ],
+  promise:
+    "You tell Montvelle what you need. We find the right route, make the enquiries and coordinate the next step.",
+  qualifier:
+    "Selected organisations are examples of routes within Montvelle's global sourcing universe. Inclusion does not imply a formal partnership, endorsement, preferred status or guaranteed access. Availability, eligibility and supplier terms may apply.",
+};

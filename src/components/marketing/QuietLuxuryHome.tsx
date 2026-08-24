@@ -12,7 +12,7 @@ import {
 import { NetworkProofBand } from "@/components/marketing/NetworkProofBand";
 import { Button } from "@/components/ui/button";
 import { destinationImages, luxuryImages } from "@/data/luxuryImages";
-import { advisoryProofBand } from "@/data/networkProof";
+import { advisoryProofBand, conciergeProofBand } from "@/data/networkProof";
 import {
   accessQualifier,
   businessCategories,
@@ -95,6 +95,9 @@ export function QuietLuxuryHome() {
 
       {/* Professional advisory proof band */}
       <NetworkProofBand {...advisoryProofBand} />
+
+      {/* Concierge & global sourcing proof band */}
+      <NetworkProofBand {...conciergeProofBand} />
 
       {/* Global life */}
       <section className="bg-linen">
