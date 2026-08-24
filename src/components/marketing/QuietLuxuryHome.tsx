@@ -337,7 +337,7 @@ export function QuietLuxuryHome() {
                 copy: "Keep options, advisers, dependencies and next steps around one decision.",
               },
             ].map(({ num, title, copy }) => (
-              <div key={title} className="border-t border-border pt-5">
+              <div key={title} className="pt-5">
                 <div className="flex items-baseline gap-4">
                   <span className="font-display text-sm tabular-nums text-bronze">{num}</span>
                   <h3 className="font-display text-2xl leading-tight text-foreground md:text-[1.7rem]">
