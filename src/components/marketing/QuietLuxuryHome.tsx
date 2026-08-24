@@ -291,51 +291,69 @@ export function QuietLuxuryHome() {
       {/* Montvelle World */}
       <section className="border-t border-border bg-linen">
         <div className="mx-auto w-full max-w-[110rem] px-6 py-12 sm:px-10 lg:px-14 lg:py-16">
-          <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-12">
-
+          <div className="grid gap-8 border-b border-border pb-8 lg:grid-cols-[1.4fr_1fr] lg:items-end lg:gap-12">
             <div>
               <Eyebrow tone="bronze">Montvelle World</Eyebrow>
               <h2 className="mt-4 max-w-[20ch] font-display text-4xl leading-[1.05] md:text-5xl">
                 One private place to run the complicated parts of your life.
               </h2>
               <p className="mt-5 max-w-xl text-sm leading-7 text-muted-foreground">
-                Ask for what you need, work through important decisions, bring in the right experts and keep
-                everyone coordinated — without starting from zero each time. Montvelle keeps the context so
-                you do not have to.
+                Ask for what you need, work through decisions, bring in the right experts and keep everyone
+                coordinated. Montvelle keeps the context so you never start from zero.
               </p>
-              <div className="mt-6 flex flex-wrap items-center gap-5">
-                <Button asChild className="h-11 rounded-none bg-ink px-7 text-background hover:bg-oxblood">
-                  <Link to="/montvelle-world">
-                    Explore Montvelle World <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-                <Link
-                  to="/demo"
-                  className="inline-flex items-center gap-2 border-b border-bronze pb-1 text-sm font-medium text-foreground"
-                >
-                  Explore the demo <ArrowUpRight className="h-4 w-4" />
-                </Link>
-              </div>
             </div>
-
-            <figure className="overflow-hidden">
-              <img
-                src={luxuryImages.worldDesk}
-                alt="A private desk at night: notebook, correspondence and keys under lamplight"
-                className="aspect-[4/3] w-full object-cover"
-                loading="lazy"
-              />
-              <figcaption className="mt-3 text-xs leading-6 text-muted-foreground">
-                Quietly behind the life — the context, kept in order.
-              </figcaption>
-            </figure>
+            <div className="flex flex-wrap items-center gap-5 lg:justify-end">
+              <Button asChild className="h-11 rounded-none bg-ink px-7 text-background hover:bg-oxblood">
+                <Link to="/montvelle-world">
+                  Explore Montvelle World <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <Link
+                to="/demo"
+                className="inline-flex items-center gap-2 border-b border-bronze pb-1 text-sm font-medium text-foreground"
+              >
+                Explore the demo <ArrowUpRight className="h-4 w-4" />
+              </Link>
+            </div>
           </div>
 
-          <div className="mt-6 border-t border-border pt-4">
-            <p className="text-[11px] uppercase tracking-[0.22em] text-bronze">
-              Ask Montvelle · Decision Room · Expert Council · Build My Circle · Invitations · Family · Messages
-            </p>
-          </div>
+          <ul className="mt-8 grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                title: "Ask Montvelle",
+                copy: "Tell us what you need. We source, arrange and stay with it.",
+              },
+              {
+                title: "Decision Room",
+                copy: "Keep options, advisers, dependencies and next steps around one decision.",
+              },
+              {
+                title: "Expert Council",
+                copy: "We assemble the right outside expertise around a serious question.",
+              },
+              {
+                title: "Build My Circle",
+                copy: "Build the useful people around your family, business, city or next chapter.",
+              },
+              {
+                title: "Invitations",
+                copy: "Private gatherings and moments worth showing up for, kept in one place.",
+              },
+              {
+                title: "Family",
+                copy: "Approved household access with separate privacy and age-appropriate participation.",
+              },
+              {
+                title: "Messages",
+                copy: "One continuous private line to people who already understand the context.",
+              },
+            ].map(({ title, copy }) => (
+              <li key={title} className="border-t border-border pt-4">
+                <p className="font-display text-lg leading-snug text-foreground">{title}</p>
+                <p className="mt-2 text-sm leading-6 text-muted-foreground">{copy}</p>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
     </main>
