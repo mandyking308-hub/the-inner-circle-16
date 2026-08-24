@@ -341,7 +341,7 @@ export function QuietLuxuryHome() {
                 },
               ].map(({ num, title, copy }) => (
                 <div key={title} className="relative pl-10">
-                  <span className="absolute left-0 top-1 font-display text-2xl leading-none text-oxblood">
+                  <span className="absolute left-0 top-1 font-display text-2xl leading-none text-[oklch(0.62_0.13_24)]">
                     {num}
                   </span>
                   <h3 className="font-display text-[1.75rem] leading-tight text-background md:text-3xl">
