@@ -15,7 +15,8 @@ import accessBusiness from "@/assets/access-business.jpg";
 import worldDesk from "@/assets/montvelle-world-desk.jpg";
 import proofAdvisory from "@/assets/proof-advisory.jpg";
 import proofConcierge from "@/assets/proof-concierge.jpg";
-import appMockup from "@/assets/mw-app-mockup.jpg";
+import appMockupAsset from "@/assets/mw-app-mockup.jpg.asset.json";
+const appMockup = appMockupAsset.url;
 
 export const luxuryImages = {
   hero: heroJet,
