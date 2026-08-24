@@ -52,7 +52,7 @@ export const Route = createFileRoute("/membership")({
       { title: `Membership — ${site.name}` },
       {
         name: "description",
-        content: `One standard of Montvelle membership in two forms: individual at ${membershipPricing.annualDisplay} per 12 months plus a one-time ${membershipPricing.joiningDisplay} admission fee, or family membership ${familyMembershipPricing.fromAnnualDisplay} per 12 months, confirmed in the Membership Schedule.`,
+        content: `One standard of Montvelle membership in two forms: individual at ${membershipPricing.annualDisplay} per 12 months plus a one-time ${membershipPricing.joiningDisplay} admission & onboarding fee, or family membership ${familyMembershipPricing.fromAnnualDisplay} per 12 months, confirmed in the Membership Schedule.`,
       },
       { property: "og:title", content: `Membership — ${site.name}` },
       {
@@ -281,9 +281,11 @@ function MembershipPage() {
                 <p>
                   The final annual fee, the approved household composition and any admission or
                   onboarding amount are confirmed after review and recorded in your Membership
-                  Schedule.
+                  Schedule. Figures are before applicable taxes and any third-party goods or
+                  services purchased separately.
                 </p>
               </div>
+
               <Button asChild className="mt-8 h-12 rounded-none bg-oxblood px-7 text-sm">
                 <Link to="/apply" search={{ membership: "Family" }}>
                   Discuss family membership </Link>
@@ -344,8 +346,9 @@ function MembershipPage() {
                     },
                     {
                       title: "Activation",
-                      body: "Membership activates after admission checks, acceptance of the Membership Agreement and Schedule, and cleared funds.",
+                      body: "Membership activates after admission checks, acceptance of the Membership Agreement and Schedule, and cleared funds — and, where a statutory cooling-off period applies to you, once that period has expired or you have separately asked us to begin sooner. That early-start request is a separate express choice: it is not implied by accepting the documents or by paying, and it is never assumed.",
                     },
+
                   ].map((step, index) => (
                     <li key={step.title} className="flex gap-6">
                       <span className="font-display text-2xl text-[#d8b36c]">{`0${index + 1}`}</span>
