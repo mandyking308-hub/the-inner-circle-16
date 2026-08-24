@@ -8,7 +8,7 @@ export const Route = createFileRoute("/cookies")({
 });
 
 function CookiesPage() {
-  return <LegalTemplate title="Cookies & local storage" intro="Last updated 22 August 2026. Montvelle uses a deliberately restrained technology stack. We do not design the public site around advertising trackers, behavioural profiling or the sale of browsing data." sections={[
+  return <LegalTemplate title="Cookies & local storage" documentKey="cookies" intro="Montvelle uses a deliberately restrained technology stack. We do not design the public site around advertising trackers, behavioural profiling or the sale of browsing data." sections={[
     { heading: "What these technologies are", body: "Cookies are small text files stored by a browser. Similar technologies can include local storage, session storage, authentication tokens and security identifiers. They can be necessary for sign-in, security, preferences and reliable operation." },
     { heading: "Strictly necessary use", body: "Member and administrator areas may use technically necessary storage or tokens to authenticate a user, preserve a secure session, remember security state and prevent abuse. These technologies are required for the service requested by the user and are not used for advertising." },
     { heading: "Preferences", body: "Where Montvelle stores a language, accessibility or interface preference, it is used to provide the experience the user selected. If a visitor chooses a translated language in the public language selector, that choice is stored in a \"googtrans\" cookie (site preference) so the selected translation can be applied and remembered. The English-language version remains authoritative, and this preference is not used for advertising or profiling." },
