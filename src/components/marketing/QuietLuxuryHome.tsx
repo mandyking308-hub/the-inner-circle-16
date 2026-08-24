@@ -400,21 +400,12 @@ export function QuietLuxuryHome() {
             </div>
 
             {/* Interface view — supporting, not dominant */}
-            <figure className="lg:pl-6">
-              <div className="overflow-hidden border border-border bg-background shadow-[0_18px_50px_-30px_rgba(12,11,10,0.55)]">
-                <img
-                  src={luxuryImages.appMockup}
-                  alt="Montvelle World interface showing a Monaco relocation decision room with options, advisers, next steps and a household overview"
-                  width={1280}
-                  height={896}
-                  className="block w-full"
-                  loading="lazy"
-                />
-              </div>
+            <figure className="lg:max-w-[42ch] lg:justify-self-end lg:pl-6">
+              <MontvelleWorldPreview />
               <figcaption className="mt-3 flex flex-wrap items-baseline gap-x-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-bronze">
                 Montvelle World
                 <span className="font-normal normal-case tracking-normal text-muted-foreground">
-                  Members&rsquo; private view — Decision Room and household overview.
+                  Illustrative members&rsquo; view — Today and Decision Room.
                 </span>
               </figcaption>
             </figure>
