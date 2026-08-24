@@ -11,12 +11,14 @@ export type NetworkProofBandProps = {
   stats: readonly NetworkProofStat[];
   promise: string;
   qualifier: string;
+  verticals?: readonly string[];
+  verticalsLabel?: string;
 };
 
 /**
- * Reusable editorial proof band: eyebrow, headline, supporting line, a slow
- * name-only marquee, restrained stats, a promise line and a legal qualifier.
- * Names are never links; no logos, cards or icons.
+ * Reusable editorial proof band: eyebrow, headline, supporting line, optional
+ * vertical breakdown, a slow name-only marquee, restrained stats, a promise
+ * line and a legal qualifier. Names are never links; no logos, cards or icons.
  */
 export function NetworkProofBand({
   eyebrow,
@@ -26,6 +28,8 @@ export function NetworkProofBand({
   stats,
   promise,
   qualifier,
+  verticals,
+  verticalsLabel = "Coverage",
 }: NetworkProofBandProps) {
   return (
     <section className="border-b border-bronze/25 bg-linen">
@@ -37,6 +41,24 @@ export function NetworkProofBand({
           <h2 className="mt-4 font-display text-3xl leading-[1.06] md:text-[2.75rem]">{headline}</h2>
           <p className="mt-5 max-w-2xl text-sm leading-7 text-muted-foreground">{supporting}</p>
         </div>
+
+        {verticals && verticals.length > 0 ? (
+          <div className="mt-10">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-bronze">
+              {verticalsLabel}
+            </p>
+            <ul className="mt-5 grid grid-cols-2 gap-x-6 sm:grid-cols-3 lg:grid-cols-6 lg:gap-x-8">
+              {verticals.map((vertical) => (
+                <li
+                  key={vertical}
+                  className="border-t border-bronze/25 py-3 text-xs leading-5 text-foreground/82 md:text-sm"
+                >
+                  {vertical}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
 
         <div className="mt-10 border-y border-bronze/25 py-5">
           <div className="proof-marquee">
