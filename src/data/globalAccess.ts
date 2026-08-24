@@ -50,11 +50,16 @@ export type AccessOrganisation = {
   relationshipStatus: RelationshipStatus;
   /** Only meaningful when status is `benefit` or `formal`, and verified. */
   agreedBenefit?: string;
+  /** Internal only. Never rendered. Explicit contract for upstream wiring. */
+  sourceSystem?: "liftor";
+  /** Internal only. Never rendered. Stable upstream record identifier. */
+  sourceRecordId?: string;
   /** Internal only. Never rendered. */
   internalNote?: string;
   /** Internal only. Never rendered. */
   verifiedAt?: string;
 };
+
 
 export const personalCategories: AccessCategory[] = [
   { id: "travel", label: "Travel & hotels", note: "Journeys, stays and the arrangements around them." },
