@@ -134,4 +134,4 @@ export const displayableBenefit = (org: AccessOrganisation): string | null =>
     : null;
 
 export const accessQualifier =
-  "Selected organisations may be shown as examples of routes Montvelle can arrange. Access is arranged through the Private Office, and inclusion does not itself imply a formal partnership or endorsement.";
+  "Selected organisations may be shown as examples of routes Montvelle can arrange or source through. Access is arranged through the Private Office, and inclusion does not by itself imply a formal partnership or endorsement.";
