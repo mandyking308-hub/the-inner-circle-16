@@ -459,7 +459,7 @@ export function QuietLuxuryHome() {
                 copy: "A continuous private line to the people who already hold your context.",
               },
             ].map((item) => (
-              <article key={item.name} className="bg-linen p-6">
+              <article key={item.name}>
                 <h3 className="font-display text-2xl leading-tight">{item.name}</h3>
                 <p className="mt-3 text-sm leading-7 text-muted-foreground">{item.copy}</p>
               </article>
