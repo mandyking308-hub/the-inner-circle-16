@@ -20,10 +20,10 @@ export function LegalTemplate({
     <section className="py-16 md:py-24">
       <Container>
         <div className="max-w-3xl">
-          <span className="inline-flex border border-bronze/40 bg-accent/30 px-3 py-1 text-[10px] uppercase tracking-[0.18em] text-bronze">
-            Draft template · legal review required before launch
-          </span>
-          <h1 className="mt-6 font-display text-5xl md:text-6xl">{title}</h1>
+          {/* Internal note (not rendered): this pack has not been reviewed by external counsel.
+              See src/config/legal.ts — UK/EU/US (Delaware) review required before live trading. */}
+          <h1 className="font-display text-5xl md:text-6xl">{title}</h1>
+
           {documentKey ? (
             <p className="mt-4 text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
               {legalUpdatedLine(documentKey)}
