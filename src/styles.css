@@ -247,6 +247,11 @@
   animation-play-state: paused;
 }
 
+.proof-marquee-track--reverse {
+  animation-direction: reverse;
+}
+
+
 .proof-marquee-list {
   display: flex;
   align-items: center;
