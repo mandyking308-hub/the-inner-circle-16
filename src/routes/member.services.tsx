@@ -65,6 +65,7 @@ function MemberServicesPage() {
       preferences: String(data.get("preferences") ?? "").trim() || "Not stated",
       budget: String(data.get("budget") ?? "").trim() || "Not stated",
       fullHandling: data.get("fullHandling") === "on",
+      side: data.get("side") === "Business" ? "Business" : "Personal",
       status: "Received",
       receivedAt: now,
       nextUpdate: "We will come back to you within 24 hours.",
@@ -185,6 +186,18 @@ function MemberServicesPage() {
             placeholder="Describe the thing itself, and anything that cannot change."
           />
         </div>
+
+        <fieldset className="space-y-2 md:col-span-2">
+          <legend className="text-sm font-medium">Which side of your life is this?</legend>
+          <div className="flex flex-wrap gap-6 pt-1 text-sm">
+            {["Personal", "Business"].map((option, index) => (
+              <label key={option} className="flex items-center gap-2">
+                <input type="radio" name="side" value={option} defaultChecked={index === 0} />
+                <span>{option}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
 
         <div className="space-y-2">
           <Label htmlFor="city">Where</Label>
