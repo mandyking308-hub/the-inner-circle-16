@@ -135,7 +135,11 @@ export function NetworkProofBand({
           </div>
         ) : null}
 
-        <div className={`border-y ${borderCls} py-5 ${image ? "mt-14" : "mt-10"}`}>
+        <div
+          className={`border-y ${borderCls} py-5 ${
+            image ? (verticals && verticals.length > 0 ? "mt-14" : "") : "mt-10"
+          }`}
+        >
           <div className="proof-marquee">
             <div className="proof-marquee-track">
               {[0, 1].map((copy) => (
