@@ -299,41 +299,58 @@ export function QuietLuxuryHome() {
             </p>
           </div>
 
-          <div className="mt-12 grid gap-px bg-border lg:grid-cols-2">
+          <div className="mt-14 grid gap-14 lg:grid-cols-2 lg:gap-16">
             {[
               {
                 title: "Personal access",
                 copy: "The life around the household — arranged quietly, through ordinary booking and contact routes, existing relationships where we hold them, and sourcing routes we have identified.",
                 categories: personalCategories,
                 audience: "personal" as const,
+                image: luxuryImages.accessPersonal,
+                alt: "A terrace breakfast at a private coastal residence in morning light",
               },
               {
                 title: "Business access",
                 copy: "Professional organisations sourced worldwide around business and family-office needs. Montvelle coordinates; the advice remains theirs.",
                 categories: businessCategories,
                 audience: "business" as const,
+                image: luxuryImages.accessBusiness,
+                alt: "A discreet advisory conversation in a London townhouse study at dusk",
               },
             ].map((column) => {
               const names = selectedOrganisations(column.audience, 8);
               return (
-                <article key={column.title} className="bg-background p-8 lg:p-10">
-                  <h3 className="font-display text-3xl leading-tight">{column.title}</h3>
-                  <p className="mt-4 max-w-xl text-sm leading-7 text-muted-foreground">{column.copy}</p>
-                  <ul className="mt-7 grid gap-x-8 gap-y-2 sm:grid-cols-2">
-                    {column.categories.map((category) => (
-                      <li key={category.id} className="border-b border-border/70 py-2 text-sm">
-                        {category.label}
-                      </li>
-                    ))}
-                  </ul>
+                <article key={column.title}>
+                  <figure className="overflow-hidden">
+                    <img
+                      src={column.image}
+                      alt={column.alt}
+                      className="aspect-[4/3] w-full object-cover"
+                      loading="lazy"
+                    />
+                  </figure>
+                  <h3 className="mt-8 font-display text-4xl leading-tight">{column.title}</h3>
+                  <p className="mt-4 max-w-xl text-base leading-8 text-muted-foreground">{column.copy}</p>
+                  <div className="mt-8 border-t border-border pt-6">
+                    <p className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+                      Where it applies
+                    </p>
+                    <ul className="mt-4 grid gap-x-8 gap-y-1.5 sm:grid-cols-2">
+                      {column.categories.map((category) => (
+                        <li key={category.id} className="text-sm leading-6 text-foreground/80">
+                          {category.label}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                   {names.length > 0 ? (
-                    <div className="mt-8 border-t border-border pt-6">
+                    <div className="mt-7 border-t border-border pt-6">
                       <p className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
                         Selected routes
                       </p>
                       <ul className="mt-4 grid gap-x-8 gap-y-1.5 sm:grid-cols-2">
                         {names.map((org) => (
-                          <li key={org.id} className="text-sm leading-6">
+                          <li key={org.id} className="text-sm leading-6 text-foreground/80">
                             {org.name}
                           </li>
                         ))}
@@ -360,8 +377,9 @@ export function QuietLuxuryHome() {
 
       {/* Montvelle World */}
       <section className="border-t border-border bg-linen">
-        <div className="mx-auto grid w-full max-w-[110rem] gap-12 px-6 py-20 sm:px-10 lg:grid-cols-[0.92fr_1.08fr] lg:px-14 lg:py-28">
-          <div>
+        <div className="mx-auto w-full max-w-[110rem] px-6 py-20 sm:px-10 lg:px-14 lg:py-28">
+          <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-16">
+            <div>
             <Eyebrow tone="bronze">Montvelle World</Eyebrow>
             <h2 className="mt-6 max-w-[16ch] font-display text-5xl leading-[0.98] md:text-7xl">
               The more you build, the more there is to hold together.
@@ -391,9 +409,22 @@ export function QuietLuxuryHome() {
                 Explore the demo <ArrowUpRight className="h-4 w-4" />
               </Link>
             </div>
+            </div>
+
+            <figure className="overflow-hidden">
+              <img
+                src={luxuryImages.worldDesk}
+                alt="A private desk at night: notebook, correspondence and keys under lamplight"
+                className="aspect-[4/3] w-full object-cover"
+                loading="lazy"
+              />
+              <figcaption className="mt-4 text-xs leading-6 text-muted-foreground">
+                Quietly behind the life — the context, kept in order.
+              </figcaption>
+            </figure>
           </div>
 
-          <div className="grid gap-px bg-border sm:grid-cols-2">
+          <div className="mt-16 grid gap-x-12 gap-y-10 border-t border-border pt-12 sm:grid-cols-2 lg:grid-cols-4">
             {[
               {
                 name: "Today",
@@ -428,7 +459,7 @@ export function QuietLuxuryHome() {
                 copy: "A continuous private line to the people who already hold your context.",
               },
             ].map((item) => (
-              <article key={item.name} className="bg-linen p-6">
+              <article key={item.name}>
                 <h3 className="font-display text-2xl leading-tight">{item.name}</h3>
                 <p className="mt-3 text-sm leading-7 text-muted-foreground">{item.copy}</p>
               </article>

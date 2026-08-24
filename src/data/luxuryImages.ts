@@ -10,6 +10,9 @@ import cityLondon from "@/assets/city-london.jpg";
 import cityDubai from "@/assets/city-dubai.jpg";
 import cityGeneva from "@/assets/city-geneva.jpg";
 import cityNewYork from "@/assets/city-newyork.jpg";
+import accessPersonal from "@/assets/access-personal.jpg";
+import accessBusiness from "@/assets/access-business.jpg";
+import worldDesk from "@/assets/montvelle-world-desk.jpg";
 
 export const luxuryImages = {
   hero: heroJet,
@@ -19,6 +22,9 @@ export const luxuryImages = {
   family: familyLegacy,
   culture: ourPeople,
   office: privateOffice,
+  accessPersonal,
+  accessBusiness,
+  worldDesk,
 
   // Backwards-compatible aliases used by the existing public pages.
   jet: heroJet,
