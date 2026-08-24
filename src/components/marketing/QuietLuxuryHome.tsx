@@ -289,11 +289,8 @@ export function QuietLuxuryHome() {
       </section>
 
       {/* Montvelle World */}
+      <section className="border-t border-border bg-linen">
 
-
-
-
-      {/* Montvelle World */}
       <section className="border-t border-border bg-linen">
         <div className="mx-auto w-full max-w-[110rem] px-6 py-24 sm:px-10 lg:px-14 lg:py-36">
           <div className="grid gap-16 lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-24">
