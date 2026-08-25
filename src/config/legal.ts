@@ -19,6 +19,9 @@
  * production intake, authentication or legal-acceptance evidence. Do not enable
  * non-essential analytics, advertising or cross-site tracking until the required
  * regional disclosure and consent/opt-out controls are implemented.
+ * Before making any public WCAG conformance claim, complete and retain an
+ * appropriate accessibility audit. Until then, WCAG 2.2 AA is the design and
+ * testing reference, not a claimed certification or full-conformance statement.
  *
  * Every clickwrap surface (member sign-in, supplier sign-in) records
  * the bundle version below alongside a timestamp. When production auth and the
@@ -34,7 +37,8 @@ export type LegalDocumentKey =
   | "supplierAgreement"
   | "cancellationRights"
   | "cookies"
-  | "legalNotice";
+  | "legalNotice"
+  | "accessibilityStatement";
 
 export type LegalDocument = {
   key: LegalDocumentKey;
@@ -109,6 +113,14 @@ export const legalDocuments: Record<LegalDocumentKey, LegalDocument> = {
     version: "LN-2026.1",
     effectiveDate: "2026-08-25",
     path: "/legal",
+  },
+  accessibilityStatement: {
+    key: "accessibilityStatement",
+    title: "Accessibility statement",
+    shortTitle: "Accessibility",
+    version: "AS-2026.1",
+    effectiveDate: "2026-08-25",
+    path: "/accessibility",
   },
 };
 
