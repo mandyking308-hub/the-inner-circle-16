@@ -9,15 +9,14 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { legalUpdatedLine } from "@/config/legal";
 import { site } from "@/config/site";
-import { applicationIntakeEnabled } from "@/lib/applicationIntake";
 
 export const Route = createFileRoute("/cancellation")({
   head: () => ({
     meta: [
       { title: `Cancellation Rights — ${site.name}` },
-      { name: "description", content: "How to cancel a Montvelle membership purchase, including distance-selling cancellation rights where they apply and a model cancellation form." },
+      { name: "description", content: "How to cancel a Montvelle membership purchase, including statutory cooling-off rights where they apply and a model cancellation form." },
       { property: "og:title", content: `Cancellation Rights — ${site.name}` },
-      { property: "og:description", content: "Cancellation periods, the effect of requesting immediate service, deductions and how to submit a cancellation instruction." },
+      { property: "og:description", content: "Cancellation periods, early-start requests, deductions, refunds and how to submit a cancellation instruction." },
       { property: "og:type", content: "article" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -28,39 +27,55 @@ export const Route = createFileRoute("/cancellation")({
 const sections: { heading: string; body: string }[] = [
   {
     heading: "Mandatory local rights prevail",
-    body: "Nothing on this page reduces any cancellation, withdrawal, refund or consumer right you have under the mandatory law of your country of residence. Where local law gives you a longer period or a better outcome than described here, that local right applies. Cancellation rights differ between consumers and business purchasers, and some rights do not apply where the membership is purchased in a business or entity capacity.",
+    body: "Nothing on this page reduces a cancellation, withdrawal, refund or consumer right that cannot lawfully be waived. Rights vary by residence, contracting capacity and how the contract was made. Consumer rights do not automatically apply to a family office, company, trust, partnership or other business/entity purchase. Where mandatory local law gives a longer period, an additional renewal right, a different calculation or a better remedy, that law applies.",
   },
   {
     heading: "Where a 14-day cancellation period applies",
-    body: "For consumers in the United Kingdom and the European Union buying at a distance (online, without meeting us in person), a statutory cancellation period of 14 days generally applies to a services contract. The period runs from the day after the legally relevant contract-conclusion date — not from activation, which may be later. That contract-conclusion date is stated or confirmed in your Membership Schedule or in the acceptance/contract confirmation we issue to you, so please check it there. You do not need to give a reason to cancel within that period.",
+    body: "For many United Kingdom and European Union consumers who conclude a services contract at a distance, a statutory cancellation period of 14 days applies. The period ordinarily runs from the legally relevant contract-conclusion date rather than from a later activation date. Montvelle records or confirms that date in the Membership Schedule, contract confirmation or other durable contract record. You do not need to give a reason for exercising a statutory cooling-off right. If mandatory law extends the cancellation period because required cancellation information was not properly provided, the extended statutory period applies.",
   },
   {
-    heading: "If you ask us to start straight away",
-    body: "Montvelle asks separately, at the point your membership documents are issued for acceptance, whether you want service to begin during the cancellation period. That request is a distinct express request: it is separate from accepting the Membership Agreement and Membership Schedule, separate from making payment, and never assumed. If you ask us to begin immediately and then cancel within the 14 days, you remain entitled to cancel, but we may charge a proportionate amount for the service actually supplied up to the moment you told us you were cancelling, calculated against the total contract price. If you do not make that separate request, the relevant service does not begin until the cancellation period has expired.",
+    heading: "Separate early-start request",
+    body: "If you want onboarding, service preparation or membership services to begin before an applicable cooling-off period expires, Montvelle requires a separate express early-start request, recorded in a durable form where required by law. It is not inferred from paying, accepting the Membership Agreement, signing the Membership Schedule, logging in or making a general request. Where the law requires an acknowledgement about the consequences of full performance, that acknowledgement is also obtained separately. If you make no valid early-start request, the relevant consumer service waits until the cooling-off period has expired.",
   },
   {
-    heading: "Fully performed services",
-    body: "If you expressly asked for the service to begin during the cancellation period and the service has been fully performed within that period with your acknowledgement that you would lose the right to cancel on full performance, the statutory cancellation right no longer applies to that fully performed service.",
+    heading: "If you cancel after asking us to start early",
+    body: "Where applicable law permits, if you expressly ask us to start during the cooling-off period and then cancel before that period ends, you may be required to pay a proportionate amount for services actually supplied before you told us you were cancelling. The calculation is made in accordance with applicable law by reference to the agreed contract price and what has genuinely been provided; where law requires another basis, that basis applies. We do not treat the entire 12-month annual Membership Fee as earned merely because service was started early.",
   },
   {
-    heading: "Third-party and non-recoverable costs",
-    body: "Where, at your request, we have committed money to third parties on your behalf — deposits, retainers for independent specialists, travel, venues, tickets, security or similar — those amounts may be non-refundable in whole or in part under that third party's own terms. We will tell you before incurring such costs where we reasonably can, and we will pass on any recovery we obtain. These costs are separate from the membership fee and from any proportionate deduction described above. Ending Montvelle membership does not itself cancel or unwind a separate third-party contract.",
+    heading: "Fully performed discrete services",
+    body: "A statutory right to cancel a particular service may end where that service has been fully performed during the cancellation period after the consumer expressly requested early performance and gave any acknowledgement required by law that the cancellation right would be lost on full performance. This rule is applied only to a service that has genuinely been fully performed and does not automatically treat a 12-month membership as fully performed during its opening days.",
   },
   {
-    heading: "Refunds during an applicable cancellation period",
-    body: "Where a statutory cancellation right applies and is validly exercised, we will refund amounts due without undue delay and in any event within 14 days of being informed, after any deduction that applicable law permits for services begun at your separate express request. Refunds are made by an appropriate method — normally by transfer back to the originating account, where that is practical and lawful — unless you agree otherwise. We may ask you to confirm account details for the return, and we will never ask for them by unsolicited message.",
+    heading: "Third-party deposits, bookings and professional retainers",
+    body: "Travel, accommodation, tickets, venues, security, advisers, specialists and other third parties may impose their own cancellation and refund terms. Where, at your authority, money has been committed to a third party, those sums may be non-refundable in whole or in part under the third party's lawful terms. We tell you material cancellation exposure before commitment where reasonably practicable and pass on a recovery we actually receive for you. Ending Montvelle membership does not itself cancel or unwind a separate supplier contract, and GSM is not required to fund a supplier refund from its own resources while the supplier, insurer, bank or other recovery route remains outstanding.",
   },
   {
-    heading: "Outside the cancellation period: the annual commitment stands",
-    body: "Once any applicable statutory cancellation period has expired, Montvelle membership remains a fixed 12-month annual commitment. You may ask us to stop providing or making the membership available to you before the end of that term, but voluntary early cancellation, non-use, dissatisfaction, a change of mind, or a change in personal, family, business, financial, travel or residence circumstances does not create a contractual right to a refund, credit, pause or pro-rata repayment of the annual Membership Fee. To the fullest extent permitted by law, admission and onboarding amounts are also non-refundable once the relevant work has been performed or committed. The narrow contractual exceptions are set out in the Membership Agreement: mandatory law, an express Membership Schedule term, or defined circumstances where GSM terminates without Member fault or permanently withdraws substantially all core membership services without a reasonable substitute. Where such an exception applies, any contractual refund is limited as stated in the Membership Agreement. Suspension or termination because of Member breach, misconduct, non-payment, sanctions/compliance, safety or another reason attributable to the Member does not create a contractual refund right after the cooling-off period, subject to mandatory law.",
+    heading: "Refunds during a valid statutory cancellation period",
+    body: "Where a statutory cancellation right is validly exercised, GSM will return the amount legally due without undue delay and within the deadline required by the applicable law, ordinarily no later than 14 days after being informed for UK/EU distance-service cancellation. Any lawful deduction for services begun at your separate express request is applied first. Because Montvelle membership is paid by bank transfer, refunds are normally returned by transfer to the originating account where practical and lawful unless another method is agreed. GSM does not charge a cancellation refund fee, although sanctions, court orders or other law may prevent or delay payment where making it would itself be unlawful.",
+  },
+  {
+    heading: "After cooling-off: the 12-month annual commitment stands",
+    body: "Once every applicable statutory cooling-off period has expired, Montvelle membership remains a fixed 12-month annual commitment paid in advance. It is not converted into a monthly subscription by non-use. A Member may ask us to stop providing or making the service available before the term ends, but voluntary early cancellation, non-use, dissatisfaction, a change of mind, or a change in personal, family, business, financial, travel or residence circumstances does not create a contractual right to a refund, credit, pause or pro-rata repayment of the annual Membership Fee. To the fullest extent permitted by law, admission/onboarding amounts are also non-refundable once the relevant work has been performed or committed. Mandatory law always prevails.",
+  },
+  {
+    heading: "Narrow contractual exceptions after cooling-off",
+    body: "The Membership Agreement defines the limited contractual exceptions to the no-voluntary-refund rule. These include an express term in the Membership Schedule, a refund required by mandatory law, or defined cases where GSM terminates an active membership for convenience without Member fault or permanently withdraws substantially all core Montvelle membership services without a reasonable substitute. In those cases, the contractual remedy is limited as stated in the Membership Agreement, ordinarily to the unearned pro-rata portion of the annual Membership Fee from the effective termination date. Admission/onboarding already earned and authorised or non-recoverable third-party costs remain excluded to the extent permitted by law.",
+  },
+  {
+    heading: "Suspension or termination caused by the Member",
+    body: "Where access or membership is suspended or terminated because of Member breach, fraud, misconduct, non-payment, payment reversal, sanctions/compliance, serious confidentiality or safety concerns, or another reason attributable to the Member, that action does not create a contractual refund, credit or pro-rata repayment right after the cooling-off period, subject to mandatory law. Separate supplier commitments remain payable according to their lawful terms.",
+  },
+  {
+    heading: "Renewals",
+    body: "Montvelle membership does not automatically renew at launch. A renewal becomes binding only through the renewal process described in the Membership Agreement. If Montvelle later introduces an automatic or subscription-renewal mechanism, any mandatory pre-renewal notice, renewal reminder, cancellation method or renewal cooling-off right then required by applicable law will apply and the legal documents and operational process must be updated before that mechanism is used.",
   },
   {
     heading: "How to cancel",
-    body: "You may cancel by making a clear statement to that effect. Use the model form below, or send the same information through the Contact Montvelle form selecting the category 'Cancellation'. We do not publish an email address. Your cancellation takes effect from the moment you send it, so please keep the reference we return to you.",
+    body: "You may exercise a cancellation right by making a clear statement that you wish to cancel; use of the model form is optional. Submit the statement through Contact Montvelle using the category 'Cancellation', or use the formal cancellation contact method stated in your Membership Schedule or membership correspondence. Include enough information for us to identify the contract, but do not send passwords or unnecessary sensitive information. Keep the submission confirmation or other evidence of when you sent the notice. Where mandatory law treats a notice sent within the statutory period as timely even if received later, that rule applies.",
   },
   {
-    heading: "Durable copy of your contract",
-    body: "Your contractual documents and payment receipt should be provided to you through the payment and onboarding process. Production transactional email is not yet enabled on this build, so we do not currently claim automatic email delivery of a durable copy; until it is enabled, request a copy through the contact form and we will supply one.",
+    heading: "Durable copy and evidence",
+    body: "At or promptly after contract conclusion, GSM provides the Membership Schedule, applicable contractual documents, cancellation information and required confirmation on paper or another durable medium as required by applicable law. Early-start requests, required acknowledgements and acceptance records should also be retained in a durable, reproducible form. You should keep these records. You may request another copy through Contact Montvelle. GSM retains evidence of the version accepted and the legally relevant contract and cancellation records for the period required by law and the Privacy Notice.",
   },
 ];
 
@@ -78,10 +93,10 @@ function CancellationPage() {
   const modelText = useMemo(
     () =>
       [
-        "To: Global Solutions Management LLC (Montvelle) — submitted via the Montvelle contact form",
+        "To: Global Solutions Management LLC (Montvelle) — submitted through the authorised Montvelle cancellation route",
         "",
         "I hereby give notice that I cancel my contract for the supply of the following service:",
-        "Montvelle membership (admission and/or annual membership fee).",
+        "Montvelle membership (including any applicable admission/onboarding component).",
         "",
         `Ordered / contract concluded on: ${values.orderedOn || "[date]"}`,
         `Name of consumer: ${values.name || "[name]"}`,
@@ -117,9 +132,9 @@ function CancellationPage() {
             {legalUpdatedLine("cancellationRights")}
           </p>
           <p className="mt-6 text-sm leading-8 text-muted-foreground">
-            This page explains how to cancel a Montvelle membership purchase, when a statutory
-            cancellation period applies, what happens if you ask us to begin work immediately, and
-            how to send us a cancellation instruction without using email. It should be read with the{" "}
+            This page explains statutory cooling-off rights where they apply, Montvelle&apos;s fixed annual
+            commitment after those rights expire, what happens if you ask us to begin work early, and how
+            to submit a cancellation instruction. It should be read with the{" "}
             <Link to="/membership-agreement" className="underline underline-offset-2">Membership Agreement</Link>{" "}
             and the <Link to="/terms" className="underline underline-offset-2">Website Terms</Link>.
           </p>
@@ -138,12 +153,12 @@ function CancellationPage() {
               Model cancellation form
             </p>
             <h2 className="mt-3 font-display text-3xl leading-tight">
-              Complete, copy, and send through the contact form
+              Complete, copy, and submit through an authorised cancellation route
             </h2>
             <p className="mt-3 text-sm leading-7 text-muted-foreground">
-              You only need to use this form if you wish to cancel the contract. Fill in the fields,
-              copy the statement, then submit it through Contact Montvelle with the category
-              &ldquo;Cancellation&rdquo;.
+              Use of the model form is optional. Fill in what is relevant, copy the statement, then submit
+              it through Contact Montvelle with the category &ldquo;Cancellation&rdquo; or through the formal
+              cancellation route stated in your Membership Schedule or membership correspondence.
             </p>
 
             <div className="mt-7 grid gap-5 md:grid-cols-2">
@@ -187,21 +202,12 @@ function CancellationPage() {
                 {copied ? "Copied" : "Copy statement"}
               </Button>
               <Button asChild className="rounded-none bg-oxblood">
-                <Link to="/contact">Submit through Contact Montvelle</Link>
+                <Link to="/contact">Open Contact Montvelle</Link>
               </Button>
             </div>
-
-            {!applicationIntakeEnabled() ? (
-              <p className="mt-5 border border-bronze/40 bg-accent/30 p-4 text-xs leading-6 text-foreground">
-                Preview build: the contact form currently stores messages in your browser rather than
-                delivering them to Montvelle. Until production delivery is enabled, please also use
-                the contact route given in your application or membership correspondence so your
-                cancellation is received in time.
-              </p>
-            ) : null}
           </div>
 
-          <LegalContactCta prompt="Cancellation instructions, refund questions and requests for a durable copy of your contract are handled through the secure contact form." />
+          <LegalContactCta prompt="Cancellation instructions, refund questions and requests for a durable copy of your contract are handled through Contact Montvelle and any formal cancellation route stated in your membership documents." />
         </div>
       </Container>
     </section>
