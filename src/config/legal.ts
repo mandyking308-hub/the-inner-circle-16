@@ -36,7 +36,7 @@ export const legalDocuments: Record<LegalDocumentKey, LegalDocument> = {
     key: "membershipAgreement",
     title: "Membership Agreement",
     shortTitle: "Membership Agreement",
-    version: "MA-2026.3",
+    version: "MA-2026.4",
     effectiveDate: "2026-08-25",
     path: "/membership-agreement",
   },
