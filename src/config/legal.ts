@@ -13,6 +13,12 @@
  * wired and tested and the Membership Schedule, accepted legal documents,
  * cancellation information, early-start request/acknowledgement (where used)
  * and contract confirmation must be delivered and retained on a durable medium.
+ * Before production launch, run a cookie/browser-storage scan and maintain a
+ * current inventory of cookies, local/session storage and embedded third-party
+ * technologies. Preview-only browser-storage fallbacks must not be relied on as
+ * production intake, authentication or legal-acceptance evidence. Do not enable
+ * non-essential analytics, advertising or cross-site tracking until the required
+ * regional disclosure and consent/opt-out controls are implemented.
  *
  * Every clickwrap surface (member sign-in, supplier sign-in) records
  * the bundle version below alongside a timestamp. When production auth and the
@@ -91,8 +97,8 @@ export const legalDocuments: Record<LegalDocumentKey, LegalDocument> = {
     key: "cookies",
     title: "Cookies & local storage",
     shortTitle: "Cookies",
-    version: "CK-2026.1",
-    effectiveDate: "2026-08-23",
+    version: "CK-2026.2",
+    effectiveDate: "2026-08-25",
     path: "/cookies",
   },
 };
