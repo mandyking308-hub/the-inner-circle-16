@@ -9,7 +9,6 @@ export const Route = createFileRoute("/member")({
     meta: [
       { title: `Member area — ${site.name}` },
       { name: "description", content: `The private member area of ${site.name}.` },
-      { name: "robots", content: "noindex,nofollow,noarchive" },
     ],
   }),
   component: MemberLayout,

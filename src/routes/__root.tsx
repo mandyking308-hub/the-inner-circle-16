@@ -17,6 +17,12 @@ import { SiteFooter } from "@/components/layout/SiteFooter";
 import { FloatingLanguageSelector } from "@/components/common/FloatingLanguageSelector";
 import { site } from "@/config/site";
 import { luxuryImages } from "@/data/luxuryImages";
+import {
+  canonicalUrl,
+  isNonIndexablePath,
+  INDEXABLE_ROBOTS,
+  NON_INDEXABLE_ROBOTS,
+} from "@/lib/seo";
 
 function NotFoundComponent() {
   return (
@@ -43,7 +49,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: `${site.name} — ${site.positioning}` },
       { name: "application-name", content: site.name },
       { name: "description", content: site.description },
-      { name: "robots", content: "index,follow,max-image-preview:large" },
+      
       { name: "theme-color", content: "#651f24" },
       { property: "og:site_name", content: site.name },
       { property: "og:title", content: `${site.name} — ${site.positioning}` },
@@ -59,7 +65,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "canonical", href: site.url },
+      
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&display=swap" },
@@ -75,11 +81,36 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: ReactNode }) {
-  return <html lang="en"><head><HeadContent /></head><body>{children}<Scripts /></body></html>;
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
+  const nonIndexable = isNonIndexablePath(pathname);
+  return (
+    <html lang="en">
+      <head>
+        <HeadContent />
+        <meta name="robots" content={nonIndexable ? NON_INDEXABLE_ROBOTS : INDEXABLE_ROBOTS} />
+        {nonIndexable ? null : <link rel="canonical" href={canonicalUrl(pathname)} />}
+      </head>
+      <body>{children}<Scripts /></body>
+    </html>
+  );
+}
+
+/**
+ * Right-click deterrent requested for the Montvelle site. This is a presentation
+ * deterrent only, not a security boundary: content remains fully accessible to
+ * keyboard users, assistive technology, copy/paste shortcuts and view-source.
+ */
+function useContextMenuDeterrent() {
+  useEffect(() => {
+    const handler = (event: MouseEvent) => event.preventDefault();
+    document.addEventListener("contextmenu", handler);
+    return () => document.removeEventListener("contextmenu", handler);
+  }, []);
 }
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  useContextMenuDeterrent();
   const pathname = useRouterState({ select: (state) => state.location.pathname });
   const isPrivateArea = pathname === "/member" || pathname.startsWith("/member/") || pathname === "/admin" || pathname.startsWith("/admin/") || pathname === "/supplier" || pathname.startsWith("/supplier/");
   return <QueryClientProvider client={queryClient}>{isPrivateArea ? <Outlet /> : <div className="flex min-h-screen flex-col bg-background paper-grain"><SiteHeader /><main className="flex-1"><Outlet /></main><SiteFooter /><FloatingLanguageSelector /></div>}</QueryClientProvider>;

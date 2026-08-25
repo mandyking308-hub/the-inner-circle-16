@@ -10,7 +10,6 @@ export const Route = createFileRoute("/supplier")({
   head: () => ({
     meta: [
       { title: `Supplier portal — ${site.name}` },
-      { name: "robots", content: "noindex,nofollow,noarchive" },
     ],
   }),
   component: SupplierLayout,

@@ -14,7 +14,48 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      contact_messages: {
+        Row: {
+          acknowledged_privacy: boolean
+          category: string
+          contact: string
+          country: string
+          created_at: string
+          id: string
+          message: string
+          name: string
+          source_hash: string | null
+          status: string
+          user_agent: string | null
+        }
+        Insert: {
+          acknowledged_privacy: boolean
+          category: string
+          contact: string
+          country: string
+          created_at?: string
+          id?: string
+          message: string
+          name: string
+          source_hash?: string | null
+          status?: string
+          user_agent?: string | null
+        }
+        Update: {
+          acknowledged_privacy?: boolean
+          category?: string
+          contact?: string
+          country?: string
+          created_at?: string
+          id?: string
+          message?: string
+          name?: string
+          source_hash?: string | null
+          status?: string
+          user_agent?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
