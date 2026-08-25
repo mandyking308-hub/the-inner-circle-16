@@ -18,6 +18,28 @@ import { FloatingLanguageSelector } from "@/components/common/FloatingLanguageSe
 import { site } from "@/config/site";
 import { luxuryImages } from "@/data/luxuryImages";
 
+function isNonIndexable(pathname: string) {
+  return pathname === "/auth"
+    || pathname === "/demo"
+    || pathname === "/supplier-portal"
+    || pathname === "/member"
+    || pathname.startsWith("/member/")
+    || pathname === "/admin"
+    || pathname.startsWith("/admin/")
+    || pathname === "/supplier"
+    || pathname.startsWith("/supplier/")
+    || pathname.startsWith("/lovable/");
+}
+
+function isPrivateArea(pathname: string) {
+  return pathname === "/member"
+    || pathname.startsWith("/member/")
+    || pathname === "/admin"
+    || pathname.startsWith("/admin/")
+    || pathname === "/supplier"
+    || pathname.startsWith("/supplier/");
+}
+
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -43,13 +65,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: `${site.name} — ${site.positioning}` },
       { name: "application-name", content: site.name },
       { name: "description", content: site.description },
-      { name: "robots", content: "index,follow,max-image-preview:large" },
       { name: "theme-color", content: "#651f24" },
       { property: "og:site_name", content: site.name },
       { property: "og:title", content: `${site.name} — ${site.positioning}` },
       { property: "og:description", content: site.description },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: site.url },
       { property: "og:image", content: luxuryImages.hero },
       { property: "og:image:alt", content: "Montvelle — a private world around the life you've built" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -59,7 +79,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "canonical", href: site.url },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&display=swap" },
@@ -74,13 +93,59 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   errorComponent: ErrorComponent,
 });
 
+function RuntimeSeoHead() {
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
+  const normalizedPath = pathname === "/" ? "/" : pathname.replace(/\/+$/, "");
+  const canonical = `${site.url}${normalizedPath}`;
+  const noindex = isNonIndexable(pathname);
+  const jsonLd = pathname === "/"
+    ? JSON.stringify({
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": `${site.url}/#website`,
+            url: `${site.url}/`,
+            name: site.name,
+            description: site.description,
+            inLanguage: "en",
+          },
+          {
+            "@type": "Organization",
+            "@id": `${site.url}/#organization`,
+            name: site.name,
+            legalName: site.operator,
+            url: `${site.url}/`,
+            description: site.description,
+          },
+        ],
+      })
+    : null;
+
+  return (
+    <>
+      <link rel="canonical" href={canonical} />
+      <meta property="og:url" content={canonical} />
+      <meta name="robots" content={noindex ? "noindex,nofollow,noarchive" : "index,follow,max-image-preview:large"} />
+      {jsonLd ? <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }} /> : null}
+    </>
+  );
+}
+
 function RootShell({ children }: { children: ReactNode }) {
-  return <html lang="en"><head><HeadContent /></head><body>{children}<Scripts /></body></html>;
+  return <html lang="en"><head><HeadContent /><RuntimeSeoHead /></head><body>{children}<Scripts /></body></html>;
 }
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const pathname = useRouterState({ select: (state) => state.location.pathname });
-  const isPrivateArea = pathname === "/member" || pathname.startsWith("/member/") || pathname === "/admin" || pathname.startsWith("/admin/") || pathname === "/supplier" || pathname.startsWith("/supplier/");
-  return <QueryClientProvider client={queryClient}>{isPrivateArea ? <Outlet /> : <div className="flex min-h-screen flex-col bg-background paper-grain"><SiteHeader /><main className="flex-1"><Outlet /></main><SiteFooter /><FloatingLanguageSelector /></div>}</QueryClientProvider>;
+
+  useEffect(() => {
+    // Requested content deterrent only; this is not a security boundary.
+    const blockContextMenu = (event: MouseEvent) => event.preventDefault();
+    document.addEventListener("contextmenu", blockContextMenu);
+    return () => document.removeEventListener("contextmenu", blockContextMenu);
+  }, []);
+
+  return <QueryClientProvider client={queryClient}>{isPrivateArea(pathname) ? <Outlet /> : <div className="flex min-h-screen flex-col bg-background paper-grain"><SiteHeader /><main className="flex-1"><Outlet /></main><SiteFooter /><FloatingLanguageSelector /></div>}</QueryClientProvider>;
 }
