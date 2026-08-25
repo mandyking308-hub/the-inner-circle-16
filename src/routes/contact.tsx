@@ -156,13 +156,13 @@ function ContactPage() {
                   <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-oxblood">
                     Official contact route
                   </p>
-                  <h2 className="mt-4 font-display text-5xl leading-[0.98]">Online delivery is not enabled yet.</h2>
+                  <h2 className="mt-4 font-display text-5xl leading-[0.98]">Use the official route.</h2>
                   <p className="mt-5 max-w-2xl text-sm leading-7 text-muted-foreground">
-                    Do not use an inactive web form for a cancellation deadline, privacy-rights request,
-                    formal legal notice or other time-sensitive matter. Until online delivery is enabled,
-                    use GSM&apos;s official business email below, the registered office in the Legal Notice,
-                    or the specific notice route stated in your Membership Schedule, supplier assignment
-                    or other formal correspondence.
+                    The online form is not available on this build. Do not use an inactive web form for a
+                    cancellation deadline, privacy-rights request, formal legal notice or other
+                    time-sensitive matter. Use GSM&apos;s official business email below, the registered
+                    office in the Legal Notice, or the specific notice route stated in your Membership
+                    Schedule, supplier assignment or other formal correspondence.
                   </p>
                   <a
                     href={`mailto:${officialEmail}`}
