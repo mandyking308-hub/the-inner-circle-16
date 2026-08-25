@@ -52,14 +52,22 @@ export function LegalContactCta({ prompt }: { prompt?: string }) {
       <h2 className="mt-3 font-display text-3xl leading-tight">Speak to Montvelle</h2>
       <p className="mt-3 max-w-xl text-sm leading-7 text-muted-foreground">
         {prompt ??
-          "Questions, privacy requests, formal notices and cancellation instructions are handled through our secure contact form. We do not publish an email address."}
+          "Questions, privacy requests, formal notices and cancellation instructions can use our secure contact form. GSM's official business email and registered office are listed in the Legal Notice."}
       </p>
-      <Link
-        to="/contact"
-        className="mt-6 inline-flex bg-oxblood px-6 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-oxblood-foreground"
-      >
-        Contact Montvelle
-      </Link>
+      <div className="mt-6 flex flex-wrap gap-3">
+        <Link
+          to="/contact"
+          className="inline-flex bg-oxblood px-6 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-oxblood-foreground"
+        >
+          Contact Montvelle
+        </Link>
+        <Link
+          to="/legal"
+          className="inline-flex border border-foreground/20 px-6 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-foreground"
+        >
+          Legal Notice
+        </Link>
+      </div>
     </div>
   );
 }
