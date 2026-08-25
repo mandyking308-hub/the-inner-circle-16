@@ -44,7 +44,7 @@ export const legalDocuments: Record<LegalDocumentKey, LegalDocument> = {
     key: "websiteTerms",
     title: "Terms of membership & use",
     shortTitle: "Website Terms",
-    version: "WT-2026.3",
+    version: "WT-2026.4",
     effectiveDate: "2026-08-25",
     path: "/terms",
   },
