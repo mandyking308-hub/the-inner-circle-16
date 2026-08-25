@@ -17,6 +17,12 @@ import { SiteFooter } from "@/components/layout/SiteFooter";
 import { FloatingLanguageSelector } from "@/components/common/FloatingLanguageSelector";
 import { site } from "@/config/site";
 import { luxuryImages } from "@/data/luxuryImages";
+import {
+  canonicalUrl,
+  isNonIndexablePath,
+  INDEXABLE_ROBOTS,
+  NON_INDEXABLE_ROBOTS,
+} from "@/lib/seo";
 
 function NotFoundComponent() {
   return (
