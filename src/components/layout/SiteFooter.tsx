@@ -73,8 +73,8 @@ export function SiteFooter() {
           <div>
             <p className="text-[9px] font-semibold uppercase tracking-[0.26em] text-gold">Speak to Montvelle</p>
             <p className="mt-3 max-w-sm text-sm leading-6 text-background/62">
-              We do not publish an email address. Membership questions, privacy requests, formal
-              notices and cancellations come through one secure route.
+              Membership questions, privacy requests, formal notices and cancellations can use our secure
+              contact route. GSM&apos;s official business email and registered office are listed in the Legal Notice.
             </p>
             <Link
               to="/contact"
