@@ -33,7 +33,8 @@ export type LegalDocumentKey =
   | "confidentiality"
   | "supplierAgreement"
   | "cancellationRights"
-  | "cookies";
+  | "cookies"
+  | "legalNotice";
 
 export type LegalDocument = {
   key: LegalDocumentKey;
@@ -100,6 +101,14 @@ export const legalDocuments: Record<LegalDocumentKey, LegalDocument> = {
     version: "CK-2026.2",
     effectiveDate: "2026-08-25",
     path: "/cookies",
+  },
+  legalNotice: {
+    key: "legalNotice",
+    title: "Legal notice",
+    shortTitle: "Legal notice",
+    version: "LN-2026.1",
+    effectiveDate: "2026-08-25",
+    path: "/legal",
   },
 };
 
