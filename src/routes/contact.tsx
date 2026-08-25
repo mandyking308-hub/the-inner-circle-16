@@ -9,9 +9,12 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { site } from "@/config/site";
 import {
+  applicationIntakeEnabled,
   submitContactIntake,
   type ContactCategory,
 } from "@/lib/applicationIntake";
+
+const officialEmail = "contact@global-solutions-management.com";
 
 const categories: ContactCategory[] = [
   "Membership",
@@ -24,22 +27,22 @@ const categories: ContactCategory[] = [
 ];
 
 const routingNotes: Record<ContactCategory, string> = {
-  Membership: "Routed to the membership team.",
-  "Privacy / data request": "Routed to the team responsible for data protection. We may need to verify your identity before acting on a rights request.",
-  "Legal / formal notice": "Formal notices are routed to the legal contact for Global Solutions Management LLC.",
-  Cancellation: "Routed to membership administration and treated as a cancellation instruction from the date and time of submission.",
-  "Supplier / partner": "Routed to partner operations. This is a business enquiry route, not a membership route.",
-  Accessibility: "Routed to the team responsible for the digital experience.",
-  Other: "Routed to the appropriate team.",
+  Membership: "Routed to the membership team when online delivery is enabled.",
+  "Privacy / data request": "Routed to the team responsible for data protection when online delivery is enabled. We may need to verify your identity before acting on a rights request.",
+  "Legal / formal notice": "Formal notices are routed to the legal contact for Global Solutions Management LLC when online delivery is enabled. Contract-specific notice requirements still apply.",
+  Cancellation: "Routed to membership administration when online delivery is enabled. Keep evidence of when and how you sent any time-sensitive cancellation instruction.",
+  "Supplier / partner": "Routed to partner operations when online delivery is enabled. This is a business enquiry route, not a membership route.",
+  Accessibility: "Routed to the team responsible for the digital experience when online delivery is enabled.",
+  Other: "Routed to the appropriate team when online delivery is enabled.",
 };
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
       { title: `Contact Montvelle — ${site.name}` },
-      { name: "description", content: "Secure contact route for membership, privacy requests, formal legal notices, cancellation, partner enquiries and accessibility." },
+      { name: "description", content: "Official contact routes for Montvelle membership, privacy requests, legal notices, cancellation, partner enquiries and accessibility." },
       { property: "og:title", content: `Contact Montvelle — ${site.name}` },
-      { property: "og:description", content: "A single secure form for membership, privacy, legal, cancellation, partner and accessibility enquiries." },
+      { property: "og:description", content: "Official contact routes for membership, privacy, legal, cancellation, partner and accessibility enquiries." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -48,6 +51,7 @@ export const Route = createFileRoute("/contact")({
 });
 
 function ContactPage() {
+  const intakeEnabled = applicationIntakeEnabled();
   const [category, setCategory] = useState<ContactCategory>("Membership");
   const [turnstileToken, setTurnstileToken] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -56,6 +60,10 @@ function ContactPage() {
 
   const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (!intakeEnabled) {
+      setError("Online form delivery is not currently enabled. Please use the official contact route shown above.");
+      return;
+    }
     setError("");
     setSubmitting(true);
     const formElement = event.currentTarget;
@@ -82,7 +90,7 @@ function ContactPage() {
       setError(
         code === "SECURITY_CHECK_REQUIRED"
           ? "Please complete the security check and try again."
-          : "We could not send your message just now. Please try again shortly.",
+          : "We could not send your message just now. Please use the official contact route if your matter is time-sensitive.",
       );
     } finally {
       setSubmitting(false);
@@ -100,11 +108,10 @@ function ContactPage() {
             </h1>
             <p className="mt-7 max-w-2xl text-base leading-8 text-background/72">
               Membership questions, privacy and data requests, formal legal notices, cancellation
-              instructions, partner enquiries and accessibility feedback all come through this form
-              and are routed to the right team. GSM&apos;s official business email and registered
-              office are published in the{" "}
-              <Link to="/legal" className="underline underline-offset-2">Legal Notice</Link>; this
-              secure form remains the preferred route for private matters.
+              instructions, partner enquiries and accessibility feedback are handled through the
+              appropriate Montvelle route. GSM&apos;s official business email and registered office are
+              published in the <Link to="/legal" className="underline underline-offset-2">Legal Notice</Link>.
+              {intakeEnabled ? " The online form below is available for routed enquiries." : " The online form is not currently enabled for delivery, so please use the official email or any contract-specific notice route for your matter."}
             </p>
           </div>
         </Container>
@@ -120,12 +127,12 @@ function ContactPage() {
                 </p>
                 <h2 className="mt-4 font-display text-3xl leading-tight">Routed, not broadcast</h2>
                 <p className="mt-4 text-xs leading-6 text-muted-foreground">
-                  Choose the category that fits best. We use it to route your message internally and
-                  to apply the right handling standard — a privacy rights request and a formal notice
-                  are not treated the same way.
+                  Choose the category that fits best when the online form is available. Different
+                  matters have different handling standards — a privacy rights request and a formal
+                  contractual notice are not necessarily treated the same way.
                 </p>
                 <p className="mt-4 text-xs leading-6 text-muted-foreground">
-                  Personal information submitted here is handled under our{" "}
+                  Personal information submitted to Montvelle is handled under our{" "}
                   <Link to="/privacy" className="underline underline-offset-2">Privacy Notice</Link>.
                 </p>
               </div>
@@ -138,29 +145,45 @@ function ContactPage() {
                   <Link to="/terms" className="underline underline-offset-2">Website Terms</Link>
                   <Link to="/cancellation" className="underline underline-offset-2">Cancellation Rights</Link>
                   <Link to="/supplier-agreement" className="underline underline-offset-2">Supplier &amp; Partner Agreement</Link>
+                  <Link to="/legal" className="underline underline-offset-2">Legal Notice &amp; formal contact details</Link>
                 </div>
               </div>
             </aside>
 
             <div>
-              {result ? (
+              {!intakeEnabled ? (
                 <div className="border border-foreground/15 bg-card p-7 md:p-10">
                   <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-oxblood">
-                    Message recorded
+                    Official contact route
+                  </p>
+                  <h2 className="mt-4 font-display text-5xl leading-[0.98]">Online delivery is not enabled yet.</h2>
+                  <p className="mt-5 max-w-2xl text-sm leading-7 text-muted-foreground">
+                    Do not use an inactive web form for a cancellation deadline, privacy-rights request,
+                    formal legal notice or other time-sensitive matter. Until online delivery is enabled,
+                    use GSM&apos;s official business email below, the registered office in the Legal Notice,
+                    or the specific notice route stated in your Membership Schedule, supplier assignment
+                    or other formal correspondence.
+                  </p>
+                  <a
+                    href={`mailto:${officialEmail}`}
+                    className="mt-7 inline-flex min-h-11 items-center border border-foreground px-5 text-sm font-medium text-foreground transition-colors hover:bg-foreground hover:text-background"
+                  >
+                    {officialEmail}
+                  </a>
+                  <p className="mt-5 text-xs leading-6 text-muted-foreground">
+                    Keep a copy of what you send and evidence of the date and time where a legal or contractual deadline may apply. Do not send passwords, full payment-card details or unnecessary sensitive information by email.
+                  </p>
+                </div>
+              ) : result ? (
+                <div className="border border-foreground/15 bg-card p-7 md:p-10">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-oxblood">
+                    Message received
                   </p>
                   <h2 className="mt-4 font-display text-5xl leading-[0.98]">Thank you.</h2>
                   <p className="mt-5 max-w-2xl text-sm leading-7 text-muted-foreground">
                     Your reference is <strong>{result.reference}</strong>. Please keep it — it
                     identifies your message without exposing any personal detail.
                   </p>
-                  {result.mode === "preview" ? (
-                    <p className="mt-5 border border-bronze/40 bg-accent/30 p-4 text-xs leading-6 text-foreground">
-                      Preview only. Production message delivery is not yet enabled, so this message
-                      has been stored in this browser and has not been transmitted to Montvelle. If
-                      your enquiry is time-critical, please use the contact route given in your
-                      application or membership correspondence.
-                    </p>
-                  ) : null}
                   <Button variant="outline" className="mt-7 rounded-none" onClick={() => setResult(null)}>
                     Send another message
                   </Button>
