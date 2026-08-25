@@ -9,7 +9,6 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { site } from "@/config/site";
 import {
-  applicationIntakeEnabled,
   submitContactIntake,
   type ContactCategory,
 } from "@/lib/applicationIntake";
@@ -230,12 +229,6 @@ function ContactPage() {
                   <Button type="submit" size="lg" disabled={submitting} className="mt-8 w-full rounded-none bg-oxblood">
                     {submitting ? "Sending…" : "Send to Montvelle"}
                   </Button>
-
-                  {!applicationIntakeEnabled() ? (
-                    <p className="mt-4 text-center text-[10px] leading-5 text-muted-foreground">
-                      Preview build: production message delivery is not yet enabled.
-                    </p>
-                  ) : null}
                 </form>
               )}
             </div>
