@@ -38,22 +38,21 @@ const sections: { heading: string; body: string }[] = [
     heading: "If you ask us to start straight away",
     body: "Montvelle asks separately, at the point your membership documents are issued for acceptance, whether you want service to begin during the cancellation period. That request is a distinct express request: it is separate from accepting the Membership Agreement and Membership Schedule, separate from making payment, and never assumed. If you ask us to begin immediately and then cancel within the 14 days, you remain entitled to cancel, but we may charge a proportionate amount for the service actually supplied up to the moment you told us you were cancelling, calculated against the total contract price. If you do not make that separate request, the relevant service does not begin until the cancellation period has expired.",
   },
-
   {
     heading: "Fully performed services",
     body: "If you expressly asked for the service to begin during the cancellation period and the service has been fully performed within that period with your acknowledgement that you would lose the right to cancel on full performance, the statutory cancellation right no longer applies to that fully performed service.",
   },
   {
     heading: "Third-party and non-recoverable costs",
-    body: "Where, at your request, we have committed money to third parties on your behalf — deposits, retainers for independent specialists, travel, venues, tickets, security or similar — those amounts may be non-refundable in whole or in part under that third party's own terms. We will tell you before incurring such costs where we reasonably can, and we will pass on any recovery we obtain. These costs are separate from the membership fee and from any proportionate deduction described above.",
+    body: "Where, at your request, we have committed money to third parties on your behalf — deposits, retainers for independent specialists, travel, venues, tickets, security or similar — those amounts may be non-refundable in whole or in part under that third party's own terms. We will tell you before incurring such costs where we reasonably can, and we will pass on any recovery we obtain. These costs are separate from the membership fee and from any proportionate deduction described above. Ending Montvelle membership does not itself cancel or unwind a separate third-party contract.",
   },
   {
-    heading: "Admission fee and annual fee",
-    body: "Where a cancellation right applies and is validly exercised, we will refund amounts due without undue delay and in any event within 14 days of being informed, by an appropriate method — normally by transfer back to the originating account, where that is practical and lawful — unless you agree otherwise. We may ask you to confirm account details for the return, and we will never ask for them by unsolicited message.",
+    heading: "Refunds during an applicable cancellation period",
+    body: "Where a statutory cancellation right applies and is validly exercised, we will refund amounts due without undue delay and in any event within 14 days of being informed, after any deduction that applicable law permits for services begun at your separate express request. Refunds are made by an appropriate method — normally by transfer back to the originating account, where that is practical and lawful — unless you agree otherwise. We may ask you to confirm account details for the return, and we will never ask for them by unsolicited message.",
   },
   {
-    heading: "Outside the cancellation period",
-    body: "After any applicable cancellation period ends, the membership term and the commercial terms recorded in your Membership Schedule apply. Renewal, non-renewal, suspension and termination are dealt with in the Membership Agreement. Membership may also be ended by Montvelle in the circumstances set out in that agreement.",
+    heading: "Outside the cancellation period: the annual commitment stands",
+    body: "Once any applicable statutory cancellation period has expired, Montvelle membership remains a fixed 12-month annual commitment. You may ask us to stop providing or making the membership available to you before the end of that term, but voluntary early cancellation, non-use, dissatisfaction, a change of mind, or a change in personal, family, business, financial, travel or residence circumstances does not create a contractual right to a refund, credit, pause or pro-rata repayment of the annual Membership Fee. To the fullest extent permitted by law, admission and onboarding amounts are also non-refundable once the relevant work has been performed or committed. The narrow contractual exceptions are set out in the Membership Agreement: mandatory law, an express Membership Schedule term, or defined circumstances where GSM terminates without Member fault or permanently withdraws substantially all core membership services without a reasonable substitute. Where such an exception applies, any contractual refund is limited as stated in the Membership Agreement. Suspension or termination because of Member breach, misconduct, non-payment, sanctions/compliance, safety or another reason attributable to the Member does not create a contractual refund right after the cooling-off period, subject to mandatory law.",
   },
   {
     heading: "How to cancel",
