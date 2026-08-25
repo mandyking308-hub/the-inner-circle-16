@@ -63,8 +63,8 @@ export const legalDocuments: Record<LegalDocumentKey, LegalDocument> = {
     key: "confidentiality",
     title: "Confidentiality & No Solicitation",
     shortTitle: "Confidentiality & No Solicitation standard",
-    version: "CN-2026.1",
-    effectiveDate: "2026-08-23",
+    version: "CN-2026.2",
+    effectiveDate: "2026-08-25",
     path: "/confidentiality",
   },
   supplierAgreement: {
