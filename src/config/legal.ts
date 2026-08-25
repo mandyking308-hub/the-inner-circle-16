@@ -13,7 +13,6 @@
  * server-side against the authenticated identity.
  */
 
-
 export type LegalDocumentKey =
   | "membershipAgreement"
   | "websiteTerms"
@@ -37,16 +36,16 @@ export const legalDocuments: Record<LegalDocumentKey, LegalDocument> = {
     key: "membershipAgreement",
     title: "Membership Agreement",
     shortTitle: "Membership Agreement",
-    version: "MA-2026.2",
-    effectiveDate: "2026-08-24",
+    version: "MA-2026.3",
+    effectiveDate: "2026-08-25",
     path: "/membership-agreement",
   },
   websiteTerms: {
     key: "websiteTerms",
     title: "Terms of membership & use",
     shortTitle: "Website Terms",
-    version: "WT-2026.2",
-    effectiveDate: "2026-08-24",
+    version: "WT-2026.3",
+    effectiveDate: "2026-08-25",
     path: "/terms",
   },
   privacyNotice: {
@@ -69,16 +68,16 @@ export const legalDocuments: Record<LegalDocumentKey, LegalDocument> = {
     key: "supplierAgreement",
     title: "Supplier & Partner Agreement",
     shortTitle: "Supplier & Partner Agreement",
-    version: "SP-2026.1",
-    effectiveDate: "2026-08-23",
+    version: "SP-2026.2",
+    effectiveDate: "2026-08-25",
     path: "/supplier-agreement",
   },
   cancellationRights: {
     key: "cancellationRights",
     title: "Cancellation Rights",
     shortTitle: "Cancellation Rights",
-    version: "CR-2026.2",
-    effectiveDate: "2026-08-24",
+    version: "CR-2026.3",
+    effectiveDate: "2026-08-25",
     path: "/cancellation",
   },
   cookies: {
