@@ -75,7 +75,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: ReactNode }) {
-  return <html lang="en"><head><HeadContent /></head><body>{children}<Scripts /></body></html>;
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
+  const nonIndexable = isNonIndexablePath(pathname);
+  return (
+    <html lang="en">
+      <head>
+        <HeadContent />
+        <meta name="robots" content={nonIndexable ? NON_INDEXABLE_ROBOTS : INDEXABLE_ROBOTS} />
+        {nonIndexable ? null : <link rel="canonical" href={canonicalUrl(pathname)} />}
+      </head>
+      <body>{children}<Scripts /></body>
+    </html>
+  );
 }
 
 function RootComponent() {
