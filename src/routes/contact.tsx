@@ -99,10 +99,12 @@ function ContactPage() {
               One private route in.
             </h1>
             <p className="mt-7 max-w-2xl text-base leading-8 text-background/72">
-              For private member matters, use this secure route. Membership questions, privacy and data
-              requests, formal legal notices, cancellation instructions, partner enquiries and accessibility
-              feedback are routed to the right team. GSM&apos;s official business email and registered office are
-              available in the <Link to="/legal" className="underline underline-offset-2">Legal Notice</Link>.
+              Membership questions, privacy and data requests, formal legal notices, cancellation
+              instructions, partner enquiries and accessibility feedback all come through this form
+              and are routed to the right team. GSM&apos;s official business email and registered
+              office are published in the{" "}
+              <Link to="/legal" className="underline underline-offset-2">Legal Notice</Link>; this
+              secure form remains the preferred route for private matters.
             </p>
           </div>
         </Container>
@@ -136,7 +138,6 @@ function ContactPage() {
                   <Link to="/terms" className="underline underline-offset-2">Website Terms</Link>
                   <Link to="/cancellation" className="underline underline-offset-2">Cancellation Rights</Link>
                   <Link to="/supplier-agreement" className="underline underline-offset-2">Supplier &amp; Partner Agreement</Link>
-                  <Link to="/legal" className="underline underline-offset-2">Legal Notice &amp; company contact details</Link>
                 </div>
               </div>
             </aside>
@@ -156,8 +157,8 @@ function ContactPage() {
                     <p className="mt-5 border border-bronze/40 bg-accent/30 p-4 text-xs leading-6 text-foreground">
                       Preview only. Production message delivery is not yet enabled, so this message
                       has been stored in this browser and has not been transmitted to Montvelle. If
-                      your enquiry is time-critical, please use the contact details in the Legal Notice
-                      or the route given in your application or membership correspondence.
+                      your enquiry is time-critical, please use the contact route given in your
+                      application or membership correspondence.
                     </p>
                   ) : null}
                   <Button variant="outline" className="mt-7 rounded-none" onClick={() => setResult(null)}>
