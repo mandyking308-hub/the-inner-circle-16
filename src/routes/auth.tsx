@@ -19,7 +19,6 @@ export const Route = createFileRoute("/auth")({
     meta: [
       { title: `Member access — ${site.name}` },
       { name: "description", content: `Private member access for ${site.name}.` },
-      { name: "robots", content: "noindex,nofollow" },
     ],
   }),
   component: AuthPage,

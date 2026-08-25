@@ -18,7 +18,6 @@ export const Route = createFileRoute("/supplier-portal")({
         name: "description",
         content: "The private entrance for Montvelle partners and suppliers.",
       },
-      { name: "robots", content: "noindex,nofollow,noarchive" },
     ],
   }),
   component: SupplierPortalPage,
