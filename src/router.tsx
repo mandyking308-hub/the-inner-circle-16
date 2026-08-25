@@ -8,7 +8,11 @@ export const getRouter = () => {
   const router = createRouter({
     routeTree,
     context: { queryClient },
-    scrollRestoration: true,
+    // Manual scroll-to-top is handled globally in src/routes/__root.tsx
+    // (useScrollToTopOnNavigation) so that every route opens at the top on
+    // desktop, tablet and mobile, including back/forward and refresh, while
+    // still preserving intentional hash/anchor navigation.
+    scrollRestoration: false,
     defaultPreloadStaleTime: 0,
   });
 

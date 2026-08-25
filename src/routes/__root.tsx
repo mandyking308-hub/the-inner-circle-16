@@ -108,9 +108,45 @@ function useContextMenuDeterrent() {
   }, []);
 }
 
+/**
+ * Global scroll-to-top on route navigation. Runs in the root component so it
+ * applies to every route without per-page wiring.
+ *
+ * - On every client-side pathname change, resets window scroll to the top.
+ * - On direct page load/refresh, also starts at the top (history.scrollRestoration
+ *   is forced to "manual" so the browser does not restore an old position).
+ * - If the URL carries an explicit hash/anchor, the named element is scrolled
+ *   into view instead of forcing the page to the top, preserving intentional
+ *   anchor navigation.
+ * - Only scrolls the window; internal scroll containers, modals and drawers
+ *   that manage their own scroll are unaffected.
+ */
+function useScrollToTopOnNavigation() {
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
+  const hash = useRouterState({ select: (state) => state.location.hash });
+  useEffect(() => {
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+    const before = window.scrollY;
+    console.log("[scrolltop] effect fired", { pathname, hash, before });
+    if (hash) {
+      const id = decodeURIComponent(hash.replace(/^#/, ""));
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ block: "start" });
+        return;
+      }
+    }
+    window.scrollTo(0, 0);
+    console.log("[scrolltop] after scrollTo", { after: window.scrollY });
+  }, [pathname, hash]);
+}
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   useContextMenuDeterrent();
+  useScrollToTopOnNavigation();
   const pathname = useRouterState({ select: (state) => state.location.pathname });
   const isPrivateArea = pathname === "/member" || pathname.startsWith("/member/") || pathname === "/admin" || pathname.startsWith("/admin/") || pathname === "/supplier" || pathname.startsWith("/supplier/");
   return <QueryClientProvider client={queryClient}>{isPrivateArea ? <Outlet /> : <div className="flex min-h-screen flex-col bg-background paper-grain"><SiteHeader /><main className="flex-1"><Outlet /></main><SiteFooter /><FloatingLanguageSelector /></div>}</QueryClientProvider>;
