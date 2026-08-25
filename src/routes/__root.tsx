@@ -95,8 +95,22 @@ function RootShell({ children }: { children: ReactNode }) {
   );
 }
 
+/**
+ * Right-click deterrent requested for the Montvelle site. This is a presentation
+ * deterrent only, not a security boundary: content remains fully accessible to
+ * keyboard users, assistive technology, copy/paste shortcuts and view-source.
+ */
+function useContextMenuDeterrent() {
+  useEffect(() => {
+    const handler = (event: MouseEvent) => event.preventDefault();
+    document.addEventListener("contextmenu", handler);
+    return () => document.removeEventListener("contextmenu", handler);
+  }, []);
+}
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  useContextMenuDeterrent();
   const pathname = useRouterState({ select: (state) => state.location.pathname });
   const isPrivateArea = pathname === "/member" || pathname.startsWith("/member/") || pathname === "/admin" || pathname.startsWith("/admin/") || pathname === "/supplier" || pathname.startsWith("/supplier/");
   return <QueryClientProvider client={queryClient}>{isPrivateArea ? <Outlet /> : <div className="flex min-h-screen flex-col bg-background paper-grain"><SiteHeader /><main className="flex-1"><Outlet /></main><SiteFooter /><FloatingLanguageSelector /></div>}</QueryClientProvider>;
