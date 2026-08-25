@@ -111,7 +111,7 @@ function ContactPage() {
               instructions, partner enquiries and accessibility feedback are handled through the
               appropriate Montvelle route. GSM&apos;s official business email and registered office are
               published in the <Link to="/legal" className="underline underline-offset-2">Legal Notice</Link>.
-              {intakeEnabled ? " The online form below is available for routed enquiries." : " The online form is not currently enabled for delivery, so please use the official email or any contract-specific notice route for your matter."}
+              {intakeEnabled ? " Choose a category below and your message is routed to the appropriate team." : " The online form is not currently available, so please use the official email or any contract-specific notice route for your matter."}
             </p>
           </div>
         </Container>
