@@ -9,7 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { site } from "@/config/site";
 import {
-  applicationIntakeEnabled,
+  contactIntakeEnabled,
   submitContactIntake,
   type ContactCategory,
 } from "@/lib/applicationIntake";
@@ -27,13 +27,13 @@ const categories: ContactCategory[] = [
 ];
 
 const routingNotes: Record<ContactCategory, string> = {
-  Membership: "Routed to the membership team when online delivery is enabled.",
-  "Privacy / data request": "Routed to the team responsible for data protection when online delivery is enabled. We may need to verify your identity before acting on a rights request.",
-  "Legal / formal notice": "Formal notices are routed to the legal contact for Global Solutions Management LLC when online delivery is enabled. Contract-specific notice requirements still apply.",
-  Cancellation: "Routed to membership administration when online delivery is enabled. Keep evidence of when and how you sent any time-sensitive cancellation instruction.",
-  "Supplier / partner": "Routed to partner operations when online delivery is enabled. This is a business enquiry route, not a membership route.",
-  Accessibility: "Routed to the team responsible for the digital experience when online delivery is enabled.",
-  Other: "Routed to the appropriate team when online delivery is enabled.",
+  Membership: "Routed to the membership team.",
+  "Privacy / data request": "Routed to the team responsible for data protection. We may need to verify your identity before acting on a rights request.",
+  "Legal / formal notice": "Formal notices are routed to the legal contact for Global Solutions Management LLC. Contract-specific notice requirements still apply.",
+  Cancellation: "Routed to membership administration. Keep evidence of when and how you sent any time-sensitive cancellation instruction.",
+  "Supplier / partner": "Routed to partner operations. This is a business enquiry route, not a membership route.",
+  Accessibility: "Routed to the team responsible for the digital experience.",
+  Other: "Routed to the appropriate Montvelle team.",
 };
 
 export const Route = createFileRoute("/contact")({
@@ -51,7 +51,7 @@ export const Route = createFileRoute("/contact")({
 });
 
 function ContactPage() {
-  const intakeEnabled = applicationIntakeEnabled();
+  const intakeEnabled = contactIntakeEnabled();
   const [category, setCategory] = useState<ContactCategory>("Membership");
   const [turnstileToken, setTurnstileToken] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -127,9 +127,8 @@ function ContactPage() {
                 </p>
                 <h2 className="mt-4 font-display text-3xl leading-tight">Routed, not broadcast</h2>
                 <p className="mt-4 text-xs leading-6 text-muted-foreground">
-                  Choose the category that fits best when the online form is available. Different
-                  matters have different handling standards — a privacy rights request and a formal
-                  contractual notice are not necessarily treated the same way.
+                  Choose the category that fits best. Different matters have different handling standards —
+                  a privacy rights request and a formal contractual notice are not necessarily treated the same way.
                 </p>
                 <p className="mt-4 text-xs leading-6 text-muted-foreground">
                   Personal information submitted to Montvelle is handled under our{" "}
