@@ -61,7 +61,7 @@ function ContactPage() {
   const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!intakeEnabled) {
-      setError("Online form delivery is not currently enabled. Please use the official contact route shown above.");
+      setError("The online form is not currently available. Please use the official contact route shown above.");
       return;
     }
     setError("");
