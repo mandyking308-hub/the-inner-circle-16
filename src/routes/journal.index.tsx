@@ -32,7 +32,7 @@ function JournalPage() {
       <section className="border-b border-foreground/15 py-14 md:py-20">
         <Container>
           <Link to="/journal/$slug" params={{ slug: lead.slug }} className="group grid overflow-hidden border border-foreground/15 bg-card lg:grid-cols-[1.12fr_0.88fr]">
-            <div className="relative min-h-[420px] overflow-hidden"><img src={luxuryImages[lead.image]} alt="A globally mobile family arriving in London" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]" /><div className="absolute inset-0 bg-gradient-to-t from-foreground/55 via-transparent to-transparent" /></div>
+            <div className="relative min-h-[420px] overflow-hidden"><img src={luxuryImages[lead.image]} alt="A globally mobile family arriving in London" className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.02] md:object-[38%_center] xl:object-center" /><div className="absolute inset-0 bg-gradient-to-t from-foreground/55 via-transparent to-transparent" /></div>
             <div className="flex flex-col justify-center p-7 md:p-10 lg:p-12"><p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-oxblood">{lead.category} · {lead.readTime}</p><h2 className="mt-5 font-display text-5xl leading-[1.02]">{lead.title}</h2><p className="mt-6 text-sm leading-7 text-muted-foreground">{lead.deck}</p><span className="mt-8 inline-flex items-center gap-2 text-sm font-semibold">Read the essay <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></span></div>
           </Link>
         </Container>

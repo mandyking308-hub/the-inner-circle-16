@@ -26,6 +26,7 @@ function FamilyLearningPage() {
     introduction="School is only one part of growing up. Confidence, curiosity, culture, friendships, travel and the chance to discover what they are capable of matter too."
     heroImage={luxuryImages.family}
     heroAlt="A family exploring a city together"
+    heroPositionClassName="object-center md:object-[22%_center] xl:object-center"
     statement="The best education leaves them curious about the world — and confident enough to find their place in it."
     statementBody="Some of the most valuable experiences happen beyond the classroom: meeting interesting people, trying something for the first time, seeing another culture up close, building an idea, asking better questions and gradually learning to trust their own judgement."
     feature={{ eyebrow: "The world, up close", title: "Let experience become part of how they grow.", body: "A conversation with someone inspiring. A creative project. A journey with a purpose. A first idea brought to life. The right experiences can widen a young person’s sense of what is possible without turning childhood into another timetable.", image: familyGallery, imageAlt: "A young person exploring a sunlit gallery", linkTo: "/alumni", linkLabel: "The rising generation" }}

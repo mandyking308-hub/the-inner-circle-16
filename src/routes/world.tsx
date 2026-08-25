@@ -38,7 +38,7 @@ function WorldPage() {
           alt="A family together on a sunlit terrace of a European coastal residence"
           width={1920}
           height={1200}
-          className="absolute inset-0 h-full w-full object-cover object-center"
+          className="absolute inset-0 h-full w-full object-cover object-center md:object-[65%_center] xl:object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-foreground/80 via-foreground/45 to-transparent" />
         <div className="absolute inset-0 bg-foreground/10" />
