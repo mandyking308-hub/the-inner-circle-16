@@ -23,7 +23,7 @@ function MembershipAgreementPage() {
     <LegalTemplate
       title="Membership Agreement"
       documentKey="membershipAgreement"
-      intro={`This Membership Agreement governs paid Montvelle membership supplied by ${site.operator}, a Delaware limited liability company ("GSM"). It forms part of the contract between GSM and the approved individual, family office, family entity, company or other member identified in the applicable Membership Schedule. Where a Membership Schedule expressly differs from this Agreement, the Membership Schedule prevails for that membership.`}
+      intro={`This Membership Agreement governs paid Montvelle membership supplied by ${site.operator}, a Delaware limited liability company ("GSM"). It forms part of the contract between GSM and the approved individual, family office, family entity, company or other member identified in the applicable Membership Schedule. The Website Terms, Privacy Notice and Confidentiality & No Solicitation standard accepted with the membership are incorporated into that contractual framework. Where documents conflict, the Membership Schedule prevails for that membership, followed by this Agreement, then the Website Terms, except where mandatory law requires another result.`}
       sections={[
         {
           heading: "1. Membership and acceptance",
@@ -167,7 +167,7 @@ function MembershipAgreementPage() {
         },
         {
           heading: "24. Entire agreement, severability and waiver",
-          body: "The Membership Schedule, this Agreement and any expressly incorporated Privacy, Confidentiality, conduct or bespoke service documents form the entire agreement for the paid membership relationship and supersede prior statements about that relationship, subject to liability for fraud and non-waivable rights. The Member acknowledges that, except for statements expressly incorporated into those contractual documents, membership is not purchased in reliance on a representation that any particular person, supplier, event, benefit, result, saving or introduction will be available. If a provision is invalid or unenforceable, it will be modified or severed only to the minimum extent necessary and the remaining provisions continue in effect. A failure to enforce a provision is not a waiver of that provision.",
+          body: "The Membership Schedule, this Agreement, the Website Terms, Privacy Notice, Confidentiality & No Solicitation standard and any other document expressly incorporated by the Membership Schedule or this Agreement form the entire agreement for the paid membership relationship and supersede prior statements about that relationship, subject to liability for fraud and non-waivable rights. Where documents conflict, the order of precedence is the Membership Schedule, this Agreement, then the Website Terms unless an expressly incorporated document states a more specific rule for its subject matter or mandatory law requires another result. The Member acknowledges that, except for statements expressly incorporated into those contractual documents, membership is not purchased in reliance on a representation that any particular person, supplier, event, benefit, result, saving or introduction will be available. If a provision is invalid or unenforceable, it will be modified or severed only to the minimum extent necessary and the remaining provisions continue in effect. A failure to enforce a provision is not a waiver of that provision.",
         },
         {
           heading: "25. Relationship of the parties",
