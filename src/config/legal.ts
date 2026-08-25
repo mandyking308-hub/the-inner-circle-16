@@ -9,6 +9,10 @@
  * Before production processing of UK/EU member data, confirm whether GSM must
  * appoint and publish a UK and/or EEA Article 27 representative and complete
  * the corresponding transfer, ROPA/DPIA and processor-contract documentation.
+ * Before the first paid membership, production cancellation intake must be
+ * wired and tested and the Membership Schedule, accepted legal documents,
+ * cancellation information, early-start request/acknowledgement (where used)
+ * and contract confirmation must be delivered and retained on a durable medium.
  *
  * Every clickwrap surface (member sign-in, supplier sign-in) records
  * the bundle version below alongside a timestamp. When production auth and the
@@ -79,7 +83,7 @@ export const legalDocuments: Record<LegalDocumentKey, LegalDocument> = {
     key: "cancellationRights",
     title: "Cancellation Rights",
     shortTitle: "Cancellation Rights",
-    version: "CR-2026.3",
+    version: "CR-2026.4",
     effectiveDate: "2026-08-25",
     path: "/cancellation",
   },
