@@ -128,18 +128,19 @@ function useScrollToTopOnNavigation() {
     if ("scrollRestoration" in window.history) {
       window.history.scrollRestoration = "manual";
     }
-    const before = window.scrollY;
-    console.log("[scrolltop] effect fired", { pathname, hash, before });
     if (hash) {
       const id = decodeURIComponent(hash.replace(/^#/, ""));
       const el = document.getElementById(id);
       if (el) {
+        // Intentional anchor: keep the site's smooth scroll behaviour.
         el.scrollIntoView({ block: "start" });
         return;
       }
     }
-    window.scrollTo(0, 0);
-    console.log("[scrolltop] after scrollTo", { after: window.scrollY });
+    // Force an instant reset to the top (overrides the global
+    // `scroll-behavior: smooth` in styles.css so the new route opens at the
+    // top immediately rather than animating from the previous position).
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }, [pathname, hash]);
 }
 
