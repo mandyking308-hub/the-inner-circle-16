@@ -127,9 +127,9 @@ function ContactPage() {
                 </p>
                 <h2 className="mt-4 font-display text-3xl leading-tight">Routed, not broadcast</h2>
                 <p className="mt-4 text-xs leading-6 text-muted-foreground">
-                  Choose the category that fits best when the online form is available. Different
-                  matters have different handling standards — a privacy rights request and a formal
-                  contractual notice are not necessarily treated the same way.
+                  Choose the category that fits best and your message reaches the team responsible for
+                  it. Different matters have different handling standards — a privacy rights request
+                  and a formal contractual notice are not necessarily treated the same way.
                 </p>
                 <p className="mt-4 text-xs leading-6 text-muted-foreground">
                   Personal information submitted to Montvelle is handled under our{" "}
