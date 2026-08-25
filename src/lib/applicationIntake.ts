@@ -3,18 +3,22 @@ import type { PartnerApplication } from "@/data/partnerApplicationStore";
 import { referenceConsentSchema, referencePairSchema } from "@/lib/applicationReferences";
 
 const env = import.meta.env as Record<string, string | undefined>;
-const intakeUrl = env['VITE_APPLICATION_INTAKE_URL']?.trim();
+const intakeUrl = env["VITE_APPLICATION_INTAKE_URL"]?.trim();
+const supabaseUrl = env["VITE_SUPABASE_URL"]?.trim()?.replace(/\/$/, "");
+const contactIntakeUrl = env["VITE_CONTACT_INTAKE_URL"]?.trim()
+  || (supabaseUrl ? `${supabaseUrl}/functions/v1/contact-intake` : undefined);
+const turnstileConfigured = Boolean(env["VITE_TURNSTILE_SITE_KEY"]?.trim());
 
 export type IntakeResult = { reference: string; mode: "production" | "preview" };
 
 type MembershipInput = Omit<MembershipApplication, "id" | "submittedAt" | "status"> & { website?: string };
 type PartnerInput = Omit<PartnerApplication, "id" | "submittedAt" | "status"> & { websiteUrl?: string; website?: string };
 
-async function postIntake(payload: Record<string, unknown>, turnstileToken: string): Promise<string> {
-  if (!intakeUrl) throw new Error("NO_INTAKE_URL");
-  if (!turnstileToken) throw new Error("SECURITY_CHECK_REQUIRED");
+async function postIntake(url: string | undefined, payload: Record<string, unknown>, turnstileToken: string): Promise<string> {
+  if (!url) throw new Error("NO_INTAKE_URL");
+  if (turnstileConfigured && !turnstileToken) throw new Error("SECURITY_CHECK_REQUIRED");
 
-  const response = await fetch(intakeUrl, {
+  const response = await fetch(url, {
     method: "POST",
     headers: { "content-type": "application/json" },
     body: JSON.stringify({ ...payload, turnstileToken }),
@@ -41,7 +45,7 @@ export async function submitMembershipIntake(
 ): Promise<IntakeResult> {
   assertReferences(input);
   if (intakeUrl) {
-    const reference = await postIntake({
+    const reference = await postIntake(intakeUrl, {
       kind: "membership",
       name: input.name,
       email: input.email,
@@ -86,7 +90,7 @@ export async function submitPartnerIntake(
 ): Promise<IntakeResult> {
   assertReferences(input);
   if (intakeUrl) {
-    const reference = await postIntake({
+    const reference = await postIntake(intakeUrl, {
       kind: "partner",
       contactName: input.contactName,
       email: input.email,
@@ -128,6 +132,7 @@ export async function submitPartnerIntake(
 }
 
 export function applicationIntakeEnabled() { return Boolean(intakeUrl); }
+export function contactIntakeEnabled() { return Boolean(contactIntakeUrl); }
 
 export const CONTACT_PREVIEW_KEY = "montvelle:contact-messages-preview";
 
@@ -154,16 +159,15 @@ export type ContactMessage = {
 type ContactInput = Omit<ContactMessage, "id" | "submittedAt"> & { website?: string };
 
 /**
- * Preview mode stores the message in browser storage only. Nothing is delivered
- * until the production intake endpoint (VITE_APPLICATION_INTAKE_URL) is set.
+ * Contact intake uses its own production endpoint so enabling the contact form
+ * does not implicitly enable membership or partner application persistence.
  */
 export async function submitContactIntake(
   input: ContactInput,
   turnstileToken: string,
 ): Promise<IntakeResult> {
-  if (intakeUrl) {
-    const reference = await postIntake({
-      kind: "contact",
+  if (contactIntakeUrl) {
+    const reference = await postIntake(contactIntakeUrl, {
       category: input.category,
       name: input.name,
       contact: input.contact,
