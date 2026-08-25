@@ -9,7 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { site } from "@/config/site";
 import {
-  applicationIntakeEnabled,
+  contactIntakeEnabled,
   submitContactIntake,
   type ContactCategory,
 } from "@/lib/applicationIntake";
@@ -27,13 +27,13 @@ const categories: ContactCategory[] = [
 ];
 
 const routingNotes: Record<ContactCategory, string> = {
-  Membership: "Routed to the membership team when online delivery is enabled.",
-  "Privacy / data request": "Routed to the team responsible for data protection when online delivery is enabled. We may need to verify your identity before acting on a rights request.",
-  "Legal / formal notice": "Formal notices are routed to the legal contact for Global Solutions Management LLC when online delivery is enabled. Contract-specific notice requirements still apply.",
-  Cancellation: "Routed to membership administration when online delivery is enabled. Keep evidence of when and how you sent any time-sensitive cancellation instruction.",
-  "Supplier / partner": "Routed to partner operations when online delivery is enabled. This is a business enquiry route, not a membership route.",
-  Accessibility: "Routed to the team responsible for the digital experience when online delivery is enabled.",
-  Other: "Routed to the appropriate team when online delivery is enabled.",
+  Membership: "Routed to the membership team.",
+  "Privacy / data request": "Routed to the team responsible for data protection. We may need to verify your identity before acting on a rights request.",
+  "Legal / formal notice": "Routed to the legal contact for Global Solutions Management LLC. Contract-specific notice requirements still apply.",
+  Cancellation: "Routed to membership administration. Keep evidence of when and how you sent any time-sensitive cancellation instruction.",
+  "Supplier / partner": "Routed to partner operations. This is a business enquiry route, not a membership route.",
+  Accessibility: "Routed to the team responsible for the digital experience.",
+  Other: "Routed to the appropriate team.",
 };
 
 export const Route = createFileRoute("/contact")({
