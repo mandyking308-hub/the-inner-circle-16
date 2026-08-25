@@ -239,7 +239,7 @@ export function QuietLuxuryHome() {
         <img
           src={luxuryImages.family}
           alt="A family watching the sunset together"
-          className="h-64 w-full object-cover object-[50%_45%] md:h-[380px] lg:h-full lg:object-[32%_center]"
+          className="h-64 w-full object-cover object-[50%_45%] md:h-[380px] lg:h-full lg:object-[32%_40%]"
           loading="lazy"
         />
 
