@@ -29,11 +29,11 @@ const categories: ContactCategory[] = [
 const routingNotes: Record<ContactCategory, string> = {
   Membership: "Routed to the membership team.",
   "Privacy / data request": "Routed to the team responsible for data protection. We may need to verify your identity before acting on a rights request.",
-  "Legal / formal notice": "Formal notices are routed to the legal contact for Global Solutions Management LLC. Contract-specific notice requirements still apply.",
+  "Legal / formal notice": "Routed to the legal contact for Global Solutions Management LLC. Contract-specific notice requirements still apply.",
   Cancellation: "Routed to membership administration. Keep evidence of when and how you sent any time-sensitive cancellation instruction.",
   "Supplier / partner": "Routed to partner operations. This is a business enquiry route, not a membership route.",
   Accessibility: "Routed to the team responsible for the digital experience.",
-  Other: "Routed to the appropriate Montvelle team.",
+  Other: "Routed to the appropriate team.",
 };
 
 export const Route = createFileRoute("/contact")({
@@ -61,7 +61,7 @@ function ContactPage() {
   const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!intakeEnabled) {
-      setError("Online form delivery is not currently enabled. Please use the official contact route shown above.");
+      setError("The online form is not currently available. Please use the official contact route shown above.");
       return;
     }
     setError("");
@@ -111,7 +111,7 @@ function ContactPage() {
               instructions, partner enquiries and accessibility feedback are handled through the
               appropriate Montvelle route. GSM&apos;s official business email and registered office are
               published in the <Link to="/legal" className="underline underline-offset-2">Legal Notice</Link>.
-              {intakeEnabled ? " The online form below is available for routed enquiries." : " The online form is not currently enabled for delivery, so please use the official email or any contract-specific notice route for your matter."}
+              {intakeEnabled ? " Choose a category below and your message is routed to the appropriate team." : " The online form is not currently available, so please use the official email or any contract-specific notice route for your matter."}
             </p>
           </div>
         </Container>
@@ -127,8 +127,9 @@ function ContactPage() {
                 </p>
                 <h2 className="mt-4 font-display text-3xl leading-tight">Routed, not broadcast</h2>
                 <p className="mt-4 text-xs leading-6 text-muted-foreground">
-                  Choose the category that fits best. Different matters have different handling standards —
-                  a privacy rights request and a formal contractual notice are not necessarily treated the same way.
+                  Choose the category that fits best and your message reaches the team responsible for
+                  it. Different matters have different handling standards — a privacy rights request
+                  and a formal contractual notice are not necessarily treated the same way.
                 </p>
                 <p className="mt-4 text-xs leading-6 text-muted-foreground">
                   Personal information submitted to Montvelle is handled under our{" "}
@@ -155,13 +156,13 @@ function ContactPage() {
                   <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-oxblood">
                     Official contact route
                   </p>
-                  <h2 className="mt-4 font-display text-5xl leading-[0.98]">Online delivery is not enabled yet.</h2>
+                  <h2 className="mt-4 font-display text-5xl leading-[0.98]">Use the official route.</h2>
                   <p className="mt-5 max-w-2xl text-sm leading-7 text-muted-foreground">
-                    Do not use an inactive web form for a cancellation deadline, privacy-rights request,
-                    formal legal notice or other time-sensitive matter. Until online delivery is enabled,
-                    use GSM&apos;s official business email below, the registered office in the Legal Notice,
-                    or the specific notice route stated in your Membership Schedule, supplier assignment
-                    or other formal correspondence.
+                    The online form is not available on this build. Do not use an inactive web form for a
+                    cancellation deadline, privacy-rights request, formal legal notice or other
+                    time-sensitive matter. Use GSM&apos;s official business email below, the registered
+                    office in the Legal Notice, or the specific notice route stated in your Membership
+                    Schedule, supplier assignment or other formal correspondence.
                   </p>
                   <a
                     href={`mailto:${officialEmail}`}

@@ -9,7 +9,6 @@ export const Route = createFileRoute("/admin")({
     meta: [
       { title: `Concierge & operations — ${site.name}` },
       { name: "description", content: `Administration area for ${site.name}.` },
-      { name: "robots", content: "noindex,nofollow,noarchive" },
     ],
   }),
   component: AdminLayout,

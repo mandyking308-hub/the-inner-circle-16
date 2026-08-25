@@ -57,7 +57,6 @@ export const Route = createFileRoute("/montvelle-world")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: `${site.url}/montvelle-world` }],
   }),
   component: MontvelleWorldPage,
 });

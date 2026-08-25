@@ -45,7 +45,6 @@ export const Route = createFileRoute("/global-life")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: `${site.url}/global-life` }],
   }),
   component: GlobalLifePage,
 });

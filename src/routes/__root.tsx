@@ -17,28 +17,12 @@ import { SiteFooter } from "@/components/layout/SiteFooter";
 import { FloatingLanguageSelector } from "@/components/common/FloatingLanguageSelector";
 import { site } from "@/config/site";
 import { luxuryImages } from "@/data/luxuryImages";
-
-function isNonIndexable(pathname: string) {
-  return pathname === "/auth"
-    || pathname === "/demo"
-    || pathname === "/supplier-portal"
-    || pathname === "/member"
-    || pathname.startsWith("/member/")
-    || pathname === "/admin"
-    || pathname.startsWith("/admin/")
-    || pathname === "/supplier"
-    || pathname.startsWith("/supplier/")
-    || pathname.startsWith("/lovable/");
-}
-
-function isPrivateArea(pathname: string) {
-  return pathname === "/member"
-    || pathname.startsWith("/member/")
-    || pathname === "/admin"
-    || pathname.startsWith("/admin/")
-    || pathname === "/supplier"
-    || pathname.startsWith("/supplier/");
-}
+import {
+  canonicalUrl,
+  isNonIndexablePath,
+  INDEXABLE_ROBOTS,
+  NON_INDEXABLE_ROBOTS,
+} from "@/lib/seo";
 
 function NotFoundComponent() {
   return (
@@ -65,11 +49,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: `${site.name} — ${site.positioning}` },
       { name: "application-name", content: site.name },
       { name: "description", content: site.description },
+      
       { name: "theme-color", content: "#651f24" },
       { property: "og:site_name", content: site.name },
       { property: "og:title", content: `${site.name} — ${site.positioning}` },
       { property: "og:description", content: site.description },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: site.url },
       { property: "og:image", content: luxuryImages.hero },
       { property: "og:image:alt", content: "Montvelle — a private world around the life you've built" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -79,6 +65,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       { rel: "stylesheet", href: appCss },
+      
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&display=swap" },
@@ -93,59 +80,38 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   errorComponent: ErrorComponent,
 });
 
-function RuntimeSeoHead() {
+function RootShell({ children }: { children: ReactNode }) {
   const pathname = useRouterState({ select: (state) => state.location.pathname });
-  const normalizedPath = pathname === "/" ? "/" : pathname.replace(/\/+$/, "");
-  const canonical = `${site.url}${normalizedPath}`;
-  const noindex = isNonIndexable(pathname);
-  const jsonLd = pathname === "/"
-    ? JSON.stringify({
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebSite",
-            "@id": `${site.url}/#website`,
-            url: `${site.url}/`,
-            name: site.name,
-            description: site.description,
-            inLanguage: "en",
-          },
-          {
-            "@type": "Organization",
-            "@id": `${site.url}/#organization`,
-            name: site.name,
-            legalName: site.operator,
-            url: `${site.url}/`,
-            description: site.description,
-          },
-        ],
-      })
-    : null;
-
+  const nonIndexable = isNonIndexablePath(pathname);
   return (
-    <>
-      <link rel="canonical" href={canonical} />
-      <meta property="og:url" content={canonical} />
-      <meta name="robots" content={noindex ? "noindex,nofollow,noarchive" : "index,follow,max-image-preview:large"} />
-      {jsonLd ? <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }} /> : null}
-    </>
+    <html lang="en">
+      <head>
+        <HeadContent />
+        <meta name="robots" content={nonIndexable ? NON_INDEXABLE_ROBOTS : INDEXABLE_ROBOTS} />
+        {nonIndexable ? null : <link rel="canonical" href={canonicalUrl(pathname)} />}
+      </head>
+      <body>{children}<Scripts /></body>
+    </html>
   );
 }
 
-function RootShell({ children }: { children: ReactNode }) {
-  return <html lang="en"><head><HeadContent /><RuntimeSeoHead /></head><body>{children}<Scripts /></body></html>;
+/**
+ * Right-click deterrent requested for the Montvelle site. This is a presentation
+ * deterrent only, not a security boundary: content remains fully accessible to
+ * keyboard users, assistive technology, copy/paste shortcuts and view-source.
+ */
+function useContextMenuDeterrent() {
+  useEffect(() => {
+    const handler = (event: MouseEvent) => event.preventDefault();
+    document.addEventListener("contextmenu", handler);
+    return () => document.removeEventListener("contextmenu", handler);
+  }, []);
 }
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  useContextMenuDeterrent();
   const pathname = useRouterState({ select: (state) => state.location.pathname });
-
-  useEffect(() => {
-    // Requested content deterrent only; this is not a security boundary.
-    const blockContextMenu = (event: MouseEvent) => event.preventDefault();
-    document.addEventListener("contextmenu", blockContextMenu);
-    return () => document.removeEventListener("contextmenu", blockContextMenu);
-  }, []);
-
-  return <QueryClientProvider client={queryClient}>{isPrivateArea(pathname) ? <Outlet /> : <div className="flex min-h-screen flex-col bg-background paper-grain"><SiteHeader /><main className="flex-1"><Outlet /></main><SiteFooter /><FloatingLanguageSelector /></div>}</QueryClientProvider>;
+  const isPrivateArea = pathname === "/member" || pathname.startsWith("/member/") || pathname === "/admin" || pathname.startsWith("/admin/") || pathname === "/supplier" || pathname.startsWith("/supplier/");
+  return <QueryClientProvider client={queryClient}>{isPrivateArea ? <Outlet /> : <div className="flex min-h-screen flex-col bg-background paper-grain"><SiteHeader /><main className="flex-1"><Outlet /></main><SiteFooter /><FloatingLanguageSelector /></div>}</QueryClientProvider>;
 }
