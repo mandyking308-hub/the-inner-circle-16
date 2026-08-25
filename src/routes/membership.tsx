@@ -76,7 +76,7 @@ function MembershipPage() {
         <img
           src={membershipHero}
           alt="A small private dinner by candlelight on the terrace of a European residence"
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover md:object-[18%_center] xl:object-center"
           fetchPriority="high"
           width={1920}
           height={1280}

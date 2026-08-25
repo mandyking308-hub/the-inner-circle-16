@@ -59,7 +59,7 @@ function GivingPage() {
           alt="Three adults in unhurried conversation in a sunlit foundation courtyard"
           width={1920}
           height={1200}
-          className="absolute inset-0 h-full w-full object-cover object-[68%_center]"
+          className="absolute inset-0 h-full w-full object-cover object-[68%_center] md:object-[20%_center] xl:object-[68%_center]"
         />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(12,12,11,0.86)_0%,rgba(12,12,11,0.55)_48%,rgba(12,12,11,0.10)_88%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,12,11,0.20)_0%,rgba(12,12,11,0.55)_45%,rgba(12,12,11,0.82)_100%)] md:hidden" />

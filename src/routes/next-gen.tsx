@@ -15,7 +15,7 @@ function NextGenPublicPage() {
   return (
     <>
       <section className="relative min-h-[720px] overflow-hidden bg-foreground text-background">
-        <img src={luxuryImages.learning} alt="A parent and young person learning together in an elegant private study" className="absolute inset-0 h-full w-full object-cover" />
+        <img src={luxuryImages.learning} alt="A parent and young person learning together in an elegant private study" className="absolute inset-0 h-full w-full object-cover object-center md:object-[22%_center] xl:object-center" />
         <div className="absolute inset-0 bg-gradient-to-r from-foreground/96 via-foreground/72 to-foreground/16" />
         <Container className="relative flex min-h-[720px] items-center py-20">
           <div className="max-w-3xl"><p className="eyebrow text-bronze">The next generation</p><h1 className="mt-6 max-w-[10ch] font-display text-6xl leading-[0.93] md:text-8xl">Prepare capability before responsibility arrives.</h1><p className="mt-7 max-w-2xl text-base leading-8 text-background/72">A child should not discover the family business, ownership, money, advisers and responsibility for the first time when the paperwork says it is theirs. Exposure can begin earlier — carefully, gradually and without turning childhood into a board meeting.</p><Button asChild size="lg" className="mt-9 rounded-none bg-oxblood px-8"><Link to="/family-learning">Explore Family Learning <ArrowRight className="ml-2 h-4 w-4" /></Link></Button></div>

@@ -168,7 +168,7 @@ export function QuietLuxuryHome() {
         <img
           src={luxuryImages.table}
           alt="Members at a candlelit private dinner"
-          className="h-64 w-full object-cover lg:h-full"
+          className="h-64 w-full object-cover object-[50%_40%] md:h-[380px] lg:h-full lg:object-[35%_center]"
           loading="lazy"
         />
 
@@ -215,7 +215,7 @@ export function QuietLuxuryHome() {
         <img
           src={luxuryImages.service}
           alt="Discreet private service on arrival"
-          className="h-64 w-full object-cover lg:h-full"
+          className="h-64 w-full object-cover object-[50%_14%] md:h-[380px] lg:h-full lg:object-[35%_18%]"
           loading="lazy"
         />
       </section>
@@ -239,7 +239,7 @@ export function QuietLuxuryHome() {
         <img
           src={luxuryImages.family}
           alt="A family watching the sunset together"
-          className="h-64 w-full object-cover lg:h-full"
+          className="h-64 w-full object-cover object-[50%_45%] md:h-[380px] lg:h-full lg:object-[32%_center]"
           loading="lazy"
         />
 
