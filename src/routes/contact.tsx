@@ -99,9 +99,12 @@ function ContactPage() {
               One private route in.
             </h1>
             <p className="mt-7 max-w-2xl text-base leading-8 text-background/72">
-              Montvelle does not publish an email address. Membership questions, privacy and data
-              requests, formal legal notices, cancellation instructions, partner enquiries and
-              accessibility feedback all come through this form and are routed to the right team.
+              Membership questions, privacy and data requests, formal legal notices, cancellation
+              instructions, partner enquiries and accessibility feedback all come through this form
+              and are routed to the right team. GSM&apos;s official business email and registered
+              office are published in the{" "}
+              <Link to="/legal" className="underline underline-offset-2">Legal Notice</Link>; this
+              secure form remains the preferred route for private matters.
             </p>
           </div>
         </Container>
