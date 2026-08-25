@@ -43,7 +43,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: `${site.name} — ${site.positioning}` },
       { name: "application-name", content: site.name },
       { name: "description", content: site.description },
-      { name: "robots", content: "index,follow,max-image-preview:large" },
+      
       { name: "theme-color", content: "#651f24" },
       { property: "og:site_name", content: site.name },
       { property: "og:title", content: `${site.name} — ${site.positioning}` },
