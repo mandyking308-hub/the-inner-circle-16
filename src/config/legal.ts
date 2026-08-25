@@ -6,6 +6,9 @@
  * consumer, distance-selling and privacy law before live trading, then local
  * addenda as member geographies expand. Acceptance evidence recorded in the
  * browser is preview evidence only; it is not a production audit store.
+ * Before production processing of UK/EU member data, confirm whether GSM must
+ * appoint and publish a UK and/or EEA Article 27 representative and complete
+ * the corresponding transfer, ROPA/DPIA and processor-contract documentation.
  *
  * Every clickwrap surface (member sign-in, supplier sign-in) records
  * the bundle version below alongside a timestamp. When production auth and the
@@ -52,8 +55,8 @@ export const legalDocuments: Record<LegalDocumentKey, LegalDocument> = {
     key: "privacyNotice",
     title: "Privacy Notice",
     shortTitle: "Privacy Notice",
-    version: "PN-2026.2",
-    effectiveDate: "2026-08-24",
+    version: "PN-2026.3",
+    effectiveDate: "2026-08-25",
     path: "/privacy",
   },
   confidentiality: {
