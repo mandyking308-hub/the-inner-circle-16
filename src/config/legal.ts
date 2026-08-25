@@ -118,7 +118,7 @@ export const legalDocuments: Record<LegalDocumentKey, LegalDocument> = {
     key: "accessibilityStatement",
     title: "Accessibility statement",
     shortTitle: "Accessibility",
-    version: "AS-2026.1",
+    version: "AS-2026.2",
     effectiveDate: "2026-08-25",
     path: "/accessibility",
   },
