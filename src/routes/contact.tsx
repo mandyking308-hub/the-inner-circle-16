@@ -9,7 +9,6 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { site } from "@/config/site";
 import {
-  applicationIntakeEnabled,
   submitContactIntake,
   type ContactCategory,
 } from "@/lib/applicationIntake";
