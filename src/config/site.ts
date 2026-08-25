@@ -2,8 +2,10 @@ export const site = {
   name: "Montvelle",
   shortName: "Montvelle",
   location: "London · Global",
-  domain: "montvelle.com",
-  url: "https://montvelle.com",
+  // Canonical production host currently published by Lovable.
+  // Replace both values only when a Montvelle-owned custom domain is actually connected.
+  domain: "montvelle.lovable.app",
+  url: "https://montvelle.lovable.app",
   operator: "Global Solutions Management LLC",
   operatorJurisdiction: "Delaware, United States",
   positioning: "A private world around the life you've built.",
