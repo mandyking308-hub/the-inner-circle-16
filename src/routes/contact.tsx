@@ -51,7 +51,7 @@ export const Route = createFileRoute("/contact")({
 });
 
 function ContactPage() {
-  const intakeEnabled = applicationIntakeEnabled();
+  const intakeEnabled = contactIntakeEnabled();
   const [category, setCategory] = useState<ContactCategory>("Membership");
   const [turnstileToken, setTurnstileToken] = useState("");
   const [submitting, setSubmitting] = useState(false);
