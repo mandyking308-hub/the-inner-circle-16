@@ -71,7 +71,7 @@ export const legalDocuments: Record<LegalDocumentKey, LegalDocument> = {
     key: "supplierAgreement",
     title: "Supplier & Partner Agreement",
     shortTitle: "Supplier & Partner Agreement",
-    version: "SP-2026.2",
+    version: "SP-2026.3",
     effectiveDate: "2026-08-25",
     path: "/supplier-agreement",
   },
